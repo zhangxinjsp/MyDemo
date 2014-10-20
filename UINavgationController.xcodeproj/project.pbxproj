@@ -123,6 +123,8 @@
 		5BDB06A719C724A80099FBA8 /* SocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB06A619C724A80099FBA8 /* SocketViewController.m */; };
 		5BDB06A919C724F80099FBA8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDB06A819C724F80099FBA8 /* CFNetwork.framework */; };
 		E561D7AB18DC41D000411BF0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E561D7AA18DC41D000411BF0 /* CoreText.framework */; };
+		E5D8E61719F4FA990026B618 /* AutoLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */; };
+		E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -284,6 +286,9 @@
 		5BDB06A619C724A80099FBA8 /* SocketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocketViewController.m; path = socket/SocketViewController.m; sourceTree = "<group>"; };
 		5BDB06A819C724F80099FBA8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E561D7AA18DC41D000411BF0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		E5D8E61519F4FA990026B618 /* AutoLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoLayerViewController.h; path = autolayer/AutoLayerViewController.h; sourceTree = "<group>"; };
+		E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoLayerViewController.m; path = autolayer/AutoLayerViewController.m; sourceTree = "<group>"; };
+		E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AutoLayerViewController.xib; path = autolayer/AutoLayerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,6 +389,7 @@
 				5BD46D67194D418D002995EB /* 分享到facebook */,
 				5BC4EBFF1971095500ECAB1E /* request */,
 				5BDB06A419C7246F0099FBA8 /* socket */,
+				E5D8E61419F4FA5C0026B618 /* autolayer */,
 				5BD46DAC194D418E002995EB /* UIScrollView代码实现无缝循环滚动 */,
 				0DC5F359163AC67900F7D8D5 /* LastViewController.h */,
 				0DC5F35A163AC67900F7D8D5 /* LastViewController.m */,
@@ -727,6 +733,16 @@
 			name = socket;
 			sourceTree = "<group>";
 		};
+		E5D8E61419F4FA5C0026B618 /* autolayer */ = {
+			isa = PBXGroup;
+			children = (
+				E5D8E61519F4FA990026B618 /* AutoLayerViewController.h */,
+				E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */,
+				E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */,
+			);
+			name = autolayer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -789,6 +805,7 @@
 				5BC077A9194DD2510024627F /* KeychainAccessGroups.plist in Resources */,
 				5BD46D45194D3B61002995EB /* 上眼皮中部.png in Resources */,
 				5BD46D43194D3B61002995EB /* paletta_icon@2x.png in Resources */,
+				E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */,
 				5BD46DDC194D418E002995EB /* TransformViewController.xib in Resources */,
 				5BD46DE2194D418E002995EB /* WebViewViewController.xib in Resources */,
 				5BD46D3B194D3B61002995EB /* dragDown@2x.png in Resources */,
@@ -872,6 +889,7 @@
 				5BDB06A719C724A80099FBA8 /* SocketViewController.m in Sources */,
 				5BD46DC3194D418E002995EB /* RegexAndMd5ViewController.m in Sources */,
 				5B84681C1955ACA80033C079 /* NSString-expand.m in Sources */,
+				E5D8E61719F4FA990026B618 /* AutoLayerViewController.m in Sources */,
 				5BD46DBC194D418E002995EB /* ShareTofaceBookViewController.m in Sources */,
 				5BD46DD2194D418E002995EB /* DrawRectViewController.m in Sources */,
 				5B28324019AA06E700C873FB /* UIImage+Effects.m in Sources */,
@@ -936,10 +954,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
-				SDKROOT = iphoneos6.1;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -959,11 +977,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
-				SDKROOT = iphoneos6.1;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -982,12 +1000,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UINavgationController/UINavgationController-Prefix.pch";
 				INFOPLIST_FILE = "UINavgationController/UINavgationController-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
-				SDKROOT = iphoneos6.1;
+				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1007,12 +1025,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UINavgationController/UINavgationController-Prefix.pch";
 				INFOPLIST_FILE = "UINavgationController/UINavgationController-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
-				SDKROOT = iphoneos6.1;
+				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>619DB522-45BC-41CF-94CA-1B2380A119CA</string>
+	<string>636DC7C8-4678-41B7-B180-907D02ADACEE</string>
 	<key>IDESourceControlProjectName</key>
 	<string>UINavgationController</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>CF9E7F14-2F66-41D2-BA28-F30B026B0F6D</key>
-		<string>ssh://github.com/zhangxinjsp/myTestDemo.git</string>
+		<key>7C556FE1-31BE-4F22-8C5E-99E5C5CE1BC8</key>
+		<string>https://bitbucket.org/zhangxinjsp/uinavgationcontroller.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>UINavgationController.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>CF9E7F14-2F66-41D2-BA28-F30B026B0F6D</key>
+		<key>7C556FE1-31BE-4F22-8C5E-99E5C5CE1BC8</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/zhangxinjsp/myTestDemo.git</string>
+	<string>https://bitbucket.org/zhangxinjsp/uinavgationcontroller.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>CF9E7F14-2F66-41D2-BA28-F30B026B0F6D</string>
+	<string>7C556FE1-31BE-4F22-8C5E-99E5C5CE1BC8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>CF9E7F14-2F66-41D2-BA28-F30B026B0F6D</string>
+			<string>7C556FE1-31BE-4F22-8C5E-99E5C5CE1BC8</string>
 			<key>IDESourceControlWCCName</key>
-			<string>UINavgationController</string>
+			<string>uinavgationcontroller</string>
 		</dict>
 	</array>
 </dict>

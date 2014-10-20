@@ -10,6 +10,16 @@
 
 #import "CoreDataViewController.h"
 #import "FileManagerReadAndWriteViewController.h"
+#import "LastViewController.h"
+#import "WebViewViewController.h"
+#import "RefreshViewController.h"
+#import "SQLiteViewController.h"
+#import "SendMessageAndEMailViewController.h"
+#import "ShareTofaceBookViewController.h"
+#import "URLRequestViewController.h"
+#import "AutoLayerViewController.h"
+#import "SocketViewController.h"
+
 
 @interface NavRootViewController ()
 
@@ -94,7 +104,7 @@
     NSInteger upDownGap = 15;
     NSInteger leftRightGap = 18;
     
-    NSArray* titleArray = [[NSArray alloc]initWithObjects:@"webView", @"transform", @"正则md5", @"drawrect", @"下拉刷新", @"CoreData", @"文件读写", @"SQLite", @"短信和邮件",@"分享", @"request", @"socket", nil];
+    NSArray* titleArray = [[NSArray alloc]initWithObjects:@"webView", @"transform", @"正则md5", @"drawrect", @"下拉刷新", @"CoreData", @"文件读写", @"SQLite", @"短信和邮件",@"分享", @"request", @"socket", @"Auto Layer", nil];
     
     for (int i = 0; i < titleArray.count; i++) {
         NSInteger x = (i % 4) * (menuItemViewWidth + leftRightGap) + leftRightGap;
@@ -110,7 +120,7 @@
         
         UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0, menuItemViewHight - 25, menuItemViewWidth, 20)];
         label.text = [titleArray objectAtIndex:i];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = [UIColor clearColor];
         label.font = [UIFont systemFontOfSize:12];
         [itemBtn addSubview:label];
@@ -198,6 +208,17 @@
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
+        case 11:{
+            SocketViewController* ctl = [[SocketViewController alloc] init];
+            [self.navigationController pushViewController:ctl animated:YES];
+        }
+            break;
+        case 12:{
+            AutoLayerViewController* ctl = [[AutoLayerViewController alloc] initWithNibName:@"AutoLayerViewController" bundle:nil];
+            [self.navigationController pushViewController:ctl animated:YES];
+        }
+            break;
+
         default:
             break;
     }
