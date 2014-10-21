@@ -110,6 +110,12 @@ void SignalHandler(int sig) {
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    static UIBackgroundTaskIdentifier task;
+    task = [application beginBackgroundTaskWithExpirationHandler:^{
+        task = UIBackgroundTaskInvalid;
+    }];
+    //执行后台操作
+    [application endBackgroundTask:task];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -160,6 +166,23 @@ void SignalHandler(int sig) {
     LOGINFO(@"注册失败，无法获取设备ID, 具体错误: %@", error);
 }
 
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier
+  completionHandler:(void (^)())completionHandler {
+    self.backgroundSessionCompletionHandler = completionHandler;
+    //add notification
+    [self presentNotification];
+}
+
+-(void)presentNotification{
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.alertBody = @"Download Complete!";
+    localNotification.alertAction = @"Background Transfer Download!";
+    //On sound
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    //increase the badge number of application plus 1
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+}
 
 -(BOOL)shouldAutorotate{
     return [self.nav shouldAutorotate];;

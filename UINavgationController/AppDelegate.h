@@ -25,4 +25,6 @@
 
 @property (strong, nonatomic) FBSession *session;
 
+@property (copy) void (^backgroundSessionCompletionHandler)(); 
+
 @end
