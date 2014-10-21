@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "sqlite3.h"
-#import "PrintLog.h"
+
 
 #define DB_NAME     @"area"
 

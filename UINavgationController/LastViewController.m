@@ -9,7 +9,7 @@
 #import "LastViewController.h"
 #import "UILabel-LineHeigh.h"
 
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 
 
 @interface LastViewController ()
@@ -17,35 +17,6 @@
 @end
 
 @implementation LastViewController
--(UIColor*)getColorWithRGB:(NSString*)RGB{
-    
-    if (!RGB) {
-        return [UIColor clearColor];
-    }
-    while (RGB.length < 6) {
-        RGB = [RGB stringByAppendingString:@"0"];
-    }
-    float red = strtoul([[RGB substringToIndex:2] UTF8String],0,16);
-    float green = strtoul([[RGB substringWithRange:NSMakeRange(2, 2)] UTF8String],0,16);
-    float blue = strtoul([[RGB substringFromIndex:4] UTF8String],0,16);
-    UIColor * color = [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:1];
-    return color;
-    
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    static NSString * weekPosFmt   = @"c";//@"e"和@"c"是相同的，星期天都是一周的开始，返回1；
-    
-//    NSArray *weekDayArray = @[STR_SUNDAY,STR_MONDAY,STR_TUESDAY,STR_WEDNESDAY,STR_THURSDAY,STR_FRIDAY,STR_SATURDAY];
-    
-    [dateFormatter setDateFormat:weekPosFmt];
-    NSString * temp = [dateFormatter stringFromDate:[NSDate date]];
-    int     tempPos = [temp intValue] - 1;
-    
-    
-    
-    
-    
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

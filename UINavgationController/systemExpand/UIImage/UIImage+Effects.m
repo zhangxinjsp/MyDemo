@@ -11,7 +11,6 @@
 
 #import <float.h>
 #import <Accelerate/Accelerate.h>
-#import "PrintLog.h"
 
 @implementation UIImage(Effects)
 

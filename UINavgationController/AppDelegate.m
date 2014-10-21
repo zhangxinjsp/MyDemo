@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 
-#import "PrintLog.h"
-#import "Define.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 @implementation AppDelegate
@@ -41,7 +39,7 @@
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
     
 //    UIRemoteNotificationType enabledTypes =[[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-    
+    LOGINFO(@"-------------- %@", [Formater stringDateAliasesWithDate:@"2014-10-21 12:12:12"]);
     //facebook
     self.session = [[FBSession alloc] init];
     

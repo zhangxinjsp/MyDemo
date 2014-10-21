@@ -96,7 +96,7 @@
 */
 #import "Reachability.h"
 #import <arpa/inet.h>
-#import "PrintLog.h"
+
 
 NSString *const kInternetConnection  = @"InternetConnection";
 NSString *const kLocalWiFiConnection = @"LocalWiFiConnection";

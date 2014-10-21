@@ -32,8 +32,10 @@ void printLog(int level ,NSString* file ,int line ,NSString* format, ...){
      }
     */
     
-    NSString* levelStr = @"INFO";
-    if (level == LEVEL_WARN) {
+    NSString* levelStr = @"DEBUG";
+    if (level == LEVEL_INFO) {
+        levelStr = @"INFO";
+    }else if (level == LEVEL_WARN) {
         levelStr = @"WARN";
     }else if (level == LEVEL_ERROR){
         levelStr = @"ERROR";

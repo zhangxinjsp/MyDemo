@@ -8,7 +8,7 @@
 
 #import "DrawView.h"
 
-#import "PrintLog.h"
+
 @implementation DrawView
 
 @synthesize type;

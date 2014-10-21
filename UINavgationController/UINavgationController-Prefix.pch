@@ -11,4 +11,10 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+    #import "NSString-expand.h"
+    #import "PrintLog.h"
+    #import "Define.h"
+    #import "Formater.h"
+
 #endif

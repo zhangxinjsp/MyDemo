@@ -122,6 +122,7 @@
 		5BD46DF2194D49BE002995EB /* PrintLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD46DF1194D49BE002995EB /* PrintLog.m */; };
 		5BDB06A719C724A80099FBA8 /* SocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB06A619C724A80099FBA8 /* SocketViewController.m */; };
 		5BDB06A919C724F80099FBA8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDB06A819C724F80099FBA8 /* CFNetwork.framework */; };
+		E52405A419F639F800ED1360 /* Formater.m in Sources */ = {isa = PBXBuildFile; fileRef = E52405A319F639F800ED1360 /* Formater.m */; };
 		E561D7AB18DC41D000411BF0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E561D7AA18DC41D000411BF0 /* CoreText.framework */; };
 		E5D8E61719F4FA990026B618 /* AutoLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */; };
 		E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */; };
@@ -285,6 +286,8 @@
 		5BDB06A519C724A80099FBA8 /* SocketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocketViewController.h; path = socket/SocketViewController.h; sourceTree = "<group>"; };
 		5BDB06A619C724A80099FBA8 /* SocketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocketViewController.m; path = socket/SocketViewController.m; sourceTree = "<group>"; };
 		5BDB06A819C724F80099FBA8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E52405A219F639F800ED1360 /* Formater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Formater.h; path = Common/Formater.h; sourceTree = "<group>"; };
+		E52405A319F639F800ED1360 /* Formater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Formater.m; path = Common/Formater.m; sourceTree = "<group>"; };
 		E561D7AA18DC41D000411BF0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		E5D8E61519F4FA990026B618 /* AutoLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoLayerViewController.h; path = autolayer/AutoLayerViewController.h; sourceTree = "<group>"; };
 		E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoLayerViewController.m; path = autolayer/AutoLayerViewController.m; sourceTree = "<group>"; };
@@ -720,6 +723,8 @@
 			children = (
 				5BD46DF4194D4D78002995EB /* Define.h */,
 				2515417E196FC2F400A456F3 /* Reachability */,
+				E52405A219F639F800ED1360 /* Formater.h */,
+				E52405A319F639F800ED1360 /* Formater.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -890,6 +895,7 @@
 				5BD46DC3194D418E002995EB /* RegexAndMd5ViewController.m in Sources */,
 				5B84681C1955ACA80033C079 /* NSString-expand.m in Sources */,
 				E5D8E61719F4FA990026B618 /* AutoLayerViewController.m in Sources */,
+				E52405A419F639F800ED1360 /* Formater.m in Sources */,
 				5BD46DBC194D418E002995EB /* ShareTofaceBookViewController.m in Sources */,
 				5BD46DD2194D418E002995EB /* DrawRectViewController.m in Sources */,
 				5B28324019AA06E700C873FB /* UIImage+Effects.m in Sources */,
