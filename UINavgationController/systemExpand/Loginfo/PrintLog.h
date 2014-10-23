@@ -8,7 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#ifdef DEBUG
 #define LEVEL_CONTROL   0
+#else
+#define LEVEL_CONTROL   2
+#endif
+
+
 
 #define LEVEL_DEBUG  0
 #define LEVEL_INFO   1

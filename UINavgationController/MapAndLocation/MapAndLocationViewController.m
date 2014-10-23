@@ -218,14 +218,13 @@
         LOGINFO(@"Location services are not enabled");
     }
 }
-
+/*
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     CLLocation* lastLocation = [locations lastObject];
     LOGINFO(@"Latitude = %f", lastLocation.coordinate.latitude);
     LOGINFO(@"Longitude = %f", lastLocation.coordinate.longitude);
-    
 }
-
+*/
 - (void)locationManager:(CLLocationManager *)manager idUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     /* We received the new location */
     LOGINFO(@"Latitude = %f", newLocation.coordinate.latitude);

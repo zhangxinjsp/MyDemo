@@ -8,6 +8,10 @@
 
 
 
+#define CurrentSystemVersion  [UIDevice currentDevice].systemVersion.floatValue
+
+
+
 #define isRetina_Size ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(320*2, 480*2), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(768*2, 1024*2), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(320*2, 568*2), [[UIScreen mainScreen] currentMode].size)) : NO)
 
 
