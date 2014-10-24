@@ -27,11 +27,11 @@
 {
     [super viewDidLoad];
 // Do any additional setup after loading the view.
-    
+
     self.view.backgroundColor = [UIColor whiteColor];
     LOGINFO(@"self view :%@", [NSString stringWithFormat:@"x:%.1f;y:%.1f;w:%.1f;h:%.1f;", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height]);
     
-    _urlBtn = [[UIButton alloc]initWithFrame:CGRectMake(30, 160, 100, 60)];
+    _urlBtn = [[UIButton alloc]init];// WithFrame:CGRectMake(30, 160, 100, 60)];
     _urlBtn.backgroundColor = [UIColor grayColor];
     [_urlBtn setBackgroundImage:[UIImage imageNamed:@"btn_save.png"] forState:UIControlStateNormal];
     [_urlBtn setBackgroundImage:[UIImage imageNamed:@"btn_save_blue.png"] forState:UIControlStateHighlighted];
@@ -40,7 +40,7 @@
     [_urlBtn addTarget:self action:@selector(callUrl) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_urlBtn];
     
-    _urlEntryFeature = [[UIButton alloc]initWithFrame:CGRectMake(150, 160, 150, 60)];
+    _urlEntryFeature = [[UIButton alloc]init];//WithFrame:CGRectMake(150, 160, 150, 60)];
     _urlEntryFeature.backgroundColor = [UIColor grayColor];
     [_urlEntryFeature setBackgroundImage:[UIImage imageNamed:@"btn_save.png"] forState:UIControlStateNormal];
     [_urlEntryFeature setBackgroundImage:[UIImage imageNamed:@"btn_save_blue.png"] forState:UIControlStateHighlighted];
@@ -49,7 +49,7 @@
     [_urlEntryFeature addTarget:self action:@selector(entryFeatrue) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_urlEntryFeature];
     
-    _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(2, 20, 100, 60)];
+    _nameLabel = [[UILabel alloc]init];//WithFrame:CGRectMake(2, 20, 100, 60)];
     _nameLabel.text = @"Name:";
     _nameLabel.font = [UIFont boldSystemFontOfSize:12.0f];
     _nameLabel.textColor = [UIColor blackColor];
@@ -58,7 +58,7 @@
     _nameLabel.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:_nameLabel];
     
-    _passWordLabel = [[UILabel alloc]initWithFrame:CGRectMake(2, 90, 100, 60)];
+    _passWordLabel = [[UILabel alloc]init];//WithFrame:CGRectMake(2, 90, 100, 60)];
     _passWordLabel.text = @"Password:";
     _passWordLabel.font = [UIFont boldSystemFontOfSize:12.0f];
     _passWordLabel.textColor = [UIColor blackColor];
@@ -73,13 +73,18 @@
     [_urlBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_urlEntryFeature setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    
+//    [self layoutSubviewTypeLandscape];
+    [self layoutSubviewTypePortrait];
+//    [self layoutSubviewTypeTest];
+}
+
+-(void)layoutSubviewTypeTest{
     NSDictionary *views = NSDictionaryOfVariableBindings(_nameLabel, _passWordLabel, _urlBtn, _urlEntryFeature);
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(50)-[_nameLabel(50)]-(<=10)-[_urlBtn(>=50)]-(>=30)-|"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[_nameLabel(>=50)]-(==10)-[_urlBtn(_nameLabel)]-(<=100)-|"
                                                                       options:NSLayoutFormatAlignAllLeft metrics:nil views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=10,<=15)-[_nameLabel(>=100,<=150)]-(>=10,<=15)-[_passWordLabel(>=100,<=150)]-(>=10,<=15)-|"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=10,<=15)-[_nameLabel(>=100)]-(>=10,<=15)-[_passWordLabel(_nameLabel)]-(>=10,<=15)-|"
                                                                       options:NSLayoutFormatDirectionLeadingToTrailing|NSLayoutFormatAlignAllBaseline metrics:nil views:views]];
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_passWordLabel
@@ -89,40 +94,92 @@
                                                           attribute:NSLayoutAttributeTop
                                                          multiplier:1
                                                            constant:0]];
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_passWordLabel
-//                                                          attribute:NSLayoutAttributeBottom
-//                                                          relatedBy:NSLayoutRelationEqual
-//                                                             toItem:_nameLabel
-//                                                          attribute:NSLayoutAttributeBottom
-//                                                         multiplier:1
-//                                                           constant:10]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_nameLabel
+                                                          attribute:NSLayoutAttributeHeight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:_nameLabel
+                                                          attribute:NSLayoutAttributeWidth
+                                                         multiplier:1
+                                                           constant:0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_passWordLabel
+                                                          attribute:NSLayoutAttributeHeight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:_passWordLabel
+                                                          attribute:NSLayoutAttributeWidth
+                                                         multiplier:1
+                                                           constant:0]];
+    
+    
     
     NSDictionary* metricsDict = [[NSDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithInt:30], @"value1", nil];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=10,<=15)-[_urlBtn(>=100)]-(==5)-[_urlEntryFeature(>=100)]-(10)-|"
                                                                       options:NSLayoutFormatDirectionLeadingToTrailing|NSLayoutFormatAlignAllBottom|NSLayoutFormatAlignAllTop metrics:metricsDict views:views]];
+}
+
+-(void)layoutSubviewTypePortrait{
+    NSDictionary *views = NSDictionaryOfVariableBindings(_nameLabel, _passWordLabel, _urlBtn);
     
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_urlEntryFeature
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(10)-[_nameLabel(>=30)]-(10)-|"
+                                                                      options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[_nameLabel(30)]-(10)-[_passWordLabel(300)]-(10)-[_urlBtn(30)]-(>=10)-|"
+                                                                      options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
+    
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_passWordLabel
 //                                                          attribute:NSLayoutAttributeTop
 //                                                          relatedBy:NSLayoutRelationEqual
-//                                                             toItem:_urlBtn
+//                                                             toItem:_nameLabel
 //                                                          attribute:NSLayoutAttributeTop
 //                                                         multiplier:1
 //                                                           constant:0]];
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_urlEntryFeature
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_nameLabel
 //                                                          attribute:NSLayoutAttributeHeight
 //                                                          relatedBy:NSLayoutRelationEqual
-//                                                             toItem:_urlBtn
-//                                                          attribute:NSLayoutAttributeHeight
+//                                                             toItem:_nameLabel
+//                                                          attribute:NSLayoutAttributeWidth
 //                                                         multiplier:1
-//                                                           constant:-10]];
+//                                                           constant:0]];
+//    
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_passWordLabel
+//                                                          attribute:NSLayoutAttributeHeight
+//                                                          relatedBy:NSLayoutRelationEqual
+//                                                             toItem:_passWordLabel
+//                                                          attribute:NSLayoutAttributeWidth
+//                                                         multiplier:1
+//                                                           constant:0]];
     
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+-(void)layoutSubviewTypeLandscape{
+    NSDictionary *views = NSDictionaryOfVariableBindings(_nameLabel, _passWordLabel, _urlBtn);
+
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(10)-[_passWordLabel(>=100)]-(10)-[_nameLabel(_passWordLabel)]-(10)-|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing|NSLayoutFormatAlignAllTop metrics:nil views:views]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(10)-[_passWordLabel(>=100)]-(10)-[_urlBtn(_passWordLabel)]-(10)-|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
+    
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[_passWordLabel(>=50)]-(10)-|"
+                                                                      options:0 metrics:nil views:views]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[_nameLabel(30)]-(10)-[_urlBtn(_nameLabel)]-(>=10)-|"
+                                                                      options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
+    
+}
+
+-(void)setValueText{
     _nameLabel.text = [NSString stringWithFormat:@"x:%.1f;y:%.1f;w:%.1f;h:%.1f;", _nameLabel.frame.origin.x, _nameLabel.frame.origin.y, _nameLabel.frame.size.width, _nameLabel.frame.size.height];
     _passWordLabel.text = [NSString stringWithFormat:@"x:%.1f;y:%.1f;w:%.1f;h:%.1f;", _passWordLabel.frame.origin.x, _passWordLabel.frame.origin.y, _passWordLabel.frame.size.width, _passWordLabel.frame.size.height];
+}
+
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self setValueText];
 }
 
 
@@ -140,6 +197,13 @@
 }
 
 -(NSUInteger)supportedInterfaceOrientations{
+    [self.view removeConstraints:[self.view constraints]];
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+        [self layoutSubviewTypeLandscape];
+    }else if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)){
+        [self layoutSubviewTypePortrait];
+    }
+    [self setValueText];
     return UIInterfaceOrientationMaskAll;
 }
 

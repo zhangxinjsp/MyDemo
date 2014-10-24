@@ -23,7 +23,9 @@
 #import "ContactsViewController.h"
 
 
-@interface NavRootViewController ()
+@interface NavRootViewController (){
+    NSArray* titleArray;
+}
 
 @end
 
@@ -106,7 +108,7 @@
     NSInteger upDownGap = 15;
     NSInteger leftRightGap = 18;
     
-    NSArray* titleArray = [[NSArray alloc]initWithObjects:@"webView", @"transform", @"正则md5", @"drawrect", @"下拉刷新", @"CoreData", @"文件读写", @"SQLite", @"短信和邮件",@"分享", @"request", @"socket", @"Auto Layer", @"map,location", @"addressBook", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"webView", @"transform", @"正则md5", @"drawrect", @"下拉刷新", @"CoreData", @"文件读写", @"SQLite", @"短信和邮件",@"分享", @"request", @"socket", @"Auto Layer", @"map,location", @"addressBook", nil];
     
     for (int i = 0; i < titleArray.count; i++) {
         NSInteger x = (i % 4) * (menuItemViewWidth + leftRightGap) + leftRightGap;
@@ -150,83 +152,92 @@
     NSInteger tag = ((UIButton*)sender).tag;
     switch (tag) {
         case 0:{
-            WebViewViewController* second = [[WebViewViewController alloc]initWithNibName:@"WebViewViewController" bundle:nil];
-            [self.navigationController pushViewController:second animated:YES];
+            WebViewViewController* ctl = [[WebViewViewController alloc]initWithNibName:@"WebViewViewController" bundle:nil];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 1:{
-            TransformViewController* lastView = [[TransformViewController alloc] initWithNibName:@"TransformViewController" bundle:nil];
-            
-            [self.navigationController pushViewController:lastView animated:YES];
+            TransformViewController* ctl = [[TransformViewController alloc] initWithNibName:@"TransformViewController" bundle:nil];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 2:{
-            RegexAndMd5ViewController* lastView = [[RegexAndMd5ViewController alloc] initWithNibName:@"RegexAndMd5ViewController" bundle:nil];
-            
-            [self.navigationController pushViewController:lastView animated:YES];
+            RegexAndMd5ViewController* ctl = [[RegexAndMd5ViewController alloc] initWithNibName:@"RegexAndMd5ViewController" bundle:nil];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 3:{
-            DrawRectViewController* fifthView = [[DrawRectViewController alloc] initWithNibName:@"DrawRectViewController" bundle:nil];
-            
-            [self.navigationController pushViewController:fifthView animated:YES];
+            DrawRectViewController* ctl = [[DrawRectViewController alloc] initWithNibName:@"DrawRectViewController" bundle:nil];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 4:{
-            RefreshViewController* last = [[RefreshViewController alloc]initWithNibName:@"RefreshViewController" bundle:nil];
-            
-            [self.navigationController pushViewController:last animated:YES];
+            RefreshViewController* ctl = [[RefreshViewController alloc]initWithNibName:@"RefreshViewController" bundle:nil];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 5:{
-            CoreDataViewController* seventh = [[CoreDataViewController alloc] initWithNibName:nil bundle:nil];
-            
-            [self.navigationController pushViewController:seventh animated:YES];
+            CoreDataViewController* ctl = [[CoreDataViewController alloc] initWithNibName:nil bundle:nil];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 6:{
-            FileManagerReadAndWriteViewController* lastView = [[FileManagerReadAndWriteViewController alloc] initWithNibName:@"FileManagerReadAndWriteViewController" bundle:nil];
-            
-            [self.navigationController pushViewController:lastView animated:YES];
+            FileManagerReadAndWriteViewController* ctl = [[FileManagerReadAndWriteViewController alloc] initWithNibName:@"FileManagerReadAndWriteViewController" bundle:nil];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 7:{
-            SQLiteViewController* aqlite = [[SQLiteViewController alloc]initWithNibName:@"SQLiteViewController" bundle:nil];
-            [self.navigationController pushViewController:aqlite animated:YES];
+            SQLiteViewController* ctl = [[SQLiteViewController alloc]initWithNibName:@"SQLiteViewController" bundle:nil];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 8:{
             SendMessageAndEMailViewController* ctl = [[SendMessageAndEMailViewController alloc]initWithNibName:@"SendMessageAndEMailViewController" bundle:nil];
+            ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 9:{
             ShareTofaceBookViewController* ctl = [[ShareTofaceBookViewController alloc] initWithNibName: @"ShareTofaceBookViewController" bundle:nil];
+            ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 10:{
             URLRequestViewController* ctl = [[URLRequestViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 11:{
             SocketViewController* ctl = [[SocketViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 12:{
             AutoLayerViewController* ctl = [[AutoLayerViewController alloc] initWithNibName:@"AutoLayerViewController" bundle:nil];
+            ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 13:{
             MapAndLocationViewController* ctl = [[MapAndLocationViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 14:{
             ContactsViewController* ctl = [[ContactsViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
