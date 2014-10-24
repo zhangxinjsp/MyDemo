@@ -127,29 +127,6 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[_nameLabel(30)]-(10)-[_passWordLabel(300)]-(10)-[_urlBtn(30)]-(>=10)-|"
                                                                       options:NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight metrics:nil views:views]];
     
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_passWordLabel
-//                                                          attribute:NSLayoutAttributeTop
-//                                                          relatedBy:NSLayoutRelationEqual
-//                                                             toItem:_nameLabel
-//                                                          attribute:NSLayoutAttributeTop
-//                                                         multiplier:1
-//                                                           constant:0]];
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_nameLabel
-//                                                          attribute:NSLayoutAttributeHeight
-//                                                          relatedBy:NSLayoutRelationEqual
-//                                                             toItem:_nameLabel
-//                                                          attribute:NSLayoutAttributeWidth
-//                                                         multiplier:1
-//                                                           constant:0]];
-//    
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_passWordLabel
-//                                                          attribute:NSLayoutAttributeHeight
-//                                                          relatedBy:NSLayoutRelationEqual
-//                                                             toItem:_passWordLabel
-//                                                          attribute:NSLayoutAttributeWidth
-//                                                         multiplier:1
-//                                                           constant:0]];
-    
 }
 
 -(void)layoutSubviewTypeLandscape{
@@ -158,10 +135,6 @@
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(10)-[_passWordLabel(>=100)]-(10)-[_nameLabel(_passWordLabel)]-(10)-|"
                                                                       options:NSLayoutFormatDirectionLeadingToTrailing|NSLayoutFormatAlignAllTop metrics:nil views:views]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(10)-[_passWordLabel(>=100)]-(10)-[_urlBtn(_passWordLabel)]-(10)-|"
-                                                                      options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
-    
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[_passWordLabel(>=50)]-(10)-|"
                                                                       options:0 metrics:nil views:views]];

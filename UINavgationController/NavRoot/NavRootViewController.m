@@ -21,6 +21,7 @@
 #import "SocketViewController.h"
 #import "MapAndLocationViewController.h"
 #import "ContactsViewController.h"
+#import "MotionViewController.h"
 
 
 @interface NavRootViewController (){
@@ -108,7 +109,7 @@
     NSInteger upDownGap = 15;
     NSInteger leftRightGap = 18;
     
-    titleArray = [[NSArray alloc]initWithObjects:@"webView", @"transform", @"正则md5", @"drawrect", @"下拉刷新", @"CoreData", @"文件读写", @"SQLite", @"短信和邮件",@"分享", @"request", @"socket", @"Auto Layer", @"map,location", @"addressBook", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"webView", @"transform", @"正则md5", @"drawrect", @"下拉刷新", @"CoreData", @"文件读写", @"SQLite", @"短信和邮件",@"分享", @"request", @"socket", @"Auto Layer", @"map,location", @"addressBook", @"motion", nil];
     
     for (int i = 0; i < titleArray.count; i++) {
         NSInteger x = (i % 4) * (menuItemViewWidth + leftRightGap) + leftRightGap;
@@ -237,6 +238,12 @@
             break;
         case 14:{
             ContactsViewController* ctl = [[ContactsViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
+        }
+            break;
+        case 15:{
+            MotionViewController* ctl = [[MotionViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }

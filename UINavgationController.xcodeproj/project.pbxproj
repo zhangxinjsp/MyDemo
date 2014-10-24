@@ -123,6 +123,8 @@
 		5BDB06A719C724A80099FBA8 /* SocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB06A619C724A80099FBA8 /* SocketViewController.m */; };
 		5BDB06A919C724F80099FBA8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDB06A819C724F80099FBA8 /* CFNetwork.framework */; };
 		E52405A419F639F800ED1360 /* Formater.m in Sources */ = {isa = PBXBuildFile; fileRef = E52405A319F639F800ED1360 /* Formater.m */; };
+		E53268D419FA394900FB6195 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53268D319FA394900FB6195 /* CoreMotion.framework */; };
+		E53268D719FA396700FB6195 /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E53268D619FA396700FB6195 /* MotionViewController.m */; };
 		E53D504E19F748EA005C0E8E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53D504D19F748EA005C0E8E /* MapKit.framework */; };
 		E53D505019F748F7005C0E8E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53D504F19F748F7005C0E8E /* CoreLocation.framework */; };
 		E53D505319F74922005C0E8E /* MapAndLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E53D505219F74922005C0E8E /* MapAndLocationViewController.m */; };
@@ -294,6 +296,9 @@
 		5BDB06A819C724F80099FBA8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E52405A219F639F800ED1360 /* Formater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Formater.h; path = Common/Formater.h; sourceTree = "<group>"; };
 		E52405A319F639F800ED1360 /* Formater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Formater.m; path = Common/Formater.m; sourceTree = "<group>"; };
+		E53268D319FA394900FB6195 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		E53268D519FA396700FB6195 /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MotionViewController.h; path = Motion/MotionViewController.h; sourceTree = "<group>"; };
+		E53268D619FA396700FB6195 /* MotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MotionViewController.m; path = Motion/MotionViewController.m; sourceTree = "<group>"; };
 		E53D504D19F748EA005C0E8E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E53D504F19F748F7005C0E8E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E53D505119F74922005C0E8E /* MapAndLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapAndLocationViewController.h; path = MapAndLocation/MapAndLocationViewController.h; sourceTree = "<group>"; };
@@ -314,6 +319,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E53268D419FA394900FB6195 /* CoreMotion.framework in Frameworks */,
 				E5442C2A19F89FBC000A6D7F /* AddressBook.framework in Frameworks */,
 				E53D505019F748F7005C0E8E /* CoreLocation.framework in Frameworks */,
 				E53D504E19F748EA005C0E8E /* MapKit.framework in Frameworks */,
@@ -363,6 +369,7 @@
 		0D7186F71600BE530062A13F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E53268D319FA394900FB6195 /* CoreMotion.framework */,
 				E5442C2919F89FBC000A6D7F /* AddressBook.framework */,
 				E53D504F19F748F7005C0E8E /* CoreLocation.framework */,
 				E53D504D19F748EA005C0E8E /* MapKit.framework */,
@@ -416,6 +423,7 @@
 				E5D8E61419F4FA5C0026B618 /* autolayer */,
 				E53D504C19F7489B005C0E8E /* MapAndLocation */,
 				E5442C2519F89BE6000A6D7F /* Contacts */,
+				E53268D219FA391200FB6195 /* Motion */,
 				5BD46DAC194D418E002995EB /* UIScrollView代码实现无缝循环滚动 */,
 				0DC5F359163AC67900F7D8D5 /* LastViewController.h */,
 				0DC5F35A163AC67900F7D8D5 /* LastViewController.m */,
@@ -761,6 +769,15 @@
 			name = socket;
 			sourceTree = "<group>";
 		};
+		E53268D219FA391200FB6195 /* Motion */ = {
+			isa = PBXGroup;
+			children = (
+				E53268D519FA396700FB6195 /* MotionViewController.h */,
+				E53268D619FA396700FB6195 /* MotionViewController.m */,
+			);
+			name = Motion;
+			sourceTree = "<group>";
+		};
 		E53D504C19F7489B005C0E8E /* MapAndLocation */ = {
 			isa = PBXGroup;
 			children = (
@@ -921,6 +938,7 @@
 				5BD46DDF194D418E002995EB /* ScrollViewCycleController.m in Sources */,
 				5BD46DD7194D418E002995EB /* SQLiteViewController.m in Sources */,
 				5B84684E1956BEAA0033C079 /* CoreDataTool.m in Sources */,
+				E53268D719FA396700FB6195 /* MotionViewController.m in Sources */,
 				5BD46DDB194D418E002995EB /* TransformViewController.m in Sources */,
 				5BD46DDA194D418E002995EB /* UILabel-LineHeigh.m in Sources */,
 				0D7187051600BE530062A13F /* main.m in Sources */,
@@ -991,8 +1009,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1007,8 +1025,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
+				PROVISIONING_PROFILE = "FECC6156-113D-4051-A1C8-89C6C5426A75";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FECC6156-113D-4051-A1C8-89C6C5426A75";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1021,8 +1039,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1031,8 +1049,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
+				PROVISIONING_PROFILE = "FECC6156-113D-4051-A1C8-89C6C5426A75";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FECC6156-113D-4051-A1C8-89C6C5426A75";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1041,8 +1059,8 @@
 		0D71870D1600BE530062A13F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1055,8 +1073,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
+				PROVISIONING_PROFILE = "FECC6156-113D-4051-A1C8-89C6C5426A75";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FECC6156-113D-4051-A1C8-89C6C5426A75";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -1066,8 +1084,8 @@
 		0D71870E1600BE530062A13F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1080,8 +1098,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
+				PROVISIONING_PROFILE = "FECC6156-113D-4051-A1C8-89C6C5426A75";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FECC6156-113D-4051-A1C8-89C6C5426A75";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

@@ -167,12 +167,12 @@
     }
     //判断数据的完整性
     if ([paramFirstName length] == 0 && [paramLastName length] == 0){
-        NSLog(@"First name and last name are both empty.");
+        LOGINFO(@"First name and last name are both empty.");
         return NULL;
     }
     ABRecordRef result = ABPersonCreate();
     if (result == NULL){
-        NSLog(@"Failed to create a new person.");
+        LOGINFO(@"Failed to create a new person.");
         return NULL;
     }
 //    添加名
@@ -210,18 +210,18 @@
     ABPersonSetImageData(result, (__bridge CFDataRef)(UIImagePNGRepresentation([UIImage imageNamed:@"bubble_blue_recieve_doctor.png"])), &setImageError);
     
     if (couldSetFirstName && couldSetLastName && couldSetPhone && couldSetAddress){
-        NSLog(@"Successfully set the first name and the last name of the person.");
+        LOGINFO(@"Successfully set the first name and the last name of the person.");
     } else {
-        NSLog(@"Failed to set the first name and/or last name of the person.");
+        LOGINFO(@"Failed to set the first name and/or last name of the person.");
     }
     
     CFErrorRef couldAddPersonError = NULL;
     BOOL couldAddPerson = ABAddressBookAddRecord(addressBook, result, &couldAddPersonError);
     
     if (couldAddPerson){
-        NSLog(@"Successfully added the person.");
+        LOGINFO(@"Successfully added the person.");
     } else {
-        NSLog(@"Failed to add the person.");
+        LOGINFO(@"Failed to add the person.");
         CFRelease(result);
         result = NULL;
         return result;
@@ -231,9 +231,9 @@
         CFErrorRef couldSaveAddressBookError = NULL;
         BOOL couldSaveAddressBook = ABAddressBookSave(addressBook, &couldSaveAddressBookError);
         if (couldSaveAddressBook){
-            NSLog(@"Successfully saved the address book.");
+            LOGINFO(@"Successfully saved the address book.");
         } else {
-            NSLog(@"Failed to save the address book. error is %@ ", couldSaveAddressBookError);
+            LOGINFO(@"Failed to save the address book. error is %@ ", couldSaveAddressBookError);
         }
     }
     return result;
@@ -266,7 +266,7 @@
 - (UIImage *) getPersonImage:(ABRecordRef)paramPerson{
     UIImage *result = nil;
     if (paramPerson == NULL){
-        NSLog(@"The person is nil.");
+        LOGINFO(@"The person is nil.");
         return NULL;
     }
     NSData *imageData = (__bridge NSData *)ABPersonCopyImageData(paramPerson);
@@ -283,27 +283,27 @@
         [self createAddressBook];
     }
     if (paramPerson == NULL){
-        NSLog(@"The person is nil.");
+        LOGINFO(@"The person is nil.");
         return NO;
     }
     CFErrorRef couldSetPersonImageError = NULL;
     BOOL couldSetPersonImage = ABPersonSetImageData(paramPerson, (__bridge CFDataRef)paramImageData, &couldSetPersonImageError);
     if (couldSetPersonImage){
-        NSLog(@"Successfully set the person's image. Saving...");
+        LOGINFO(@"Successfully set the person's image. Saving...");
         if (ABAddressBookHasUnsavedChanges(addressBook)){
             CFErrorRef couldSaveAddressBookError = NULL;
             BOOL couldSaveAddressBook = ABAddressBookSave(addressBook, &couldSaveAddressBookError);
             if (couldSaveAddressBook){
-                NSLog(@"Successfully saved the address book.");
+                LOGINFO(@"Successfully saved the address book.");
                 result = YES;
             } else {
-                NSLog(@"Failed to save the address book.");
+                LOGINFO(@"Failed to save the address book.");
             }
         } else {
-            NSLog(@"There are no changes to be saved!");
+            LOGINFO(@"There are no changes to be saved!");
         }
     } else {
-        NSLog(@"Failed to set the person's image.");
+        LOGINFO(@"Failed to set the person's image.");
     }
     return result;
 }
@@ -320,7 +320,7 @@
     
     ABRecordRef result = ABGroupCreate();
     if (result == NULL){
-        NSLog(@"Failed to create a new group.");
+        LOGINFO(@"Failed to create a new group.");
         return NULL;
     }
     
@@ -332,32 +332,32 @@
         BOOL couldAddRecord = ABAddressBookAddRecord(addressBook, result, &couldAddRecordError);
         
         if (couldAddRecord){
-            NSLog(@"Successfully added the new group.");
+            LOGINFO(@"Successfully added the new group.");
             if (ABAddressBookHasUnsavedChanges(addressBook)){
                 CFErrorRef couldSaveAddressBookError = NULL;
                 BOOL couldSaveAddressBook = ABAddressBookSave(addressBook, &couldSaveAddressBookError);
 
                 if (couldSaveAddressBook){
-                    NSLog(@"Successfully saved the address book.");
+                    LOGINFO(@"Successfully saved the address book.");
                 } else {
                     CFRelease(result);
                     result = NULL;
-                    NSLog(@"Failed to save the address book.");
+                    LOGINFO(@"Failed to save the address book.");
                 }
             } else {
                 CFRelease(result);
                 result = NULL;
-                NSLog(@"No unsaved changes.");
+                LOGINFO(@"No unsaved changes.");
             }
         } else {
             CFRelease(result);
             result = NULL;
-            NSLog(@"Could not add a new group.");
+            LOGINFO(@"Could not add a new group.");
         }
     } else {
         CFRelease(result);
         result = NULL;
-        NSLog(@"Failed to set the name of the group.");
+        LOGINFO(@"Failed to set the name of the group.");
     }
     return result;
 }
@@ -386,14 +386,14 @@
     }
     BOOL result = NO;
     if (paramPerson == NULL || paramGroup == NULL){
-        NSLog(@"Invalid parameters are given.");
+        LOGINFO(@"Invalid parameters are given.");
         return NO;
     }
     CFErrorRef error = NULL;
     /* Now attempt to add the person entry to the group */
     result = ABGroupAddMember(paramGroup, paramPerson, &error);
     if (result == NO){
-        NSLog(@"Could not add the person to the group.");
+        LOGINFO(@"Could not add the person to the group.");
         return result;
     }
     /* Make sure we save any unsaved changes */
@@ -401,13 +401,13 @@
         CFErrorRef couldSaveAddressBookError = NULL;
         BOOL couldSaveAddressBook = ABAddressBookSave(addressBook, &couldSaveAddressBookError);
         if (couldSaveAddressBook){
-            NSLog(@"Successfully added the person to the group.");
+            LOGINFO(@"Successfully added the person to the group.");
             result = YES;
         } else {
-            NSLog(@"Failed to save the address book.");
+            LOGINFO(@"Failed to save the address book.");
         }
     } else {
-        NSLog(@"No changes were saved.");
+        LOGINFO(@"No changes were saved.");
     }
     return result;
 }

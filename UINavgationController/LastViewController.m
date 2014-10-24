@@ -34,6 +34,8 @@
     
     self.title = @"last View Controller";
     
+//    com.huawei.ott.hosting${PRODUCT_NAME:rfc1034identifier}
+    
 //    [UIApplication sharedApplication].statusBarOrientation = UIInterfaceOrientationLandscapeRight;
 //    self.navigationController.navigationBarHidden = YES;
 //    [UIApplication sharedApplication].statusBarHidden = YES;
