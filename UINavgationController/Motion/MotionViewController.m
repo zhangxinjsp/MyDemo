@@ -9,7 +9,7 @@
 #import "MotionViewController.h"
 
 
-#define UPDATE_INTERVAL   0.01f
+#define UPDATE_INTERVAL   1.0f
 
 @interface MotionViewController (){
     CMMotionManager *motionManager;
@@ -19,6 +19,8 @@
     UIButton* magnetometerBtn;
     UIButton* deviceMotionBtn;
     UILabel* showValueLabel;
+    
+    NSInteger motionCount;
     
 }
 
@@ -39,6 +41,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    motionCount = 0;
+    
     motionManager = [[CMMotionManager alloc] init];
     
     accelerometerBtn = [[UIButton alloc]init];
@@ -107,17 +112,7 @@
 
 -(void)startActions:(id)sender{
     NSInteger tag = ((UIButton*)sender).tag;
-    
-    [accelerometerBtn setSelected:tag == 0];
-    [gyroBtn setSelected:tag == 1];
-    [magnetometerBtn setSelected:tag == 2];
-    [deviceMotionBtn setSelected:tag == 3];
-    
-    [motionManager stopAccelerometerUpdates];
-    [motionManager stopGyroUpdates];
-    [motionManager stopMagnetometerUpdates];
-    [motionManager stopDeviceMotionUpdates];
-    
+    [self stopAllActions:tag];
     switch (tag) {
         case 0:{
             [self startAccelerometer];
@@ -140,26 +135,44 @@
     }
 }
 
+-(void)stopAllActions:(NSInteger)tag{
+    [accelerometerBtn setSelected:tag == 0];
+    [gyroBtn setSelected:tag == 1];
+    [magnetometerBtn setSelected:tag == 2];
+    [deviceMotionBtn setSelected:tag == 3];
+    
+    [motionManager stopAccelerometerUpdates];
+    [motionManager stopGyroUpdates];
+    [motionManager stopMagnetometerUpdates];
+    [motionManager stopDeviceMotionUpdates];
+}
+
+
+
 //加速度计
 -(void)startAccelerometer{
     if ([motionManager isAccelerometerAvailable]){
-        if ([motionManager isGyroActive] == NO){
+        if ([motionManager isAccelerometerActive] == NO){
             [motionManager setAccelerometerUpdateInterval:UPDATE_INTERVAL];
             NSOperationQueue *queue = [[NSOperationQueue alloc] init];
             
             [motionManager startAccelerometerUpdatesToQueue:queue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
-                showValueLabel.text = [NSString stringWithFormat:@"x = %.04f \ny = %.04f \nz = %.04f", accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z];
-                NSLog(@"Gyro Rotation x = %.04f", accelerometerData.acceleration.x);
-                NSLog(@"Gyro Rotation y = %.04f", accelerometerData.acceleration.y);
-                NSLog(@"Gyro Rotation z = %.04f", accelerometerData.acceleration.z);
+                __block NSString* str = [NSString stringWithFormat:@"x = %.04f \ny = %.04f \nz = %.04f", accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    showValueLabel.text = str;
+                    LOGINFO(@"Accelerometer Rotation x = %.04f", accelerometerData.acceleration.x);
+                    LOGINFO(@"Accelerometer Rotation y = %.04f", accelerometerData.acceleration.y);
+                    LOGINFO(@"Accelerometer Rotation z = %.04f", accelerometerData.acceleration.z);
+                });
             }];
         } else {
             showValueLabel.text = @"Gyro is already active.";
-            NSLog(@"Gyro is already active.");
+            LOGINFO(@"Accelerometer is already active.");
         }
     } else {
         showValueLabel.text = @"Accelerometer is not available.";
-        NSLog(@"Accelerometer is not available.");
+        LOGINFO(@"Accelerometer is not available.");
     }
 }
 //陀螺仪
@@ -169,18 +182,21 @@
             [motionManager setGyroUpdateInterval:UPDATE_INTERVAL];
             NSOperationQueue *queue = [[NSOperationQueue alloc] init];
             [motionManager startGyroUpdatesToQueue:queue withHandler:^(CMGyroData *gyroData, NSError *error) {
-                showValueLabel.text = [NSString stringWithFormat:@"x = %.04f \ny = %.04f \nz = %.04f", gyroData.rotationRate.x, gyroData.rotationRate.y, gyroData.rotationRate.z];
-                NSLog(@"Gyro Rotation x = %.04f", gyroData.rotationRate.x);
-                NSLog(@"Gyro Rotation y = %.04f", gyroData.rotationRate.y);
-                NSLog(@"Gyro Rotation z = %.04f", gyroData.rotationRate.z);
+                __block NSString* str = [NSString stringWithFormat:@"x = %.04f \ny = %.04f \nz = %.04f", gyroData.rotationRate.x, gyroData.rotationRate.y, gyroData.rotationRate.z];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    showValueLabel.text = str;
+                    LOGINFO(@"Gyro Rotation x = %.04f", gyroData.rotationRate.x);
+                    LOGINFO(@"Gyro Rotation y = %.04f", gyroData.rotationRate.y);
+                    LOGINFO(@"Gyro Rotation z = %.04f", gyroData.rotationRate.z);
+                });
             }];
         } else {
             showValueLabel.text = @"Gyro is already active.";
-            NSLog(@"Gyro is already active.");
+            LOGINFO(@"Gyro is already active.");
         }
     } else {
         showValueLabel.text = @"Gyro isn't available.";
-        NSLog(@"Gyro isn't available.");
+        LOGINFO(@"Gyro isn't available.");
     }
 }
 //磁力
@@ -191,18 +207,22 @@
             NSOperationQueue *queue = [[NSOperationQueue alloc] init];
             
             [motionManager startMagnetometerUpdatesToQueue:queue withHandler:^(CMMagnetometerData *magnetometerData, NSError *error) {
-                showValueLabel.text = [NSString stringWithFormat:@"x = %.04f \ny = %.04f \nz = %.04f", magnetometerData.magneticField.x, magnetometerData.magneticField.y, magnetometerData.magneticField.z];
-                NSLog(@"Magnetometer Rotation x = %.04f", magnetometerData.magneticField.x);
-                NSLog(@"Magnetometer Rotation y = %.04f", magnetometerData.magneticField.y);
-                NSLog(@"Magnetometer Rotation z = %.04f", magnetometerData.magneticField.z);
+                
+                __block NSString* str = [NSString stringWithFormat:@"x = %.04f \ny = %.04f \nz = %.04f", magnetometerData.magneticField.x, magnetometerData.magneticField.y, magnetometerData.magneticField.z];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    showValueLabel.text = str;
+                    LOGINFO(@"Magnetometer Rotation x = %.04f", magnetometerData.magneticField.x);
+                    LOGINFO(@"Magnetometer Rotation y = %.04f", magnetometerData.magneticField.y);
+                    LOGINFO(@"Magnetometer Rotation z = %.04f", magnetometerData.magneticField.z);
+                });
             }];
         } else {
             showValueLabel.text = @"Magnetometer is already active.";
-            NSLog(@"Magnetometer is already active.");
+            LOGINFO(@"Magnetometer is already active.");
         }
     } else {
         showValueLabel.text = @"Magnetometer isn't available.";
-        NSLog(@"Magnetometer isn't available.");
+        LOGINFO(@"Magnetometer isn't available.");
     }
 }
 
@@ -216,33 +236,43 @@
             CMAttitudeReferenceFrame referenceFrame = motionManager.attitudeReferenceFrame;
             
             [motionManager startDeviceMotionUpdatesUsingReferenceFrame:referenceFrame toQueue:queue withHandler:^(CMDeviceMotion *motion, NSError *error) {
-                showValueLabel.text = [NSString stringWithFormat:@"Gyro Rotation %@", motion];
-                NSLog(@"Gyro Rotation %@", motion);
+                __block NSString* str = [NSString stringWithFormat:@"DeviceMotion Rotation %@", motion];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    showValueLabel.text = str;
+                    LOGINFO(@"DeviceMotion Rotation %@", motion);
+                });
             }];
         } else {
             showValueLabel.text = @"Gyro is already active.";
-            NSLog(@"Gyro is already active.");
+            LOGINFO(@"DeviceMotion is already active.");
         }
     } else {
         showValueLabel.text = @"Gyro isn't available.";
-        NSLog(@"Gyro isn't available.");
+        LOGINFO(@"DeviceMotion isn't available.");
     }
 }
 //设备晃动的回调方法
 -(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    showValueLabel.text = @"motion Began";
+    showValueLabel.text = [NSString stringWithFormat:@"motion Began %d", motionCount];
     LOGINFO(@"motion Began");
 }
 
 -(void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    showValueLabel.text = @"motion Cancelled";
+    showValueLabel.text = [NSString stringWithFormat:@"motion Cancelled %d", motionCount];
     LOGINFO(@"motion Cancelled");
 }
 
 - (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    showValueLabel.text = @"motion Ended";
+    showValueLabel.text = [NSString stringWithFormat:@"motion Ended %d", motionCount++];
     LOGINFO(@"motion Ended");
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self stopAllActions:-1];
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
