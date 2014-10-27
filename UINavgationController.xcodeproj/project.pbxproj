@@ -134,6 +134,7 @@
 		E561D7AB18DC41D000411BF0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E561D7AA18DC41D000411BF0 /* CoreText.framework */; };
 		E5D8E61719F4FA990026B618 /* AutoLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */; };
 		E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */; };
+		E5DEE0F419FDDD76005A0565 /* CameraPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DEE0F319FDDD76005A0565 /* CameraPhotoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -312,6 +313,8 @@
 		E5D8E61519F4FA990026B618 /* AutoLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoLayerViewController.h; path = autolayer/AutoLayerViewController.h; sourceTree = "<group>"; };
 		E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoLayerViewController.m; path = autolayer/AutoLayerViewController.m; sourceTree = "<group>"; };
 		E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AutoLayerViewController.xib; path = autolayer/AutoLayerViewController.xib; sourceTree = "<group>"; };
+		E5DEE0F219FDDD76005A0565 /* CameraPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraPhotoViewController.h; path = CameraPhoto/CameraPhotoViewController.h; sourceTree = "<group>"; };
+		E5DEE0F319FDDD76005A0565 /* CameraPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraPhotoViewController.m; path = CameraPhoto/CameraPhotoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,6 +427,7 @@
 				E53D504C19F7489B005C0E8E /* MapAndLocation */,
 				E5442C2519F89BE6000A6D7F /* Contacts */,
 				E53268D219FA391200FB6195 /* Motion */,
+				E5DEE0F119FDDD39005A0565 /* CameraPhoto */,
 				5BD46DAC194D418E002995EB /* UIScrollView代码实现无缝循环滚动 */,
 				0DC5F359163AC67900F7D8D5 /* LastViewController.h */,
 				0DC5F35A163AC67900F7D8D5 /* LastViewController.m */,
@@ -808,6 +812,15 @@
 			name = autolayer;
 			sourceTree = "<group>";
 		};
+		E5DEE0F119FDDD39005A0565 /* CameraPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				E5DEE0F219FDDD76005A0565 /* CameraPhotoViewController.h */,
+				E5DEE0F319FDDD76005A0565 /* CameraPhotoViewController.m */,
+			);
+			name = CameraPhoto;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -943,6 +956,7 @@
 				5BD46DDA194D418E002995EB /* UILabel-LineHeigh.m in Sources */,
 				0D7187051600BE530062A13F /* main.m in Sources */,
 				5BD46DBA194D418E002995EB /* SendMessageAndEMailViewController.m in Sources */,
+				E5DEE0F419FDDD76005A0565 /* CameraPhotoViewController.m in Sources */,
 				5B8468501956BEAA0033C079 /* User.m in Sources */,
 				5BD46D10194D38AD002995EB /* BaseViewController.m in Sources */,
 				5BC4EC0319710D3E00ECAB1E /* URLRequestViewController.m in Sources */,
