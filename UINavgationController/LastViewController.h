@@ -12,7 +12,7 @@
 
 
 
-@interface LastViewController : BaseViewController<UIWebViewDelegate, UITextFieldDelegate>{
+@interface LastViewController : BaseViewController<UIWebViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>{
     
     NSString* webContent;
     

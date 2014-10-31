@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import <FacebookSDK/FacebookSDK.h>
+#import "LastViewController.h"
 
 @implementation AppDelegate
 
@@ -22,7 +23,10 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    
+#if 0
+    LastViewController* last = [[LastViewController alloc]init];
+    self.window.rootViewController = last;
+#else
     if (isIphone5) {
         firstView = [[NavRootViewController alloc] initWithNibName:@"NavRootViewController45" bundle:nil ];
     }else{
@@ -30,8 +34,9 @@
     }
     
     nav = [[NavigationController alloc]initWithRootViewController:firstView];
-
     self.window.rootViewController = nav;
+#endif
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

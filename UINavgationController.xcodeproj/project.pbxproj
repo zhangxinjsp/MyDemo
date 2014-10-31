@@ -132,6 +132,7 @@
 		E5442C2819F89C34000A6D7F /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5442C2719F89C34000A6D7F /* ContactsViewController.m */; };
 		E5442C2A19F89FBC000A6D7F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5442C2919F89FBC000A6D7F /* AddressBook.framework */; };
 		E561D7AB18DC41D000411BF0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E561D7AA18DC41D000411BF0 /* CoreText.framework */; };
+		E5D1F2241A0325830062DE97 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */; };
 		E5D8E61719F4FA990026B618 /* AutoLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */; };
 		E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */; };
 		E5DEE0F419FDDD76005A0565 /* CameraPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DEE0F319FDDD76005A0565 /* CameraPhotoViewController.m */; };
@@ -310,6 +311,7 @@
 		E5442C2719F89C34000A6D7F /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactsViewController.m; path = Contacts/ContactsViewController.m; sourceTree = "<group>"; };
 		E5442C2919F89FBC000A6D7F /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		E561D7AA18DC41D000411BF0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E5D8E61519F4FA990026B618 /* AutoLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoLayerViewController.h; path = autolayer/AutoLayerViewController.h; sourceTree = "<group>"; };
 		E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoLayerViewController.m; path = autolayer/AutoLayerViewController.m; sourceTree = "<group>"; };
 		E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AutoLayerViewController.xib; path = autolayer/AutoLayerViewController.xib; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5D1F2241A0325830062DE97 /* MobileCoreServices.framework in Frameworks */,
 				E53268D419FA394900FB6195 /* CoreMotion.framework in Frameworks */,
 				E5442C2A19F89FBC000A6D7F /* AddressBook.framework in Frameworks */,
 				E53D505019F748F7005C0E8E /* CoreLocation.framework in Frameworks */,
@@ -372,6 +375,7 @@
 		0D7186F71600BE530062A13F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */,
 				E53268D319FA394900FB6195 /* CoreMotion.framework */,
 				E5442C2919F89FBC000A6D7F /* AddressBook.framework */,
 				E53D504F19F748F7005C0E8E /* CoreLocation.framework */,

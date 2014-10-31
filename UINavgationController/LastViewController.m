@@ -36,24 +36,15 @@
     
 //    com.huawei.ott.hosting${PRODUCT_NAME:rfc1034identifier}
     
-//    [UIApplication sharedApplication].statusBarOrientation = UIInterfaceOrientationLandscapeRight;
-//    self.navigationController.navigationBarHidden = YES;
-//    [UIApplication sharedApplication].statusBarHidden = YES;
-//    self.view.transform = CGAffineTransformMakeRotation(M_PI / 2);
+    UITextField* asdf = [[UITextField alloc]initWithFrame:CGRectMake(10, 100, 60,30)];
+    asdf.backgroundColor = [UIColor redColor];
+    [self.view addSubview:asdf];
     
-   
-//    UIButton* btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-//    [btn setImage:[UIImage imageNamed:@"logo.png"] forState:UIControlStateNormal];
-//    UIBarButtonItem* item = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
-
-//    UIBarButtonItem* item = [[UIBarButtonItem alloc]initWithTitle:@"11" style:UIBarButtonItemStyleBordered target:self action:@selector(aa)];
-//    self.navigationItem.leftBarButtonItem = item;
-    
-//    self.navigationItem.hidesBackButton = NO;
-//    NSArray* tempArray = self.navigationController.viewControllers;
-//    NSArray* navList = [[NSArray alloc]initWithObjects:[tempArray objectAtIndex:0],tempArray.lastObject, nil];
-//    [self.navigationController setViewControllers:navList];
+    UIImage* image = [[UIImage imageNamed:@"bubble_blue_recieve_doctor.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(53.0f,34.0f,20.0f,34.0f)];
+    UIImageView* imageview = [[UIImageView alloc]initWithImage:image];
+    imageview.frame = CGRectMake(100, 100, 100, 70);
+    [self.view addSubview:imageview];
     
     //item按下是会有高亮效果的
     UIToolbar *tools = [[UIToolbar alloc]initWithFrame: CGRectMake(0.0f, 0.0f, 44.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
@@ -70,8 +61,8 @@
     [channelBtn setBackgroundImage:[UIImage imageNamed:@"dragUp.png"] forState:UIControlStateSelected];
     [channelBtn setBackgroundImage:[UIImage imageNamed:@"paletta_icon.png"] forState:UIControlStateSelected | UIControlStateHighlighted];
     [channelBtn addTarget:self action:@selector(btnSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [channelBtn setTag:0];
     [self.view addSubview:channelBtn];
-    
     
     UIButton* purchaseBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 50, 40, 20)];
     [purchaseBtn setBackgroundImage:[UIImage imageNamed:@"dragUp.png"] forState:UIControlStateNormal];
@@ -79,28 +70,53 @@
     [purchaseBtn setBackgroundImage:[UIImage imageNamed:@"dragDown.png"] forState:UIControlStateSelected];
     [purchaseBtn setBackgroundImage:[UIImage imageNamed:@"paletta_icon.png"] forState:UIControlStateReserved];
     [purchaseBtn addTarget:self action:@selector(btnSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [purchaseBtn setTag:1];
     [self.view addSubview:purchaseBtn];
     
-    UITextField* asdf = [[UITextField alloc]initWithFrame:CGRectMake(10, 100, 60,30)];
-    asdf.backgroundColor = [UIColor redColor];
-    [self.view addSubview:asdf];
     
-    
-    UIImage* image = [[UIImage imageNamed:@"bubble_blue_recieve_doctor.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(53.0f,34.0f,20.0f,34.0f)];
-    UIImageView* imageview = [[UIImageView alloc]initWithImage:image];
-    imageview.frame = CGRectMake(100, 100, 100, 70);
-    [self.view addSubview:imageview];
 }
 
 -(void)btnSelected:(id)sender{
 
     
-    ((UIButton*)sender).selected = !((UIButton*)sender).selected;
-    UIWindow* keyWindow = [[UIApplication sharedApplication].delegate window];
-    LOGINFO(@"111111   width :%f === height :%f",keyWindow.rootViewController.view.frame.size.width,keyWindow.rootViewController.view.frame.size.height);
-    LOGINFO(@"222222   width :%f === height :%f",keyWindow.rootViewController.view.bounds.size.width,keyWindow.rootViewController.view.bounds.size.height);
+    NSInteger tag = ((UIButton*)sender).tag;
+    if (tag == 0) {
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"alert view" message:@"asdfadsf" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:@"cancel", nil];
+        alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+        
+        [alert show];
+        
+    }else if (tag == 1){
+        UIAlertController* alertCtl = [UIAlertController alertControllerWithTitle:@"alert controller" message:@"asdghkajsdhkasf" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self alertActionHandle:action];
+        }];
+        [alertCtl addAction:okAction];
+
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self alertActionHandle:action];
+        }];
+        [alertCtl addAction:cancelAction];
+        
+        UIAlertAction* caAction = [UIAlertAction actionWithTitle:@"ca" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            [self alertActionHandle:action];
+        }];
+        [alertCtl addAction:caAction];
+
+        [self presentViewController:alertCtl animated:YES completion:^{
+            
+        }];
+    }
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    LOGINFO(@"alert view index %d", buttonIndex);
+}
+
+-(void)alertActionHandle:(UIAlertAction*)alertAction{
+    LOGINFO(@"alert controller action title is %@", alertAction.title);
+}
 
 -(void)updateNewsBtnPressed:(id)sender{
     
@@ -170,22 +186,17 @@
 
 
 -(BOOL)shouldAutorotate{
+    return YES;
     return canAutorotate;
 }
 
 -(NSUInteger)supportedInterfaceOrientations{
     
-    if (canAutorotate && ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft ||
-        [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)) {
-        
-        
-        
-
-        
+//    if (canAutorotate && ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft ||
+//        [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)) {
 //        self.view.transform = CGAffineTransformMakeRotation(0);
 //        self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
-        
-    }
+//    }
     
     
     return UIInterfaceOrientationMaskLandscape;
