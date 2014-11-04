@@ -25,6 +25,8 @@
 #import "CameraPhotoViewController.h"
 
 
+#import "CustomAlertView.h"
+
 @interface NavRootViewController (){
     NSArray* titleArray;
 }
@@ -51,21 +53,22 @@
     UIButton* logoBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];//rect是必须的
     [logoBtn setImage:[UIImage imageNamed:@"logo.png"] forState:UIControlStateNormal];
     [logoBtn addTarget:self action:@selector(logoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* item = [[UIBarButtonItem alloc]initWithCustomView:logoBtn];//只有initWithCustomView才可以改变大小
+    UIBarButtonItem* itemButton = [[UIBarButtonItem alloc]initWithCustomView:logoBtn];//只有initWithCustomView才可以改变大小
     
     UIView* view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];//view也是可以的
     view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"logo.png"]];
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(logoViewTapped:)];
     [view addGestureRecognizer:tap];
+    UIBarButtonItem* itemView = [[UIBarButtonItem alloc]initWithCustomView:view];//只有initWithCustomView才可以改变大小
     
     UILabel* _label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80, 30)];
     _label.text = @"1383";
     _label.backgroundColor = [UIColor clearColor];
     _label.textColor = [UIColor redColor];
     _label.font = [UIFont systemFontOfSize:12];
-    UIBarButtonItem* _item = [[UIBarButtonItem alloc]initWithCustomView:_label];
+    UIBarButtonItem* itemLabel = [[UIBarButtonItem alloc]initWithCustomView:_label];
     
-    self.navigationItem.leftBarButtonItems = [[NSArray alloc]initWithObjects:item, _item, nil];
+    self.navigationItem.leftBarButtonItems = [[NSArray alloc]initWithObjects:itemButton, itemLabel, nil];
     
     UIBarButtonItem* item1 = [[UIBarButtonItem alloc]initWithTitle:@"返回1" style:UIBarButtonItemStyleDone target:self action:@selector(backButtonPressed:)];//backBarButtonItem必须设置一个UIBarButtonItem才能修改标题，而且事件添加无效！且只有在上一个界面添加返回按钮
     self.navigationItem.backBarButtonItem = item1;
@@ -144,11 +147,6 @@
     LOGINFO(@"%@",@"view will disappear");
 }
 
--(void)nextStep:(id)sender{
-    
-    
-    
-}
 -(void)itemButtonPressed:(id)sender{
     LOGINFO(@"menu button pressed!!");
     NSInteger tag = ((UIButton*)sender).tag;
@@ -261,17 +259,29 @@
 }
 -(void)logoButtonPressed:(id)sender{
     LOGINFO(@"%@",@"logo button pressed!!");
-    
-    
     LOGINFO(@"%@", NSLocalizedString(@"key", @""));
     
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"title" message:@"aklsjdghklasjdghlaksjdgha;sdklgh;asdghas;ldgjha;sdghas;dglhas;dg" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0",@"ok1", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
 }
--(void)backButtonPressed:(id)sender{
-    LOGINFO(@"%@",@"back button pressed!!");
-}
+
 -(void)logoViewTapped:(id)sender{
     LOGINFO(@"%@",@"logo view tapped!!");
 }
+
+-(void)backButtonPressed:(id)sender{
+    LOGINFO(@"%@",@"back button pressed!!");
+}
+
+-(void)nextStep:(id)sender{
+    
+    CustomAlertView* inputalert = [[CustomAlertView alloc]initWithTitle:@"title" message:@"aklsjdghklasjdghlaksjdgha;sdklgh;asdghas;ldgjha;sdghas;dglhas;dg" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0",@"ok1", nil];
+    inputalert.alertType = InputAlertViewTypePlainTextInput;
+    [inputalert show];
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
