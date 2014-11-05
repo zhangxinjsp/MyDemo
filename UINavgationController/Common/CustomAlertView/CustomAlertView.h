@@ -10,17 +10,13 @@
 #import "CAlertView.h"
 
 typedef enum : NSUInteger {
-    InputAlertViewTypeDefault,
-    InputAlertViewTypePlainTextInput,
-    InputAlertViewTypeSecureTextInput,
-    InputAlertViewTypeLoginAndPasswordInput,
-} InputAlertViewType;
+    CustomAlertViewTypeDefault,
+    CustomAlertViewTypePlainTextInput,
+    CustomAlertViewTypeSecureTextInput,
+    CustomAlertViewTypeLoginAndPasswordInput,
+} CustomAlertViewType;
 
-@protocol CustomAlertViewDelegate <NSObject>
-
--(void)customAlertViewClickAtIndex:(NSInteger)index;
-
-@end
+@protocol CustomAlertViewDelegate;
 
 @interface CustomAlertView : UIView{
     UILabel* titleLabel;
@@ -35,14 +31,31 @@ typedef enum : NSUInteger {
     CAlertView* m_cAlertView;
 }
 @property(nonatomic, assign)    id<CustomAlertViewDelegate>     delegate;
-@property(nonatomic)            InputAlertViewType              alertType;
+@property(nonatomic)            CustomAlertViewType              alertType;
 @property(nonatomic, strong)    NSString*                       title;
 @property(nonatomic, strong)    NSString*                       message;
-@property(nonatomic, strong)    NSString*                       cancelTitle;
+
+@property(nonatomic,readonly,getter=isVisible) BOOL visible;
 
 
 -(instancetype)initWithTitle:(NSString*)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...;
 
 -(void)show;
+- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
+
+- (UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex;
 
 @end
+
+@protocol CustomAlertViewDelegate <NSObject>
+@required
+
+@optional
+- (void)customAlertView:(CustomAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+
+@end
+
+
+
+
+

@@ -125,16 +125,20 @@
         }
     }
     m_AlertView.center = m_AlertSuperView.center;
-//    if (mType == AlertAnimationType) {
-//        [self doAlertAnimation];
-//    }
-//    else if (mType == NaviAnimationType) {
-//        [self doNaviAnimation];
-//    }
-//    else if (mType == NoneAnimationType) {
-//        [m_AlertSuperView setAlpha:1.0f];
-//        m_AlertView.transform = [self transformForDeviceDirection];
-//    }
+    [self performSelector:@selector(addAnimation) withObject:nil afterDelay:0.01];
+}
+
+-(void)addAnimation{
+    if (mType == AlertAnimationType) {
+        [self doAlertAnimation];
+    }
+    else if (mType == NaviAnimationType) {
+        [self doNaviAnimation];
+    }
+    else if (mType == NoneAnimationType) {
+        [m_AlertSuperView setAlpha:1.0f];
+        m_AlertView.transform = [self transformForDeviceDirection];
+    }
 }
 
 - (void)dismissAlertView {

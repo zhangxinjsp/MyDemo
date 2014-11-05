@@ -10,7 +10,7 @@
 #define ALERT_LEFT_GAP              25
 
 #define BUTTON_HEIGHT               43
-#define TEXTFIELD_HEIGHT            30
+#define TEXTFIELD_HEIGHT            25
 #define LEFT_GAP_WIDTH              17
 #define TOP_GAP_HEIGHT              20
 #define MESSAGE_GAP_HEIGHT          5
@@ -30,9 +30,10 @@
 #import "CustomAlertView.h"
 
 @interface CustomAlertView(){
-    CGFloat titleHeight;
-    CGFloat messageHeight;
-    NSMutableArray* otherBtnTitles;
+    CGFloat             titleHeight;
+    CGFloat             messageHeight;
+    NSMutableArray*     otherBtnTitles;
+    NSString*           cancelTitle;
 }
 
 @end
@@ -44,12 +45,12 @@
 @synthesize alertType;
 @synthesize title;
 @synthesize message;
-@synthesize cancelTitle;
+@synthesize visible;
 
 -(instancetype)initWithTitle:(NSString*)_title message:(NSString *)_message delegate:(id)_delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...{
     self.title = _title;
     self.message = _message;
-    self.cancelTitle = cancelButtonTitle;
+    cancelTitle = cancelButtonTitle;
     
     if (otherButtonTitles != nil) {
         otherBtnTitles = [[NSMutableArray alloc]initWithObjects:otherButtonTitles, nil];
@@ -71,10 +72,10 @@
     
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1];
         self.delegate = _delegate;
         [self initControls];
-        self.alertType = InputAlertViewTypeDefault;
+        self.alertType = CustomAlertViewTypeDefault;
     }
     return self;
 }
@@ -92,58 +93,60 @@
     messageLabel.font = MESSAGE_FONT;
     messageLabel.text = message;
     
-    UIColor* btnColor = [UIColor colorWithRed:12.0/255.0f green:96.0/255.0f blue:253.0/255.0f alpha:1.0];
+    UIColor* btnTitleColor = [UIColor colorWithRed:12.0/255.0f green:96.0/255.0f blue:253.0/255.0f alpha:1.0];
+    UIImage* btnBGImage = [[UIImage imageNamed:@"customAlertButtonBG.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 4, 4) ];
     cancelButton = [[UIButton alloc]init];
     cancelButton.tag = 0;
     cancelButton.titleLabel.font = BUTTON_FONT;
-    cancelButton.layer.borderColor = [UIColor colorWithWhite:0.7 alpha:1].CGColor;
-    cancelButton.layer.borderWidth = 0.5;
-    [cancelButton setTitleColor:btnColor forState:UIControlStateNormal];
+    [cancelButton setTitleColor:btnTitleColor forState:UIControlStateNormal];
+    [cancelButton setBackgroundImage:btnBGImage forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(buttonActions:) forControlEvents:UIControlEventTouchUpInside];
     [cancelButton setTitle:cancelTitle forState:UIControlStateNormal];
 
     otherButton1 = [[UIButton alloc]init];
     otherButton1.tag = 1;
     otherButton1.titleLabel.font = BUTTON_FONT;
-    otherButton1.layer.borderColor = [UIColor colorWithWhite:0.7 alpha:1].CGColor;
-    otherButton1.layer.borderWidth = 0.5;
-    [otherButton1 setTitleColor:btnColor forState:UIControlStateNormal];
+    [otherButton1 setTitleColor:btnTitleColor forState:UIControlStateNormal];
+    [otherButton1 setBackgroundImage:btnBGImage forState:UIControlStateNormal];
     [otherButton1 addTarget:self action:@selector(buttonActions:) forControlEvents:UIControlEventTouchUpInside];
 
     otherButton2 = [[UIButton alloc]init];
     otherButton2.tag = 2;
     otherButton2.titleLabel.font = BUTTON_FONT;
-    otherButton2.layer.borderColor = [UIColor colorWithWhite:0.7 alpha:1].CGColor;
-    otherButton2.layer.borderWidth = 0.5;
-    [otherButton2 setTitleColor:btnColor forState:UIControlStateNormal];
+    [otherButton2 setTitleColor:btnTitleColor forState:UIControlStateNormal];
+    [otherButton2 setBackgroundImage:btnBGImage forState:UIControlStateNormal];
     [otherButton2 addTarget:self action:@selector(buttonActions:) forControlEvents:UIControlEventTouchUpInside];
 
     otherButton3 = [[UIButton alloc]init];
     otherButton3.tag = 3;
     otherButton3.titleLabel.font = BUTTON_FONT;
-    otherButton3.layer.borderColor = [UIColor colorWithWhite:0.7 alpha:1].CGColor;
-    otherButton3.layer.borderWidth = 0.5;
-    [otherButton3 setTitleColor:btnColor forState:UIControlStateNormal];
+    [otherButton3 setTitleColor:btnTitleColor forState:UIControlStateNormal];
+    [otherButton3 setBackgroundImage:btnBGImage forState:UIControlStateNormal];
     [otherButton3 addTarget:self action:@selector(buttonActions:) forControlEvents:UIControlEventTouchUpInside];
 
     otherButton4 = [[UIButton alloc]init];
     otherButton4.tag = 4;
     otherButton4.titleLabel.font = BUTTON_FONT;
-    otherButton4.layer.borderColor = [UIColor colorWithWhite:0.7 alpha:1].CGColor;
-    otherButton4.layer.borderWidth = 0.5;
-    [otherButton4 setTitleColor:btnColor forState:UIControlStateNormal];
+    [otherButton4 setTitleColor:btnTitleColor forState:UIControlStateNormal];
+    [otherButton4 setBackgroundImage:btnBGImage forState:UIControlStateNormal];
     [otherButton4 addTarget:self action:@selector(buttonActions:) forControlEvents:UIControlEventTouchUpInside];
 
     m_textField1 = [[UITextField alloc]init];
     m_textField1.font = TEXTFIELD_FONT;
-    m_textField1.borderStyle = UITextBorderStyleRoundedRect;
+    m_textField1.borderStyle = UITextBorderStyleNone;
+    m_textField1.layer.borderWidth = 0.5;
+    m_textField1.layer.borderColor = [[UIColor colorWithWhite:0.2 alpha:1]CGColor];
+    m_textField1.secureTextEntry = NO;
     
     m_textField2 = [[UITextField alloc]init];
     m_textField2.font = TEXTFIELD_FONT;
-    m_textField2.borderStyle = UITextBorderStyleRoundedRect;
+    m_textField2.borderStyle = UITextBorderStyleNone;
+    m_textField2.layer.borderWidth = 0.5;
+    m_textField2.layer.borderColor = [[UIColor colorWithWhite:0.2 alpha:1]CGColor];
+    m_textField2.secureTextEntry = YES;
 }
 
--(void)setAlertType:(InputAlertViewType)_alertType{
+-(void)setAlertType:(CustomAlertViewType)_alertType{
     alertType = _alertType;
     [self addUsingControls];
     [self manageUsingAutoLayoutControls];
@@ -157,9 +160,10 @@
     if (self.message.length > 0) {
         [self addSubview:messageLabel];
     }
-    if (alertType == InputAlertViewTypePlainTextInput || alertType == InputAlertViewTypeSecureTextInput) {
+    if (alertType == CustomAlertViewTypePlainTextInput || alertType == CustomAlertViewTypeSecureTextInput) {
         [self addSubview:m_textField1];
-    } else if (alertType == InputAlertViewTypeLoginAndPasswordInput) {
+        [m_textField1 setSecureTextEntry:(alertType == CustomAlertViewTypeSecureTextInput)];
+    } else if (alertType == CustomAlertViewTypeLoginAndPasswordInput) {
         [self addSubview:m_textField1];
         [self addSubview:m_textField2];
     }
@@ -248,11 +252,11 @@
     if (self.message.length > 0) {
         str = [str stringByAppendingString:@"(messageGap)-[messageLabel(messageHeight)]-"];
     }
-    if (alertType == InputAlertViewTypePlainTextInput || alertType == InputAlertViewTypeSecureTextInput) {
+    if (alertType == CustomAlertViewTypePlainTextInput || alertType == CustomAlertViewTypeSecureTextInput) {
         str = [str stringByAppendingString:@"(textFieldGap)-[m_textField1(textFieldHeight)]-"];
-    } else if (alertType == InputAlertViewTypeLoginAndPasswordInput) {
+    } else if (alertType == CustomAlertViewTypeLoginAndPasswordInput) {
         str = [str stringByAppendingString:@"(textFieldGap)-[m_textField1(textFieldHeight)]-"];
-        str = [str stringByAppendingString:@"(textFieldGap)-[m_textField2(textFieldHeight)]-"];
+        str = [str stringByAppendingString:@"(0)-[m_textField2(textFieldHeight)]-"];
     }
     
     if (otherBtnTitles.count <= 1) {
@@ -294,12 +298,12 @@
     
     [self addConstraint:[NSLayoutConstraint constraintWithItem:messageLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
     
-    if (alertType == InputAlertViewTypePlainTextInput || alertType == InputAlertViewTypeSecureTextInput) {
+    if (alertType == CustomAlertViewTypePlainTextInput || alertType == CustomAlertViewTypeSecureTextInput) {
         [self addConstraint:[NSLayoutConstraint constraintWithItem:m_textField1 attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
         
         [self addConstraint:[NSLayoutConstraint constraintWithItem:m_textField1 attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
         
-    } else if (alertType == InputAlertViewTypeLoginAndPasswordInput) {
+    } else if (alertType == CustomAlertViewTypeLoginAndPasswordInput) {
         
         [self addConstraint:[NSLayoutConstraint constraintWithItem:m_textField1 attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
         
@@ -353,9 +357,9 @@
     if (self.message.length > 0) {
         totalHeight += messageHeight;
     }
-    if (alertType == InputAlertViewTypePlainTextInput || alertType == InputAlertViewTypeSecureTextInput) {
+    if (alertType == CustomAlertViewTypePlainTextInput || alertType == CustomAlertViewTypeSecureTextInput) {
         totalHeight += (TEXTFIELD_HEIGHT + TEXTFIELD_GAP_HEIGHT);
-    } else if (alertType == InputAlertViewTypeLoginAndPasswordInput) {
+    } else if (alertType == CustomAlertViewTypeLoginAndPasswordInput) {
         totalHeight += (TEXTFIELD_HEIGHT + TEXTFIELD_GAP_HEIGHT) * 2;
     }
     
@@ -394,13 +398,7 @@
     }
 }
 
--(void)buttonActions:(id)sender{
-    [m_cAlertView dismissAlertView];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(customAlertViewClickAtIndex:)]) {
-        NSInteger tag = ((UIButton*)sender).tag;
-        [self.delegate customAlertViewClickAtIndex:tag];
-    }
-}
+
 
 -(CGFloat)stringHeight:(NSString*)string font:(UIFont*)font{
     if (string.length == 0) {
@@ -410,11 +408,40 @@
     return strsize.height + 1;
 }
 
+-(BOOL)isVisible{
+    return visible;
+}
+
+-(UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex{
+    if (textFieldIndex == 0 && (alertType != CustomAlertViewTypeDefault)) {
+        return m_textField1;
+    }else if (textFieldIndex == 1 && (alertType == CustomAlertViewTypeLoginAndPasswordInput)){
+        return m_textField2;
+    }
+    return nil;
+}
+
+-(void)buttonActions:(id)sender{
+    [m_cAlertView dismissAlertView];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(customAlertView:clickedButtonAtIndex:)]) {
+        NSInteger tag = ((UIButton*)sender).tag;
+        [self.delegate customAlertView:self clickedButtonAtIndex:tag];
+    }
+}
+
 -(void)show{
     m_cAlertView = [[CAlertView alloc]initWithAlertView:self andAnimationType:AlertAnimationType];
     [m_cAlertView show];
+    visible = YES;
 }
 
+- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated{
+    [m_cAlertView dismissAlertView];
+    visible = NO;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(customAlertView:clickedButtonAtIndex:)]) {
+        [self.delegate customAlertView:self clickedButtonAtIndex:buttonIndex];
+    }
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

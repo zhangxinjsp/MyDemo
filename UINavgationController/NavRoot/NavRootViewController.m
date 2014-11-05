@@ -27,7 +27,7 @@
 
 #import "CustomAlertView.h"
 
-@interface NavRootViewController (){
+@interface NavRootViewController ()<CustomAlertViewDelegate>{
     NSArray* titleArray;
 }
 
@@ -262,8 +262,9 @@
     LOGINFO(@"%@", NSLocalizedString(@"key", @""));
     
     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"title" message:@"aklsjdghklasjdghlaksjdgha;sdklgh;asdghas;ldgjha;sdghas;dglhas;dg" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0",@"ok1", nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
     [alert show];
+
 }
 
 -(void)logoViewTapped:(id)sender{
@@ -276,10 +277,13 @@
 
 -(void)nextStep:(id)sender{
     
-    CustomAlertView* inputalert = [[CustomAlertView alloc]initWithTitle:@"title" message:@"aklsjdghklasjdghlaksjdgha;sdklgh;asdghas;ldgjha;sdghas;dglhas;dg" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0",@"ok1", nil];
-    inputalert.alertType = InputAlertViewTypePlainTextInput;
+    CustomAlertView* inputalert = [[CustomAlertView alloc]initWithTitle:@"title" message:@"aklsjdghklasjdghlaksjdgha;sdklgh;asdghas;ldgjha;sdghas;dglhas;dg" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
+    inputalert.alertType = CustomAlertViewTypeSecureTextInput;
     [inputalert show];
-    
+}
+
+-(void)customAlertView:(CustomAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    LOGINFO(@"aaaaaaa%d", buttonIndex);
 }
 
 - (void)didReceiveMemoryWarning
