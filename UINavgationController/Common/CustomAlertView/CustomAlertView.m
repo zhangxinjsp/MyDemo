@@ -324,13 +324,11 @@
                 
                 [self addConstraint:[NSLayoutConstraint constraintWithItem:otherButton4 attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cancelButton attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
             }
-                break;
             case 3:{
                 [self addConstraint:[NSLayoutConstraint constraintWithItem:otherButton3 attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cancelButton attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
                 
                 [self addConstraint:[NSLayoutConstraint constraintWithItem:otherButton3 attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cancelButton attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
             }
-                break;
             case 2:{
                 [self addConstraint:[NSLayoutConstraint constraintWithItem:otherButton2 attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cancelButton attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
                 
