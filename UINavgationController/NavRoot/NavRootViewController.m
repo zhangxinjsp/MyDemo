@@ -277,7 +277,7 @@
 
 -(void)nextStep:(id)sender{
     
-    CustomAlertView* inputalert = [[CustomAlertView alloc]initWithTitle:@"title" message:@"aklsjdghklasjdghlaksjdgha;sdklgh;asdghas;ldgjha;sdghas;dglhas;dg" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
+    CustomAlertView* inputalert = [[CustomAlertView alloc]initWithTitle:@"tttttttt" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
     inputalert.alertType = CustomAlertViewTypeSecureTextInput;
     [inputalert show];
 }

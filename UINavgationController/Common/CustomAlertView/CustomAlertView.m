@@ -154,9 +154,8 @@
 }
 
 -(void)addUsingControls{
-    if (self.title.length > 0) {
-        [self addSubview:titleLabel];
-    }
+    [self addSubview:titleLabel];
+
     if (self.message.length > 0) {
         [self addSubview:messageLabel];
     }
@@ -221,7 +220,12 @@
     
     [metricsDict setObject:[NSNumber numberWithFloat:titleHeight] forKey:@"titleHeight"];
     
-    [metricsDict setObject:[NSNumber numberWithFloat:MESSAGE_GAP_HEIGHT] forKey:@"messageGap"];
+    if (self.title.length == 0) {
+        [metricsDict setObject:[NSNumber numberWithFloat:0.001] forKey:@"messageGap"];
+    }else{
+        [metricsDict setObject:[NSNumber numberWithFloat:MESSAGE_GAP_HEIGHT] forKey:@"messageGap"];
+    }
+    
     [metricsDict setObject:[NSNumber numberWithFloat:messageHeight] forKey:@"messageHeight"];
     
     [metricsDict setObject:[NSNumber numberWithFloat:TEXTFIELD_GAP_HEIGHT] forKey:@"textFieldGap"];
@@ -249,9 +253,8 @@
 
 -(NSString*)createFormateString{
     NSString* str = @"V:|-";
-    if (self.title.length > 0) {
-        str = [str stringByAppendingString:@"(topGap)-[titleLabel(titleHeight)]-"];
-    }
+    str = [str stringByAppendingString:@"(topGap)-[titleLabel(titleHeight)]-"];
+
     if (self.message.length > 0) {
         str = [str stringByAppendingString:@"(messageGap)-[messageLabel(messageHeight)]-"];
     }
@@ -296,10 +299,11 @@
 }
 
 -(void)layoutControlsH{
-    
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:messageLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
-    
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:messageLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
+    if (self.message.length > 0) {
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:messageLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:messageLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
+    }
     
     if (alertType == CustomAlertViewTypePlainTextInput || alertType == CustomAlertViewTypeSecureTextInput) {
         [self addConstraint:[NSLayoutConstraint constraintWithItem:m_textField1 attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
@@ -346,7 +350,7 @@
                 break;
         }
     }
-    
+
 }
 
 -(void)setSelfFrame{
@@ -405,7 +409,7 @@
     if (string.length == 0) {
         return 1;
     }
-    CGSize strsize = [string sizeWithFont:font constrainedToSize:CGSizeMake(320 - (LEFT_GAP_WIDTH - ALERT_LEFT_GAP) * 2, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize strsize = [string sizeWithFont:font constrainedToSize:CGSizeMake(320 - (LEFT_GAP_WIDTH + ALERT_LEFT_GAP) * 2, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
     return strsize.height + 1;
 }
 
