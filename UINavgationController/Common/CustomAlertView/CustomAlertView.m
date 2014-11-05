@@ -167,7 +167,10 @@
         [self addSubview:m_textField1];
         [self addSubview:m_textField2];
     }
-    
+    if (otherBtnTitles.count == 1) {
+        UIImage* btnBGImage = [[UIImage imageNamed:@"customAlertButtonBG_cancel.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 4, 4) ];
+        [cancelButton setBackgroundImage:btnBGImage forState:UIControlStateNormal];
+    }
     [self addSubview:cancelButton];
     
     switch (otherBtnTitles.count) {
