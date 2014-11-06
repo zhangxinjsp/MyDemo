@@ -277,9 +277,26 @@
 
 -(void)nextStep:(id)sender{
     
-    CustomAlertView* inputalert = [[CustomAlertView alloc]initWithTitle:@"tttttttt" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
+    CustomAlertView* inputalert = [[CustomAlertView alloc]initWithTitle:@"000000" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
     inputalert.alertType = CustomAlertViewTypeSecureTextInput;
     [inputalert show];
+    
+//    if ([inputalert respondsToSelector:@selector(temporaryDismiss)]) {
+//        [inputalert performSelector:@selector(temporaryDismiss)];
+//    }
+    
+    CustomAlertView* inputalert1 = [[CustomAlertView alloc]initWithTitle:@"111111" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
+    inputalert1.alertType = CustomAlertViewTypeSecureTextInput;
+    [inputalert1 show];
+    
+    CustomAlertView* inputalert2 = [[CustomAlertView alloc]initWithTitle:@"222222" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
+    inputalert2.alertType = CustomAlertViewTypeSecureTextInput;
+    [inputalert2 show];
+    
+    CustomAlertView* inputalert3 = [[CustomAlertView alloc]initWithTitle:@"333333" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
+    inputalert3.alertType = CustomAlertViewTypeSecureTextInput;
+    [inputalert3 show];
+    
 }
 
 -(void)customAlertView:(CustomAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

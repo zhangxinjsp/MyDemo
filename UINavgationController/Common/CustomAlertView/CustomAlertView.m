@@ -27,7 +27,89 @@
 
 #define MAX_OTHER_BTN_COUNT         4
 
+#define POP_ALL_ALERT_NOTIFUCATION_NAME         @"POP_ALL_CUSTOM_ALERT_VIEW"
+
 #import "CustomAlertView.h"
+
+@interface CustomAlertStack : NSObject{
+    NSMutableArray* alertList;
+}
+
+@property (nonatomic, strong, readonly) NSMutableArray* alertList;
++(instancetype)sharedInstance;
+
+-(void)pushCustomAlertView:(CustomAlertView*)alertView;
+-(void)popCustomAlertView;
+
+@end
+
+@implementation CustomAlertStack
+
+@synthesize alertList;
+
++(instancetype)sharedInstance{
+    static CustomAlertStack *instance;
+    if (instance == nil) {
+        @synchronized(self){//同步块
+            if (instance == nil) {
+                instance= [[CustomAlertStack alloc] init];
+            }
+        }
+    }
+    return instance;
+}
+
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        alertList = [[NSMutableArray alloc]init];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popAllCustomAlertView) name:POP_ALL_ALERT_NOTIFUCATION_NAME object:nil];
+    }
+    return self;
+}
+
+-(void)pushCustomAlertView:(CustomAlertView *)alertView{
+    @synchronized(self){
+        if (self.alertList.count > 0) {
+            CustomAlertView* currentShowAlert = self.alertList.firstObject;
+            if ([currentShowAlert respondsToSelector:@selector(temporaryDismiss)]) {
+                [currentShowAlert performSelector:@selector(temporaryDismiss)];
+            }
+        }
+        [self.alertList insertObject:alertView atIndex:0];
+    }
+}
+
+-(void)popCustomAlertView{
+    @synchronized(self){
+        @try {
+            [self.alertList removeObjectAtIndex:0];
+        }
+        @catch (NSException *exception) {
+            LOGINFO(@"%@", exception);
+        }
+        if (self.alertList.count > 0) {
+            CustomAlertView* currentShowAlert = self.alertList.firstObject;
+            [currentShowAlert show];
+        }
+    }
+}
+
+-(void)popAllCustomAlertView{
+    @synchronized(self){
+        if (self.alertList.count > 0) {
+            CustomAlertView* currentShowAlert = self.alertList.firstObject;
+            if ([currentShowAlert respondsToSelector:@selector(temporaryDismiss)]) {
+                [currentShowAlert performSelector:@selector(temporaryDismiss)];
+            }
+        }
+        [self.alertList removeAllObjects];
+    }
+}
+
+@end
+
+
 
 @interface CustomAlertView(){
     CGFloat             titleHeight;
@@ -427,25 +509,33 @@
 }
 
 -(void)buttonActions:(id)sender{
-    [m_cAlertView dismissAlertView];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(customAlertView:clickedButtonAtIndex:)]) {
-        NSInteger tag = ((UIButton*)sender).tag;
-        [self.delegate customAlertView:self clickedButtonAtIndex:tag];
-    }
+    NSInteger tag = ((UIButton*)sender).tag;
+    [self dismissWithClickedButtonIndex:tag animated:YES];
 }
 
 -(void)show{
-    m_cAlertView = [[CAlertView alloc]initWithAlertView:self andAnimationType:AlertAnimationType];
+    if (m_cAlertView == nil) {
+        m_cAlertView = [[CAlertView alloc]initWithAlertView:self andAnimationType:AlertAnimationType];
+        [[CustomAlertStack sharedInstance]pushCustomAlertView:self];
+    }
     [m_cAlertView show];
     visible = YES;
 }
 
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated{
     [m_cAlertView dismissAlertView];
+    [[CustomAlertStack sharedInstance]popCustomAlertView];
     visible = NO;
     if (self.delegate && [self.delegate respondsToSelector:@selector(customAlertView:clickedButtonAtIndex:)]) {
         [self.delegate customAlertView:self clickedButtonAtIndex:buttonIndex];
     }
+}
+
+
+//私有方法
+-(void)temporaryDismiss{
+    visible = NO;
+    [m_cAlertView dismissAlertView];
 }
 /*
 // Only override drawRect: if you perform custom drawing.
