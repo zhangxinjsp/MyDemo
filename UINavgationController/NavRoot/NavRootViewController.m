@@ -279,6 +279,7 @@
     
     CustomAlertView* inputalert = [[CustomAlertView alloc]initWithTitle:@"000000" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
     inputalert.alertType = CustomAlertViewTypeSecureTextInput;
+    inputalert.alertActionType = AlertActionDefault;
     [inputalert show];
     
 //    if ([inputalert respondsToSelector:@selector(temporaryDismiss)]) {
@@ -287,14 +288,17 @@
     
     CustomAlertView* inputalert1 = [[CustomAlertView alloc]initWithTitle:@"111111" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
     inputalert1.alertType = CustomAlertViewTypeSecureTextInput;
+    inputalert1.alertActionType = AlertActionDefault;
     [inputalert1 show];
     
     CustomAlertView* inputalert2 = [[CustomAlertView alloc]initWithTitle:@"222222" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
     inputalert2.alertType = CustomAlertViewTypeSecureTextInput;
+    inputalert2.alertActionType = AlertActionDefault;
     [inputalert2 show];
     
     CustomAlertView* inputalert3 = [[CustomAlertView alloc]initWithTitle:@"333333" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
     inputalert3.alertType = CustomAlertViewTypeSecureTextInput;
+    inputalert3.alertActionType = AlertActionUserActionPrompt;
     [inputalert3 show];
     
 }

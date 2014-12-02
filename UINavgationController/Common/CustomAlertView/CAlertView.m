@@ -125,10 +125,14 @@
         }
     }
     m_AlertView.center = m_AlertSuperView.center;
-    [self performSelector:@selector(addAnimation) withObject:nil afterDelay:0.01];
+    
+    m_AlertSuperView.transform = [self transformForDeviceDirection];
+
+    [self performSelector:@selector(addAnimation) withObject:nil afterDelay:0.001];
 }
 
 -(void)addAnimation{
+    m_AlertSuperView.transform = CGAffineTransformIdentity;
     if (mType == AlertAnimationType) {
         [self doAlertAnimation];
     }
@@ -181,6 +185,9 @@
     [UIView commitAnimations];
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    return [textField resignFirstResponder];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -190,11 +197,11 @@
 */
 #pragma mark -
 #pragma mark dealloc
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+//- (void)dealloc {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 //    [m_AlertView release];
 //    [m_AlertSuperView release];
 //    [super dealloc];
-}
+//}
 
 @end

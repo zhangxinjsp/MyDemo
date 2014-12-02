@@ -7,6 +7,8 @@
 //
 
 
+//#define ALERT_SHOW_SYSTEM_ORDER
+
 #define ALERT_LEFT_GAP              25
 
 #define BUTTON_HEIGHT               43
@@ -27,8 +29,6 @@
 
 #define MAX_OTHER_BTN_COUNT         4
 
-#define POP_ALL_ALERT_NOTIFUCATION_NAME         @"POP_ALL_CUSTOM_ALERT_VIEW"
-
 #import "CustomAlertView.h"
 
 @interface CustomAlertStack : NSObject{
@@ -40,6 +40,7 @@
 
 -(void)pushCustomAlertView:(CustomAlertView*)alertView;
 -(void)popCustomAlertView;
+-(void)popCustomAlertViewWithDelegate:(id)delegate;
 
 @end
 
@@ -63,20 +64,36 @@
     self = [super init];
     if (self) {
         alertList = [[NSMutableArray alloc]init];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popAllCustomAlertView) name:POP_ALL_ALERT_NOTIFUCATION_NAME object:nil];
     }
     return self;
 }
 
 -(void)pushCustomAlertView:(CustomAlertView *)alertView{
     @synchronized(self){
+#ifdef ALERT_SHOW_SYSTEM_ORDER
         if (self.alertList.count > 0) {
             CustomAlertView* currentShowAlert = self.alertList.firstObject;
-            if ([currentShowAlert respondsToSelector:@selector(temporaryDismiss)]) {
-                [currentShowAlert performSelector:@selector(temporaryDismiss)];
+            SEL selector = NSSelectorFromString(@"temporaryDismiss");
+            if ([currentShowAlert respondsToSelector:selector]) {
+                [currentShowAlert performSelector:selector];
             }
         }
         [self.alertList insertObject:alertView atIndex:0];
+#else
+        if (AlertActionUserActionPrompt == alertView.alertActionType) {
+            CustomAlertView* currentShowAlert = self.alertList.firstObject;
+            SEL selector = NSSelectorFromString(@"temporaryDismiss");
+            if ([currentShowAlert respondsToSelector:selector]) {
+                [currentShowAlert performSelector:selector];
+            }
+            [self.alertList insertObject:alertView atIndex:0];
+            [alertView show];
+        }
+        else{
+            [self.alertList addObject:alertView];
+        }
+#endif
+        
     }
 }
 
@@ -99,11 +116,29 @@
     @synchronized(self){
         if (self.alertList.count > 0) {
             CustomAlertView* currentShowAlert = self.alertList.firstObject;
-            if ([currentShowAlert respondsToSelector:@selector(temporaryDismiss)]) {
-                [currentShowAlert performSelector:@selector(temporaryDismiss)];
+            SEL selector = NSSelectorFromString(@"temporaryDismiss");
+            if ([currentShowAlert respondsToSelector:selector]) {
+                [currentShowAlert performSelector:selector];
             }
         }
         [self.alertList removeAllObjects];
+    }
+}
+
+-(void)popCustomAlertViewWithDelegate:(id)delegate{
+    CustomAlertView* currentShowAlert = self.alertList.firstObject;
+    @synchronized(self){
+        if (self.alertList.count > 0) {
+            for (int i = self.alertList.count - 1; i >= 0; i--) {
+                CustomAlertView* alert = [self.alertList objectAtIndex:i];
+                if (alert.delegate == delegate) {
+                    [self.alertList removeObjectAtIndex:i];
+                }
+            }
+        }
+    }
+    if (currentShowAlert.delegate == delegate) {
+        [currentShowAlert dismissWithClickedButtonIndex:-1 animated:YES];
     }
 }
 
@@ -125,39 +160,42 @@
 
 @synthesize delegate;
 @synthesize alertType;
+@synthesize alertActionType;
 @synthesize title;
 @synthesize message;
 @synthesize visible;
 
 -(instancetype)initWithTitle:(NSString*)_title message:(NSString *)_message delegate:(id)_delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...{
-    self.title = _title;
-    self.message = _message;
-    cancelTitle = cancelButtonTitle;
-    
-    if (otherButtonTitles != nil) {
-        otherBtnTitles = [[NSMutableArray alloc]initWithObjects:otherButtonTitles, nil];
-        id sender;
-        va_list ap;
-        va_start(ap, otherButtonTitles);
-        while ((sender = va_arg(ap, id))) {
-            if ([sender isKindOfClass:[NSString class]]) {
-                [otherBtnTitles addObject:sender];
-                if (otherBtnTitles.count >= MAX_OTHER_BTN_COUNT) {
-                    break;
+
+    self = [super init];
+    if (self) {
+        self.title = _title;
+        self.message = _message;
+        cancelTitle = cancelButtonTitle;
+        
+        if (otherButtonTitles != nil) {
+            otherBtnTitles = [[NSMutableArray alloc]initWithObjects:otherButtonTitles, nil];
+            id sender;
+            va_list ap;
+            va_start(ap, otherButtonTitles);
+            while ((sender = va_arg(ap, id))) {
+                if ([sender isKindOfClass:[NSString class]]) {
+                    [otherBtnTitles addObject:sender];
+                    if (otherBtnTitles.count >= MAX_OTHER_BTN_COUNT) {
+                        break;
+                    }
                 }
             }
         }
-    }
-
-    titleHeight = [self stringHeight:title font:TITLE_FONT];
-    messageHeight = [self stringHeight:message font:MESSAGE_FONT];
-    
-    self = [super init];
-    if (self) {
+        
+        titleHeight = [self stringHeight:title font:TITLE_FONT];
+        messageHeight = [self stringHeight:message font:MESSAGE_FONT];
+        
         self.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1];
         self.delegate = _delegate;
         [self initControls];
         self.alertType = CustomAlertViewTypeDefault;
+        self.alertActionType = AlertActionDefault;
     }
     return self;
 }
@@ -226,15 +264,42 @@
     m_textField2.layer.borderWidth = 0.5;
     m_textField2.layer.borderColor = [[UIColor colorWithWhite:0.2 alpha:1]CGColor];
     m_textField2.secureTextEntry = YES;
+    
+    [self setOtherButtonTitles];
 }
-
+//设置other button的标题
+-(void)setOtherButtonTitles{
+    switch (otherBtnTitles.count) {
+        case 4:{
+            [otherButton4 setTitle:[otherBtnTitles objectAtIndex:3] forState:UIControlStateNormal];
+            [self addSubview:otherButton4];
+        }
+        case 3:{
+            [otherButton3 setTitle:[otherBtnTitles objectAtIndex:2] forState:UIControlStateNormal];
+            [self addSubview:otherButton3];
+        }
+        case 2:{
+            [otherButton2 setTitle:[otherBtnTitles objectAtIndex:1] forState:UIControlStateNormal];
+            [self addSubview:otherButton2];
+        }
+        case 1:{
+            [otherButton1 setTitle:[otherBtnTitles objectAtIndex:0] forState:UIControlStateNormal];
+            [self addSubview:otherButton1];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+//alert的类型决定alert的部分控件布局
 -(void)setAlertType:(CustomAlertViewType)_alertType{
     alertType = _alertType;
     [self addUsingControls];
     [self manageUsingAutoLayoutControls];
     [self layoutControlsV];
 }
-
+//在主视图上添加需要用到的控件
 -(void)addUsingControls{
     [self addSubview:titleLabel];
 
@@ -243,7 +308,7 @@
     }
     if (alertType == CustomAlertViewTypePlainTextInput || alertType == CustomAlertViewTypeSecureTextInput) {
         [self addSubview:m_textField1];
-        [m_textField1 setSecureTextEntry:(alertType == CustomAlertViewTypeSecureTextInput)];
+        m_textField1.secureTextEntry = (alertType == CustomAlertViewTypeSecureTextInput);
     } else if (alertType == CustomAlertViewTypeLoginAndPasswordInput) {
         [self addSubview:m_textField1];
         [self addSubview:m_textField2];
@@ -273,7 +338,7 @@
             break;
     }
 }
-
+//设置需要进行自动布局的控件
 -(void)manageUsingAutoLayoutControls{
     [titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [messageLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -285,7 +350,7 @@
     [m_textField1 setTranslatesAutoresizingMaskIntoConstraints:NO];
     [m_textField2 setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
-
+//纵向的主体布局
 -(void)layoutControlsV{
     [self removeConstraints:[self constraints]];
     
@@ -295,34 +360,11 @@
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(leftGap)-[titleLabel(>=50)]-(leftGap)-|" options:0 metrics:metricsDictH views:views]];
     
-    NSMutableDictionary* metricsDict = [[NSMutableDictionary alloc]init];
-    
-    
-    [metricsDict setObject:[NSNumber numberWithFloat:TOP_GAP_HEIGHT] forKey:@"topGap"];
-    
-    [metricsDict setObject:[NSNumber numberWithFloat:titleHeight] forKey:@"titleHeight"];
-    
-    if (self.title.length == 0) {
-        [metricsDict setObject:[NSNumber numberWithFloat:0.001] forKey:@"messageGap"];
-    }else{
-        [metricsDict setObject:[NSNumber numberWithFloat:MESSAGE_GAP_HEIGHT] forKey:@"messageGap"];
-    }
-    
-    [metricsDict setObject:[NSNumber numberWithFloat:messageHeight] forKey:@"messageHeight"];
-    
-    [metricsDict setObject:[NSNumber numberWithFloat:TEXTFIELD_GAP_HEIGHT] forKey:@"textFieldGap"];
-    [metricsDict setObject:[NSNumber numberWithFloat:TEXTFIELD_HEIGHT] forKey:@"textFieldHeight"];
-    
-    [metricsDict setObject:[NSNumber numberWithFloat:BUTTON_GAP_HEIGHT] forKey:@"cancelBtnGap"];
-    [metricsDict setObject:[NSNumber numberWithFloat:BUTTON_HEIGHT] forKey:@"cancelBtnHeight"];
-    
-    [self setOtherButtonTitles];
-    
-    NSString* formatStr = [self createFormateString];
+    NSString* formatStr = [self createFormateStringV];
+    NSMutableDictionary* metricsDict = [self setAlertControlsMetricsV];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:formatStr options:0 metrics:metricsDict views:views]];
-    
-    
+    //设置cancel 按钮和一个other按钮时的布局
     if (otherBtnTitles.count == 1){
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(0)-[cancelButton(>=50)]-(0)-[otherButton1(cancelButton)]-(0)-|" options:0 metrics:nil views:views]];
     }else{
@@ -332,8 +374,8 @@
     
     [self setSelfFrame];
 }
-
--(NSString*)createFormateString{
+//创建纵向控件布局的格式化字符串
+-(NSString*)createFormateStringV{
     NSString* str = @"V:|-";
     str = [str stringByAppendingString:@"(topGap)-[titleLabel(titleHeight)]-"];
 
@@ -379,14 +421,41 @@
     str = [str stringByAppendingString:@"(0)-|"];
     return str;
 }
-
+//定义纵向布局的歌各控件的纵向尺寸（高度和之间的间隙）
+-(NSMutableDictionary*)setAlertControlsMetricsV{
+    NSMutableDictionary* metricsDictV = [[NSMutableDictionary alloc]init];
+    
+    [metricsDictV setObject:[NSNumber numberWithFloat:TOP_GAP_HEIGHT] forKey:@"topGap"];
+    
+    [metricsDictV setObject:[NSNumber numberWithFloat:titleHeight] forKey:@"titleHeight"];
+    
+    if (self.title.length == 0) {
+        [metricsDictV setObject:[NSNumber numberWithFloat:0.001] forKey:@"messageGap"];
+    }else{
+        [metricsDictV setObject:[NSNumber numberWithFloat:MESSAGE_GAP_HEIGHT] forKey:@"messageGap"];
+    }
+    [metricsDictV setObject:[NSNumber numberWithFloat:messageHeight] forKey:@"messageHeight"];
+    
+    [metricsDictV setObject:[NSNumber numberWithFloat:TEXTFIELD_GAP_HEIGHT] forKey:@"textFieldGap"];
+    [metricsDictV setObject:[NSNumber numberWithFloat:TEXTFIELD_HEIGHT] forKey:@"textFieldHeight"];
+    
+    [metricsDictV setObject:[NSNumber numberWithFloat:BUTTON_GAP_HEIGHT] forKey:@"cancelBtnGap"];
+    [metricsDictV setObject:[NSNumber numberWithFloat:BUTTON_HEIGHT] forKey:@"cancelBtnHeight"];
+    return metricsDictV;
+}
+//设置各控件的横向相对位置
 -(void)layoutControlsH{
     if (self.message.length > 0) {
         [self addConstraint:[NSLayoutConstraint constraintWithItem:messageLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
         
         [self addConstraint:[NSLayoutConstraint constraintWithItem:messageLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
     }
+    [self setTextFieldLayoutH];
     
+    [self setButtonsLayoutH];
+}
+//设置铽textField的横向位置
+-(void) setTextFieldLayoutH{
     if (alertType == CustomAlertViewTypePlainTextInput || alertType == CustomAlertViewTypeSecureTextInput) {
         [self addConstraint:[NSLayoutConstraint constraintWithItem:m_textField1 attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
         
@@ -402,6 +471,9 @@
         
         [self addConstraint:[NSLayoutConstraint constraintWithItem:m_textField2 attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
     }
+}
+//设置铽Buttons的横向位置
+-(void)setButtonsLayoutH{
     if (otherBtnTitles.count == 1) {
         [self addConstraint:[NSLayoutConstraint constraintWithItem:otherButton1 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:cancelButton attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
         
@@ -432,9 +504,8 @@
                 break;
         }
     }
-
 }
-
+//计算self的frame
 -(void)setSelfFrame{
     CGFloat totalHeight = TOP_GAP_HEIGHT;
     
@@ -447,7 +518,7 @@
     if (alertType == CustomAlertViewTypePlainTextInput || alertType == CustomAlertViewTypeSecureTextInput) {
         totalHeight += (TEXTFIELD_HEIGHT + TEXTFIELD_GAP_HEIGHT);
     } else if (alertType == CustomAlertViewTypeLoginAndPasswordInput) {
-        totalHeight += (TEXTFIELD_HEIGHT + TEXTFIELD_GAP_HEIGHT) * 2;
+        totalHeight += TEXTFIELD_HEIGHT * 2 + TEXTFIELD_GAP_HEIGHT;
     }
     
     totalHeight += BUTTON_GAP_HEIGHT + BUTTON_HEIGHT;
@@ -459,33 +530,6 @@
     self.layer.masksToBounds = YES;
     self.frame = CGRectMake(0, 0, 320 - ALERT_LEFT_GAP * 2, totalHeight);
 }
-
--(void)setOtherButtonTitles{
-    switch (otherBtnTitles.count) {
-        case 4:{
-            [otherButton4 setTitle:[otherBtnTitles objectAtIndex:3] forState:UIControlStateNormal];
-            [self addSubview:otherButton4];
-        }
-        case 3:{
-            [otherButton3 setTitle:[otherBtnTitles objectAtIndex:2] forState:UIControlStateNormal];
-            [self addSubview:otherButton3];
-        }
-        case 2:{
-            [otherButton2 setTitle:[otherBtnTitles objectAtIndex:1] forState:UIControlStateNormal];
-            [self addSubview:otherButton2];
-        }
-        case 1:{
-            [otherButton1 setTitle:[otherBtnTitles objectAtIndex:0] forState:UIControlStateNormal];
-            [self addSubview:otherButton1];
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-
-
 
 -(CGFloat)stringHeight:(NSString*)string font:(UIFont*)font{
     if (string.length == 0) {
@@ -510,6 +554,8 @@
 
 -(void)buttonActions:(id)sender{
     NSInteger tag = ((UIButton*)sender).tag;
+    [m_textField1 resignFirstResponder];
+    [m_textField2 resignFirstResponder];
     [self dismissWithClickedButtonIndex:tag animated:YES];
 }
 
@@ -517,17 +563,52 @@
     if (m_cAlertView == nil) {
         m_cAlertView = [[CAlertView alloc]initWithAlertView:self andAnimationType:AlertAnimationType];
         [[CustomAlertStack sharedInstance]pushCustomAlertView:self];
+        LOGINFO(@"show custom alert view, title is :%@ ,message is :%@ ,action count %d", self.title, self.message, otherBtnTitles.count + 1);
     }
+#ifdef ALERT_SHOW_SYSTEM_ORDER
     [m_cAlertView show];
     visible = YES;
+#else
+    
+    if (![CustomAlertView hasCustomAlertShow]) {
+        [m_cAlertView show];
+        visible = YES;
+    }
+    
+#endif
 }
 
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated{
     [m_cAlertView dismissAlertView];
     [[CustomAlertStack sharedInstance]popCustomAlertView];
     visible = NO;
-    if (self.delegate && [self.delegate respondsToSelector:@selector(customAlertView:clickedButtonAtIndex:)]) {
-        [self.delegate customAlertView:self clickedButtonAtIndex:buttonIndex];
+    if (self.delegate) {
+        if ([self.delegate respondsToSelector:@selector(customAlertView:clickedButtonAtIndex:)]) {
+            [self.delegate customAlertView:self clickedButtonAtIndex:buttonIndex];
+        }else if ([self.delegate respondsToSelector:@selector(alertView:clickedButtonAtIndex:)]){
+            
+            NSString* title1 = nil;
+            NSString* title2 = nil;
+            NSString* title3 = nil;
+            NSString* title4 = nil;
+            
+            @try {
+                title1 = [otherBtnTitles objectAtIndex:1];
+                title2 = [otherBtnTitles objectAtIndex:2];
+                title3 = [otherBtnTitles objectAtIndex:3];
+                title4 = [otherBtnTitles objectAtIndex:4];
+            }
+            @catch (NSException *exception) {
+                LOGINFO(@"%@", exception);
+            }
+            @finally {
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:self.title message:self.message delegate:self.delegate cancelButtonTitle:cancelTitle otherButtonTitles:title1, title2, title3, title4, nil];
+                alert.tag = self.tag;
+                alert.alertViewStyle = self.alertType;
+                
+                [self.delegate alertView:alert clickedButtonAtIndex:buttonIndex];
+            }
+        }
     }
 }
 
@@ -537,6 +618,63 @@
     visible = NO;
     [m_cAlertView dismissAlertView];
 }
+
+-(void)dealloc{
+    
+    delegate = nil;
+
+//    [title release];
+//    [message release];
+//
+//    [otherBtnTitles release];
+//    [cancelTitle release];
+//    
+//    [titleLabel release];
+//    [messageLabel release];
+//    [cancelButton release];
+//    [otherButton1 release];
+//    [otherButton2 release];
+//    [otherButton3 release];
+//    [otherButton4 release];
+//    [m_textField1 release];
+//    [m_textField2 release];
+//    [m_cAlertView release];
+    
+//    [super dealloc];
+}
+
+#pragma mark -- 对alert的全局管理用法
+/*
+ 判断customalert是否已经展示，展示是指customalertshow了之后还没有dismiss的alert
+ */
++ (BOOL)checkCustomAlertIsShowWithTag:(NSInteger)tag{
+    for (CustomAlertView* alert in [[CustomAlertStack sharedInstance]alertList]) {
+        if (alert.tag == tag) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
++(BOOL)hasCustomAlertShow{
+    for (CustomAlertView* alert in [[CustomAlertStack sharedInstance]alertList]) {
+        if (alert.isVisible) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
++(void)dismissAllCustomAlert{
+    LOGINFO(@"dismiss all custom alert view");
+    [[CustomAlertStack sharedInstance]popAllCustomAlertView];
+}
+
++(void)dismissCustomAlertWithDelegate:(id)delegate{
+    LOGINFO(@"dismiss custom alert view with delegate:(%@)", [delegate class]);
+    [[CustomAlertStack sharedInstance]popCustomAlertViewWithDelegate:delegate];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

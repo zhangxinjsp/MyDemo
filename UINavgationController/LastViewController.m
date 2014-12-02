@@ -87,26 +87,26 @@
         [alert show];
         
     }else if (tag == 1){
-        UIAlertController* alertCtl = [UIAlertController alertControllerWithTitle:@"alert controller" message:@"asdghkajsdhkasf" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self alertActionHandle:action];
-        }];
-        [alertCtl addAction:okAction];
-
-        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            [self alertActionHandle:action];
-        }];
-        [alertCtl addAction:cancelAction];
-        
-        UIAlertAction* caAction = [UIAlertAction actionWithTitle:@"ca" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-            [self alertActionHandle:action];
-        }];
-        [alertCtl addAction:caAction];
-
-        [self presentViewController:alertCtl animated:YES completion:^{
-            
-        }];
+//        UIAlertController* alertCtl = [UIAlertController alertControllerWithTitle:@"alert controller" message:@"asdghkajsdhkasf" preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//            [self alertActionHandle:action];
+//        }];
+//        [alertCtl addAction:okAction];
+//
+//        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+//            [self alertActionHandle:action];
+//        }];
+//        [alertCtl addAction:cancelAction];
+//        
+//        UIAlertAction* caAction = [UIAlertAction actionWithTitle:@"ca" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+//            [self alertActionHandle:action];
+//        }];
+//        [alertCtl addAction:caAction];
+//
+//        [self presentViewController:alertCtl animated:YES completion:^{
+//            
+//        }];
     }
 }
 
@@ -114,9 +114,9 @@
     LOGINFO(@"alert view index %d", buttonIndex);
 }
 
--(void)alertActionHandle:(UIAlertAction*)alertAction{
-    LOGINFO(@"alert controller action title is %@", alertAction.title);
-}
+//-(void)alertActionHandle:(UIAlertAction*)alertAction{
+//    LOGINFO(@"alert controller action title is %@", alertAction.title);
+//}
 
 -(void)updateNewsBtnPressed:(id)sender{
     
