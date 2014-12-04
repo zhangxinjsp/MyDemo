@@ -69,6 +69,8 @@
     //参数NSDocumentDirectory要获取那种路径
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];//取出需要的路径
+    
+//    [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     LOGINFO(@"file manager path:%@",documentsDirectory);
     //更改到待操作的目录下
     [fileManager changeCurrentDirectoryPath:[documentsDirectory stringByExpandingTildeInPath]];
@@ -77,8 +79,11 @@
     [textField1 resignFirstResponder];
     NSString* fileName = textField1.text;
     [fileManager createFileAtPath:fileName contents:nil attributes:nil];
-    
+          
 }
+
+
+
 
 -(void)fileManagerDelete{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

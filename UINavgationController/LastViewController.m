@@ -74,6 +74,48 @@
     [self.view addSubview:purchaseBtn];
     
     
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 200, 300, 40)];
+    //	searchBar.backgroundColor = [UIColor clearColor];
+    searchBar.backgroundImage = nil;
+	searchBar.placeholder = @"SearchBarPlaceHolder";
+    
+	searchBar.keyboardType = UIKeyboardTypeDefault;
+    //	searchBar.tintColor = [UIColor clearColor];
+	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    
+	// 去掉Searchbar的背景
+    //    if (1) {
+    [searchBar setBarTintColor:[UIColor clearColor]];
+    for (UIView *view in searchBar.subviews) {
+        // for before iOS7.0
+        if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+            [view removeFromSuperview];
+            break;
+        }
+        // for later iOS7.0(include)
+        if ([view isKindOfClass:NSClassFromString(@"UIView")] && view.subviews.count > 0) {
+            [[view.subviews objectAtIndex:0] removeFromSuperview];
+            break;
+        }
+    }
+    [self.view addSubview:searchBar];
+    
+    NSString* string = @"redbluegreen";
+    
+    NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc]initWithString:string];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:[string rangeOfString:@"red"]];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:[string rangeOfString:@"green"]];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:[string rangeOfString:@"blue"]];
+    
+    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 250, 300, 40)];
+    
+    label.textAlignment = NSTextAlignmentRight;
+    label.attributedText = attributedString;
+    
+    [self.view addSubview:label];
+
+
+
 }
 
 -(void)btnSelected:(id)sender{
