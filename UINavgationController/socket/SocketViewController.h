@@ -12,7 +12,8 @@
 #import <netinet/in.h>
 #import <arpa/inet.h>
 #import <unistd.h>
+#import "BaseViewController.h"
 
-@interface SocketViewController : UIViewController
+@interface SocketViewController : BaseViewController
 
 @end

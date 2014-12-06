@@ -244,6 +244,10 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
+-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return UIInterfaceOrientationLandscapeLeft;
+}
+
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
     return toInterfaceOrientation == UIInterfaceOrientationPortrait;
 }

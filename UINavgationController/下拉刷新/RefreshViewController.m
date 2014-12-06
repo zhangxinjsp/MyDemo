@@ -87,16 +87,6 @@
 //    LOGINFO(@"section = %d , row = %d",indexPath.section,indexPath.row);
 }
 
-
-
-
-
--(void)nextStep:(id)sender{
-    LastViewController* lastView = [[LastViewController alloc] initWithNibName:@"LastViewController" bundle:nil];
-    
-    [self.navigationController pushViewController:lastView animated:YES];
-
-}
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

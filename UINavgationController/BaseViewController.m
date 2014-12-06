@@ -47,7 +47,22 @@
 -(void)nextStep:(id)sender{
     LastViewController* lastView = [[LastViewController alloc] initWithNibName:@"LastViewController" bundle:nil];
     
-    [self.navigationController pushViewController:lastView animated:YES];
+//    [self.navigationController pushViewController:lastView animated:YES];
+    [self.navigationController presentViewController:lastView animated:YES completion:^{
+        
+    }];
+    
+    [self performSelector:@selector(dismissasdfasdf) withObject:nil afterDelay:2];
+    
+}
+
+-(void)dismissasdfasdf{
+    [self.navigationController.presentedViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+//    [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
 }
 
 

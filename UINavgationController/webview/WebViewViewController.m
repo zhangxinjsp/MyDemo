@@ -100,19 +100,6 @@
     [connection cancel];
 }
 
-
-
-
-
-
-
--(void)nextStep:(id)sender{
-    LastViewController* lastView = [[LastViewController alloc] initWithNibName:@"LastViewController" bundle:nil];
-    
-    [self.navigationController pushViewController:lastView animated:YES];
-
-}
-
 -(void)viewWillAppear:(BOOL)animated{
     LOGINFO(@"viewWillAppear");
 }
