@@ -1292,8 +1292,8 @@
 		0D71870D1600BE530062A13F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
+				CODE_SIGN_IDENTITY = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1310,10 +1310,11 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FECC6156-113D-4051-A1C8-89C6C5426A75";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FECC6156-113D-4051-A1C8-89C6C5426A75";
-				SDKROOT = iphoneos;
+				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
+				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1321,8 +1322,8 @@
 		0D71870E1600BE530062A13F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
+				CODE_SIGN_IDENTITY = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1339,10 +1340,11 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FECC6156-113D-4051-A1C8-89C6C5426A75";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FECC6156-113D-4051-A1C8-89C6C5426A75";
-				SDKROOT = iphoneos;
+				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
+				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
