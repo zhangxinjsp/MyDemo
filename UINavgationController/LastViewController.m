@@ -8,7 +8,7 @@
 
 #import "LastViewController.h"
 #import "UILabel-LineHeigh.h"
-
+#import <AVFoundation/AVFoundation.h>
 
 
 
@@ -100,21 +100,26 @@
     }
     [self.view addSubview:searchBar];
     
+    //label多色的使用
     NSString* string = @"redbluegreen";
-    
     NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc]initWithString:string];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:[string rangeOfString:@"red"]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:[string rangeOfString:@"green"]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:[string rangeOfString:@"blue"]];
-    
     UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 250, 300, 40)];
-    
     label.textAlignment = NSTextAlignmentRight;
     label.attributedText = attributedString;
-    
     [self.view addSubview:label];
 
-
+    SEL selector = @selector(alertView:clickedButtonAtIndex:);
+    NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:[LastViewController instanceMethodSignatureForSelector:selector]];
+    [invocation setSelector:selector];
+    [invocation setTarget:self];
+    UIAlertView *val = [[UIAlertView alloc]init];
+    [invocation setArgument:&val atIndex:2];
+    NSInteger index = 90;
+    [invocation setArgument:&index atIndex:3];
+    [invocation invoke];
 
 }
 

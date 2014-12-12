@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK
+END
+ZBarHelpController.h
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK/ZBarHelpController.h
+END
+ZBarImageScanner.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK/ZBarImageScanner.h
+END
+ZBarReaderView.h
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK/ZBarReaderView.h
+END
+zbar.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK/zbar.h
+END
+ZBarReaderViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK/ZBarReaderViewController.h
+END
+ZBarSDK.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK/ZBarSDK.h
+END
+ZBarImage.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK/ZBarImage.h
+END
+ZBarSymbol.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK/ZBarSymbol.h
+END
+ZBarCaptureReader.h
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK/ZBarCaptureReader.h
+END
+ZBarReaderController.h
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK/ZBarReaderController.h
+END
+ZBarCameraSimulator.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/embaios/!svn/ver/467/trunk/%E5%90%BE%E8%81%8A/%E5%90%BE%E8%81%8A/Untitly/ZBarSDK/Headers/ZBarSDK/ZBarCameraSimulator.h
+END

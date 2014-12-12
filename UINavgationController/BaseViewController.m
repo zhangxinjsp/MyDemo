@@ -52,14 +52,15 @@
         
     }];
     
-    [self performSelector:@selector(dismissasdfasdf) withObject:nil afterDelay:2];
+//    [self performSelector:@selector(dismissasdfasdf) withObject:nil afterDelay:2];
     
 }
 
 -(void)dismissasdfasdf{
-    [self.navigationController.presentedViewController dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
 //    [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:^{
 //        
 //    }];

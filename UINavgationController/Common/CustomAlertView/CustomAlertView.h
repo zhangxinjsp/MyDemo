@@ -66,6 +66,7 @@ typedef enum{
 + (void)dismissAllCustomAlert;
 + (void)dismissCustomAlertWithDelegate:(id)delegate;
 + (BOOL)hasCustomAlertShow;
++ (BOOL)hasSameCustomAlert:(CustomAlertView*)alertView;
 
 @end
 

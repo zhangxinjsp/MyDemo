@@ -23,6 +23,7 @@
 #import "ContactsViewController.h"
 #import "MotionViewController.h"
 #import "CameraPhotoViewController.h"
+#import "ZBarViewController.h"
 
 
 #import "CustomAlertView.h"
@@ -113,7 +114,7 @@
     NSInteger upDownGap = 15;
     NSInteger leftRightGap = 18;
     
-    titleArray = [[NSArray alloc]initWithObjects:@"webView", @"transform", @"正则md5", @"drawrect", @"下拉刷新", @"CoreData", @"文件读写", @"SQLite", @"短信和邮件",@"分享", @"request", @"socket", @"Auto Layer", @"map,location", @"addressBook", @"motion", @"camera", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"webView", @"transform", @"正则md5", @"drawrect", @"下拉刷新", @"CoreData", @"文件读写", @"SQLite", @"短信和邮件",@"分享", @"request", @"socket", @"Auto Layer", @"map,location", @"addressBook", @"motion", @"camera", @"ZBar", nil];
     
     for (int i = 0; i < titleArray.count; i++) {
         NSInteger x = (i % 4) * (menuItemViewWidth + leftRightGap) + leftRightGap;
@@ -253,6 +254,12 @@
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
+        case 17:{
+            ZBarViewController* ctl = [[ZBarViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
+        }
+            break;
         default:
             break;
     }
@@ -286,17 +293,17 @@
 //        [inputalert performSelector:@selector(temporaryDismiss)];
 //    }
     
-    CustomAlertView* inputalert1 = [[CustomAlertView alloc]initWithTitle:@"111111" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
+    CustomAlertView* inputalert1 = [[CustomAlertView alloc]initWithTitle:@"111111" message:@"mmmmmmmmmmmmmmmm11111" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
     inputalert1.alertType = CustomAlertViewTypeSecureTextInput;
     inputalert1.alertActionType = AlertActionDefault;
     [inputalert1 show];
     
-    CustomAlertView* inputalert2 = [[CustomAlertView alloc]initWithTitle:@"222222" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
+    CustomAlertView* inputalert2 = [[CustomAlertView alloc]initWithTitle:@"222222" message:@"mmmmmmmmmmmmmmmm2222222" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
     inputalert2.alertType = CustomAlertViewTypeSecureTextInput;
     inputalert2.alertActionType = AlertActionDefault;
     [inputalert2 show];
     
-    CustomAlertView* inputalert3 = [[CustomAlertView alloc]initWithTitle:@"333333" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
+    CustomAlertView* inputalert3 = [[CustomAlertView alloc]initWithTitle:@"333333" message:@"mmmmmmmmmmmmmmmm3333333" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
     inputalert3.alertType = CustomAlertViewTypeSecureTextInput;
     inputalert3.alertActionType = AlertActionUserActionPrompt;
     [inputalert3 show];
