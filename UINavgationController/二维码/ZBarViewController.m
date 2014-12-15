@@ -36,7 +36,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [self initControls];
+}
+
+-(void)initControls{
     textField = [[UITextField alloc]init];
     textField.backgroundColor = [UIColor lightGrayColor];
     textField.delegate = self;
