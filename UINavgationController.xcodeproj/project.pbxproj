@@ -135,6 +135,10 @@
 		E5442C2A19F89FBC000A6D7F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5442C2919F89FBC000A6D7F /* AddressBook.framework */; };
 		E545B0B51A09C2130007F4AE /* customAlertButtonBG.png in Resources */ = {isa = PBXBuildFile; fileRef = E545B0B41A09C2130007F4AE /* customAlertButtonBG.png */; };
 		E545B0C21A09CD780007F4AE /* customAlertButtonBG_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = E545B0C11A09CD780007F4AE /* customAlertButtonBG_cancel.png */; };
+		E54B61091A3ED9B000589927 /* DataMatrix.mm in Sources */ = {isa = PBXBuildFile; fileRef = E54B61031A3ED9B000589927 /* DataMatrix.mm */; };
+		E54B610A1A3ED9B000589927 /* QR_Encode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E54B61041A3ED9B000589927 /* QR_Encode.cpp */; };
+		E54B610B1A3ED9B000589927 /* QREncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = E54B61071A3ED9B000589927 /* QREncoder.mm */; };
+		E54B610C1A3ED9B000589927 /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = E54B61081A3ED9B000589927 /* Readme.txt */; };
 		E55B00011A3AE55F00FB0A03 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = E55BFFEB1A3AE55F00FB0A03 /* bitstream.c */; };
 		E55B00021A3AE55F00FB0A03 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = E55BFFED1A3AE55F00FB0A03 /* mask.c */; };
 		E55B00031A3AE55F00FB0A03 /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = E55BFFF01A3AE55F00FB0A03 /* QRCodeGenerator.m */; };
@@ -338,6 +342,13 @@
 		E5442C2919F89FBC000A6D7F /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		E545B0B41A09C2130007F4AE /* customAlertButtonBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customAlertButtonBG.png; sourceTree = "<group>"; };
 		E545B0C11A09CD780007F4AE /* customAlertButtonBG_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customAlertButtonBG_cancel.png; sourceTree = "<group>"; };
+		E54B61021A3ED9B000589927 /* DataMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataMatrix.h; sourceTree = "<group>"; };
+		E54B61031A3ED9B000589927 /* DataMatrix.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataMatrix.mm; sourceTree = "<group>"; };
+		E54B61041A3ED9B000589927 /* QR_Encode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QR_Encode.cpp; sourceTree = "<group>"; };
+		E54B61051A3ED9B000589927 /* QR_Encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QR_Encode.h; sourceTree = "<group>"; };
+		E54B61061A3ED9B000589927 /* QREncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QREncoder.h; sourceTree = "<group>"; };
+		E54B61071A3ED9B000589927 /* QREncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QREncoder.mm; sourceTree = "<group>"; };
+		E54B61081A3ED9B000589927 /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
 		E55B00001A3AE55F00FB0A03 /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-samples.png"; sourceTree = "<group>"; };
 		E55B000E1A3AE59300FB0A03 /* ZBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarViewController.h; sourceTree = "<group>"; };
 		E55B000F1A3AE59300FB0A03 /* ZBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBarViewController.m; sourceTree = "<group>"; };
@@ -906,9 +917,24 @@
 			name = Contacts;
 			sourceTree = "<group>";
 		};
+		E54B61011A3ED9B000589927 /* QREncode */ = {
+			isa = PBXGroup;
+			children = (
+				E54B61021A3ED9B000589927 /* DataMatrix.h */,
+				E54B61031A3ED9B000589927 /* DataMatrix.mm */,
+				E54B61041A3ED9B000589927 /* QR_Encode.cpp */,
+				E54B61051A3ED9B000589927 /* QR_Encode.h */,
+				E54B61061A3ED9B000589927 /* QREncoder.h */,
+				E54B61071A3ED9B000589927 /* QREncoder.mm */,
+				E54B61081A3ED9B000589927 /* Readme.txt */,
+			);
+			path = QREncode;
+			sourceTree = "<group>";
+		};
 		E55BFFD11A3AE55F00FB0A03 /* 二维码 */ = {
 			isa = PBXGroup;
 			children = (
+				E54B61011A3ED9B000589927 /* QREncode */,
 				E55BFFD21A3AE55F00FB0A03 /* ZBarSDK */,
 				E55B000E1A3AE59300FB0A03 /* ZBarViewController.h */,
 				E55B000F1A3AE59300FB0A03 /* ZBarViewController.m */,
@@ -1089,6 +1115,7 @@
 				5BD46D43194D3B61002995EB /* paletta_icon@2x.png in Resources */,
 				E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */,
 				E55B000B1A3AE55F00FB0A03 /* zbar-help.html in Resources */,
+				E54B610C1A3ED9B000589927 /* Readme.txt in Resources */,
 				5BD46DDC194D418E002995EB /* TransformViewController.xib in Resources */,
 				5BD46DE2194D418E002995EB /* WebViewViewController.xib in Resources */,
 				5BD46D3B194D3B61002995EB /* dragDown@2x.png in Resources */,
@@ -1162,6 +1189,7 @@
 				5B84684E1956BEAA0033C079 /* CoreDataTool.m in Sources */,
 				E53268D719FA396700FB6195 /* MotionViewController.m in Sources */,
 				5BD46DDB194D418E002995EB /* TransformViewController.m in Sources */,
+				E54B610A1A3ED9B000589927 /* QR_Encode.cpp in Sources */,
 				5BD46DDA194D418E002995EB /* UILabel-LineHeigh.m in Sources */,
 				0D7187051600BE530062A13F /* main.m in Sources */,
 				E55B00081A3AE55F00FB0A03 /* split.c in Sources */,
@@ -1172,6 +1200,7 @@
 				5BD46D10194D38AD002995EB /* BaseViewController.m in Sources */,
 				5BC4EC0319710D3E00ECAB1E /* URLRequestViewController.m in Sources */,
 				5BC077A7194DBB390024627F /* MyKeyChainHelper.m in Sources */,
+				E54B61091A3ED9B000589927 /* DataMatrix.mm in Sources */,
 				E55B00101A3AE59300FB0A03 /* ZBarViewController.m in Sources */,
 				5BD46DC0194D418E002995EB /* RefreshHeadView.m in Sources */,
 				25154181196FC2F400A456F3 /* Reachability.m in Sources */,
@@ -1203,6 +1232,7 @@
 				5BD46DBE194D418E002995EB /* FileManagerReadAndWriteViewController.m in Sources */,
 				5BD46DED194D445B002995EB /* NavRootViewController.m in Sources */,
 				5BD46DF2194D49BE002995EB /* PrintLog.m in Sources */,
+				E54B610B1A3ED9B000589927 /* QREncoder.mm in Sources */,
 				E53D505619F762E3005C0E8E /* MyAnnotation.m in Sources */,
 				0DC5F35C163AC67900F7D8D5 /* LastViewController.m in Sources */,
 				5BD46DC1194D418E002995EB /* RefreshViewController.m in Sources */,

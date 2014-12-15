@@ -18,6 +18,8 @@
 #import "ZBarSDK.h"
 #import "QRCodeGenerator.h"
 
-@interface ZBarViewController : BaseViewController <ZBarReaderDelegate>
+
+
+@interface ZBarViewController : BaseViewController <ZBarReaderDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end

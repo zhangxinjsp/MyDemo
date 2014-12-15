@@ -21,10 +21,24 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+// 自定义枚举
+typedef enum {
+    QRPointRect = 0,
+    QRPointRound
+}QRPointType;
+
+typedef enum {
+    QRPositionNormal = 0,
+    QRPositionRound
+}QRPositionType;
+
 #import <Foundation/Foundation.h>
 
 @interface QRCodeGenerator : NSObject
 
 + (UIImage *)qrImageForString:(NSString *)string imageSize:(CGFloat)size;
+
+// 自定义方法
++ (UIImage *)qrImageForString:(NSString *)string imageSize:(CGFloat)size withPointType:(QRPointType)pointType withPositionType:(QRPositionType)positionType withColor:(UIColor *)color;
 
 @end
