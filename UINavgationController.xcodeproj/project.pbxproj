@@ -349,6 +349,7 @@
 		5BE31A4F1A3F0DD1000C028F /* ZXRGBLuminanceSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3196E1A3F0DD1000C028F /* ZXRGBLuminanceSource.m */; };
 		5BE31A511A3F0E34000C028F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE31A501A3F0E34000C028F /* ImageIO.framework */; };
 		E52405A419F639F800ED1360 /* Formater.m in Sources */ = {isa = PBXBuildFile; fileRef = E52405A319F639F800ED1360 /* Formater.m */; };
+		E52F99381A3FDADF001413AB /* QREncodeMaker.mm in Sources */ = {isa = PBXBuildFile; fileRef = E52F99371A3FDADF001413AB /* QREncodeMaker.mm */; };
 		E53040941A08BBF400AE3D94 /* CAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E53040911A08BBF400AE3D94 /* CAlertView.m */; };
 		E53040951A08BBF400AE3D94 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E53040931A08BBF400AE3D94 /* CustomAlertView.m */; };
 		E53268D419FA394900FB6195 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53268D319FA394900FB6195 /* CoreMotion.framework */; };
@@ -1003,6 +1004,8 @@
 		5BE31A501A3F0E34000C028F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		E52405A219F639F800ED1360 /* Formater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Formater.h; path = Common/Formater.h; sourceTree = "<group>"; };
 		E52405A319F639F800ED1360 /* Formater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Formater.m; path = Common/Formater.m; sourceTree = "<group>"; };
+		E52F99361A3FDADF001413AB /* QREncodeMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QREncodeMaker.h; sourceTree = "<group>"; };
+		E52F99371A3FDADF001413AB /* QREncodeMaker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QREncodeMaker.mm; sourceTree = "<group>"; };
 		E53040901A08BBF400AE3D94 /* CAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAlertView.h; sourceTree = "<group>"; };
 		E53040911A08BBF400AE3D94 /* CAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAlertView.m; sourceTree = "<group>"; };
 		E53040921A08BBF400AE3D94 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
@@ -2321,6 +2324,8 @@
 				E54B61061A3ED9B000589927 /* QREncoder.h */,
 				E54B61071A3ED9B000589927 /* QREncoder.mm */,
 				E54B61081A3ED9B000589927 /* Readme.txt */,
+				E52F99361A3FDADF001413AB /* QREncodeMaker.h */,
+				E52F99371A3FDADF001413AB /* QREncodeMaker.mm */,
 			);
 			path = QREncode;
 			sourceTree = "<group>";
@@ -2772,6 +2777,7 @@
 				5BE319A11A3F0DD1000C028F /* ZXGenericGFPoly.m in Sources */,
 				5BE319751A3F0DD1000C028F /* ZXAztecReader.m in Sources */,
 				5BE319BA1A3F0DD1000C028F /* ZXDataMatrixErrorCorrection.m in Sources */,
+				E52F99381A3FDADF001413AB /* QREncodeMaker.mm in Sources */,
 				5BE31A111A3F0DD1000C028F /* ZXUPCEReader.m in Sources */,
 				5BD46DBC194D418E002995EB /* ShareTofaceBookViewController.m in Sources */,
 				5BE319711A3F0DD1000C028F /* ZXAztecDetector.m in Sources */,
@@ -2953,8 +2959,8 @@
 		0D71870D1600BE530062A13F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -2971,8 +2977,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
+				PROVISIONING_PROFILE = "FECC6156-113D-4051-A1C8-89C6C5426A75";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FECC6156-113D-4051-A1C8-89C6C5426A75";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
@@ -2983,8 +2989,8 @@
 		0D71870E1600BE530062A13F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: BEIJING YIBAO (YZUZMK3443)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3001,8 +3007,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "808C8FA9-B0B7-4557-AF0A-B7E013307FD2";
+				PROVISIONING_PROFILE = "FECC6156-113D-4051-A1C8-89C6C5426A75";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FECC6156-113D-4051-A1C8-89C6C5426A75";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";

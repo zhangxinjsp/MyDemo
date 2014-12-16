@@ -9,6 +9,7 @@
 #import "ZXingViewController.h"
 #import "ZXingObjC.h"
 #import "QRCodeGenerator.h"
+#import "QREncodeMaker.h"
 
 @interface ZXingViewController ()<UITextFieldDelegate, ZXCaptureDelegate>{
     UIImageView* imageView;
@@ -136,32 +137,38 @@
 #pragma mark －－－－－－－－－－－－－－－生成二维码－－－－－－－－－－
 
 -(void)makeQRCode{
-//    NSError* error = nil;
-//    
-//    ZXEncodeHints* hints = [ZXEncodeHints hints];
-//    hints.errorCorrectionLevel = [ZXErrorCorrectionLevel errorCorrectionLevelH];//容错性设成最高，二维码里添加图片
-//    hints.encoding =  NSUTF8StringEncoding;// 加上这两句，可以用中文了
-//    
-//    ZXMultiFormatWriter* writer = [ZXMultiFormatWriter writer];
-//    ZXBitMatrix* result = [writer encode:textField.text format:kBarcodeFormatQRCode width:800 height:800 hints:hints error:&error];
-////    ZXBitMatrix* result = [[ZXMultiFormatWriter writer] encode:textField.text format:kBarcodeFormatQRCode width:500 height:500 error:&error];
-//    
-//    if (result) {
-//        CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];
-//        
-//        UIImage *image1 =   [UIImage imageWithCGImage:image];//二维码原图
-//        UIImage *subIamge = [UIImage imageNamed:@"icon3.jpg"];
-//        
-//        UIImage *image2 = [self addSubImage:image1 sub:subIamge];//二维码里加图标，长宽最好为原图的1/4一下 放在图像中间，这样不妨碍二维码识别
-//
-//        imageView.image = image1;
-//        // This CGImageRef image can be placed in a UIImage, NSImage, or written to a file.
-//    } else {
-//        NSString* errorMessage = [error localizedDescription];
-//        label.text = errorMessage;
-//    }
+#if 0
+    NSError* error = nil;
     
+    ZXEncodeHints* hints = [ZXEncodeHints hints];
+    hints.errorCorrectionLevel = [ZXErrorCorrectionLevel errorCorrectionLevelL];//容错性设成最高，二维码里添加图片
+    hints.encoding =  NSUTF8StringEncoding;// 加上这两句，可以用中文了
+    
+    ZXMultiFormatWriter* writer = [ZXMultiFormatWriter writer];
+    ZXBitMatrix* result = [writer encode:textField.text format:kBarcodeFormatQRCode width:800 height:800 hints:hints error:&error];
+//    ZXBitMatrix* result = [[ZXMultiFormatWriter writer] encode:textField.text format:kBarcodeFormatQRCode width:500 height:500 error:&error];
+    
+    if (result) {
+        CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];
+        
+        UIImage *image1 =   [UIImage imageWithCGImage:image];//二维码原图
+        UIImage *subIamge = [UIImage imageNamed:@"icon3.jpg"];
+        
+        UIImage *image2 = [self addSubImage:image1 sub:subIamge];//二维码里加图标，长宽最好为原图的1/4一下 放在图像中间，这样不妨碍二维码识别
+
+        imageView.image = image2;
+        // This CGImageRef image can be placed in a UIImage, NSImage, or written to a file.
+    } else {
+        NSString* errorMessage = [error localizedDescription];
+        label.text = errorMessage;
+    }
+#elif 0
     imageView.image = [QRCodeGenerator qrImageForString:textField.text imageSize:imageView.frame.size.width];
+    
+#else
+    
+    imageView.image = [QREncodeMaker makeQREncodeImageWithString:textField.text imageWidth:imageView.frame.size.width];
+#endif
 }
 
 -(UIImage *)addSubImage:(UIImage *)img sub:(UIImage *) subImage
@@ -211,13 +218,9 @@
     hints.encoding = NSUTF8StringEncoding;// StringEncoding;
     
     ZXMultiFormatReader* reader = [ZXMultiFormatReader reader];
-    /* ZXResult* result = [reader decode:bitmap
-     hints:hints
-     error:&error];
-     */
-    ZXResult* result = [reader decode:bitmap
-                                hints:nil
-                                error:&error];
+    ZXResult* result = [reader decode:bitmap hints:hints error:&error];
+
+//    ZXResult* result = [reader decode:bitmap hints:nil error:&error];
     if (result) {
         // The coded result as a string. The raw data can be accessed with
         // result.rawBytes and result.length.
