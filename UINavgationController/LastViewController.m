@@ -12,7 +12,9 @@
 
 
 
-@interface LastViewController ()
+@interface LastViewController (){
+    
+}
 
 @end
 
@@ -23,7 +25,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-            canAutorotate = NO;
     }
     return self;
 }
@@ -34,18 +35,6 @@
     
     self.title = @"last View Controller";
     
-//    com.huawei.ott.hosting${PRODUCT_NAME:rfc1034identifier}
-    
-    UITextField* asdf = [[UITextField alloc]initWithFrame:CGRectMake(10, 100, 60,30)];
-    asdf.backgroundColor = [UIColor redColor];
-    [self.view addSubview:asdf];
-    
-    
-    UIImage* image = [[UIImage imageNamed:@"bubble_blue_recieve_doctor.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(53.0f,34.0f,20.0f,34.0f)];
-    UIImageView* imageview = [[UIImageView alloc]initWithImage:image];
-    imageview.frame = CGRectMake(100, 100, 100, 70);
-    [self.view addSubview:imageview];
-    
     //item按下是会有高亮效果的
     UIToolbar *tools = [[UIToolbar alloc]initWithFrame: CGRectMake(0.0f, 0.0f, 44.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
     tools.clipsToBounds = NO;
@@ -55,7 +44,14 @@
     UIBarButtonItem *updateBtn = [[UIBarButtonItem alloc]initWithCustomView:tools];
     [self.navigationItem setRightBarButtonItem:updateBtn];
     
-    UIButton* channelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 20)];
+    
+//    com.huawei.ott.hosting${PRODUCT_NAME:rfc1034identifier}
+    
+    UITextField* asdf = [[UITextField alloc]initWithFrame:CGRectMake(10, 10, 60,30)];
+    asdf.backgroundColor = [UIColor redColor];
+    [self.view addSubview:asdf];
+    
+    UIButton* channelBtn = [[UIButton alloc]initWithFrame:CGRectMake(80, 10, 40, 20)];
     [channelBtn setBackgroundImage:[UIImage imageNamed:@"dragDown.png"] forState:UIControlStateNormal];
     [channelBtn setBackgroundImage:[UIImage imageNamed:@"logo.png.png"] forState:UIControlStateHighlighted];
     [channelBtn setBackgroundImage:[UIImage imageNamed:@"dragUp.png"] forState:UIControlStateSelected];
@@ -64,7 +60,7 @@
     [channelBtn setTag:0];
     [self.view addSubview:channelBtn];
     
-    UIButton* purchaseBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 50, 40, 20)];
+    UIButton* purchaseBtn = [[UIButton alloc]initWithFrame:CGRectMake(130, 10, 40, 20)];
     [purchaseBtn setBackgroundImage:[UIImage imageNamed:@"dragUp.png"] forState:UIControlStateNormal];
     [purchaseBtn setBackgroundImage:[UIImage imageNamed:@"logo.png.png"] forState:UIControlStateHighlighted];
     [purchaseBtn setBackgroundImage:[UIImage imageNamed:@"dragDown.png"] forState:UIControlStateSelected];
@@ -73,8 +69,29 @@
     [purchaseBtn setTag:1];
     [self.view addSubview:purchaseBtn];
     
+    UIImage* image = [[UIImage imageNamed:@"bubble_blue_recieve_doctor.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(53.0f,34.0f,20.0f,34.0f)];
+    UIImageView* imageview = [[UIImageView alloc]initWithImage:image];
+    imageview.frame = CGRectMake(10, 110, 100, 70);
+    [self.view addSubview:imageview];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 200, 300, 40)];
+    SEL selector = @selector(alertView:clickedButtonAtIndex:);
+    NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:[LastViewController instanceMethodSignatureForSelector:selector]];
+    [invocation setSelector:selector];
+    [invocation setTarget:self];
+    UIAlertView *val = [[UIAlertView alloc]init];
+    [invocation setArgument:&val atIndex:2];
+    NSInteger index = 90;
+    [invocation setArgument:&index atIndex:3];
+    [invocation invoke];
+    
+    
+    [self searchBarClearBackground];
+    [self labelMutableAttributedString];
+
+}
+//search bar 去除背景色
+-(void)searchBarClearBackground{
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(10, 40, 300, 40)];
     //	searchBar.backgroundColor = [UIColor clearColor];
     searchBar.backgroundImage = nil;
 	searchBar.placeholder = @"SearchBarPlaceHolder";
@@ -99,71 +116,79 @@
         }
     }
     [self.view addSubview:searchBar];
-    
+}
+
+//label多字体多颜色
+-(void)labelMutableAttributedString{
     //label多色的使用
     NSString* string = @"redbluegreen";
     NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc]initWithString:string];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:[string rangeOfString:@"red"]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:[string rangeOfString:@"green"]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:[string rangeOfString:@"blue"]];
-    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 250, 300, 40)];
-    label.textAlignment = NSTextAlignmentRight;
+    
+    
+    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:@"red"]];
+    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:[string rangeOfString:@"blue"]];
+    [attributedString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16] range:[string rangeOfString:@"green"]];
+    
+    
+    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 85, 300, 20)];
+    label.textAlignment = NSTextAlignmentCenter;
     label.attributedText = attributedString;
     [self.view addSubview:label];
-
-    SEL selector = @selector(alertView:clickedButtonAtIndex:);
-    NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:[LastViewController instanceMethodSignatureForSelector:selector]];
-    [invocation setSelector:selector];
-    [invocation setTarget:self];
-    UIAlertView *val = [[UIAlertView alloc]init];
-    [invocation setArgument:&val atIndex:2];
-    NSInteger index = 90;
-    [invocation setArgument:&index atIndex:3];
-    [invocation invoke];
-
 }
+
+
 
 -(void)btnSelected:(id)sender{
 
     
     NSInteger tag = ((UIButton*)sender).tag;
+    [self coreImageFilterUsing];
     if (tag == 0) {
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"alert view" message:@"asdfadsf" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:@"cancel", nil];
-        alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
-        
-        [alert show];
         
     }else if (tag == 1){
-//        UIAlertController* alertCtl = [UIAlertController alertControllerWithTitle:@"alert controller" message:@"asdghkajsdhkasf" preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//            [self alertActionHandle:action];
-//        }];
-//        [alertCtl addAction:okAction];
-//
-//        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//            [self alertActionHandle:action];
-//        }];
-//        [alertCtl addAction:cancelAction];
-//        
-//        UIAlertAction* caAction = [UIAlertAction actionWithTitle:@"ca" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-//            [self alertActionHandle:action];
-//        }];
-//        [alertCtl addAction:caAction];
-//
-//        [self presentViewController:alertCtl animated:YES completion:^{
-//            
-//        }];
+        
     }
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    LOGINFO(@"alert view index %d", buttonIndex);
+//CIFilter Name define
+#define CIGaussianBlur          @"CIGaussianBlur" //高斯模糊
+#define CISepiaTone             @"CISepiaTone" //棕褐色色调
+-(void)coreImageFilterUsing{
+    NSArray* arrarCategory = [NSArray arrayWithObjects: kCICategoryDistortionEffect, kCICategoryGeometryAdjustment, kCICategoryCompositeOperation, kCICategoryHalftoneEffect, kCICategoryColorAdjustment, kCICategoryColorEffect, kCICategoryTransition, kCICategoryTileEffect, kCICategoryGenerator, kCICategoryReduction, kCICategoryGradient, kCICategoryStylize, kCICategorySharpen, kCICategoryBlur, kCICategoryVideo, kCICategoryStillImage, kCICategoryInterlaced, kCICategoryNonSquarePixels, kCICategoryHighDynamicRange , kCICategoryBuiltIn, nil];
+    
+    for (NSString* category in arrarCategory) {
+        NSArray* names = [CIFilter filterNamesInCategory:category];
+        LOGINFO(@"-----%@------",category);
+        for (NSString* str in names) {
+            LOGINFO(@"%@", str);
+        }
+    }
+    
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *image = [[CIImage alloc]initWithImage:[UIImage imageNamed:@"logo.png"]];
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorMonochrome"];
+    [filter setValue:image forKey:kCIInputImageKey];
+
+//    [filter setDefaults];
+    [filter setValue:[[CIColor alloc]initWithColor:[UIColor yellowColor]] forKey:kCIInputColorKey];//(__MAC_10_5, __IPHONE_7_0);
+    
+    CIImage *result = [filter outputImage];//    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+    CGImageRef outImage = [context createCGImage: result fromRect:[result extent]];
+    UIImage * blurImage = [UIImage imageWithCGImage:outImage];
+
+    UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(120, 110, 100, 70)];
+    imageView.contentMode = UIViewContentModeCenter;
+    imageView.backgroundColor = [UIColor redColor];;
+    [self.view addSubview:imageView];
+    imageView.image = blurImage;
 }
 
-//-(void)alertActionHandle:(UIAlertAction*)alertAction{
-//    LOGINFO(@"alert controller action title is %@", alertAction.title);
-//}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    LOGINFO(@"aljkshdgkajsdghklasdjgh%d", buttonIndex);
+}
 
 -(void)updateNewsBtnPressed:(id)sender{
     
@@ -177,18 +202,8 @@
 }
 
 -(void)backAction:(id)sender{
-    
-    
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
--(void)tapAction:(id)sender{
-    
-    
-    [UIApplication sharedApplication].statusBarHidden = YES;
-    
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
              
 
@@ -196,8 +211,7 @@
 
 
 -(void)viewWillDisappear:(BOOL)animated{
-//    [UIApplication sharedApplication].statusBarHidden = NO;
-//    self.navigationController.navigationBarHidden = NO;
+
 }
 
 
@@ -207,10 +221,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     LOGINFO(@"viewDidAppear");
-//    [UIApplication sharedApplication].statusBarHidden = NO;
-    canAutorotate = YES;
-    
-    
+
 }
 
 
@@ -223,29 +234,21 @@
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-//    textField.inputView.transform = CGAffineTransformMakeRotation(M_PI / 2);
+
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-//    textField.inputView.transform = CGAffineTransformMakeRotation(M_PI / 2);
+
     return YES;
 }
 
 
 -(BOOL)shouldAutorotate{
     return YES;
-    return canAutorotate;
 }
 
 -(NSUInteger)supportedInterfaceOrientations{
-    
-//    if (canAutorotate && ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft ||
-//        [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)) {
-//        self.view.transform = CGAffineTransformMakeRotation(0);
-//        self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
-//    }
-    
-    
+
     return UIInterfaceOrientationMaskLandscape;
 }
 

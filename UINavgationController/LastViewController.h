@@ -16,8 +16,6 @@
     
     NSString* webContent;
     
-    BOOL canAutorotate;
-    
     UITextField* textFields;
     UIButton* btn;
     

@@ -296,10 +296,6 @@
     inputalert.alertActionType = AlertActionDefault;
     [inputalert show];
     
-//    if ([inputalert respondsToSelector:@selector(temporaryDismiss)]) {
-//        [inputalert performSelector:@selector(temporaryDismiss)];
-//    }
-    
     CustomAlertView* inputalert1 = [[CustomAlertView alloc]initWithTitle:@"111111" message:@"mmmmmmmmmmmmmmmm11111" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
     inputalert1.alertType = CustomAlertViewTypeSecureTextInput;
     inputalert1.alertActionType = AlertActionDefault;
@@ -315,7 +311,37 @@
     inputalert3.alertActionType = AlertActionUserActionPrompt;
     [inputalert3 show];
     
+    
+#ifdef __IPHONE_8_0
+    
+    UIAlertController* alertCtl = [UIAlertController alertControllerWithTitle:@"alert controller" message:@"asdghkajsdhkasf" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self alertActionHandle:action];
+    }];
+    [alertCtl addAction:okAction];
+    
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self alertActionHandle:action];
+    }];
+    [alertCtl addAction:cancelAction];
+    
+    UIAlertAction* caAction = [UIAlertAction actionWithTitle:@"ca" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        [self alertActionHandle:action];
+    }];
+    [alertCtl addAction:caAction];
+    
+    [self presentViewController:alertCtl animated:YES completion:^{
+        
+    }];
+#endif
 }
+
+#ifdef __IPHONE_8_0
+-(void)alertActionHandle:(UIAlertAction*)alertAction{
+    LOGINFO(@"alert controller action title is %@", alertAction.title);
+}
+#endif
 
 -(void)customAlertView:(CustomAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     LOGINFO(@"aaaaaaa%d", buttonIndex);
