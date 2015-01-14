@@ -23,6 +23,6 @@
 +(NSDate*)dateWithStringDateSecond:(NSString*)dateStr;
 +(NSString*)stringDateWithDate:(NSDate*)date;
 +(NSString*)stringDateWithDateSecond:(NSDate*)date;
-
++(NSString *)whichDay;
 
 @end

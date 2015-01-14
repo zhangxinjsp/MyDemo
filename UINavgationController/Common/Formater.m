@@ -146,7 +146,44 @@
 
 
 
-
++ (NSString *)whichDay {
+    // Return "today", "tomorrow", or "yesterday" as appropriate for the time zone
+    NSDateComponents *dateComponents;
+    NSInteger myDay, tzDay;
+    
+    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];//self.calendar;
+    NSDate *date = [NSDate date];//self.date;
+    
+    // Set the calendar's time zone to the default time zone.
+    [calendar setTimeZone:[NSTimeZone defaultTimeZone]];
+    dateComponents = [calendar components:NSWeekdayCalendarUnit fromDate:date];
+    myDay = [dateComponents weekday];
+    
+    //		[calendar setTimeZone:self.timeZone];
+    dateComponents = [calendar components:NSWeekdayCalendarUnit fromDate:date];
+    tzDay = [dateComponents weekday];
+    
+    NSRange dayRange = [calendar maximumRangeOfUnit:NSWeekdayCalendarUnit];
+    NSInteger maxDay = NSMaxRange(dayRange) - 1;
+    
+    if (myDay == tzDay) {
+        return @"today";
+    } else {
+        if ((tzDay - myDay) > 0) {
+            return @"tomorrow";
+        } else {
+            return @"yesterday";
+        }
+        // Special cases for days at the end of the week
+        if ((myDay == maxDay) && (tzDay == 1)) {
+            return @"tomorrow";
+        }
+        if ((myDay == 1) && (tzDay == maxDay)) {
+            return @"yesterday";
+        }
+	}
+    return @"today";
+}
 
 
 
