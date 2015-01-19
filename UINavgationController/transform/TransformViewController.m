@@ -140,27 +140,49 @@
             CATransition *animation = [CATransition animation];
             [animation setDelegate:self];
             /* 设定动画类型
-             kCATransitionFade 淡化
-             kCATransitionPush 推挤
-             kCATransitionReveal 揭开
-             kCATransitionMoveIn 覆盖
-             @"cube" 立方体
-             @"suckEffect" 吸收
-             @"oglFlip" 翻转
-             @"rippleEffect" 波纹
-             @"pageCurl" 翻页
-             @"pageUnCurl" 反翻页
-             @"cameraIrisHollowOpen" 镜头开
-             @"cameraIrisHollowClose" 镜头关
              
-             过渡方向
-             fromRight;
-             fromLeft;
-             fromTop;
-             fromBottom;
+             *  kCATransitionFade            交叉淡化过渡
+             *  kCATransitionMoveIn          新视图移到旧视图上面
+             *  kCATransitionPush            新视图把旧视图推出去
+             *  kCATransitionReveal          将旧视图移开,显示下面的新视图
+             *  @"push"
+             *  @"fade"                     交叉淡化过渡(不支持过渡方向)             (默认为此效果)
+             *  @"moveIn"                   新视图移到旧视图上面
+             *  @"reveal"                   显露效果(将旧视图移开,显示下面的新视图)
+             
+             * mapUnCurl
+             *  @"cube"                     立方体翻滚效果
+             *  @"pageCurl"                 向上翻一页
+             *  @"pageUnCurl"               向下翻一页
+             *  @"suckEffect"               收缩效果，类似系统最小化窗口时的神奇效果(不支持过渡方向)
+             *  @"rippleEffect"             滴水效果,(不支持过渡方向)
+             *  @"oglFlip"                  上下左右翻转效果
+             *  @"rotate"                   旋转效果
+             *  @"cameraIrisHollowOpen"     相机镜头打开效果(不支持过渡方向)
+             *  @"cameraIrisHollowClose"    相机镜头关上效果(不支持过渡方向)
              */
             [animation setType:kCATransitionFade];
+            
+            /** subtype
+             *
+             *  各种动画方向
+             *
+             *  kCATransitionFromRight;      同字面意思(下同)
+             *  kCATransitionFromLeft;
+             *  kCATransitionFromTop;
+             *  kCATransitionFromBottom;
+             *  当type为@"rotate"(旋转)的时候,它也有几个对应的subtype,分别为:
+             *  90cw    逆时针旋转90°
+             *  90ccw   顺时针旋转90° 
+             *  180cw   逆时针旋转180° 
+             *  180ccw  顺时针旋转180° 
+             */
             [animation setSubtype:kCATransitionFromLeft];//方向
+            
+            animation.fillMode = kCAFillModeForwards;
+//   这个属性默认为YES.一般情况下,不需要设置这个属性. 但如果是CAAnimation动画,并且需要设置 fillMode 属性,那么需要将 removedOnCompletion 设置为NO,否则fillMode无效
+            animation.removedOnCompletion = NO;
+            
             [animation setDuration:1.5f];
             [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
             [self.label1.layer addAnimation:animation forKey:@"MTTransaction"];
