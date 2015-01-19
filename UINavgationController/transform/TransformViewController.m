@@ -180,7 +180,7 @@
             [animation setSubtype:kCATransitionFromLeft];//方向
             
             animation.fillMode = kCAFillModeForwards;
-//   这个属性默认为YES.一般情况下,不需要设置这个属性. 但如果是CAAnimation动画,并且需要设置 fillMode 属性,那么需要将 removedOnCompletion 设置为NO,否则fillMode无效
+            //这个属性默认为YES.一般情况下,不需要设置这个属性. 但如果是CAAnimation动画,并且需要设置 fillMode 属性,那么需要将 removedOnCompletion 设置为NO,否则fillMode无效
             animation.removedOnCompletion = NO;
             
             [animation setDuration:1.5f];
