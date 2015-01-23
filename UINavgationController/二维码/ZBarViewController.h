@@ -20,6 +20,6 @@
 
 
 
-@interface ZBarViewController : BaseViewController <ZBarReaderDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface ZBarViewController : BaseViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end

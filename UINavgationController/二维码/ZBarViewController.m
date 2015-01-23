@@ -8,7 +8,7 @@
 
 #import "ZBarViewController.h"
 
-@interface ZBarViewController ()<UITextFieldDelegate>{
+@interface ZBarViewController ()<UITextFieldDelegate, ZBarReaderViewDelegate, ZBarReaderDelegate>{
     UIImageView* imageView;
     UIButton* makeQRCodeBtn;
     
@@ -118,6 +118,8 @@
 #pragma mark －－－－－－－－－－－－－－－扫描二维码－－－－－－－－－－
 //扫描二维码图片
 -(void)scanQRCode{
+#if 1
+//使用相机界面效果
     ZBarReaderViewController *reader = [ZBarReaderViewController new];
     reader.readerDelegate = self;
     reader.supportedOrientationsMask = ZBarOrientationMaskAll;
@@ -127,6 +129,36 @@
     [self presentViewController:reader animated:YES completion:^{
         
     }];
+    
+#else
+//自定义窗口效果
+    //初始化照相机窗口
+    ZBarReaderView *readview = [ZBarReaderView new];
+    
+    //自定义大小
+    readview.frame = CGRectMake(100, 100, 300, 300);
+    //自定义添加相关指示.........发挥各自的APP的想象力
+    //此处省略美化10000行代码...................
+    //………………………..
+    // 好进入正题—— 接着设置好代理
+    readview.readerDelegate = self;
+    
+    //将其照相机拍摄视图添加到要显示的视图上
+    [self.view addSubview:readview];
+    
+    
+    //二维码/条形码识别设置
+    ZBarImageScanner *scanner = readview.scanner;
+    
+    [scanner setSymbology: ZBAR_I25
+                   config: ZBAR_CFG_ENABLE
+                       to: 0];
+    
+    //启动，必须启动后，手机摄影头拍摄的即时图像菜可以显示在readview上
+    [readview start];
+    
+#endif
+    
 }
 //从相册中读取二维码图片
 - (void)readFromAlbums {
@@ -151,6 +183,22 @@
     }];
 }
 
+#pragma --mark ZBarReaderViewDelegate
+//自定义界面返回
+-(void)readerView:(ZBarReaderView *)readerView didReadSymbols:(ZBarSymbolSet *)symbols fromImage:(UIImage *)image{
+    int quality = 0;
+    ZBarSymbol *bestResult = nil;
+    for(ZBarSymbol *sym in symbols) {
+        int q = sym.quality;
+        if(quality < q) {
+            quality = q;
+            bestResult = sym;
+        }
+    }
+    [self performSelector: @selector(presentResult:) withObject: bestResult afterDelay: .001];
+}
+
+//相机结果返回
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
     if ([info count]>2) {
