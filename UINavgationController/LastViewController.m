@@ -10,7 +10,7 @@
 #import "UILabel-LineHeigh.h"
 #import <AVFoundation/AVFoundation.h>
 
-
+typedef NSInteger (^TestAnimation)(NSString* str);
 
 @interface LastViewController (){
     
