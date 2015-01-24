@@ -8,16 +8,15 @@
 
 #import "TransformViewController.h"
 
-@interface TransformViewController ()
+@interface TransformViewController (){
+    CALayer* layer;
+    UILabel* label;
+    UILabel* label1;
+}
 
 @end
 
 @implementation TransformViewController
-
-@synthesize label1;
-@synthesize label2;
-
-@synthesize button;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,33 +32,146 @@
     [super viewDidLoad];
     self.title = @"transform";
     
-    UIBarButtonItem* item = [[UIBarButtonItem alloc]initWithTitle:@"nextStep" style:UIBarButtonItemStyleDone target:self action:@selector(nextStep:)];
-    self.navigationItem.rightBarButtonItem = item;
+    label = [[UILabel alloc]initWithFrame:CGRectMake(100, 100, 120, 40)];
+    label.textColor = [UIColor redColor];
+    label.backgroundColor = [UIColor blueColor];
+    label.layer.cornerRadius = 10;
+    label.layer.masksToBounds = YES;
+    
+    [self.view addSubview:label];
     
     
+    label1 = [[UILabel alloc]initWithFrame:CGRectMake(100, 100, 120, 40)];
     label1.textColor = [UIColor redColor];
-    label1.backgroundColor = [UIColor blueColor];
+    label1.backgroundColor = [UIColor redColor];
     label1.layer.cornerRadius = 10;
     label1.layer.masksToBounds = YES;
+    label1.hidden = YES;
+    [self.view addSubview:label1];
     
     
-    [self setTransform];
+    layer = [CALayer layer];
+    layer.frame = CGRectMake(10, 10, 40, 20);
+    layer.backgroundColor = [UIColor redColor].CGColor;
+    [self.view.layer addSublayer:layer];
     
-    [self setCATransform3D];
-//    CALayer*
-    layer = [[CALayer alloc]init];
-    layer.frame = CGRectMake(10, 10, 30, 30);
-    layer.contentsGravity = kCAGravityResizeAspect;
-    //layer.contents只识别CGImage格式的图片
-    layer.position = CGPointMake(150, 300);
-    layer.contents = (id)[UIImage imageNamed:@"logo.png"].CGImage;
-    [[self.view layer] addSublayer:layer];
     
-
     
+    
+    NSArray* transArray = [[NSArray alloc]initWithObjects:@"AffineTransform", @"Transform3D", @"Transition", @"TransitionFilter", @"BasicAnimation", @"transaction", @"viewAnimation", @"test", nil];
+    NSInteger itemsInRow = 3;
+    NSDictionary* metrics = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithFloat:90], @"width",
+                             [NSNumber numberWithFloat:20], @"height",
+                             [NSNumber numberWithFloat:240], @"topMargins",
+                             [NSNumber numberWithFloat:10], @"gapH",
+                             [NSNumber numberWithFloat:10], @"gapV",
+                             nil];
+    
+    NSMutableDictionary* viewsDict = [[NSMutableDictionary alloc]init];
+    
+    for (NSString* str in transArray) {
+        UIButton* btn = [[UIButton alloc]init];
+        btn.tag = [transArray indexOfObject:str];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14];
+        [btn setBackgroundColor:[UIColor blueColor]];
+        [btn setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [btn setTitle:str forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btn];
+        [viewsDict setObject:btn forKey:[NSString stringWithFormat:@"btn_%@",str]];
+    }
+    
+    NSMutableArray* constraints = [[NSMutableArray alloc]init];
+    NSInteger rowCount = (transArray.count + itemsInRow - 1)/itemsInRow;
+    
+    NSString* formateStrV = @"V:|-topMargins-";
+    for (NSInteger i = 0; i < rowCount; i++) {
+        NSString* btnName = [NSString stringWithFormat:@"btn_%@", [transArray objectAtIndex:i * itemsInRow ]];
+        formateStrV = [formateStrV stringByAppendingFormat:@"[%@(height)]-gapV-", btnName];
+        
+        NSString* formateStrH = @"H:|-gapH-";
+        for (NSInteger j = 0; j < itemsInRow; j++) {
+            if (i * itemsInRow + j >= transArray.count) {
+                break;
+            }
+            btnName = [NSString stringWithFormat:@"btn_%@", [transArray objectAtIndex:i * itemsInRow + j]];
+            formateStrH = [formateStrH stringByAppendingFormat:@"[%@(width)]-gapH-", btnName];
+        }
+        formateStrH = [formateStrH stringByAppendingString:@"|"];
+        [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:formateStrH options:NSLayoutFormatAlignAllTop|NSLayoutFormatAlignAllBottom metrics:metrics views:viewsDict]];
+    }
+    formateStrV = [formateStrV stringByAppendingString:@"|"];
+    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:formateStrV options:NSLayoutFormatAlignAllLeft|NSLayoutFormatAlignAllRight metrics:metrics views:viewsDict]];
+    
+    
+    [self.view addConstraints:constraints];
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)buttonAction:(id)sender{
+    NSInteger tag = ((UIButton*)sender).tag;
+    switch (tag) {
+        case 0:{
+            label.transform = [self setTransform];
+        }
+            break;
+        
+        case 1:{
+            label.layer.transform = [self setCATransform3D];
+        }
+            break;
+        case 2:{
+            [label.layer addAnimation:[self transitionWithSystemType] forKey:@"Transition"];
+        }
+            break;
+        case 3:{
+            [label.layer addAnimation:[self transitionWithFilter] forKey:@"TransitionFilter"];
+            label.hidden = !label.hidden;
+        }
+            break;
+        case 4:{
+            [label.layer addAnimation:[self basicAnimation] forKey:@"BasicAnimation"];
+        }
+            break;
+        case 5:{
+            [self transaction];
+        }
+            break;
+        case 6:{
+            [self viewAnimation];
+        }
+            break;
+        default:
+            [self test];
+            break;
+    }
+}
+
+-(void)test{
+    
+    // Create the Core Image filter, setting several key parameters.
+    CIFilter* aFilter = [CIFilter filterWithName:@"CIBarsSwipeTransition"];
+    [aFilter setValue:[NSNumber numberWithFloat:3.14] forKey:@"inputAngle"];
+    [aFilter setValue:[NSNumber numberWithFloat:30.0] forKey:@"inputWidth"];
+    [aFilter setValue:[NSNumber numberWithFloat:10.0] forKey:@"inputBarOffset"];
+    
+    // Create the transition object
+    CATransition* transition = [CATransition animation];
+    transition.startProgress = 0;
+    transition.endProgress = 1.0;
+    transition.filter = aFilter;
+    transition.duration = 1.0;
+
+//    [label.layer addAnimation:transition forKey:@"transition"];
+//    label.hidden = !label.hidden;
+    [label1 setHidden:!label1.hidden];
+    [label.layer addAnimation:transition forKey:@"transition"];
+    [label1.layer addAnimation:transition forKey:@"transition"];
+    [label setHidden:!label.hidden];
+}
+#pragma mark -- 静态效果
 //平面的效果
 -(CGAffineTransform)sizeTransform{
     CGAffineTransform transform = CGAffineTransformIdentity;
@@ -81,8 +193,6 @@
 
     transform = CGAffineTransformConcat(transform, sizeTransform);//transform的添加先后顺序对效果是有影响的
     transform = CGAffineTransformConcat(transform, rotationTransform);
-
-    label1.transform = transform;
     
     return transform;
 }
@@ -91,11 +201,11 @@
     //定义一个新的transform 没有任何效果！
     CATransform3D transform = CATransform3DIdentity;
     //旋转3d的以圆心到x,y,z的直线为周现转一定的角度
-    CATransform3D rotationTransform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 1.0f, 1.0f, 1.0f);
+    CATransform3D rotationTransform = CATransform3DMakeRotation((M_PI / 180.0) * 90.0f, 0.0f, 0.0f, 0.50f);
     //按比例在xyz方向上放大
-    CATransform3D sizeTransform = CATransform3DMakeScale(2.0f, 2.0f, 1.5f);
+    CATransform3D sizeTransform = CATransform3DMakeScale(1.0f, 1.0f, 1.0f);
     //移动到xyz的坐标点上
-    CATransform3D translationTransform = CATransform3DMakeTranslation(10.0f, 10.0f, 1.0f);
+    CATransform3D translationTransform = CATransform3DMakeTranslation(1.0f, 1.0f, 1.0f);
 
     //东环效果一CGAffineTransform的只为准，可以使用组合效果
 //    layer.transform = CATransform3DMakeAffineTransform([self setTransform]);
@@ -104,106 +214,125 @@
     transform = CATransform3DConcat(transform, sizeTransform);
     transform = CATransform3DConcat(transform, translationTransform);
     
-    label2.layer.transform = transform;
-    
     return transform;
 }
 
--(IBAction)buttonPressed:(id)sender{
-    
-    NSInteger index = 2;
-    switch (index) {
-        case 0:{
-            [CATransaction begin];
-            [CATransaction setAnimationDuration:10.0f];
-            /*  两种状态 ，开始和结束状态  */
-            [CATransaction commit];
-        }
-            break;
-        case 1:{
-            [UIView animateWithDuration:3 animations:^{
-               //两种状态 ，开始和结束状态
-            }];
-        }
-            break;
-        case 2:{
-            [UIView beginAnimations:nil context:nil];
-            [UIView setAnimationDuration:12];
-            [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-            [UIView setAnimationDelegate:self];
-            [UIView setAnimationDidStopSelector:@selector(stopAnimation)];
-            //两种状态 ，开始和结束状态
-            [UIView commitAnimations];
-        }
-            break;
-        case 3:{
-            CATransition *animation = [CATransition animation];
-            [animation setDelegate:self];
-            /* 设定动画类型
-             
-             *  kCATransitionFade            交叉淡化过渡
-             *  kCATransitionMoveIn          新视图移到旧视图上面
-             *  kCATransitionPush            新视图把旧视图推出去
-             *  kCATransitionReveal          将旧视图移开,显示下面的新视图
-             *  @"push"
-             *  @"fade"                     交叉淡化过渡(不支持过渡方向)             (默认为此效果)
-             *  @"moveIn"                   新视图移到旧视图上面
-             *  @"reveal"                   显露效果(将旧视图移开,显示下面的新视图)
-             
-             * mapUnCurl
-             *  @"cube"                     立方体翻滚效果
-             *  @"pageCurl"                 向上翻一页
-             *  @"pageUnCurl"               向下翻一页
-             *  @"suckEffect"               收缩效果，类似系统最小化窗口时的神奇效果(不支持过渡方向)
-             *  @"rippleEffect"             滴水效果,(不支持过渡方向)
-             *  @"oglFlip"                  上下左右翻转效果
-             *  @"rotate"                   旋转效果
-             *  @"cameraIrisHollowOpen"     相机镜头打开效果(不支持过渡方向)
-             *  @"cameraIrisHollowClose"    相机镜头关上效果(不支持过渡方向)
-             */
-            [animation setType:kCATransitionFade];
-            
-            /** subtype
-             *
-             *  各种动画方向
-             *
-             *  kCATransitionFromRight;      同字面意思(下同)
-             *  kCATransitionFromLeft;
-             *  kCATransitionFromTop;
-             *  kCATransitionFromBottom;
-             *  当type为@"rotate"(旋转)的时候,它也有几个对应的subtype,分别为:
-             *  90cw    逆时针旋转90°
-             *  90ccw   顺时针旋转90° 
-             *  180cw   逆时针旋转180° 
-             *  180ccw  顺时针旋转180° 
-             */
-            [animation setSubtype:kCATransitionFromLeft];//方向
-            
-            animation.fillMode = kCAFillModeForwards;
-            //这个属性默认为YES.一般情况下,不需要设置这个属性. 但如果是CAAnimation动画,并且需要设置 fillMode 属性,那么需要将 removedOnCompletion 设置为NO,否则fillMode无效
-            animation.removedOnCompletion = NO;
-            
-            [animation setDuration:1.5f];
-            [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-            [self.label1.layer addAnimation:animation forKey:@"MTTransaction"];
-        }
-            break;
-        case 4:{
-            [CATransaction setValue:[NSNumber numberWithFloat:1.0] forKey:kCATransactionAnimationDuration];
-            CABasicAnimation *FlipAnimation=[CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
-            FlipAnimation.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            FlipAnimation.toValue= [NSNumber numberWithFloat:M_PI];
-            FlipAnimation.duration=1;
-            FlipAnimation.fillMode=kCAFillModeForwards;
-            FlipAnimation.removedOnCompletion=NO;
-            [layer addAnimation:FlipAnimation forKey:@"flip"];
-            [CATransaction commit];
-        }
-            break;
-        default:
-            break;
-    }
+#pragma mark -- 动态效果
+
+-(void)viewAnimationBlock{
+    [UIView animateWithDuration:3 animations:^{
+        //两种状态 ，开始和结束状态
+        label.layer.transform = [self setCATransform3D];
+    }];
 }
+
+-(void)viewAnimation{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:3];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(stopAnimation)];
+    //两种状态 ，开始和结束状态
+    label.layer.transform = [self setCATransform3D];
+    
+    [UIView commitAnimations];
+}
+
+-(void)transaction{
+    [CATransaction begin];
+    [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [CATransaction setAnimationDuration:10.0f];
+    /*  两种状态 ，开始和结束状态 
+     
+     只能针对layer而且不是root layer */
+#if 1
+    layer.transform = [self setCATransform3D];
+#else
+    //BasicAnimation本身就是动画，不违背上面的结论
+    CABasicAnimation *FlipAnimation=[CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
+    FlipAnimation.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    FlipAnimation.toValue= [NSNumber numberWithFloat:M_PI];
+    FlipAnimation.duration=1;
+    FlipAnimation.fillMode=kCAFillModeForwards;
+    FlipAnimation.removedOnCompletion=NO;
+    [label.layer addAnimation:FlipAnimation forKey:@"flip"];
+#endif
+    [CATransaction commit];
+}
+
+-(CATransition*)transitionWithSystemType{
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    /* 设定动画类型
+     
+     *  kCATransitionFade            交叉淡化过渡
+     *  kCATransitionMoveIn          新视图移到旧视图上面
+     *  kCATransitionPush            新视图把旧视图推出去
+     *  kCATransitionReveal          将旧视图移开,显示下面的新视图
+     *  @"push"
+     *  @"fade"                     交叉淡化过渡(不支持过渡方向)             (默认为此效果)
+     *  @"moveIn"                   新视图移到旧视图上面
+     *  @"reveal"                   显露效果(将旧视图移开,显示下面的新视图)
+     以下是私有效果审核时回被打回来
+     * mapUnCurl
+     *  @"cube"                     立方体翻滚效果
+     *  @"pageCurl"                 向上翻一页
+     *  @"pageUnCurl"               向下翻一页
+     *  @"suckEffect"               收缩效果，类似系统最小化窗口时的神奇效果(不支持过渡方向)
+     *  @"rippleEffect"             滴水效果,(不支持过渡方向)
+     *  @"oglFlip"                  上下左右翻转效果
+     *  @"rotate"                   旋转效果
+     *  @"cameraIrisHollowOpen"     相机镜头打开效果(不支持过渡方向)
+     *  @"cameraIrisHollowClose"    相机镜头关上效果(不支持过渡方向)
+     */
+    [animation setType:@"rotate"];
+    
+    /** subtype
+     *
+     *  各种动画方向
+     *
+     *  kCATransitionFromRight;      同字面意思(下同)
+     *  kCATransitionFromLeft;
+     *  kCATransitionFromTop;
+     *  kCATransitionFromBottom;
+     *  当type为@"rotate"(旋转)的时候,它也有几个对应的subtype,分别为:
+     *  90cw    逆时针旋转90°
+     *  90ccw   顺时针旋转90°
+     *  180cw   逆时针旋转180°
+     *  180ccw  顺时针旋转180°
+     */
+    [animation setSubtype:@"90cw"];//方向
+    
+    animation.fillMode = kCAFillModeBoth;
+    //这个属性默认为YES.一般情况下,不需要设置这个属性. 但如果是CAAnimation动画,并且需要设置 fillMode 属性,那么需要将 removedOnCompletion 设置为NO,否则fillMode无效
+    animation.removedOnCompletion = NO;
+    
+    [animation setDuration:1.5f];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    return animation;
+}
+
+-(CATransition*)transitionWithFilter{
+
+    CIFilter* filter = [CIFilter filterWithName:@"CIBarSwipeTransition"];
+    [filter setValue:[NSNumber numberWithFloat:3.14] forKey:@"inputAngle"];
+    [filter setValue:[NSNumber numberWithFloat:30.0] forKey:@"inputWidth"];
+    [filter setValue:[NSNumber numberWithFloat:10.0] forKey:@"inputBarOffset"];
+    
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    
+    [animation setType:@"rotate"];
+    [animation setSubtype:@"90cw"];//方向
+    
+    [animation setDuration:3];
+    [animation setFilter:filter];//如果指定，那么指定的filter必须同时支持x和y，否则该filter将不起作用。
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    return animation;
+}
+
 /*
  animationWithKeyPath的值：
  
@@ -231,66 +360,36 @@
  shadowRadius       阴影模糊半径                                                                                              是
  sublayers          子图层                                                                                                   是
  sublayerTransform	子图层形变                                                                                                是
- transform          图层形变                                                                                                  是
+ transform          图层形变(使用的是 CATransform3D或CGAffineTransform)                                                         是
  
  transform.rotation.x
  transform.rotation.y
- transform.rotation.z   平面圖的旋轉
+ transform.rotation.z           平面圖的旋轉
  transform.rotation
- transform.scale.x      闊的比例轉換
- transform.scale.y      高的比例轉換
+ transform.scale.x              闊的比例轉換
+ transform.scale.y              高的比例轉換
  transform.scale.z
- transform.scale        比例轉換
- transform.translation.x
+ transform.scale                比例轉換
+ transform.translation.x        移动
  transform.translation.y
  transform.translation.z
  transform.translation
  
  margin
- 
  zPosition
- 
- 
  */
-#pragma mark === 永久闪烁的动画 ======
--(CABasicAnimation *)opacityForever_Animation:(float)time
-{
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];//必须写opacity才行。
-    animation.fromValue = [NSNumber numberWithFloat:1.0f];
-    animation.toValue = [NSNumber numberWithFloat:0.0f];//这是透明度。
-    animation.autoreverses = YES;
-    animation.duration = time;
+-(CABasicAnimation*)basicAnimation{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale.x"];//可以从上面找到相关值
+//    animation.fromValue = [NSNumber numberWithFloat:1.0f];
+//    animation.toValue = [NSNumber numberWithFloat:0.0f];//这是透明度。
+    animation.byValue = [NSNumber numberWithDouble:3];
+    animation.autoreverses = YES;//是可以反向动画的
+    animation.duration = 3;
     animation.repeatCount = MAXFLOAT;
-    animation.removedOnCompletion = NO;
+    animation.removedOnCompletion = NO;//yes的话，又返回原位置了。
     animation.fillMode = kCAFillModeForwards;
     animation.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];///没有的话是均匀的动画。
     return animation;
-}
-
-#pragma mark =====横向、纵向移动===========
--(CABasicAnimation *)moveX:(float)time X:(NSNumber *)x
-{
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.translation.x"];///.y的话就向下移动。
-    animation.toValue = x;
-    animation.duration = time;
-    animation.removedOnCompletion = NO;//yes的话，又返回原位置了。
-    animation.repeatCount = MAXFLOAT;
-    animation.fillMode = kCAFillModeForwards;
-    return animation;
-}
-
-#pragma mark =====缩放-=============
--(CABasicAnimation *)scale:(NSNumber *)Multiple orgin:(NSNumber *)orginMultiple durTimes:(float)time Rep:(float)repertTimes
-{
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    animation.fromValue = Multiple;
-    animation.toValue = orginMultiple;
-    animation.autoreverses = YES;
-    animation.repeatCount = repertTimes;
-    animation.duration = time;//不设置时候的话，有一个默认的缩放时间.
-    animation.removedOnCompletion = NO;
-    animation.fillMode = kCAFillModeForwards;
-    return  animation;
 }
 
 #pragma mark =====组合动画-=============
@@ -318,26 +417,6 @@
     animation.repeatCount = repeatTimes;
     return animation;
 }
-
-#pragma mark ====旋转动画======
--(CABasicAnimation *)rotation:(float)dur degree:(float)degree direction:(int)direction repeatCount:(int)repeatCount
-{
-    CATransform3D rotationTransform = CATransform3DMakeRotation(degree, 0, 0, direction);
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    animation.toValue = [NSValue valueWithCATransform3D:rotationTransform];
-    animation.duration  =  dur;
-    animation.autoreverses = NO;
-    animation.cumulative = NO;
-    animation.fillMode = kCAFillModeForwards;
-    animation.repeatCount = repeatCount;
-    animation.delegate = self;
-    
-    return animation;
-    
-}
-
-
-
 
 
 

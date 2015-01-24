@@ -12,15 +12,7 @@
 #import "BaseViewController.h"
 
 @interface TransformViewController : BaseViewController{
-    UILabel* label1;
-    UILabel* label2;
-    UIButton* button;
-
-    CALayer* layer;
+    
 }
-@property(nonatomic ,strong) IBOutlet UIButton* button;
-@property(nonatomic ,strong) IBOutlet UILabel* label1;
-@property(nonatomic ,strong) IBOutlet UILabel* label2;
 
--(IBAction)buttonPressed:(id)sender;
 @end
