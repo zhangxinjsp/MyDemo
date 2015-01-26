@@ -143,47 +143,12 @@ typedef NSInteger (^TestAnimation)(NSString* str);
 
 -(void)btnSelected:(id)sender{
 
-    
     NSInteger tag = ((UIButton*)sender).tag;
-    [self coreImageFilterUsing];
     if (tag == 0) {
         
     }else if (tag == 1){
         
     }
-}
-
-//CIFilter Name define
-#define CIGaussianBlur          @"CIGaussianBlur" //高斯模糊
-#define CISepiaTone             @"CISepiaTone" //棕褐色色调
--(void)coreImageFilterUsing{
-    NSArray* arrarCategory = [NSArray arrayWithObjects: kCICategoryDistortionEffect, kCICategoryGeometryAdjustment, kCICategoryCompositeOperation, kCICategoryHalftoneEffect, kCICategoryColorAdjustment, kCICategoryColorEffect, kCICategoryTransition, kCICategoryTileEffect, kCICategoryGenerator, kCICategoryReduction, kCICategoryGradient, kCICategoryStylize, kCICategorySharpen, kCICategoryBlur, kCICategoryVideo, kCICategoryStillImage, kCICategoryInterlaced, kCICategoryNonSquarePixels, kCICategoryHighDynamicRange , kCICategoryBuiltIn, nil];
-    
-    for (NSString* category in arrarCategory) {
-        NSArray* names = [CIFilter filterNamesInCategory:category];
-        LOGINFO(@"-----%@------",category);
-        for (NSString* str in names) {
-            LOGINFO(@"%@", str);
-        }
-    }
-    
-    CIContext *context = [CIContext contextWithOptions:nil];
-    CIImage *image = [[CIImage alloc]initWithImage:[UIImage imageNamed:@"logo.png"]];
-    CIFilter *filter = [CIFilter filterWithName:@"CIColorMonochrome"];
-    [filter setValue:image forKey:kCIInputImageKey];
-
-//    [filter setDefaults];
-    [filter setValue:[[CIColor alloc]initWithColor:[UIColor yellowColor]] forKey:kCIInputColorKey];//(__MAC_10_5, __IPHONE_7_0);
-    
-    CIImage *result = [filter outputImage];//    CIImage *result = [filter valueForKey:kCIOutputImageKey];
-    CGImageRef outImage = [context createCGImage: result fromRect:[result extent]];
-    UIImage * blurImage = [UIImage imageWithCGImage:outImage];
-
-    UIImageView* imageView = [[UIImageView alloc]initWithFrame:CGRectMake(120, 110, 100, 70)];
-    imageView.contentMode = UIViewContentModeCenter;
-    imageView.backgroundColor = [UIColor redColor];;
-    [self.view addSubview:imageView];
-    imageView.image = blurImage;
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

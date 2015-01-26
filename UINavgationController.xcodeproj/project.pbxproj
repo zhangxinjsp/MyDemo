@@ -349,6 +349,9 @@
 		5BE31A4F1A3F0DD1000C028F /* ZXRGBLuminanceSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3196E1A3F0DD1000C028F /* ZXRGBLuminanceSource.m */; };
 		5BE31A511A3F0E34000C028F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE31A501A3F0E34000C028F /* ImageIO.framework */; };
 		E52405A419F639F800ED1360 /* Formater.m in Sources */ = {isa = PBXBuildFile; fileRef = E52405A319F639F800ED1360 /* Formater.m */; };
+		E52F01D81A760861005609D5 /* CoreImageFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E52F01D71A760861005609D5 /* CoreImageFilterViewController.m */; };
+		E52F01DA1A760FDA005609D5 /* redFlower.png in Resources */ = {isa = PBXBuildFile; fileRef = E52F01D91A760FDA005609D5 /* redFlower.png */; };
+		E52F01DC1A762543005609D5 /* boots.png in Resources */ = {isa = PBXBuildFile; fileRef = E52F01DB1A762543005609D5 /* boots.png */; };
 		E52F99381A3FDADF001413AB /* QREncodeMaker.mm in Sources */ = {isa = PBXBuildFile; fileRef = E52F99371A3FDADF001413AB /* QREncodeMaker.mm */; };
 		E53040941A08BBF400AE3D94 /* CAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E53040911A08BBF400AE3D94 /* CAlertView.m */; };
 		E53040951A08BBF400AE3D94 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E53040931A08BBF400AE3D94 /* CustomAlertView.m */; };
@@ -1004,6 +1007,10 @@
 		5BE31A501A3F0E34000C028F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		E52405A219F639F800ED1360 /* Formater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Formater.h; path = Common/Formater.h; sourceTree = "<group>"; };
 		E52405A319F639F800ED1360 /* Formater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Formater.m; path = Common/Formater.m; sourceTree = "<group>"; };
+		E52F01D61A760861005609D5 /* CoreImageFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreImageFilterViewController.h; path = CoreImageFilter/CoreImageFilterViewController.h; sourceTree = "<group>"; };
+		E52F01D71A760861005609D5 /* CoreImageFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreImageFilterViewController.m; path = CoreImageFilter/CoreImageFilterViewController.m; sourceTree = "<group>"; };
+		E52F01D91A760FDA005609D5 /* redFlower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redFlower.png; sourceTree = "<group>"; };
+		E52F01DB1A762543005609D5 /* boots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boots.png; sourceTree = "<group>"; };
 		E52F99361A3FDADF001413AB /* QREncodeMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QREncodeMaker.h; sourceTree = "<group>"; };
 		E52F99371A3FDADF001413AB /* QREncodeMaker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QREncodeMaker.mm; sourceTree = "<group>"; };
 		E53040901A08BBF400AE3D94 /* CAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAlertView.h; sourceTree = "<group>"; };
@@ -1196,6 +1203,7 @@
 				5BD46DE4194D445B002995EB /* NavRoot */,
 				5BD46DB3194D418E002995EB /* webview */,
 				5BD46DA8194D418E002995EB /* transform */,
+				E52F01D51A760814005609D5 /* CoreImageFilter */,
 				5BD46D75194D418D002995EB /* 正则表达式及MD5算法 */,
 				5BD46D8F194D418E002995EB /* drawrect */,
 				5BD46D6F194D418D002995EB /* 下拉刷新 */,
@@ -1334,6 +1342,8 @@
 		5BD46D12194D3B61002995EB /* image */ = {
 			isa = PBXGroup;
 			children = (
+				E52F01DB1A762543005609D5 /* boots.png */,
+				E52F01D91A760FDA005609D5 /* redFlower.png */,
 				E545B0C11A09CD780007F4AE /* customAlertButtonBG_cancel.png */,
 				E545B0B41A09C2130007F4AE /* customAlertButtonBG.png */,
 				5BD46D13194D3B61002995EB /* bubble_blue_recieve_doctor.png */,
@@ -2273,6 +2283,15 @@
 			path = encoder;
 			sourceTree = "<group>";
 		};
+		E52F01D51A760814005609D5 /* CoreImageFilter */ = {
+			isa = PBXGroup;
+			children = (
+				E52F01D61A760861005609D5 /* CoreImageFilterViewController.h */,
+				E52F01D71A760861005609D5 /* CoreImageFilterViewController.m */,
+			);
+			name = CoreImageFilter;
+			sourceTree = "<group>";
+		};
 		E530408F1A08BBF400AE3D94 /* CustomAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2507,6 +2526,7 @@
 				250D590F19752898006AA2F7 /* area.db in Resources */,
 				5BD46D50194D3B61002995EB /* 双眼皮.png in Resources */,
 				E55B000C1A3AE55F00FB0A03 /* zbar-helpicons.png in Resources */,
+				E52F01DC1A762543005609D5 /* boots.png in Resources */,
 				5BE319C61A3F0DD1000C028F /* 1.gif in Resources */,
 				5BD46D61194D416E002995EB /* palettaLocal.db in Resources */,
 				0DC5F35D163AC67900F7D8D5 /* LastViewController.xib in Resources */,
@@ -2536,6 +2556,7 @@
 				5BD46D4E194D3B61002995EB /* 下睫毛阴影.png in Resources */,
 				5BD46DD8194D418E002995EB /* SQLiteViewController.xib in Resources */,
 				5BD46D3D194D3B61002995EB /* dragUp@2x.png in Resources */,
+				E52F01DA1A760FDA005609D5 /* redFlower.png in Resources */,
 				5BE319C91A3F0DD1000C028F /* 2.jpg in Resources */,
 				5BD46D59194D3B61002995EB /* 眼窝.png in Resources */,
 				5BD46D5E194D3B61002995EB /* 鼻子的高光.png in Resources */,
@@ -2629,6 +2650,7 @@
 				5BD46DD7194D418E002995EB /* SQLiteViewController.m in Sources */,
 				5BE31A041A3F0DD1000C028F /* ZXITFReader.m in Sources */,
 				5BE319DF1A3F0DD1000C028F /* ZXAI01393xDecoder.m in Sources */,
+				E52F01D81A760861005609D5 /* CoreImageFilterViewController.m in Sources */,
 				5B84684E1956BEAA0033C079 /* CoreDataTool.m in Sources */,
 				5BE319851A3F0DD1000C028F /* ZXISBNParsedResult.m in Sources */,
 				5BE31A341A3F0DD1000C028F /* ZXAlignmentPattern.m in Sources */,

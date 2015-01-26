@@ -159,18 +159,43 @@
     
     // Create the transition object
     CATransition* transition = [CATransition animation];
-    transition.startProgress = 0;
-    transition.endProgress = 1.0;
-    transition.filter = aFilter;
+//    transition.startProgress = 0;
+//    transition.endProgress = 1.0;
+    transition.filter = [self testFilter];
     transition.duration = 1.0;
 
-//    [label.layer addAnimation:transition forKey:@"transition"];
-//    label.hidden = !label.hidden;
-    [label1 setHidden:!label1.hidden];
     [label.layer addAnimation:transition forKey:@"transition"];
-    [label1.layer addAnimation:transition forKey:@"transition"];
     [label setHidden:!label.hidden];
+    
+    
+//    [label1 setHidden:!label1.hidden];
+//    [label.layer addAnimation:transition forKey:@"transition"];
+//    [label1.layer addAnimation:transition forKey:@"transition"];
+//    [label setHidden:!label.hidden];
 }
+
+-(CIFilter*)testFilter{
+    CIVector *extent = [CIVector vectorWithX: 0  Y: 0  Z: 200  W: 200];
+    //    CIVector *extent = [CIVector vectorWithCGRect:CGRectMake(0, 0, 100, 100)];
+    CIColor  *inputColor = [CIColor colorWithCGColor:[UIColor redColor].CGColor];
+    
+    CIImage *inputCIImage = [[CIImage alloc]initWithImage:[UIImage imageNamed:@"redFlower.png"]];
+    CIImage *inputTargetCIImage = [[CIImage alloc]initWithImage:[UIImage imageNamed:@"boots.png"]];
+    
+    CIFilter *transition = [CIFilter filterWithName:@"CICopyMachineTransition"];    // 1
+    [transition setDefaults];
+    [transition setValue:inputCIImage forKeyPath:kCIInputImageKey];
+    [transition setValue:inputTargetCIImage forKeyPath:kCIInputTargetImageKey];
+    [transition setValue: extent forKey: kCIInputExtentKey];
+    [transition setValue:inputColor forKeyPath:kCIInputColorKey];
+    [transition setValue:@10 forKeyPath:kCIInputTimeKey];
+    [transition setValue:@0.0 forKeyPath:kCIInputAngleKey];
+    [transition setValue:@10 forKeyPath:kCIInputWidthKey];
+    [transition setValue:@1.0 forKeyPath:@"inputOpacity"];
+    
+    return transition;
+}
+
 #pragma mark -- 静态效果
 //平面的效果
 -(CGAffineTransform)sizeTransform{
