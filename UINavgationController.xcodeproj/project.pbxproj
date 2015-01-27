@@ -357,6 +357,7 @@
 		E53040951A08BBF400AE3D94 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E53040931A08BBF400AE3D94 /* CustomAlertView.m */; };
 		E53268D419FA394900FB6195 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53268D319FA394900FB6195 /* CoreMotion.framework */; };
 		E53268D719FA396700FB6195 /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E53268D619FA396700FB6195 /* MotionViewController.m */; };
+		E537BB8B1A7738FF00920A33 /* IMG_0770.png in Resources */ = {isa = PBXBuildFile; fileRef = E537BB8A1A7738FF00920A33 /* IMG_0770.png */; };
 		E53D504E19F748EA005C0E8E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53D504D19F748EA005C0E8E /* MapKit.framework */; };
 		E53D505019F748F7005C0E8E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53D504F19F748F7005C0E8E /* CoreLocation.framework */; };
 		E53D505319F74922005C0E8E /* MapAndLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E53D505219F74922005C0E8E /* MapAndLocationViewController.m */; };
@@ -1020,6 +1021,7 @@
 		E53268D319FA394900FB6195 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E53268D519FA396700FB6195 /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MotionViewController.h; path = Motion/MotionViewController.h; sourceTree = "<group>"; };
 		E53268D619FA396700FB6195 /* MotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MotionViewController.m; path = Motion/MotionViewController.m; sourceTree = "<group>"; };
+		E537BB8A1A7738FF00920A33 /* IMG_0770.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0770.png; sourceTree = "<group>"; };
 		E53D504D19F748EA005C0E8E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E53D504F19F748F7005C0E8E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E53D505119F74922005C0E8E /* MapAndLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapAndLocationViewController.h; path = MapAndLocation/MapAndLocationViewController.h; sourceTree = "<group>"; };
@@ -1342,6 +1344,7 @@
 		5BD46D12194D3B61002995EB /* image */ = {
 			isa = PBXGroup;
 			children = (
+				E537BB8A1A7738FF00920A33 /* IMG_0770.png */,
 				E52F01DB1A762543005609D5 /* boots.png */,
 				E52F01D91A760FDA005609D5 /* redFlower.png */,
 				E545B0C11A09CD780007F4AE /* customAlertButtonBG_cancel.png */,
@@ -2573,6 +2576,7 @@
 				5BD46D4A194D3B61002995EB /* 上睫毛阴影.png in Resources */,
 				5BD46D5A194D3B61002995EB /* 瞳孔.png in Resources */,
 				5BC0779D194D7AAD0024627F /* Default-568h@2x.png in Resources */,
+				E537BB8B1A7738FF00920A33 /* IMG_0770.png in Resources */,
 				5BC0779E194D7AAD0024627F /* Default.png in Resources */,
 				5BD46DC4194D418E002995EB /* RegexAndMd5ViewController.xib in Resources */,
 				5BD46D4C194D3B61002995EB /* 下眼线.png in Resources */,
