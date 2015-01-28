@@ -72,16 +72,9 @@
 
 
 -(void)coreImageFilterUsing:(id)sender{
-//    LOGINFO(@"start effect");
+    LOGINFO(@"start effect");
     
-    CIFilter *filter = nil;
-//    filter = [self colorMonochromeFilter:[UIColor greenColor]];
-//    filter = [self sepiaToneFilter];
-//    filter = [self colorCrossPolynomialFilter];
-//    filter = [self hueAdjustFilter:3.6];
-//    filter = [self bumpDistortionFilter];
-//    filter = [self copyMachineTransitionFilter:index];
-    filter = [self testFilter];
+    CIFilter *filter = [self testFilter];
     
     CIImage *outputCIImage = [filter outputImage];
     CGRect rect = [outputCIImage extent];
@@ -101,37 +94,19 @@
 //    [effectImageView.layer addAnimation:[self transition:filter] forKey:@"transition"];
 
     effectImageView.image = effectImage;
-//    [self performSelector:@selector(coreImageFilterUsing:) withObject:sender afterDelay:0.001f];
+    [self performSelector:@selector(coreImageFilterUsing:) withObject:sender afterDelay:1.0f/30.0f];
 }
 
--(CATransition*)transition:(CIFilter*)filter{
-    // Create the transition object
-    CATransition* transition = [CATransition animation];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-//    transition.startProgress = 0;
-//    transition.endProgress = 1.0;
-    transition.filter = filter;
-    transition.fillMode = kCAFillModeForwards;
-    transition.duration = 3.0;
-    
-    return transition;
-}
 /*
  
 */
 -(CIFilter*)testFilter{
-    needResizeRect = YES;
-    CIImage *inputCIImage = [[CIImage alloc]initWithImage:image];
-    CIFilter *filter = [CIFilter filterWithName:@"CITriangleKaleidoscope"];
-    [filter setValue:inputCIImage forKey:kCIInputImageKey];
+    static CGFloat index = 0.0f;
     
+    CIFilter* filter = [self copyMachineTransitionFilter:index];
     
-    [filter setValue:[CIVector vectorWithX:100 Y:100] forKey:@"inputPoint"];
-    [filter setValue:@200 forKey:@"inputSize"];
-    [filter setValue:@(-0.36) forKey:@"inputRotation"];
-    [filter setValue:@0.85 forKey:@"inputDecay"];
-    return [self lightTunnelFilter];
+    index += 1.0f/30.0f;
+    return filter;
 }
 
 /*

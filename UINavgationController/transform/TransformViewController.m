@@ -51,7 +51,7 @@
     
     
     layer = [CALayer layer];
-    layer.frame = CGRectMake(10, 10, 40, 20);
+    layer.frame = CGRectMake(100, 100, 120, 40);
     layer.backgroundColor = [UIColor redColor].CGColor;
     [self.view.layer addSublayer:layer];
     
@@ -159,13 +159,15 @@
     
     // Create the transition object
     CATransition* transition = [CATransition animation];
-//    transition.startProgress = 0;
-//    transition.endProgress = 1.0;
-    transition.filter = [self testFilter];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    transition.startProgress = 0;
+    transition.endProgress = 1.0;
+//    transition.filter = [self copyMachineTransitionFilter:0.4];
     transition.duration = 1.0;
 
-    [label.layer addAnimation:transition forKey:@"transition"];
-    [label setHidden:!label.hidden];
+    [layer addAnimation:transition forKey:@"transition"];
+//    [label setHidden:!label.hidden];
     
     
 //    [label1 setHidden:!label1.hidden];
@@ -174,27 +176,6 @@
 //    [label setHidden:!label.hidden];
 }
 
--(CIFilter*)testFilter{
-    CIVector *extent = [CIVector vectorWithX: 0  Y: 0  Z: 200  W: 200];
-    //    CIVector *extent = [CIVector vectorWithCGRect:CGRectMake(0, 0, 100, 100)];
-    CIColor  *inputColor = [CIColor colorWithCGColor:[UIColor redColor].CGColor];
-    
-    CIImage *inputCIImage = [[CIImage alloc]initWithImage:[UIImage imageNamed:@"redFlower.png"]];
-    CIImage *inputTargetCIImage = [[CIImage alloc]initWithImage:[UIImage imageNamed:@"boots.png"]];
-    
-    CIFilter *transition = [CIFilter filterWithName:@"CICopyMachineTransition"];    // 1
-    [transition setDefaults];
-    [transition setValue:inputCIImage forKeyPath:kCIInputImageKey];
-    [transition setValue:inputTargetCIImage forKeyPath:kCIInputTargetImageKey];
-    [transition setValue: extent forKey: kCIInputExtentKey];
-    [transition setValue:inputColor forKeyPath:kCIInputColorKey];
-    [transition setValue:@10 forKeyPath:kCIInputTimeKey];
-    [transition setValue:@0.0 forKeyPath:kCIInputAngleKey];
-    [transition setValue:@10 forKeyPath:kCIInputWidthKey];
-    [transition setValue:@1.0 forKeyPath:@"inputOpacity"];
-    
-    return transition;
-}
 
 #pragma mark -- 静态效果
 //平面的效果
@@ -332,6 +313,8 @@
     //这个属性默认为YES.一般情况下,不需要设置这个属性. 但如果是CAAnimation动画,并且需要设置 fillMode 属性,那么需要将 removedOnCompletion 设置为NO,否则fillMode无效
     animation.removedOnCompletion = NO;
     
+    animation.filter = nil;//CIFilter, 设置之后只有简单的可以使用复杂的需要filter自己做定时效果
+    
     [animation setDuration:1.5f];
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     
@@ -360,6 +343,7 @@
 
 /*
  animationWithKeyPath的值：
+ 官方链接：https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/AnimatableProperties/AnimatableProperties.html
  
  属性                说明                                                                                                  是否支持隐式动画
  anchorPoint        和中心点position重合的一个点，称为“锚点”，锚点的描述是相对于x、y位置比例而言的默认在图像中心点(0.5,0.5)的位置        是
@@ -385,6 +369,16 @@
  shadowRadius       阴影模糊半径                                                                                              是
  sublayers          子图层                                                                                                   是
  sublayerTransform	子图层形变                                                                                                是
+ 
+ zPosition
+ 
+ backgroundFilters
+ Uses the default implied CATransition object, described in Table B-3. Sub-properties of the filters are animated using the default implied CABasicAnimation object, described in Table B-2.
+ compositingFilter
+ Uses the default implied CATransition object, described in Table B-3. Sub-properties of the filters are animated using the default implied CABasicAnimation object, described in Table B-2.
+ filters
+ Uses the default implied CABasicAnimation object, described in Table B-2. Sub-properties of the filters are animated using the default implied CABasicAnimation object, described in Table B-2.
+ 
  transform          图层形变(使用的是 CATransform3D或CGAffineTransform)                                                         是
  
  transform.rotation.x
@@ -399,9 +393,7 @@
  transform.translation.y
  transform.translation.z
  transform.translation
- 
- margin
- zPosition
+
  */
 -(CABasicAnimation*)basicAnimation{
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale.x"];//可以从上面找到相关值
