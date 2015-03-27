@@ -393,6 +393,13 @@
 		E5D8E61719F4FA990026B618 /* AutoLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */; };
 		E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */; };
 		E5DEE0F419FDDD76005A0565 /* CameraPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DEE0F319FDDD76005A0565 /* CameraPhotoViewController.m */; };
+		E5E3207F1AC5280000D3BD1C /* ChangeLogUnzip in Resources */ = {isa = PBXBuildFile; fileRef = E5E320731AC5280000D3BD1C /* ChangeLogUnzip */; };
+		E5E320801AC5280000D3BD1C /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E5E320751AC5280000D3BD1C /* ioapi.c */; };
+		E5E320811AC5280000D3BD1C /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E5E320771AC5280000D3BD1C /* mztools.c */; };
+		E5E320821AC5280000D3BD1C /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = E5E320791AC5280000D3BD1C /* unzip.c */; };
+		E5E320831AC5280000D3BD1C /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = E5E3207B1AC5280000D3BD1C /* zip.c */; };
+		E5E320841AC5280000D3BD1C /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = E5E3207E1AC5280000D3BD1C /* ZipArchive.mm */; };
+		E5E320861AC529C000D3BD1C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E320851AC529C000D3BD1C /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1094,6 +1101,19 @@
 		E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AutoLayerViewController.xib; path = autolayer/AutoLayerViewController.xib; sourceTree = "<group>"; };
 		E5DEE0F219FDDD76005A0565 /* CameraPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraPhotoViewController.h; path = CameraPhoto/CameraPhotoViewController.h; sourceTree = "<group>"; };
 		E5DEE0F319FDDD76005A0565 /* CameraPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraPhotoViewController.m; path = CameraPhoto/CameraPhotoViewController.m; sourceTree = "<group>"; };
+		E5E320731AC5280000D3BD1C /* ChangeLogUnzip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLogUnzip; sourceTree = "<group>"; };
+		E5E320741AC5280000D3BD1C /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		E5E320751AC5280000D3BD1C /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		E5E320761AC5280000D3BD1C /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		E5E320771AC5280000D3BD1C /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		E5E320781AC5280000D3BD1C /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		E5E320791AC5280000D3BD1C /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		E5E3207A1AC5280000D3BD1C /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		E5E3207B1AC5280000D3BD1C /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		E5E3207C1AC5280000D3BD1C /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		E5E3207D1AC5280000D3BD1C /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		E5E3207E1AC5280000D3BD1C /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		E5E320851AC529C000D3BD1C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1101,6 +1121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5E320861AC529C000D3BD1C /* libz.dylib in Frameworks */,
 				5BE31A511A3F0E34000C028F /* ImageIO.framework in Frameworks */,
 				E55B00161A3AE6D000FB0A03 /* libiconv.dylib in Frameworks */,
 				E55B00141A3AE68300FB0A03 /* CoreVideo.framework in Frameworks */,
@@ -1158,6 +1179,7 @@
 		0D7186F71600BE530062A13F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5E320851AC529C000D3BD1C /* libz.dylib */,
 				5BE31A501A3F0E34000C028F /* ImageIO.framework */,
 				E55B00151A3AE6D000FB0A03 /* libiconv.dylib */,
 				E55B00131A3AE68300FB0A03 /* CoreVideo.framework */,
@@ -1414,6 +1436,7 @@
 		5BD46D6B194D418D002995EB /* 文件读写 */ = {
 			isa = PBXGroup;
 			children = (
+				E5E320711AC5280000D3BD1C /* ZipArchive */,
 				5BD46D6C194D418D002995EB /* FileManagerReadAndWriteViewController.h */,
 				5BD46D6D194D418D002995EB /* FileManagerReadAndWriteViewController.m */,
 				5BD46D6E194D418D002995EB /* FileManagerReadAndWriteViewController.xib */,
@@ -2473,6 +2496,33 @@
 			name = CameraPhoto;
 			sourceTree = "<group>";
 		};
+		E5E320711AC5280000D3BD1C /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				E5E320721AC5280000D3BD1C /* minizip */,
+				E5E3207D1AC5280000D3BD1C /* ZipArchive.h */,
+				E5E3207E1AC5280000D3BD1C /* ZipArchive.mm */,
+			);
+			path = ZipArchive;
+			sourceTree = "<group>";
+		};
+		E5E320721AC5280000D3BD1C /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				E5E320731AC5280000D3BD1C /* ChangeLogUnzip */,
+				E5E320741AC5280000D3BD1C /* crypt.h */,
+				E5E320751AC5280000D3BD1C /* ioapi.c */,
+				E5E320761AC5280000D3BD1C /* ioapi.h */,
+				E5E320771AC5280000D3BD1C /* mztools.c */,
+				E5E320781AC5280000D3BD1C /* mztools.h */,
+				E5E320791AC5280000D3BD1C /* unzip.c */,
+				E5E3207A1AC5280000D3BD1C /* unzip.h */,
+				E5E3207B1AC5280000D3BD1C /* zip.c */,
+				E5E3207C1AC5280000D3BD1C /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2530,6 +2580,7 @@
 				5BD46D50194D3B61002995EB /* 双眼皮.png in Resources */,
 				E55B000C1A3AE55F00FB0A03 /* zbar-helpicons.png in Resources */,
 				E52F01DC1A762543005609D5 /* boots.png in Resources */,
+				E5E3207F1AC5280000D3BD1C /* ChangeLogUnzip in Resources */,
 				5BE319C61A3F0DD1000C028F /* 1.gif in Resources */,
 				5BD46D61194D416E002995EB /* palettaLocal.db in Resources */,
 				0DC5F35D163AC67900F7D8D5 /* LastViewController.xib in Resources */,
@@ -2621,6 +2672,7 @@
 				250D5919197528F1006AA2F7 /* Area.m in Sources */,
 				5BE31A401A3F0DD1000C028F /* ZXQRCodeReader.m in Sources */,
 				5BE3198E1A3F0DD1000C028F /* ZXSMTPResultParser.m in Sources */,
+				E5E320821AC5280000D3BD1C /* unzip.c in Sources */,
 				5BE31A011A3F0DD1000C028F /* ZXEAN8Reader.m in Sources */,
 				5BE31A1B1A3F0DD1000C028F /* ZXPDF417DetectionResult.m in Sources */,
 				5BE31A2C1A3F0DD1000C028F /* ZXErrorCorrectionLevel.m in Sources */,
@@ -2730,6 +2782,7 @@
 				5BE31A1C1A3F0DD1000C028F /* ZXPDF417DetectionResultColumn.m in Sources */,
 				5BE31A0C1A3F0DD1000C028F /* ZXUPCEANExtension2Support.m in Sources */,
 				5BE319F41A3F0DD1000C028F /* ZXPair.m in Sources */,
+				E5E320841AC5280000D3BD1C /* ZipArchive.mm in Sources */,
 				5BE319BE1A3F0DD1000C028F /* ZXEncoderContext.m in Sources */,
 				5BE31A001A3F0DD1000C028F /* ZXEAN13Writer.m in Sources */,
 				5BE319901A3F0DD1000C028F /* ZXTelResultParser.m in Sources */,
@@ -2743,6 +2796,7 @@
 				5BE3199E1A3F0DD1000C028F /* ZXMonochromeRectangleDetector.m in Sources */,
 				5BE319FB1A3F0DD1000C028F /* ZXCode128Writer.m in Sources */,
 				5BE3197E1A3F0DD1000C028F /* ZXEmailAddressParsedResult.m in Sources */,
+				E5E320801AC5280000D3BD1C /* ioapi.c in Sources */,
 				5BE31A2D1A3F0DD1000C028F /* ZXFormatInformation.m in Sources */,
 				5BE319FE1A3F0DD1000C028F /* ZXCode93Reader.m in Sources */,
 				5BE3199A1A3F0DD1000C028F /* ZXCaptureView.m in Sources */,
@@ -2852,6 +2906,7 @@
 				5BE319C11A3F0DD1000C028F /* ZXSymbolShapeHint.m in Sources */,
 				5BE31A301A3F0DD1000C028F /* ZXQRCodeDataBlock.m in Sources */,
 				E55B00061A3AE55F00FB0A03 /* qrspec.c in Sources */,
+				E5E320831AC5280000D3BD1C /* zip.c in Sources */,
 				5BE319DC1A3F0DD1000C028F /* ZXAI013103decoder.m in Sources */,
 				5BD46DD1194D418E002995EB /* DrawView.m in Sources */,
 				5BD46DBE194D418E002995EB /* FileManagerReadAndWriteViewController.m in Sources */,
@@ -2892,6 +2947,7 @@
 				5BE319951A3F0DD1000C028F /* ZXVCardResultParser.m in Sources */,
 				5BE31A211A3F0DD1000C028F /* ZXBarcodeMatrix.m in Sources */,
 				5BE3198B1A3F0DD1000C028F /* ZXSMSMMSResultParser.m in Sources */,
+				E5E320811AC5280000D3BD1C /* mztools.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
