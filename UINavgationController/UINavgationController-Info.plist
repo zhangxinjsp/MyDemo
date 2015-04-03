@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>paletta_icon.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.huawei.ott.hosting</string>
+	<string>com.archermind.htc</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

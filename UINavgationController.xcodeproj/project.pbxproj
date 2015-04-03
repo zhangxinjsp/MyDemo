@@ -3041,8 +3041,8 @@
 		0D71870D1600BE530062A13F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hui Chen (P77E868YNV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hui Chen (P77E868YNV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3059,8 +3059,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FECC6156-113D-4051-A1C8-89C6C5426A75";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FECC6156-113D-4051-A1C8-89C6C5426A75";
+				PROVISIONING_PROFILE = "4464a4d9-349a-49d7-b256-e5eb90d16126";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
@@ -3071,8 +3071,8 @@
 		0D71870E1600BE530062A13F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hui Chen (P77E868YNV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hui Chen (P77E868YNV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3089,8 +3089,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FECC6156-113D-4051-A1C8-89C6C5426A75";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FECC6156-113D-4051-A1C8-89C6C5426A75";
+				PROVISIONING_PROFILE = "4464a4d9-349a-49d7-b256-e5eb90d16126";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
