@@ -1179,35 +1179,35 @@
 		0D7186F71600BE530062A13F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E5E320851AC529C000D3BD1C /* libz.dylib */,
+				5B28324119AA0B2400C873FB /* Accelerate.framework */,
+				0D9568811685FBFF00AA4B81 /* Accounts.framework */,
+				E5442C2919F89FBC000A6D7F /* AddressBook.framework */,
+				0D95687F1685FBF900AA4B81 /* AdSupport.framework */,
+				E55BFFCE1A3ADF4F00FB0A03 /* AVFoundation.framework */,
+				5BDB06A819C724F80099FBA8 /* CFNetwork.framework */,
+				5B84682A195691860033C079 /* CoreData.framework */,
+				0D7186FC1600BE530062A13F /* CoreGraphics.framework */,
+				0D1E654D16A798D1008F1E4C /* CoreImage.framework */,
+				E53D504F19F748F7005C0E8E /* CoreLocation.framework */,
+				E55B00111A3AE67600FB0A03 /* CoreMedia.framework */,
+				E53268D319FA394900FB6195 /* CoreMotion.framework */,
+				E561D7AA18DC41D000411BF0 /* CoreText.framework */,
+				E55B00131A3AE68300FB0A03 /* CoreVideo.framework */,
+				5BC077A0194D88860024627F /* FacebookSDK.framework */,
+				0D7186FA1600BE530062A13F /* Foundation.framework */,
 				5BE31A501A3F0E34000C028F /* ImageIO.framework */,
 				E55B00151A3AE6D000FB0A03 /* libiconv.dylib */,
-				E55B00131A3AE68300FB0A03 /* CoreVideo.framework */,
-				E55B00111A3AE67600FB0A03 /* CoreMedia.framework */,
-				E55BFFCE1A3ADF4F00FB0A03 /* AVFoundation.framework */,
-				E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */,
-				E53268D319FA394900FB6195 /* CoreMotion.framework */,
-				E5442C2919F89FBC000A6D7F /* AddressBook.framework */,
-				E53D504F19F748F7005C0E8E /* CoreLocation.framework */,
-				E53D504D19F748EA005C0E8E /* MapKit.framework */,
-				5BDB06A819C724F80099FBA8 /* CFNetwork.framework */,
-				5B28324119AA0B2400C873FB /* Accelerate.framework */,
-				25154182196FC43400A456F3 /* SystemConfiguration.framework */,
-				5B84682A195691860033C079 /* CoreData.framework */,
-				5BC077A2194DAA590024627F /* Security.framework */,
-				5BC077A0194D88860024627F /* FacebookSDK.framework */,
-				E561D7AA18DC41D000411BF0 /* CoreText.framework */,
-				0D1E654D16A798D1008F1E4C /* CoreImage.framework */,
-				0D9568811685FBFF00AA4B81 /* Accounts.framework */,
-				0D95687F1685FBF900AA4B81 /* AdSupport.framework */,
-				0D7186FC1600BE530062A13F /* CoreGraphics.framework */,
-				0D7186FA1600BE530062A13F /* Foundation.framework */,
 				0D9087AA164B8BB3004F2C20 /* libicucore.dylib */,
 				0D95671E1683F22500AA4B81 /* libsqlite3.0.dylib */,
 				0D9567201683F22E00AA4B81 /* libsqlite3.dylib */,
+				E5E320851AC529C000D3BD1C /* libz.dylib */,
+				E53D504D19F748EA005C0E8E /* MapKit.framework */,
 				0D95675116857A2700AA4B81 /* MessageUI.framework */,
+				E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */,
 				0D5ECEFC167033B40074FBA4 /* QuartzCore.framework */,
+				5BC077A2194DAA590024627F /* Security.framework */,
 				0D9568831685FC1D00AA4B81 /* Social.framework */,
+				25154182196FC43400A456F3 /* SystemConfiguration.framework */,
 				0D7186F81600BE530062A13F /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -3059,8 +3059,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4464a4d9-349a-49d7-b256-e5eb90d16126";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
+				PROVISIONING_PROFILE = "a939f61e-a80c-4970-8af1-343d389ff75c";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a939f61e-a80c-4970-8af1-343d389ff75c";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
@@ -3089,8 +3089,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4464a4d9-349a-49d7-b256-e5eb90d16126";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
+				PROVISIONING_PROFILE = "a939f61e-a80c-4970-8af1-343d389ff75c";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a939f61e-a80c-4970-8af1-343d389ff75c";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";

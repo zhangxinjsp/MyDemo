@@ -9,11 +9,48 @@
 #import "LastViewController.h"
 #import "UILabel-LineHeigh.h"
 #import <AVFoundation/AVFoundation.h>
+#import <CoreText/CoreText.h>
 
 typedef NSInteger (^TestAnimation)(NSString* str);
 
-@interface LastViewController (){
+
+@interface PopAnimation : NSObject <UIViewControllerAnimatedTransitioning>{
     
+}
+
+@end
+
+@implementation PopAnimation
+
+-(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
+    return 0.25;
+}
+
+-(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext{
+    UIViewController* from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    
+    UIViewController* to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    UIView* contenterView = [transitionContext containerView];
+    
+    [contenterView insertSubview:to.view belowSubview:from.view];
+    
+    
+    NSTimeInterval duration = [self transitionDuration:transitionContext];
+    
+    [UIView animateWithDuration:duration animations:^{
+        from.view.transform = CGAffineTransformMakeScale(0.2, 0.2);
+    } completion:^(BOOL finished) {
+        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+    }];
+    
+}
+
+@end
+
+
+@interface LastViewController (){
+    UIPercentDrivenInteractiveTransition* interactiveTransition;
 }
 
 @end
@@ -34,6 +71,9 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     [super viewDidLoad];
     
     self.title = @"last View Controller";
+    
+    UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureHandle:)];
+    [self.view addGestureRecognizer:pan];
     
     //item按下是会有高亮效果的
     UIToolbar *tools = [[UIToolbar alloc]initWithFrame: CGRectMake(0.0f, 0.0f, 44.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
@@ -121,7 +161,7 @@ typedef NSInteger (^TestAnimation)(NSString* str);
 //label多字体多颜色
 -(void)labelMutableAttributedString{
     //label多色的使用
-    NSString* string = @"redbluegreen";
+    NSString* string = @"redblue<green>green</green>";
     NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc]initWithString:string];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:[string rangeOfString:@"red"]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:[string rangeOfString:@"green"]];
@@ -132,14 +172,26 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:[string rangeOfString:@"blue"]];
     [attributedString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16] range:[string rangeOfString:@"green"]];
     
+//    [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:[string rangeOfString:@"green"]];
     
+    
+//    [attributedString addAttribute:NSLinkAttributeName value:@"www.baidu.com" range:[string rangeOfString:@"green"]];
+    [attributedString addAttribute:@"kWPAttributedMarkupLinkName" value:@"www.baidu.com" range:[string rangeOfString:@"green"]];
+
     UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 85, 300, 20)];
     label.textAlignment = NSTextAlignmentCenter;
     label.attributedText = attributedString;
     [self.view addSubview:label];
 }
 
-
+-(NSString*) uuid {
+    CFUUIDRef puuid = CFUUIDCreate( nil );
+    CFStringRef uuidString = CFUUIDCreateString( nil, puuid );
+    NSString * result = (NSString *)CFBridgingRelease(CFStringCreateCopy( NULL, uuidString));
+    CFRelease(puuid);
+    CFRelease(uuidString);
+    return result;
+}
 
 -(void)btnSelected:(id)sender{
 
@@ -173,10 +225,142 @@ typedef NSInteger (^TestAnimation)(NSString* str);
              
 
 
+-(NSDictionary*)textAttributesAtPoint:(CGPoint)pt
+{
+    UILabel* label111111 = nil;
+    
+    // Locate the attributes of the text within the label at the specified point
+    NSDictionary* dictionary = nil;
+    
+    // First, create a CoreText framesetter
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)label111111.attributedText);
+    
+    CGMutablePathRef framePath = CGPathCreateMutable();
+    CGPathAddRect(framePath, NULL, CGRectMake(0, 0, label111111.frame.size.width, label111111.frame.size.height));
+    // Get the frame that will do the rendering.
+    CFRange currentRange = CFRangeMake(0, 0);
+    CTFrameRef frameRef = CTFramesetterCreateFrame(framesetter, currentRange, framePath, NULL);
+    CGPathRelease(framePath);
+    
+    // Get each of the typeset lines
+    NSArray *lines = (__bridge id)CTFrameGetLines(frameRef);
+    
+    CFIndex linesCount = [lines count];
+    CGPoint *lineOrigins = (CGPoint *) malloc(sizeof(CGPoint) * linesCount);
+    CTFrameGetLineOrigins(frameRef, CFRangeMake(0, linesCount), lineOrigins);
+    
+    CTLineRef line = NULL;
+    CGPoint lineOrigin = CGPointZero;
+    
+    // Correct each of the typeset lines (which have origin (0,0)) to the correct orientation (typesetting offsets from the bottom of the frame)
+    
+    CGFloat bottom = label111111.frame.size.height;
+    for(CFIndex i = 0; i < linesCount; ++i) {
+        lineOrigins[i].y = label111111.frame.size.height - lineOrigins[i].y;
+        bottom = lineOrigins[i].y;
+    }
+    
+    // Offset the touch point by the amount of space between the top of the label frame and the text
+    pt.y -= (label111111.frame.size.height - bottom)/2;
+    
+    
+    // Scan through each line to find the line containing the touch point y position
+    for(CFIndex i = 0; i < linesCount; ++i) {
+        line = (__bridge CTLineRef)[lines objectAtIndex:i];
+        lineOrigin = lineOrigins[i];
+        CGFloat descent, ascent;
+        CGFloat width = CTLineGetTypographicBounds(line, &ascent, &descent, nil);
+        
+        if(pt.y < (floor(lineOrigin.y) + floor(descent))) {
+            
+            // Cater for text alignment set in the label itself (not in the attributed string)
+            if (label111111.textAlignment == NSTextAlignmentCenter) {
+                pt.x -= (label111111.frame.size.width - width)/2;
+            } else if (label111111.textAlignment == NSTextAlignmentRight) {
+                pt.x -= (label111111.frame.size.width - width);
+            }
+            
+            // Offset the touch position by the actual typeset line origin. pt is now the correct touch position with the line bounds
+            pt.x -= lineOrigin.x;
+            pt.y -= lineOrigin.y;
+            
+            // Find the text index within this line for the touch position
+            CFIndex i = CTLineGetStringIndexForPosition(line, pt);
+            
+            // Iterate through each of the glyph runs to find the run containing the character index
+            NSArray* glyphRuns = (__bridge id)CTLineGetGlyphRuns(line);
+            CFIndex runCount = [glyphRuns count];
+            for (CFIndex run=0; run<runCount; run++) {
+                CTRunRef glyphRun = (__bridge CTRunRef)[glyphRuns objectAtIndex:run];
+                CFRange range = CTRunGetStringRange(glyphRun);
+                if (i >= range.location && i<= range.location+range.length) {
+                    dictionary = (__bridge NSDictionary*)CTRunGetAttributes(glyphRun);
+                    break;
+                }
+            }
+            if (dictionary) {
+                break;
+            }
+        }
+    }
+    
+    free(lineOrigins);
+    CFRelease(frameRef);
+    CFRelease(framesetter);
+    
+    
+    return dictionary;
+}
 
 
 -(void)viewWillDisappear:(BOOL)animated{
+//    struct utsname systemInfo;
+//    uname(&systemInfo);
+//    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+}
 
+-(void)panGestureHandle:(UIPanGestureRecognizer*)gesture{
+    
+    CGFloat progress = [gesture translationInView:self.view].x / self.view.bounds.size.width;
+    
+    progress = MIN(1.0, MAX(0, progress));
+    
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        
+        interactiveTransition = [[UIPercentDrivenInteractiveTransition alloc]init];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    }else if (gesture.state == UIGestureRecognizerStateChanged){
+        [interactiveTransition updateInteractiveTransition:progress];
+    }else if (gesture.state == UIGestureRecognizerStateEnded ||
+              gesture.state == UIGestureRecognizerStateCancelled){
+        
+        if (progress > 0.5) {
+            [interactiveTransition finishInteractiveTransition];
+        }else{
+            [interactiveTransition cancelInteractiveTransition];
+        }
+        interactiveTransition = nil;
+        
+    }
+}
+
+
+-(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
+    
+    if (operation == UINavigationControllerOperationPop) {
+        return  [[PopAnimation alloc]init];
+    }
+    return nil;
+}
+
+
+-(id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
+    
+    if ([animationController isKindOfClass:[PopAnimation class]]) {
+        return interactiveTransition;
+    }
+    return nil;
 }
 
 
