@@ -391,6 +391,8 @@
 		E55EE49A1AE6494B00846214 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E55EE4981AE6494B00846214 /* Reachability.m */; };
 		E561D7AB18DC41D000411BF0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E561D7AA18DC41D000411BF0 /* CoreText.framework */; };
 		E574A5F61AE0949200A1EE1B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */; };
+		E582A0D21AE6511C00763906 /* BTLECentralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E582A0CE1AE6511C00763906 /* BTLECentralViewController.m */; };
+		E582A0D31AE6511C00763906 /* BTLEPeripheralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E582A0D01AE6511C00763906 /* BTLEPeripheralViewController.m */; };
 		E5D1F2241A0325830062DE97 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */; };
 		E5D8E61719F4FA990026B618 /* AutoLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */; };
 		E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */; };
@@ -1100,6 +1102,11 @@
 		E55EE4981AE6494B00846214 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		E561D7AA18DC41D000411BF0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		E582A0CD1AE6511C00763906 /* BTLECentralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentralViewController.h; sourceTree = "<group>"; };
+		E582A0CE1AE6511C00763906 /* BTLECentralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLECentralViewController.m; sourceTree = "<group>"; };
+		E582A0CF1AE6511C00763906 /* BTLEPeripheralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEPeripheralViewController.h; sourceTree = "<group>"; };
+		E582A0D01AE6511C00763906 /* BTLEPeripheralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEPeripheralViewController.m; sourceTree = "<group>"; };
+		E582A0D11AE6511C00763906 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
 		E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E5D8E61519F4FA990026B618 /* AutoLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoLayerViewController.h; path = autolayer/AutoLayerViewController.h; sourceTree = "<group>"; };
 		E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoLayerViewController.m; path = autolayer/AutoLayerViewController.m; sourceTree = "<group>"; };
@@ -1252,6 +1259,7 @@
 				E55BFFD11A3AE55F00FB0A03 /* 二维码 */,
 				E5DEE0F119FDDD39005A0565 /* CameraPhoto */,
 				E55EE4941AE6494B00846214 /* Reachability */,
+				E582A0CC1AE6511C00763906 /* BLE */,
 				5BD46DAC194D418E002995EB /* UIScrollView代码实现无缝循环滚动 */,
 				0DC5F359163AC67900F7D8D5 /* LastViewController.h */,
 				0DC5F35A163AC67900F7D8D5 /* LastViewController.m */,
@@ -2485,6 +2493,18 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		E582A0CC1AE6511C00763906 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				E582A0CD1AE6511C00763906 /* BTLECentralViewController.h */,
+				E582A0CE1AE6511C00763906 /* BTLECentralViewController.m */,
+				E582A0CF1AE6511C00763906 /* BTLEPeripheralViewController.h */,
+				E582A0D01AE6511C00763906 /* BTLEPeripheralViewController.m */,
+				E582A0D11AE6511C00763906 /* TransferService.h */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
 		E5D8E61419F4FA5C0026B618 /* autolayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2765,6 +2785,7 @@
 				5BC4EC0319710D3E00ECAB1E /* URLRequestViewController.m in Sources */,
 				5BE319D01A3F0DD1000C028F /* SEYAppDelegate.m in Sources */,
 				5BE31A281A3F0DD1000C028F /* ZXPDF417Reader.m in Sources */,
+				E582A0D31AE6511C00763906 /* BTLEPeripheralViewController.m in Sources */,
 				5BE319731A3F0DD1000C028F /* ZXAztecEncoder.m in Sources */,
 				5BC077A7194DBB390024627F /* MyKeyChainHelper.m in Sources */,
 				5BE319821A3F0DD1000C028F /* ZXExpandedProductResultParser.m in Sources */,
@@ -2939,6 +2960,7 @@
 				0DC5F35C163AC67900F7D8D5 /* LastViewController.m in Sources */,
 				E55EE49A1AE6494B00846214 /* Reachability.m in Sources */,
 				5BE31A0B1A3F0DD1000C028F /* ZXUPCAWriter.m in Sources */,
+				E582A0D21AE6511C00763906 /* BTLECentralViewController.m in Sources */,
 				5BE3198D1A3F0DD1000C028F /* ZXSMSTOMMSTOResultParser.m in Sources */,
 				5BE319811A3F0DD1000C028F /* ZXExpandedProductParsedResult.m in Sources */,
 				5BE319971A3F0DD1000C028F /* ZXWifiParsedResult.m in Sources */,
