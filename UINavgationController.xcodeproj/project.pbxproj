@@ -28,7 +28,6 @@
 		250D590F19752898006AA2F7 /* area.db in Resources */ = {isa = PBXBuildFile; fileRef = 250D590E19752898006AA2F7 /* area.db */; };
 		250D5919197528F1006AA2F7 /* Area.m in Sources */ = {isa = PBXBuildFile; fileRef = 250D5915197528F1006AA2F7 /* Area.m */; };
 		250D591A197528F1006AA2F7 /* Skintone.m in Sources */ = {isa = PBXBuildFile; fileRef = 250D5917197528F1006AA2F7 /* Skintone.m */; };
-		25154181196FC2F400A456F3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 25154180196FC2F400A456F3 /* Reachability.m */; };
 		25154183196FC43400A456F3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25154182196FC43400A456F3 /* SystemConfiguration.framework */; };
 		5B28324019AA06E700C873FB /* UIImage+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B28323F19AA06E700C873FB /* UIImage+Effects.m */; };
 		5B28324219AA0B2400C873FB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B28324119AA0B2400C873FB /* Accelerate.framework */; };
@@ -388,7 +387,10 @@
 		E55B00141A3AE68300FB0A03 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E55B00131A3AE68300FB0A03 /* CoreVideo.framework */; };
 		E55B00161A3AE6D000FB0A03 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E55B00151A3AE6D000FB0A03 /* libiconv.dylib */; };
 		E55BFFCF1A3ADF4F00FB0A03 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E55BFFCE1A3ADF4F00FB0A03 /* AVFoundation.framework */; };
+		E55EE4991AE6494B00846214 /* APLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55EE4961AE6494B00846214 /* APLViewController.m */; };
+		E55EE49A1AE6494B00846214 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E55EE4981AE6494B00846214 /* Reachability.m */; };
 		E561D7AB18DC41D000411BF0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E561D7AA18DC41D000411BF0 /* CoreText.framework */; };
+		E574A5F61AE0949200A1EE1B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */; };
 		E5D1F2241A0325830062DE97 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */; };
 		E5D8E61719F4FA990026B618 /* AutoLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */; };
 		E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */; };
@@ -433,8 +435,6 @@
 		250D5915197528F1006AA2F7 /* Area.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Area.m; sourceTree = "<group>"; };
 		250D5916197528F1006AA2F7 /* Skintone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skintone.h; sourceTree = "<group>"; };
 		250D5917197528F1006AA2F7 /* Skintone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skintone.m; sourceTree = "<group>"; };
-		2515417F196FC2F400A456F3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		25154180196FC2F400A456F3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		25154182196FC43400A456F3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5B28323E19AA06E700C873FB /* UIImage+Effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Effects.h"; path = "UIImage/UIImage+Effects.h"; sourceTree = "<group>"; };
 		5B28323F19AA06E700C873FB /* UIImage+Effects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Effects.m"; path = "UIImage/UIImage+Effects.m"; sourceTree = "<group>"; };
@@ -1094,7 +1094,12 @@
 		E55BFFFD1A3AE55F00FB0A03 /* zbar-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-back.png"; sourceTree = "<group>"; };
 		E55BFFFE1A3AE55F00FB0A03 /* zbar-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "zbar-help.html"; sourceTree = "<group>"; };
 		E55BFFFF1A3AE55F00FB0A03 /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-helpicons.png"; sourceTree = "<group>"; };
+		E55EE4951AE6494B00846214 /* APLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLViewController.h; sourceTree = "<group>"; };
+		E55EE4961AE6494B00846214 /* APLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLViewController.m; sourceTree = "<group>"; };
+		E55EE4971AE6494B00846214 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		E55EE4981AE6494B00846214 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		E561D7AA18DC41D000411BF0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E5D8E61519F4FA990026B618 /* AutoLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoLayerViewController.h; path = autolayer/AutoLayerViewController.h; sourceTree = "<group>"; };
 		E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoLayerViewController.m; path = autolayer/AutoLayerViewController.m; sourceTree = "<group>"; };
@@ -1121,6 +1126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E574A5F61AE0949200A1EE1B /* CoreTelephony.framework in Frameworks */,
 				E5E320861AC529C000D3BD1C /* libz.dylib in Frameworks */,
 				5BE31A511A3F0E34000C028F /* ImageIO.framework in Frameworks */,
 				E55B00161A3AE6D000FB0A03 /* libiconv.dylib in Frameworks */,
@@ -1179,6 +1185,8 @@
 		0D7186F71600BE530062A13F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25154182196FC43400A456F3 /* SystemConfiguration.framework */,
+				E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */,
 				5B28324119AA0B2400C873FB /* Accelerate.framework */,
 				0D9568811685FBFF00AA4B81 /* Accounts.framework */,
 				E5442C2919F89FBC000A6D7F /* AddressBook.framework */,
@@ -1207,7 +1215,6 @@
 				0D5ECEFC167033B40074FBA4 /* QuartzCore.framework */,
 				5BC077A2194DAA590024627F /* Security.framework */,
 				0D9568831685FC1D00AA4B81 /* Social.framework */,
-				25154182196FC43400A456F3 /* SystemConfiguration.framework */,
 				0D7186F81600BE530062A13F /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -1244,6 +1251,7 @@
 				E53268D219FA391200FB6195 /* Motion */,
 				E55BFFD11A3AE55F00FB0A03 /* 二维码 */,
 				E5DEE0F119FDDD39005A0565 /* CameraPhoto */,
+				E55EE4941AE6494B00846214 /* Reachability */,
 				5BD46DAC194D418E002995EB /* UIScrollView代码实现无缝循环滚动 */,
 				0DC5F359163AC67900F7D8D5 /* LastViewController.h */,
 				0DC5F35A163AC67900F7D8D5 /* LastViewController.m */,
@@ -1274,16 +1282,6 @@
 				250D5917197528F1006AA2F7 /* Skintone.m */,
 			);
 			path = entity;
-			sourceTree = "<group>";
-		};
-		2515417E196FC2F400A456F3 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				2515417F196FC2F400A456F3 /* Reachability.h */,
-				25154180196FC2F400A456F3 /* Reachability.m */,
-			);
-			name = Reachability;
-			path = Common/Reachability;
 			sourceTree = "<group>";
 		};
 		5B28323D19AA069500C873FB /* UIimage */ = {
@@ -1580,7 +1578,6 @@
 			children = (
 				E530408F1A08BBF400AE3D94 /* CustomAlertView */,
 				5BD46DF4194D4D78002995EB /* Define.h */,
-				2515417E196FC2F400A456F3 /* Reachability */,
 				E52405A219F639F800ED1360 /* Formater.h */,
 				E52405A319F639F800ED1360 /* Formater.m */,
 			);
@@ -2477,6 +2474,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		E55EE4941AE6494B00846214 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				E55EE4951AE6494B00846214 /* APLViewController.h */,
+				E55EE4961AE6494B00846214 /* APLViewController.m */,
+				E55EE4971AE6494B00846214 /* Reachability.h */,
+				E55EE4981AE6494B00846214 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		E5D8E61419F4FA5C0026B618 /* autolayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2734,6 +2742,7 @@
 				5BE319E51A3F0DD1000C028F /* ZXAnyAIDecoder.m in Sources */,
 				5BE319B11A3F0DD1000C028F /* ZXDataMatrixBitMatrixParser.m in Sources */,
 				5BD46DBA194D418E002995EB /* SendMessageAndEMailViewController.m in Sources */,
+				E55EE4991AE6494B00846214 /* APLViewController.m in Sources */,
 				5BE319C21A3F0DD1000C028F /* ZXTextEncoder.m in Sources */,
 				E5DEE0F419FDDD76005A0565 /* CameraPhotoViewController.m in Sources */,
 				5BE319A51A3F0DD1000C028F /* ZXBitMatrix.m in Sources */,
@@ -2787,7 +2796,6 @@
 				5BE31A001A3F0DD1000C028F /* ZXEAN13Writer.m in Sources */,
 				5BE319901A3F0DD1000C028F /* ZXTelResultParser.m in Sources */,
 				5BE319E01A3F0DD1000C028F /* ZXAI013x0x1xDecoder.m in Sources */,
-				25154181196FC2F400A456F3 /* Reachability.m in Sources */,
 				5BE31A3E1A3F0DD1000C028F /* ZXMatrixUtil.m in Sources */,
 				5BE319F81A3F0DD1000C028F /* ZXCodaBarReader.m in Sources */,
 				5B8468561956C1A30033C079 /* SQLiteTool.m in Sources */,
@@ -2929,6 +2937,7 @@
 				5BE319931A3F0DD1000C028F /* ZXURIResultParser.m in Sources */,
 				5BE31A191A3F0DD1000C028F /* ZXPDF417CodewordDecoder.m in Sources */,
 				0DC5F35C163AC67900F7D8D5 /* LastViewController.m in Sources */,
+				E55EE49A1AE6494B00846214 /* Reachability.m in Sources */,
 				5BE31A0B1A3F0DD1000C028F /* ZXUPCAWriter.m in Sources */,
 				5BE3198D1A3F0DD1000C028F /* ZXSMSTOMMSTOResultParser.m in Sources */,
 				5BE319811A3F0DD1000C028F /* ZXExpandedProductParsedResult.m in Sources */,

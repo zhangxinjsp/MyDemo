@@ -436,6 +436,36 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     return nil;
 }
 
+#pragma mark-
+#pragma mark- get ssid //获取当前连接wifi的ssid
+- (NSString*)getSSID
+{
+    /*
+     systemconfiguration,包含reachability，网络连接情况，网络切换变化（reachability）。
+     找时间
+     
+     
+     */
+    
+    NSString *currentSSID0 = @"";
+    CFArrayRef myArray = CNCopySupportedInterfaces();
+    if (myArray != nil){
+        NSDictionary* myDict = (NSDictionary *) CFBridgingRelease(CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0)));
+        if (myDict!=nil){
+            currentSSID0=[myDict valueForKey:@"SSID"];
+        } else {
+            currentSSID0=@"<<NONE>>";
+        }
+    } else {
+        currentSSID0=@"<<NONE>>";
+    }
+    
+    if (myArray) { // ADD BY BEVIS ++ 2014/10/20
+        CFRelease(myArray);//add by xishuaishuai for memory 2014-08-31
+    }// ADD BY BEVIS -- 2014/10/20
+    
+    return currentSSID0;
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     LOGINFO(@"viewWillAppear");
