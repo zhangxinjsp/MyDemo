@@ -8,7 +8,10 @@
 
 #import "AutoLayerViewController.h"
 
-@interface AutoLayerViewController ()
+@interface AutoLayerViewController (){
+    UIScrollView * scrollView;
+    NSArray* titleArray;
+}
 
 @end
 
@@ -155,6 +158,75 @@
     [self setValueText];
 }
 
+-(void)addScrollSubview{
+    
+    if (titleArray.count == 0) {
+        return;
+    }
+    
+    NSInteger totalCount = titleArray.count;
+    NSInteger columnCount = 1;
+    NSInteger rowCount = (totalCount + columnCount - 1) / columnCount;
+    
+    for (UIView* subview in scrollView.subviews) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            [subview removeFromSuperview];
+        }
+    }
+    
+    NSMutableDictionary* viewsDict = [[NSMutableDictionary alloc]init];
+    for (NSInteger i = 0; i < totalCount; i++) {
+        NSString* name = [titleArray objectAtIndex:i];
+        
+        UIButton* btn = [[UIButton alloc]init];
+        btn.backgroundColor = [UIColor greenColor];
+        btn.titleLabel.numberOfLines = 0;
+        btn.titleLabel.font = [UIFont systemFontOfSize:13];
+        btn.tag = i;
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitle:name forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(selectedPeripheral:) forControlEvents:UIControlEventTouchUpInside];
+        [btn setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [scrollView addSubview:btn];
+        
+        NSString* viewName = [NSString stringWithFormat:@"view_%ld",(long)i];
+        [viewsDict setObject:btn forKey:viewName];
+    }
+    
+    scrollView.contentSize = scrollView.bounds.size;
+    
+    NSMutableArray* constraintArray = [[NSMutableArray alloc]init];
+    
+    NSDictionary* metricsDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [NSNumber numberWithFloat:9.0], @"widthGap",
+                                 [NSNumber numberWithFloat:10.0], @"heightGap",
+                                 [NSNumber numberWithFloat:(CGRectGetWidth(scrollView.frame) - (columnCount + 1)* 9) / columnCount], @"width",
+                                 [NSNumber numberWithFloat:40], @"height",
+                                 nil];
+    
+    NSString* formatStrV = @"V:|";
+    for (NSInteger i = 0; i < rowCount; i++) {
+        
+        formatStrV = [formatStrV stringByAppendingFormat:@"-widthGap-[%@(==height)]",[NSString stringWithFormat:@"view_%ld",(long)i * columnCount]];
+        
+        NSString* formatStrH = @"H:|";
+        for (NSInteger j = 0; j < columnCount; j++) {
+            NSInteger index = j + i * columnCount;
+            if (index >= totalCount) {
+                break;
+            }
+            formatStrH = [formatStrH stringByAppendingFormat:@"-widthGap-[%@(==width)]",[NSString stringWithFormat:@"view_%ld",(long)index]];
+        }
+        formatStrH = [formatStrH stringByAppendingString:@"-(>=widthGap)-|"];
+        [constraintArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:formatStrH
+                                                                                     options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom
+                                                                                     metrics:metricsDict
+                                                                                       views:viewsDict]];
+    }
+    formatStrV = [formatStrV stringByAppendingString:@"-widthGap-|"];
+    [constraintArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:formatStrV options:0 metrics:metricsDict views:viewsDict]];
+    [scrollView addConstraints:constraintArray];
+}
 
 - (void)didReceiveMemoryWarning
 {

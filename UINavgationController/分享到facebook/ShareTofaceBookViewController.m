@@ -67,6 +67,9 @@ NSString *const FBSessionStateChangedNotification = @"cn.topdeep.UINavigationCon
 
 - (void)sharetoFacebook
 {
+//    UIActivityViewController
+    
+    
     if ([UIDevice currentDevice].systemVersion.floatValue > 7.0) {
         //调用系统的方法
         if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {

@@ -236,6 +236,12 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     //label多色的使用
     NSString* string = @"redblue<green>green</green>";
     NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc]initWithString:string];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:3];//调整行间距
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [string length])];
+    
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:[string rangeOfString:@"red"]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:[string rangeOfString:@"green"]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:[string rangeOfString:@"blue"]];
