@@ -48,6 +48,9 @@
 #import "APLViewController.h"
 #import "Reachability.h"
 
+#import <ifaddrs.h>
+#import <arpa/inet.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
 @interface APLViewController ()
 
@@ -192,5 +195,151 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
+-(NSString*) uuid {
+    CFUUIDRef puuid = CFUUIDCreate( nil );
+    CFStringRef uuidString = CFUUIDCreateString( nil, puuid );
+    NSString * result = (NSString *)CFBridgingRelease(CFStringCreateCopy( NULL, uuidString));
+    CFRelease(puuid);
+    CFRelease(uuidString);
+    return result;
+}
+
+
+
+//1.获取网卡IP
+- (NSString *)getIPAddress {
+    /*
+     #import <ifaddrs.h>
+     #import <arpa/inet.h>
+     */
+    NSString *address = @"error";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                }
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    // Free memory
+    freeifaddrs(interfaces);
+    return address;
+}
+
+- (NSDictionary *)getWIFIDic
+{
+    CFArrayRef myArray = CNCopySupportedInterfaces();
+    if (myArray != nil) {
+        CFDictionaryRef myDict = CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0));
+        if (myDict != nil) {
+            NSDictionary *dic = (NSDictionary*)CFBridgingRelease(myDict);
+            return dic;
+        }
+    }
+    return nil;
+}
+
+- (NSString *)getBSSID
+{
+    NSDictionary *dic = [self getWIFIDic];
+    if (dic == nil) {
+        return nil;
+    }
+    return dic[@"BSSID"];
+}
+
+- (NSString *)getSSID
+{
+    NSDictionary *dic = [self getWIFIDic];
+    if (dic == nil) {
+        return nil;
+    }
+    return dic[@"SSID"];
+}
+
+- (id)fetchSSIDInfo {
+    NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
+    NSLog(@"Supported interfaces: %@", ifs);
+    id info = nil;
+    for (NSString *ifnam in ifs) {
+        info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
+        NSLog(@"%@ => %@", ifnam, info);
+        if (info && [info count]) {
+            break;
+        }
+    }
+    return info;
+}
+
+- (void)registerNetwork:(NSString *)ssid
+{
+    NSString *values[] = {ssid};
+    CFArrayRef arrayRef = CFArrayCreate(kCFAllocatorDefault,(void *)values,
+                                        (CFIndex)1, &kCFTypeArrayCallBacks);
+    if( CNSetSupportedSSIDs(arrayRef)) {
+        NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
+        CNMarkPortalOnline((__bridge CFStringRef)(ifs[0]));
+        NSLog(@"%@", ifs);
+    }
+    
+    
+}
+
+/*
+ systemconfiguration,包含reachability，网络连接情况，网络切换变化（reachability）。
+ 找时间
+ */
+-(void)WWANType{
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+    {
+        
+        CTTelephonyNetworkInfo * info = [[CTTelephonyNetworkInfo alloc] init];
+        NSString *currentRadioAccessTechnology = info.currentRadioAccessTechnology;
+        if (currentRadioAccessTechnology)
+        {
+            if ([currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyLTE])
+            {
+//                returnValue =  kReachableVia4G;
+                LOGINFO(@"4G 网络");
+            }
+            else if ([currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyEdge] || [currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyGPRS])
+            {
+//                returnValue =  kReachableVia2G;
+                LOGINFO(@"2G 网络");
+            }
+            else
+            {
+//                returnValue =  kReachableVia3G;
+                LOGINFO(@"4G 网络");
+            }
+        }
+    }
+    
+//7.0之前做的判断
+//    if ((flags & kSCNetworkReachabilityFlagsTransientConnection) == kSCNetworkReachabilityFlagsTransientConnection)
+//    {
+//        if((flags & kSCNetworkReachabilityFlagsConnectionRequired) == kSCNetworkReachabilityFlagsConnectionRequired)
+//        {
+//            returnValue =  kReachableVia2G;
+//            return returnValue;
+//        }
+//        returnValue =  kReachableVia3G;
+//        return returnValue;
+//    }
+    
+    
+    
+}
 
 @end

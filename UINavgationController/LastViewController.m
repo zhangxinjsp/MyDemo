@@ -10,6 +10,8 @@
 #import "UILabel-LineHeigh.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreText/CoreText.h>
+#import <ifaddrs.h>
+#import <arpa/inet.h>
 
 typedef NSInteger (^TestAnimation)(NSString* str);
 
@@ -200,6 +202,8 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     
     [self searchBarClearBackground];
     [self labelMutableAttributedString];
+    
+    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIDeviceOrientationPortrait] forKey:@"orientation"];
 
 }
 //search bar 去除背景色
@@ -263,14 +267,6 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     [self.view addSubview:label];
 }
 
--(NSString*) uuid {
-    CFUUIDRef puuid = CFUUIDCreate( nil );
-    CFStringRef uuidString = CFUUIDCreateString( nil, puuid );
-    NSString * result = (NSString *)CFBridgingRelease(CFStringCreateCopy( NULL, uuidString));
-    CFRelease(puuid);
-    CFRelease(uuidString);
-    return result;
-}
 
 -(void)btnSelected:(id)sender{
 
@@ -440,37 +436,6 @@ typedef NSInteger (^TestAnimation)(NSString* str);
         return interactiveTransition;
     }
     return nil;
-}
-
-#pragma mark-
-#pragma mark- get ssid //获取当前连接wifi的ssid
-- (NSString*)getSSID
-{
-    /*
-     systemconfiguration,包含reachability，网络连接情况，网络切换变化（reachability）。
-     找时间
-     
-     
-     */
-    
-    NSString *currentSSID0 = @"";
-    CFArrayRef myArray = CNCopySupportedInterfaces();
-    if (myArray != nil){
-        NSDictionary* myDict = (NSDictionary *) CFBridgingRelease(CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0)));
-        if (myDict!=nil){
-            currentSSID0=[myDict valueForKey:@"SSID"];
-        } else {
-            currentSSID0=@"<<NONE>>";
-        }
-    } else {
-        currentSSID0=@"<<NONE>>";
-    }
-    
-    if (myArray) { // ADD BY BEVIS ++ 2014/10/20
-        CFRelease(myArray);//add by xishuaishuai for memory 2014-08-31
-    }// ADD BY BEVIS -- 2014/10/20
-    
-    return currentSSID0;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

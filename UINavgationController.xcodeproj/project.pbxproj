@@ -389,6 +389,8 @@
 		E55BFFCF1A3ADF4F00FB0A03 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E55BFFCE1A3ADF4F00FB0A03 /* AVFoundation.framework */; };
 		E55EE4991AE6494B00846214 /* APLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55EE4961AE6494B00846214 /* APLViewController.m */; };
 		E55EE49A1AE6494B00846214 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E55EE4981AE6494B00846214 /* Reachability.m */; };
+		E55F7E721B1425BB00C729E7 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F7E6F1B1425BB00C729E7 /* SSKeychain.m */; };
+		E55F7E731B1425BB00C729E7 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F7E711B1425BB00C729E7 /* SSKeychainQuery.m */; };
 		E561D7AB18DC41D000411BF0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E561D7AA18DC41D000411BF0 /* CoreText.framework */; };
 		E574A5F61AE0949200A1EE1B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */; };
 		E582A0D21AE6511C00763906 /* BTLECentralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E582A0CE1AE6511C00763906 /* BTLECentralViewController.m */; };
@@ -1100,6 +1102,10 @@
 		E55EE4961AE6494B00846214 /* APLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLViewController.m; sourceTree = "<group>"; };
 		E55EE4971AE6494B00846214 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		E55EE4981AE6494B00846214 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		E55F7E6E1B1425BB00C729E7 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		E55F7E6F1B1425BB00C729E7 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		E55F7E701B1425BB00C729E7 /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
+		E55F7E711B1425BB00C729E7 /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 		E561D7AA18DC41D000411BF0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E582A0CD1AE6511C00763906 /* BTLECentralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentralViewController.h; sourceTree = "<group>"; };
@@ -1502,6 +1508,7 @@
 		5BD46DA1194D418E002995EB /* systemExpand */ = {
 			isa = PBXGroup;
 			children = (
+				E55F7E6D1B1425BB00C729E7 /* SSKeychain */,
 				5B28323D19AA069500C873FB /* UIimage */,
 				5BC4EC041972C20200ECAB1E /* NSData */,
 				5B8468191955ACA80033C079 /* NSString */,
@@ -2493,6 +2500,17 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		E55F7E6D1B1425BB00C729E7 /* SSKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				E55F7E6E1B1425BB00C729E7 /* SSKeychain.h */,
+				E55F7E6F1B1425BB00C729E7 /* SSKeychain.m */,
+				E55F7E701B1425BB00C729E7 /* SSKeychainQuery.h */,
+				E55F7E711B1425BB00C729E7 /* SSKeychainQuery.m */,
+			);
+			path = SSKeychain;
+			sourceTree = "<group>";
+		};
 		E582A0CC1AE6511C00763906 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
@@ -2697,6 +2715,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BE319981A3F0DD1000C028F /* ZXWifiResultParser.m in Sources */,
+				E55F7E721B1425BB00C729E7 /* SSKeychain.m in Sources */,
 				250D5919197528F1006AA2F7 /* Area.m in Sources */,
 				5BE31A401A3F0DD1000C028F /* ZXQRCodeReader.m in Sources */,
 				5BE3198E1A3F0DD1000C028F /* ZXSMTPResultParser.m in Sources */,
@@ -2861,6 +2880,7 @@
 				5BE31A431A3F0DD1000C028F /* ZXBinaryBitmap.m in Sources */,
 				5B84681C1955ACA80033C079 /* NSString-expand.m in Sources */,
 				5BE319EF1A3F0DD1000C028F /* ZXExpandedPair.m in Sources */,
+				E55F7E731B1425BB00C729E7 /* SSKeychainQuery.m in Sources */,
 				5BE31A201A3F0DD1000C028F /* ZXPDF417DetectorResult.m in Sources */,
 				5BE31A451A3F0DD1000C028F /* ZXDimension.m in Sources */,
 				5BE31A1A1A3F0DD1000C028F /* ZXPDF417DecodedBitStreamParser.m in Sources */,
