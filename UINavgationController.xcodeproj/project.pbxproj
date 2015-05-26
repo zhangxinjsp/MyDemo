@@ -356,7 +356,6 @@
 		E53040951A08BBF400AE3D94 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E53040931A08BBF400AE3D94 /* CustomAlertView.m */; };
 		E53268D419FA394900FB6195 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53268D319FA394900FB6195 /* CoreMotion.framework */; };
 		E53268D719FA396700FB6195 /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E53268D619FA396700FB6195 /* MotionViewController.m */; };
-		E537BB8B1A7738FF00920A33 /* IMG_0770.png in Resources */ = {isa = PBXBuildFile; fileRef = E537BB8A1A7738FF00920A33 /* IMG_0770.png */; };
 		E53D504E19F748EA005C0E8E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53D504D19F748EA005C0E8E /* MapKit.framework */; };
 		E53D505019F748F7005C0E8E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53D504F19F748F7005C0E8E /* CoreLocation.framework */; };
 		E53D505319F74922005C0E8E /* MapAndLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E53D505219F74922005C0E8E /* MapAndLocationViewController.m */; };
@@ -389,8 +388,9 @@
 		E55BFFCF1A3ADF4F00FB0A03 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E55BFFCE1A3ADF4F00FB0A03 /* AVFoundation.framework */; };
 		E55EE4991AE6494B00846214 /* APLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55EE4961AE6494B00846214 /* APLViewController.m */; };
 		E55EE49A1AE6494B00846214 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E55EE4981AE6494B00846214 /* Reachability.m */; };
-		E55F7E721B1425BB00C729E7 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F7E6F1B1425BB00C729E7 /* SSKeychain.m */; };
-		E55F7E731B1425BB00C729E7 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F7E711B1425BB00C729E7 /* SSKeychainQuery.m */; };
+		E55F7E781B1451FD00C729E7 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F7E751B1451FD00C729E7 /* SSKeychain.m */; };
+		E55F7E791B1451FD00C729E7 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F7E771B1451FD00C729E7 /* SSKeychainQuery.m */; };
+		E55F7E7B1B14527C00C729E7 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E55F7E7A1B14527C00C729E7 /* CoreBluetooth.framework */; };
 		E561D7AB18DC41D000411BF0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E561D7AA18DC41D000411BF0 /* CoreText.framework */; };
 		E574A5F61AE0949200A1EE1B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */; };
 		E582A0D21AE6511C00763906 /* BTLECentralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E582A0CE1AE6511C00763906 /* BTLECentralViewController.m */; };
@@ -1032,7 +1032,6 @@
 		E53268D319FA394900FB6195 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E53268D519FA396700FB6195 /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MotionViewController.h; path = Motion/MotionViewController.h; sourceTree = "<group>"; };
 		E53268D619FA396700FB6195 /* MotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MotionViewController.m; path = Motion/MotionViewController.m; sourceTree = "<group>"; };
-		E537BB8A1A7738FF00920A33 /* IMG_0770.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0770.png; sourceTree = "<group>"; };
 		E53D504D19F748EA005C0E8E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E53D504F19F748F7005C0E8E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E53D505119F74922005C0E8E /* MapAndLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapAndLocationViewController.h; path = MapAndLocation/MapAndLocationViewController.h; sourceTree = "<group>"; };
@@ -1102,10 +1101,11 @@
 		E55EE4961AE6494B00846214 /* APLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLViewController.m; sourceTree = "<group>"; };
 		E55EE4971AE6494B00846214 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		E55EE4981AE6494B00846214 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		E55F7E6E1B1425BB00C729E7 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
-		E55F7E6F1B1425BB00C729E7 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
-		E55F7E701B1425BB00C729E7 /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
-		E55F7E711B1425BB00C729E7 /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
+		E55F7E741B1451FD00C729E7 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		E55F7E751B1451FD00C729E7 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		E55F7E761B1451FD00C729E7 /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
+		E55F7E771B1451FD00C729E7 /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
+		E55F7E7A1B14527C00C729E7 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		E561D7AA18DC41D000411BF0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E582A0CD1AE6511C00763906 /* BTLECentralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentralViewController.h; sourceTree = "<group>"; };
@@ -1139,6 +1139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E55F7E7B1B14527C00C729E7 /* CoreBluetooth.framework in Frameworks */,
 				E574A5F61AE0949200A1EE1B /* CoreTelephony.framework in Frameworks */,
 				E5E320861AC529C000D3BD1C /* libz.dylib in Frameworks */,
 				5BE31A511A3F0E34000C028F /* ImageIO.framework in Frameworks */,
@@ -1198,6 +1199,7 @@
 		0D7186F71600BE530062A13F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E55F7E7A1B14527C00C729E7 /* CoreBluetooth.framework */,
 				25154182196FC43400A456F3 /* SystemConfiguration.framework */,
 				E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */,
 				5B28324119AA0B2400C873FB /* Accelerate.framework */,
@@ -1378,7 +1380,6 @@
 		5BD46D12194D3B61002995EB /* image */ = {
 			isa = PBXGroup;
 			children = (
-				E537BB8A1A7738FF00920A33 /* IMG_0770.png */,
 				E52F01DB1A762543005609D5 /* boots.png */,
 				E52F01D91A760FDA005609D5 /* redFlower.png */,
 				E545B0C11A09CD780007F4AE /* customAlertButtonBG_cancel.png */,
@@ -2503,10 +2504,10 @@
 		E55F7E6D1B1425BB00C729E7 /* SSKeychain */ = {
 			isa = PBXGroup;
 			children = (
-				E55F7E6E1B1425BB00C729E7 /* SSKeychain.h */,
-				E55F7E6F1B1425BB00C729E7 /* SSKeychain.m */,
-				E55F7E701B1425BB00C729E7 /* SSKeychainQuery.h */,
-				E55F7E711B1425BB00C729E7 /* SSKeychainQuery.m */,
+				E55F7E741B1451FD00C729E7 /* SSKeychain.h */,
+				E55F7E751B1451FD00C729E7 /* SSKeychain.m */,
+				E55F7E761B1451FD00C729E7 /* SSKeychainQuery.h */,
+				E55F7E771B1451FD00C729E7 /* SSKeychainQuery.m */,
 			);
 			path = SSKeychain;
 			sourceTree = "<group>";
@@ -2673,7 +2674,6 @@
 				5BD46D4A194D3B61002995EB /* 上睫毛阴影.png in Resources */,
 				5BD46D5A194D3B61002995EB /* 瞳孔.png in Resources */,
 				5BC0779D194D7AAD0024627F /* Default-568h@2x.png in Resources */,
-				E537BB8B1A7738FF00920A33 /* IMG_0770.png in Resources */,
 				5BC0779E194D7AAD0024627F /* Default.png in Resources */,
 				5BD46DC4194D418E002995EB /* RegexAndMd5ViewController.xib in Resources */,
 				5BD46D4C194D3B61002995EB /* 下眼线.png in Resources */,
@@ -2715,7 +2715,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BE319981A3F0DD1000C028F /* ZXWifiResultParser.m in Sources */,
-				E55F7E721B1425BB00C729E7 /* SSKeychain.m in Sources */,
+				E55F7E781B1451FD00C729E7 /* SSKeychain.m in Sources */,
 				250D5919197528F1006AA2F7 /* Area.m in Sources */,
 				5BE31A401A3F0DD1000C028F /* ZXQRCodeReader.m in Sources */,
 				5BE3198E1A3F0DD1000C028F /* ZXSMTPResultParser.m in Sources */,
@@ -2880,7 +2880,7 @@
 				5BE31A431A3F0DD1000C028F /* ZXBinaryBitmap.m in Sources */,
 				5B84681C1955ACA80033C079 /* NSString-expand.m in Sources */,
 				5BE319EF1A3F0DD1000C028F /* ZXExpandedPair.m in Sources */,
-				E55F7E731B1425BB00C729E7 /* SSKeychainQuery.m in Sources */,
+				E55F7E791B1451FD00C729E7 /* SSKeychainQuery.m in Sources */,
 				5BE31A201A3F0DD1000C028F /* ZXPDF417DetectorResult.m in Sources */,
 				5BE31A451A3F0DD1000C028F /* ZXDimension.m in Sources */,
 				5BE31A1A1A3F0DD1000C028F /* ZXPDF417DecodedBitStreamParser.m in Sources */,
