@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AssetsLibrary/AssetsLibrary.h>
-#import <MobileCoreServices/MobileCoreServices.h>
-
-@interface CameraPhotoViewController : UIViewController
+#import "BaseViewController.h"
+@interface CameraPhotoViewController : BaseViewController
 
 @end

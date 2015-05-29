@@ -395,6 +395,8 @@
 		E574A5F61AE0949200A1EE1B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */; };
 		E582A0D21AE6511C00763906 /* BTLECentralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E582A0CE1AE6511C00763906 /* BTLECentralViewController.m */; };
 		E582A0D31AE6511C00763906 /* BTLEPeripheralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E582A0D01AE6511C00763906 /* BTLEPeripheralViewController.m */; };
+		E5CF692B1B183D4D00EE5A0E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CF692A1B183D4D00EE5A0E /* OpenGLES.framework */; };
+		E5CF692D1B183E1900EE5A0E /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CF692C1B183E1900EE5A0E /* GLKit.framework */; };
 		E5D1F2241A0325830062DE97 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */; };
 		E5D8E61719F4FA990026B618 /* AutoLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */; };
 		E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */; };
@@ -1113,6 +1115,8 @@
 		E582A0CF1AE6511C00763906 /* BTLEPeripheralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEPeripheralViewController.h; sourceTree = "<group>"; };
 		E582A0D01AE6511C00763906 /* BTLEPeripheralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEPeripheralViewController.m; sourceTree = "<group>"; };
 		E582A0D11AE6511C00763906 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
+		E5CF692A1B183D4D00EE5A0E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		E5CF692C1B183E1900EE5A0E /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E5D8E61519F4FA990026B618 /* AutoLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoLayerViewController.h; path = autolayer/AutoLayerViewController.h; sourceTree = "<group>"; };
 		E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoLayerViewController.m; path = autolayer/AutoLayerViewController.m; sourceTree = "<group>"; };
@@ -1139,6 +1143,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5CF692D1B183E1900EE5A0E /* GLKit.framework in Frameworks */,
+				E5CF692B1B183D4D00EE5A0E /* OpenGLES.framework in Frameworks */,
 				E55F7E7B1B14527C00C729E7 /* CoreBluetooth.framework in Frameworks */,
 				E574A5F61AE0949200A1EE1B /* CoreTelephony.framework in Frameworks */,
 				E5E320861AC529C000D3BD1C /* libz.dylib in Frameworks */,
@@ -1199,6 +1205,8 @@
 		0D7186F71600BE530062A13F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5CF692C1B183E1900EE5A0E /* GLKit.framework */,
+				E5CF692A1B183D4D00EE5A0E /* OpenGLES.framework */,
 				E55F7E7A1B14527C00C729E7 /* CoreBluetooth.framework */,
 				25154182196FC43400A456F3 /* SystemConfiguration.framework */,
 				E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */,
