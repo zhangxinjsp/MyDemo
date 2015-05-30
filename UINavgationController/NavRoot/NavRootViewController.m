@@ -22,7 +22,7 @@
 #import "MapAndLocationViewController.h"
 #import "ContactsViewController.h"
 #import "MotionViewController.h"
-#import "CameraPhotoViewController.h"
+#import "CameraViewController.h"
 #import "ZBarViewController.h"
 #import "ZXingViewController.h"
 #import "CoreImageFilterViewController.h"
@@ -251,7 +251,7 @@
         }
             break;
         case 16:{
-            CameraPhotoViewController* ctl = [[CameraPhotoViewController alloc] init];
+            CameraViewController* ctl = [[CameraViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }

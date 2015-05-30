@@ -31,6 +31,10 @@
 		25154183196FC43400A456F3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25154182196FC43400A456F3 /* SystemConfiguration.framework */; };
 		5B28324019AA06E700C873FB /* UIImage+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B28323F19AA06E700C873FB /* UIImage+Effects.m */; };
 		5B28324219AA0B2400C873FB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B28324119AA0B2400C873FB /* Accelerate.framework */; };
+		5B66177C1B19FB3F000C584F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */; };
+		5B66177F1B19FBFC000C584F /* MediaCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66177E1B19FBFC000C584F /* MediaCaptureViewController.m */; };
+		5B6617831B1AC3D4000C584F /* SquareCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6617811B1AC3D4000C584F /* SquareCamViewController.m */; };
+		5B6617841B1AC3D4000C584F /* squarePNG.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6617821B1AC3D4000C584F /* squarePNG.png */; };
 		5B84681C1955ACA80033C079 /* NSString-expand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B84681B1955ACA80033C079 /* NSString-expand.m */; };
 		5B84682B195691860033C079 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B84682A195691860033C079 /* CoreData.framework */; };
 		5B84684D1956BEAA0033C079 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B8468451956BEAA0033C079 /* CoreData.xcdatamodeld */; };
@@ -400,7 +404,7 @@
 		E5D1F2241A0325830062DE97 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */; };
 		E5D8E61719F4FA990026B618 /* AutoLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */; };
 		E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */; };
-		E5DEE0F419FDDD76005A0565 /* CameraPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DEE0F319FDDD76005A0565 /* CameraPhotoViewController.m */; };
+		E5DEE0F419FDDD76005A0565 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DEE0F319FDDD76005A0565 /* CameraViewController.m */; };
 		E5E3207F1AC5280000D3BD1C /* ChangeLogUnzip in Resources */ = {isa = PBXBuildFile; fileRef = E5E320731AC5280000D3BD1C /* ChangeLogUnzip */; };
 		E5E320801AC5280000D3BD1C /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E5E320751AC5280000D3BD1C /* ioapi.c */; };
 		E5E320811AC5280000D3BD1C /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E5E320771AC5280000D3BD1C /* mztools.c */; };
@@ -445,6 +449,12 @@
 		5B28323E19AA06E700C873FB /* UIImage+Effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Effects.h"; path = "UIImage/UIImage+Effects.h"; sourceTree = "<group>"; };
 		5B28323F19AA06E700C873FB /* UIImage+Effects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Effects.m"; path = "UIImage/UIImage+Effects.m"; sourceTree = "<group>"; };
 		5B28324119AA0B2400C873FB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		5B66177D1B19FBFC000C584F /* MediaCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MediaCaptureViewController.h; path = CameraPhoto/MediaCaptureViewController.h; sourceTree = "<group>"; };
+		5B66177E1B19FBFC000C584F /* MediaCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MediaCaptureViewController.m; path = CameraPhoto/MediaCaptureViewController.m; sourceTree = "<group>"; };
+		5B6617801B1AC3D4000C584F /* SquareCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SquareCamViewController.h; path = CameraPhoto/SquareCamViewController.h; sourceTree = "<group>"; };
+		5B6617811B1AC3D4000C584F /* SquareCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SquareCamViewController.m; path = CameraPhoto/SquareCamViewController.m; sourceTree = "<group>"; };
+		5B6617821B1AC3D4000C584F /* squarePNG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = squarePNG.png; path = CameraPhoto/squarePNG.png; sourceTree = "<group>"; };
 		5B84681A1955ACA80033C079 /* NSString-expand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-expand.h"; sourceTree = "<group>"; };
 		5B84681B1955ACA80033C079 /* NSString-expand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-expand.m"; sourceTree = "<group>"; };
 		5B84682A195691860033C079 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1121,8 +1131,8 @@
 		E5D8E61519F4FA990026B618 /* AutoLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoLayerViewController.h; path = autolayer/AutoLayerViewController.h; sourceTree = "<group>"; };
 		E5D8E61619F4FA990026B618 /* AutoLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoLayerViewController.m; path = autolayer/AutoLayerViewController.m; sourceTree = "<group>"; };
 		E5D8E61819F5083E0026B618 /* AutoLayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AutoLayerViewController.xib; path = autolayer/AutoLayerViewController.xib; sourceTree = "<group>"; };
-		E5DEE0F219FDDD76005A0565 /* CameraPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraPhotoViewController.h; path = CameraPhoto/CameraPhotoViewController.h; sourceTree = "<group>"; };
-		E5DEE0F319FDDD76005A0565 /* CameraPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraPhotoViewController.m; path = CameraPhoto/CameraPhotoViewController.m; sourceTree = "<group>"; };
+		E5DEE0F219FDDD76005A0565 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = CameraPhoto/CameraViewController.h; sourceTree = "<group>"; };
+		E5DEE0F319FDDD76005A0565 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = CameraPhoto/CameraViewController.m; sourceTree = "<group>"; };
 		E5E320731AC5280000D3BD1C /* ChangeLogUnzip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLogUnzip; sourceTree = "<group>"; };
 		E5E320741AC5280000D3BD1C /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		E5E320751AC5280000D3BD1C /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
@@ -1143,6 +1153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B66177C1B19FB3F000C584F /* AssetsLibrary.framework in Frameworks */,
 				E5CF692D1B183E1900EE5A0E /* GLKit.framework in Frameworks */,
 				E5CF692B1B183D4D00EE5A0E /* OpenGLES.framework in Frameworks */,
 				E55F7E7B1B14527C00C729E7 /* CoreBluetooth.framework in Frameworks */,
@@ -1205,27 +1216,26 @@
 		0D7186F71600BE530062A13F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E5CF692C1B183E1900EE5A0E /* GLKit.framework */,
-				E5CF692A1B183D4D00EE5A0E /* OpenGLES.framework */,
-				E55F7E7A1B14527C00C729E7 /* CoreBluetooth.framework */,
-				25154182196FC43400A456F3 /* SystemConfiguration.framework */,
-				E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */,
 				5B28324119AA0B2400C873FB /* Accelerate.framework */,
 				0D9568811685FBFF00AA4B81 /* Accounts.framework */,
 				E5442C2919F89FBC000A6D7F /* AddressBook.framework */,
 				0D95687F1685FBF900AA4B81 /* AdSupport.framework */,
+				5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */,
 				E55BFFCE1A3ADF4F00FB0A03 /* AVFoundation.framework */,
 				5BDB06A819C724F80099FBA8 /* CFNetwork.framework */,
+				E55F7E7A1B14527C00C729E7 /* CoreBluetooth.framework */,
 				5B84682A195691860033C079 /* CoreData.framework */,
 				0D7186FC1600BE530062A13F /* CoreGraphics.framework */,
 				0D1E654D16A798D1008F1E4C /* CoreImage.framework */,
 				E53D504F19F748F7005C0E8E /* CoreLocation.framework */,
 				E55B00111A3AE67600FB0A03 /* CoreMedia.framework */,
 				E53268D319FA394900FB6195 /* CoreMotion.framework */,
+				E574A5F51AE0949200A1EE1B /* CoreTelephony.framework */,
 				E561D7AA18DC41D000411BF0 /* CoreText.framework */,
 				E55B00131A3AE68300FB0A03 /* CoreVideo.framework */,
 				5BC077A0194D88860024627F /* FacebookSDK.framework */,
 				0D7186FA1600BE530062A13F /* Foundation.framework */,
+				E5CF692C1B183E1900EE5A0E /* GLKit.framework */,
 				5BE31A501A3F0E34000C028F /* ImageIO.framework */,
 				E55B00151A3AE6D000FB0A03 /* libiconv.dylib */,
 				0D9087AA164B8BB3004F2C20 /* libicucore.dylib */,
@@ -1235,9 +1245,11 @@
 				E53D504D19F748EA005C0E8E /* MapKit.framework */,
 				0D95675116857A2700AA4B81 /* MessageUI.framework */,
 				E5D1F2231A0325830062DE97 /* MobileCoreServices.framework */,
+				E5CF692A1B183D4D00EE5A0E /* OpenGLES.framework */,
 				0D5ECEFC167033B40074FBA4 /* QuartzCore.framework */,
 				5BC077A2194DAA590024627F /* Security.framework */,
 				0D9568831685FC1D00AA4B81 /* Social.framework */,
+				25154182196FC43400A456F3 /* SystemConfiguration.framework */,
 				0D7186F81600BE530062A13F /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -2545,8 +2557,13 @@
 		E5DEE0F119FDDD39005A0565 /* CameraPhoto */ = {
 			isa = PBXGroup;
 			children = (
-				E5DEE0F219FDDD76005A0565 /* CameraPhotoViewController.h */,
-				E5DEE0F319FDDD76005A0565 /* CameraPhotoViewController.m */,
+				E5DEE0F219FDDD76005A0565 /* CameraViewController.h */,
+				E5DEE0F319FDDD76005A0565 /* CameraViewController.m */,
+				5B66177D1B19FBFC000C584F /* MediaCaptureViewController.h */,
+				5B66177E1B19FBFC000C584F /* MediaCaptureViewController.m */,
+				5B6617801B1AC3D4000C584F /* SquareCamViewController.h */,
+				5B6617811B1AC3D4000C584F /* SquareCamViewController.m */,
+				5B6617821B1AC3D4000C584F /* squarePNG.png */,
 			);
 			name = CameraPhoto;
 			sourceTree = "<group>";
@@ -2647,6 +2664,7 @@
 				5BD46D45194D3B61002995EB /* 上眼皮中部.png in Resources */,
 				5BD46D43194D3B61002995EB /* paletta_icon@2x.png in Resources */,
 				E5D8E61919F5083E0026B618 /* AutoLayerViewController.xib in Resources */,
+				5B6617841B1AC3D4000C584F /* squarePNG.png in Resources */,
 				E55B000B1A3AE55F00FB0A03 /* zbar-help.html in Resources */,
 				E54B610C1A3ED9B000589927 /* Readme.txt in Resources */,
 				5BD46DDC194D418E002995EB /* TransformViewController.xib in Resources */,
@@ -2791,13 +2809,14 @@
 				5BD46DBA194D418E002995EB /* SendMessageAndEMailViewController.m in Sources */,
 				E55EE4991AE6494B00846214 /* APLViewController.m in Sources */,
 				5BE319C21A3F0DD1000C028F /* ZXTextEncoder.m in Sources */,
-				E5DEE0F419FDDD76005A0565 /* CameraPhotoViewController.m in Sources */,
+				E5DEE0F419FDDD76005A0565 /* CameraViewController.m in Sources */,
 				5BE319A51A3F0DD1000C028F /* ZXBitMatrix.m in Sources */,
 				5BE31A331A3F0DD1000C028F /* ZXQRCodeVersion.m in Sources */,
 				5BE3197B1A3F0DD1000C028F /* ZXBizcardResultParser.m in Sources */,
 				5B8468501956BEAA0033C079 /* User.m in Sources */,
 				5BE319791A3F0DD1000C028F /* ZXAddressBookDoCoMoResultParser.m in Sources */,
 				5BE319A91A3F0DD1000C028F /* ZXDefaultGridSampler.m in Sources */,
+				5B6617831B1AC3D4000C584F /* SquareCamViewController.m in Sources */,
 				E55B00071A3AE55F00FB0A03 /* rscode.c in Sources */,
 				5BE319FD1A3F0DD1000C028F /* ZXCode39Writer.m in Sources */,
 				5BE31A021A3F0DD1000C028F /* ZXEAN8Writer.m in Sources */,
@@ -2828,6 +2847,7 @@
 				5BE31A181A3F0DD1000C028F /* ZXPDF417Codeword.m in Sources */,
 				5BE31A491A3F0DD1000C028F /* ZXLuminanceSource.m in Sources */,
 				5BE31A471A3F0DD1000C028F /* ZXErrors.m in Sources */,
+				5B66177F1B19FBFC000C584F /* MediaCaptureViewController.m in Sources */,
 				5BE31A131A3F0DD1000C028F /* ZXModulusPoly.m in Sources */,
 				5BE319AA1A3F0DD1000C028F /* ZXDetectorResult.m in Sources */,
 				E55B00101A3AE59300FB0A03 /* ZBarViewController.m in Sources */,
@@ -3118,8 +3138,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a939f61e-a80c-4970-8af1-343d389ff75c";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a939f61e-a80c-4970-8af1-343d389ff75c";
+				PROVISIONING_PROFILE = "4464a4d9-349a-49d7-b256-e5eb90d16126";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
@@ -3148,8 +3168,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a939f61e-a80c-4970-8af1-343d389ff75c";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a939f61e-a80c-4970-8af1-343d389ff75c";
+				PROVISIONING_PROFILE = "4464a4d9-349a-49d7-b256-e5eb90d16126";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
