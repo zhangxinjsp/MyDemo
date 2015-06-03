@@ -7,6 +7,7 @@
 //
 #import <ImageIO/ImageIO.h>
 #import "CoreImageFilterViewController.h"
+#import <GLKit/GLKit.h>
 
 @interface CoreImageFilterViewController (){
     UIButton* originalImageBtn;
@@ -76,24 +77,49 @@
     
     CIFilter *filter = [self testFilter];
     
+//    filter.inputKeys输入key
+//    filter.outputKeys;输出key
+//    filter.attributes//参数的定义，
+    
     CIImage *outputCIImage = [filter outputImage];
     CGRect rect = [outputCIImage extent];
     if (needResizeRect) {
         rect = CGRectMake(0, 0, 200, 200);
     }
     LOGINFO(@"%f     %f", rect.size.width, rect.size.height);
-    
+#if 0
     CIContext *context = [CIContext contextWithOptions:nil];
     CGImageRef cgImage = [context createCGImage:outputCIImage fromRect:rect];
-
     UIImage * effectImage = [UIImage imageWithCGImage:cgImage];
+    effectImageView.image = effectImage;
+#else
+    /*
+     使用OpenGL提升新能
+     只要有可能，Core Image 将在 GPU 上执行滤镜操作。然而，它确实有回滚到 CPU 上执行的可能。滤镜操作在 CPU 上完成可具有更好的精确度，因为 GPU 经常在浮点计算上以失真换得更快的速度。在创建一个上下文时，你可以通过设置kCIContextUseSoftwareRenderer 关键字的值为 true 来强制 Core Image 在 CPU 上运行。
+     
+     你可以通过在 Xcode 中设置计划配置（scheme configuration）里的 CI_PRINT_TREE 环境变量为 1 来决定用 CPU 还是 GPU 来渲染。这将导致每次一个滤镜处理图像被渲染的时候 Core Image 都会打印诊断信息。此设置用来检查合成图像滤镜树也很有用。
+     */
+    
+    EAGLContext* glContext = [[EAGLContext alloc]initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    
+    GLKView* glView = [[GLKView alloc]initWithFrame:CGRectMake(0, 100, 320, 320) context:glContext];
+    
+    CIContext *context = [CIContext contextWithEAGLContext:glContext];
+    
+    [glView bindDrawable];
+    [context drawImage:filter.outputImage inRect:rect fromRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+    [glView display];
+    
+    [self.view addSubview:glView];
+    
+#endif
     
     LOGINFO(@"end effect");
    
     
 //    [effectImageView.layer addAnimation:[self transition:filter] forKey:@"transition"];
 
-    effectImageView.image = effectImage;
+    
     [self performSelector:@selector(coreImageFilterUsing:) withObject:sender afterDelay:1.0f/30.0f];
 }
 
@@ -103,10 +129,23 @@
 -(CIFilter*)testFilter{
     static CGFloat index = 0.0f;
     
-    CIFilter* filter = [self copyMachineTransitionFilter:index];
+//    CIFilter* filter = [self copyMachineTransitionFilter:index];
+    
+    CIColor* sepiaColor = [CIColor colorWithRed:0.76 green:0.65 blue:0.54];
+    CIImage *inputCIImage = [[CIImage alloc]initWithImage:image];
+    
+    CIFilter* monochromeFilter = [CIFilter filterWithName:@"CIColorMonochrome" withInputParameters:@{kCIInputColorKey :sepiaColor, kCIInputIntensityKey : @1.0}];
+    
+    [monochromeFilter setValue:inputCIImage forKey:kCIInputImageKey];
+    
+    CIFilter* vignetterFilter = [CIFilter filterWithName:@"CIVignette" withInputParameters:@{kCIInputRadiusKey : @1.75, kCIInputIntensityKey : @1.0}];
+    
+    [vignetterFilter setValue:monochromeFilter.outputImage forKey:kCIInputImageKey];
+    
+//    CIImage* outputImage = vignetterFilter.outputImage;
     
     index += 1.0f/30.0f;
-    return filter;
+    return vignetterFilter;
 }
 
 /*

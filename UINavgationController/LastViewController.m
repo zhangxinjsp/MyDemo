@@ -394,6 +394,7 @@ typedef NSInteger (^TestAnimation)(NSString* str);
 //    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
 }
 
+#pragma mark navigation pop animation
 -(void)panGestureHandle:(UIPanGestureRecognizer*)gesture{
     
     CGFloat progress = [gesture translationInView:self.view].x / self.view.bounds.size.width;
@@ -437,6 +438,45 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     }
     return nil;
 }
+
+#pragma  mark run loop
+- (void)runLoop {
+    CFRunLoopRef runLoop = CFRunLoopGetCurrent();
+    CFArrayRef allModes = CFRunLoopCopyAllModes(runLoop);
+    
+    while (!NO) {
+        for (NSString *mode in (__bridge NSArray *)allModes) {
+            CFRunLoopRunInMode((__bridge CFStringRef)mode, 0.001, false);
+        }
+    }
+    
+    CFRelease(allModes);
+}
+
+static BOOL pageStillLoading = NO;
+
+- (IBAction)start:(id)sender
+{
+    pageStillLoading = YES;
+    [NSThread detachNewThreadSelector:@selector(loadPageInBackground:)toTarget:self withObject:nil];
+
+    NSLog(@"start  start  start  start  start  start  start  start  ");
+    while (pageStillLoading) {
+        NSLog(@"run loop");
+        
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+    }
+    NSLog(@"end   end   end   end   end   end   end   end   end   ");
+
+}
+
+-(void)loadPageInBackground:(id)sender{
+    for (int i = 0; i < 1000; i ++) {
+        NSLog(@"%d <%@>", i, [NSDate distantFuture]);
+    }
+    pageStillLoading = NO;
+}
+
 
 -(void)viewWillAppear:(BOOL)animated{
     LOGINFO(@"viewWillAppear");
