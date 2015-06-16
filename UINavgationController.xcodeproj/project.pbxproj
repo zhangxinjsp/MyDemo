@@ -372,6 +372,9 @@
 		E54B610A1A3ED9B000589927 /* QR_Encode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E54B61041A3ED9B000589927 /* QR_Encode.cpp */; };
 		E54B610B1A3ED9B000589927 /* QREncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = E54B61071A3ED9B000589927 /* QREncoder.mm */; };
 		E54B610C1A3ED9B000589927 /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = E54B61081A3ED9B000589927 /* Readme.txt */; };
+		E54F8B071B2FC4BC0095DDCF /* VideoToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E54F8B061B2FC4BC0095DDCF /* VideoToolViewController.m */; };
+		E54F8B0A1B2FC5420095DDCF /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54F8B091B2FC5420095DDCF /* VideoToolbox.framework */; };
+		E54F8B0C1B2FC8D80095DDCF /* REVideo3.264 in Resources */ = {isa = PBXBuildFile; fileRef = E54F8B0B1B2FC8D80095DDCF /* REVideo3.264 */; };
 		E55B00011A3AE55F00FB0A03 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = E55BFFEB1A3AE55F00FB0A03 /* bitstream.c */; };
 		E55B00021A3AE55F00FB0A03 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = E55BFFED1A3AE55F00FB0A03 /* mask.c */; };
 		E55B00031A3AE55F00FB0A03 /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = E55BFFF01A3AE55F00FB0A03 /* QRCodeGenerator.m */; };
@@ -1062,6 +1065,10 @@
 		E54B61061A3ED9B000589927 /* QREncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QREncoder.h; sourceTree = "<group>"; };
 		E54B61071A3ED9B000589927 /* QREncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QREncoder.mm; sourceTree = "<group>"; };
 		E54B61081A3ED9B000589927 /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
+		E54F8B051B2FC4BC0095DDCF /* VideoToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoToolViewController.h; sourceTree = "<group>"; };
+		E54F8B061B2FC4BC0095DDCF /* VideoToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoToolViewController.m; sourceTree = "<group>"; };
+		E54F8B091B2FC5420095DDCF /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		E54F8B0B1B2FC8D80095DDCF /* REVideo3.264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = REVideo3.264; sourceTree = "<group>"; };
 		E55B00001A3AE55F00FB0A03 /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-samples.png"; sourceTree = "<group>"; };
 		E55B000E1A3AE59300FB0A03 /* ZBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarViewController.h; sourceTree = "<group>"; };
 		E55B000F1A3AE59300FB0A03 /* ZBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBarViewController.m; sourceTree = "<group>"; };
@@ -1153,6 +1160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E54F8B0A1B2FC5420095DDCF /* VideoToolbox.framework in Frameworks */,
 				5B66177C1B19FB3F000C584F /* AssetsLibrary.framework in Frameworks */,
 				E5CF692D1B183E1900EE5A0E /* GLKit.framework in Frameworks */,
 				E5CF692B1B183D4D00EE5A0E /* OpenGLES.framework in Frameworks */,
@@ -1251,6 +1259,7 @@
 				0D9568831685FC1D00AA4B81 /* Social.framework */,
 				25154182196FC43400A456F3 /* SystemConfiguration.framework */,
 				0D7186F81600BE530062A13F /* UIKit.framework */,
+				E54F8B091B2FC5420095DDCF /* VideoToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1288,6 +1297,7 @@
 				E5DEE0F119FDDD39005A0565 /* CameraPhoto */,
 				E55EE4941AE6494B00846214 /* Reachability */,
 				E582A0CC1AE6511C00763906 /* BLE */,
+				E54F8B041B2FC4920095DDCF /* VideoToolH264 */,
 				5BD46DAC194D418E002995EB /* UIScrollView代码实现无缝循环滚动 */,
 				0DC5F359163AC67900F7D8D5 /* LastViewController.h */,
 				0DC5F35A163AC67900F7D8D5 /* LastViewController.m */,
@@ -1389,6 +1399,7 @@
 				250D590E19752898006AA2F7 /* area.db */,
 				5BC0779A194D7AAD0024627F /* Default-568h@2x.png */,
 				5BC0779B194D7AAD0024627F /* Default.png */,
+				E54F8B0B1B2FC8D80095DDCF /* REVideo3.264 */,
 				5BC0779C194D7AAD0024627F /* Default@2x.png */,
 				5BD46D5F194D416E002995EB /* palettaLocal.db */,
 				5BD46D60194D416E002995EB /* palettaSave.db */,
@@ -2408,6 +2419,15 @@
 			path = QREncode;
 			sourceTree = "<group>";
 		};
+		E54F8B041B2FC4920095DDCF /* VideoToolH264 */ = {
+			isa = PBXGroup;
+			children = (
+				E54F8B051B2FC4BC0095DDCF /* VideoToolViewController.h */,
+				E54F8B061B2FC4BC0095DDCF /* VideoToolViewController.m */,
+			);
+			path = VideoToolH264;
+			sourceTree = "<group>";
+		};
 		E55BFFD11A3AE55F00FB0A03 /* 二维码 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2702,6 +2722,7 @@
 				5BC0779D194D7AAD0024627F /* Default-568h@2x.png in Resources */,
 				5BC0779E194D7AAD0024627F /* Default.png in Resources */,
 				5BD46DC4194D418E002995EB /* RegexAndMd5ViewController.xib in Resources */,
+				E54F8B0C1B2FC8D80095DDCF /* REVideo3.264 in Resources */,
 				5BD46D4C194D3B61002995EB /* 下眼线.png in Resources */,
 				5BD46DC2194D418E002995EB /* RefreshViewController.xib in Resources */,
 				5BD46D53194D3B61002995EB /* 外眼角.png in Resources */,
@@ -2908,6 +2929,7 @@
 				5BE31A431A3F0DD1000C028F /* ZXBinaryBitmap.m in Sources */,
 				5B84681C1955ACA80033C079 /* NSString-expand.m in Sources */,
 				5BE319EF1A3F0DD1000C028F /* ZXExpandedPair.m in Sources */,
+				E54F8B071B2FC4BC0095DDCF /* VideoToolViewController.m in Sources */,
 				E55F7E791B1451FD00C729E7 /* SSKeychainQuery.m in Sources */,
 				5BE31A201A3F0DD1000C028F /* ZXPDF417DetectorResult.m in Sources */,
 				5BE31A451A3F0DD1000C028F /* ZXDimension.m in Sources */,

@@ -26,6 +26,7 @@
 #import "ZBarViewController.h"
 #import "ZXingViewController.h"
 #import "CoreImageFilterViewController.h"
+#import "VideoToolViewController.h"
 
 
 #import "CustomAlertView.h"
@@ -116,7 +117,7 @@
     NSInteger upDownGap = 15;
     NSInteger leftRightGap = 18;
     
-    titleArray = [[NSArray alloc]initWithObjects:@"webView", @"transform", @"正则md5", @"drawrect", @"下拉刷新", @"CoreData", @"文件读写", @"SQLite", @"短信和邮件",@"分享", @"request", @"socket", @"Auto Layer", @"map,location", @"addressBook", @"motion", @"camera", @"ZBar", @"ZXing", @"filter", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"webView", @"transform", @"正则md5", @"drawrect", @"下拉刷新", @"CoreData", @"文件读写", @"SQLite", @"短信和邮件",@"分享", @"request", @"socket", @"Auto Layer", @"map,location", @"addressBook", @"motion", @"camera", @"ZBar", @"ZXing", @"filter", @"videoTool", nil];
     
     for (int i = 0; i < titleArray.count; i++) {
         NSInteger x = (i % 4) * (menuItemViewWidth + leftRightGap) + leftRightGap;
@@ -270,6 +271,11 @@
             break;
         case 19:{
             CoreImageFilterViewController* ctl = [[CoreImageFilterViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
+        }
+        case 20:{
+            VideoToolViewController* ctl = [[VideoToolViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
