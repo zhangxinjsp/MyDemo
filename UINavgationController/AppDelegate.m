@@ -2,8 +2,8 @@
 //  AppDelegate.m
 //  UINavgationController
 //
-//  Created by niexin on 12-9-12.
-//  Copyright (c) 2012年 niexin. All rights reserved.
+//  Created by zhangxin on 12-9-12.
+//  Copyright (c) 2012年 zhangxin. All rights reserved.
 //
 
 #import "AppDelegate.h"

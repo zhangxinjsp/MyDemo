@@ -2,8 +2,8 @@
 //  MapAndLocationViewController.m
 //  UINavgationController
 //
-//  Created by xsw on 14-10-22.
-//  Copyright (c) 2014年 niexin. All rights reserved.
+//  Created by zhangxin on 14-10-22.
+//  Copyright (c) 2014年 zhangxin. All rights reserved.
 //
 
 #import "MapAndLocationViewController.h"

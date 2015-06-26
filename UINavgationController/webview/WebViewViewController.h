@@ -2,8 +2,8 @@
 //  SecondViewController.h
 //  UINavgationController
 //
-//  Created by niexin on 12-10-29.
-//  Copyright (c) 2012年 niexin. All rights reserved.
+//  Created by zhangxin on 12-10-29.
+//  Copyright (c) 2012年 zhangxin. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -3,7 +3,7 @@
 //  UINavgationController
 //
 //  Created by 张鑫 on 14-7-12.
-//  Copyright (c) 2014年 niexin. All rights reserved.
+//  Copyright (c) 2014年 zhangxin. All rights reserved.
 //
 
 #ifndef UINavgationController_Url_h

@@ -3,7 +3,7 @@
 //  UINavgationController
 //
 //  Created by ZhangXin on 14-3-5.
-//  Copyright (c) 2014年 niexin. All rights reserved.
+//  Copyright (c) 2014年 zhangxin. All rights reserved.
 //
 
 #import "UIDevice-Orientation.h"

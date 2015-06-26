@@ -2,8 +2,8 @@
 //  InputAlertView.m
 //  testUrl
 //
-//  Created by xsw on 14/11/4.
-//  Copyright (c) 2014年 fdcz. All rights reserved.
+//  Created by zhangxin on 14/11/4.
+//  Copyright (c) 2014年 zhangxin. All rights reserved.
 //
 
 

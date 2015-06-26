@@ -2,8 +2,8 @@
 //  CameraPhotoViewController.m
 //  UINavgationController
 //
-//  Created by xsw on 14-10-27.
-//  Copyright (c) 2014年 niexin. All rights reserved.
+//  Created by zhangxin on 14-10-27.
+//  Copyright (c) 2014年 zhangxin. All rights reserved.
 //
 
 #import "CameraViewController.h"

@@ -422,13 +422,13 @@
 		0D4F313F172B741800985AE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0D4F3142172B75B900985AE6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		0D5ECEFC167033B40074FBA4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		0D7186F41600BE530062A13F /* UINavgationController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UINavgationController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D7186F41600BE530062A13F /* MyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D7186F81600BE530062A13F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0D7186FA1600BE530062A13F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0D7186FC1600BE530062A13F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		0D7187001600BE530062A13F /* UINavgationController-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UINavgationController-Info.plist"; sourceTree = "<group>"; };
+		0D7187001600BE530062A13F /* MyDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyDemo-Info.plist"; sourceTree = "<group>"; };
 		0D7187041600BE530062A13F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0D7187061600BE530062A13F /* UINavgationController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavgationController-Prefix.pch"; sourceTree = "<group>"; };
+		0D7187061600BE530062A13F /* MyDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyDemo-Prefix.pch"; sourceTree = "<group>"; };
 		0D7187071600BE530062A13F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0D7187081600BE530062A13F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0D71871E1600C7440062A13F /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
@@ -1216,7 +1216,7 @@
 		0D7186F51600BE530062A13F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0D7186F41600BE530062A13F /* UINavgationController.app */,
+				0D7186F41600BE530062A13F /* MyDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1310,9 +1310,9 @@
 		0D7186FF1600BE530062A13F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0D7187001600BE530062A13F /* UINavgationController-Info.plist */,
+				0D7187001600BE530062A13F /* MyDemo-Info.plist */,
 				0D7187041600BE530062A13F /* main.m */,
-				0D7187061600BE530062A13F /* UINavgationController-Prefix.pch */,
+				0D7187061600BE530062A13F /* MyDemo-Prefix.pch */,
 				0D4F3140172B741800985AE6 /* InfoPlist.strings */,
 				5BC4EC0C1972D42900ECAB1E /* Localizable.strings */,
 			);
@@ -2618,9 +2618,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0D7186F31600BE530062A13F /* UINavgationController */ = {
+		0D7186F31600BE530062A13F /* MyDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0D71870C1600BE530062A13F /* Build configuration list for PBXNativeTarget "UINavgationController" */;
+			buildConfigurationList = 0D71870C1600BE530062A13F /* Build configuration list for PBXNativeTarget "MyDemo" */;
 			buildPhases = (
 				0D7186F01600BE530062A13F /* Sources */,
 				0D7186F11600BE530062A13F /* Frameworks */,
@@ -2630,9 +2630,9 @@
 			);
 			dependencies = (
 			);
-			name = UINavgationController;
+			name = MyDemo;
 			productName = UINavgationController;
-			productReference = 0D7186F41600BE530062A13F /* UINavgationController.app */;
+			productReference = 0D7186F41600BE530062A13F /* MyDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2642,9 +2642,9 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0440;
-				ORGANIZATIONNAME = niexin;
+				ORGANIZATIONNAME = zhangxin;
 			};
-			buildConfigurationList = 0D7186EE1600BE530062A13F /* Build configuration list for PBXProject "UINavgationController" */;
+			buildConfigurationList = 0D7186EE1600BE530062A13F /* Build configuration list for PBXProject "MyDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2658,7 +2658,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0D7186F31600BE530062A13F /* UINavgationController */,
+				0D7186F31600BE530062A13F /* MyDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -3151,15 +3151,15 @@
 					"$(PROJECT_DIR)/Resource/Other_SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UINavgationController/UINavgationController-Prefix.pch";
-				INFOPLIST_FILE = "UINavgationController/UINavgationController-Info.plist";
+				GCC_PREFIX_HEADER = "UINavgationController/MyDemo-Prefix.pch";
+				INFOPLIST_FILE = "UINavgationController/MyDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/UINavgationController/二维码/ZBarSDK",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MyDemo;
 				PROVISIONING_PROFILE = "a939f61e-a80c-4970-8af1-343d389ff75c";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a939f61e-a80c-4970-8af1-343d389ff75c";
 				SDKROOT = iphoneos7.1;
@@ -3181,15 +3181,15 @@
 					"$(PROJECT_DIR)/Resource/Other_SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UINavgationController/UINavgationController-Prefix.pch";
-				INFOPLIST_FILE = "UINavgationController/UINavgationController-Info.plist";
+				GCC_PREFIX_HEADER = "UINavgationController/MyDemo-Prefix.pch";
+				INFOPLIST_FILE = "UINavgationController/MyDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/UINavgationController/二维码/ZBarSDK",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MyDemo;
 				PROVISIONING_PROFILE = "a939f61e-a80c-4970-8af1-343d389ff75c";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a939f61e-a80c-4970-8af1-343d389ff75c";
 				SDKROOT = iphoneos7.1;
@@ -3202,7 +3202,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0D7186EE1600BE530062A13F /* Build configuration list for PBXProject "UINavgationController" */ = {
+		0D7186EE1600BE530062A13F /* Build configuration list for PBXProject "MyDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0D71870A1600BE530062A13F /* Debug */,
@@ -3211,7 +3211,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		0D71870C1600BE530062A13F /* Build configuration list for PBXNativeTarget "UINavgationController" */ = {
+		0D71870C1600BE530062A13F /* Build configuration list for PBXNativeTarget "MyDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0D71870D1600BE530062A13F /* Debug */,

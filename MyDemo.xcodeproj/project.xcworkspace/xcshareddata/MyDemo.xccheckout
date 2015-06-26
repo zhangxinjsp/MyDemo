@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>968DBA5D-DD62-465B-8A90-3BACC5832D98</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MyDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>27A5E93214D5B36D183B93663927F133E0A2D1A5</key>
+		<string>bitbucket.org:zhangxinjsp/uinavgationcontroller.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MyDemo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>27A5E93214D5B36D183B93663927F133E0A2D1A5</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>bitbucket.org:zhangxinjsp/uinavgationcontroller.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>27A5E93214D5B36D183B93663927F133E0A2D1A5</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>27A5E93214D5B36D183B93663927F133E0A2D1A5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>uinavgationcontroller</string>
+		</dict>
+	</array>
+</dict>
+</plist>

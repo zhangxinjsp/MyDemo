@@ -3,7 +3,7 @@
 //  BJXH-doctor
 //
 //  Created by zhangxin on 14-6-3.
-//  Copyright (c) 2014年 archermind. All rights reserved.
+//  Copyright (c) 2014年 zhangxin. All rights reserved.
 //
 
 #import "PrintLog.h"
