@@ -273,6 +273,7 @@
             CoreImageFilterViewController* ctl = [[CoreImageFilterViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
+            break;
         }
         case 20:{
             VideoToolViewController* ctl = [[VideoToolViewController alloc] init];

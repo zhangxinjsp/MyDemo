@@ -3153,15 +3153,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UINavgationController/MyDemo-Prefix.pch";
 				INFOPLIST_FILE = "UINavgationController/MyDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/UINavgationController/二维码/ZBarSDK",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = MyDemo;
-				PROVISIONING_PROFILE = "a939f61e-a80c-4970-8af1-343d389ff75c";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a939f61e-a80c-4970-8af1-343d389ff75c";
+				PROVISIONING_PROFILE = "4464a4d9-349a-49d7-b256-e5eb90d16126";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
@@ -3183,15 +3183,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UINavgationController/MyDemo-Prefix.pch";
 				INFOPLIST_FILE = "UINavgationController/MyDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/UINavgationController/二维码/ZBarSDK",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = MyDemo;
-				PROVISIONING_PROFILE = "a939f61e-a80c-4970-8af1-343d389ff75c";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a939f61e-a80c-4970-8af1-343d389ff75c";
+				PROVISIONING_PROFILE = "4464a4d9-349a-49d7-b256-e5eb90d16126";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
 				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";

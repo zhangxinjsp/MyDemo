@@ -17,11 +17,12 @@
 
 #define VIDEO_PREVIEW_LAYER 1
 
-@interface MediaCaptureViewController() <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate>{
+@interface MediaCaptureViewController() <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, AVCaptureMetadataOutputObjectsDelegate>{
     
     UIButton* recordingButton;
     UIButton* stillImageButton;
     UIButton* cameraButton;
+    UIButton* QRCodeButton;
     
     UIBackgroundTaskIdentifier backgroundRecordingID;
     
@@ -42,7 +43,7 @@
     AVCaptureStillImageOutput* stillImageOutput;
     AVCaptureVideoDataOutput *videoDataOutput;
     AVCaptureAudioDataOutput *audioDataOutput;
-
+    AVCaptureMetadataOutput * metadataOutput;
 }
 
 @end
@@ -125,11 +126,19 @@
     cameraButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:cameraButton];
     
-    NSDictionary* viewDict = NSDictionaryOfVariableBindings(recordingButton, stillImageButton, cameraButton);
+    QRCodeButton = [[UIButton alloc]init];
+    QRCodeButton.backgroundColor = [UIColor redColor];
+    [QRCodeButton setTitle:@"二维码" forState:UIControlStateNormal];
+    [QRCodeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [QRCodeButton addTarget:self action:@selector(qrCodeAction:) forControlEvents:UIControlEventTouchUpInside];
+    QRCodeButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:QRCodeButton];
+    
+    NSDictionary* viewDict = NSDictionaryOfVariableBindings(recordingButton, stillImageButton, cameraButton, QRCodeButton);
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[recordingButton(==30)]-(>=10)-|" options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom metrics:nil views:viewDict]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[recordingButton(>=0)]-10-[stillImageButton(==recordingButton)]-10-[cameraButton(==recordingButton)]-10-|" options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom metrics:nil views:viewDict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[recordingButton(>=0)]-10-[stillImageButton(==recordingButton)]-10-[cameraButton(==recordingButton)]-10-[QRCodeButton(==recordingButton)]-10-|" options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom metrics:nil views:viewDict]];
 }
 
 - (void)recordingAction:(id)sender {
@@ -150,6 +159,14 @@
     btn.selected = !btn.selected;
     
     [self switchCameraDevice:btn.selected];
+}
+
+- (void)qrCodeAction:(id)sender{
+    LOGINFO(@"二维码扫描");
+//    [self metadataOutput];
+    
+    
+    
 }
 
 #pragma mark AVFoundation Still and Video Media Capture 只是其中的一部份
@@ -207,17 +224,19 @@
     if ([captureSession canSetSessionPreset:AVCaptureSessionPresetiFrame960x540]) {
         //然后再进行设置
     }
+//    [captureSession setSessionPreset:AVCaptureSessionPresetHigh];
 //AVCaptureSessionPresetPhoto 只能进行still photo ， recoding movie 的时候会crash
     captureSession.sessionPreset = AVCaptureSessionPresetLow;
     
     
     [self deviceInput];
     [self showVideoPreview];
-    [self captureMovieFileOutput];
-    [self captureStillImageOutput];
+//    [self captureMovieFileOutput];
+//    [self captureStillImageOutput];
 
-    //    [self captureVideoDataOutput];
+//    [self captureVideoDataOutput];
 //    [self audioDataOutput];
+    [self metadataOutput];
     
     [captureSession startRunning];
 }
@@ -529,6 +548,35 @@
 - (void)stopRecordingMovieFile{
     
     [aMovieFileOutput stopRecording];
+}
+
+#pragma mark 二维码扫描
+- (void)metadataOutput {
+    metadataOutput = [[AVCaptureMetadataOutput alloc]init];
+    [metadataOutput setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
+//    [metadataOutput setRectOfInterest:CGRectMake(100, 100, 100, 100)];
+    
+    if ([captureSession canAddOutput:metadataOutput]) {
+        [captureSession addOutput:metadataOutput];
+    }
+    
+    for (NSString* type in metadataOutput.availableMetadataObjectTypes) {
+        LOGINFO(@"%@", type);
+        if ([type isEqualToString:AVMetadataObjectTypeQRCode]) {
+            [metadataOutput setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+        } else {
+            
+        }
+    }
+}
+
+-(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
+    if (metadataObjects.count > 0) {
+        AVMetadataMachineReadableCodeObject* object = metadataObjects[0];
+        LOGINFO(@"%@", object);
+    } else {
+        LOGINFO(@"%@", @"nothing");
+    }
 }
 
 
