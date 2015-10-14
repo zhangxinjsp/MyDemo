@@ -92,52 +92,17 @@
     }
 }
 
--(void)asdfsadf:(NSString*)sender,... {
-    NSArray* events = nil;
-    
-    if ([self openDb:DB_NAME])
-    {
-        sqlite3_exec(database, "BEGIN TRANSACTION", 0, 0, 0);
-        NSString *sqlStatement = @"INSERT INTO concertsData VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        
-        if ([self prepareSql:sqlStatement]) {
-            int hasError;
-            
-            for (int i=0; i < [events count]; i++) {
-                
-                sqlite3_bind_text(statement, 1, [@"" UTF8String], -1, SQLITE_TRANSIENT);
-                
-                sqlite3_bind_int(statement, 2, [[NSDate date] timeIntervalSince1970]);
-                
-                sqlite3_bind_text(statement, 3, [@"" UTF8String], -1, SQLITE_TRANSIENT);
-                
-                sqlite3_bind_text(statement, 4, [@"" UTF8String], -1, SQLITE_TRANSIENT);
-                
-                sqlite3_bind_text(statement, 5, [@"" UTF8String], -1, SQLITE_TRANSIENT);
-                
-                sqlite3_bind_text(statement, 6, [@"" UTF8String], -1, SQLITE_TRANSIENT);
-                
-                if (sqlite3_step(statement) != SQLITE_DONE) {
-                    hasError=1;
-                    NSLog(@"Prepare-error %s", sqlite3_errmsg(database));
-                }
-                
-                sqlite3_reset(statement);
-            }
-            sqlite3_finalize(statement);
-            if( hasError == 0 ) {
-                sqlite3_exec(database, "COMMIT", 0, 0, 0);
-            } else {
-                sqlite3_exec(database, "ROLLBACK", 0, 0, 0);
-            }
-            
-        }
-        sqlite3_close(database);
-    }
++(NSString*)errorMessage{
+    char* charStr = (char*)sqlite3_errmsg([SQLiteTool shareInstance].database);
+    return [NSString stringWithCString:charStr encoding:NSUTF8StringEncoding];
 }
 
 +(BOOL)hasRows{
     return sqlite3_step([SQLiteTool shareInstance].statement) == SQLITE_ROW;
+}
+
++(BOOL)stepDone{
+    return sqlite3_step([SQLiteTool shareInstance].statement) == SQLITE_DONE;
 }
 
 +(NSInteger)columnCount{
@@ -148,6 +113,32 @@
     const char* name = sqlite3_column_name([SQLiteTool shareInstance].statement, index);
     return [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
 }
+
++(void)beginTransaction{
+    [[SQLiteTool shareInstance]executeSql:@"BEGIN TRANSACTION"];
+    
+//    sqlite3_exec([SQLiteTool shareInstance].database, "BEGIN TRANSACTION", 0, 0, 0);
+}
+
++(void)commitTransaction{
+    [[SQLiteTool shareInstance]executeSql:@"COMMIT TRANSACTION"];
+//    sqlite3_exec([SQLiteTool shareInstance].database, "COMMIT TRANSACTION", 0, 0, 0);
+}
+
++(void)rollbackTransaction{
+    [[SQLiteTool shareInstance]executeSql:@"ROLLBACK"];
+//    sqlite3_exec([SQLiteTool shareInstance].database, "ROLLBACK", 0, 0, 0);
+}
+
+
++(void)bindTextAtColumnIndex:(int)columnIndex withValue:(NSString*)value{
+    sqlite3_bind_text([SQLiteTool shareInstance].statement, columnIndex, [value UTF8String], -1, SQLITE_TRANSIENT);
+}
+
++(void)bindIntAtColumnIndex:(int)columnIndex withValue:(NSInteger)value{
+    sqlite3_bind_int([SQLiteTool shareInstance].statement, columnIndex, value);
+}
+
 
 +(NSString*)readStringAtColumnIndex:(int)columnIndex{
     char* charStr = (char*)sqlite3_column_text([SQLiteTool shareInstance].statement, columnIndex);

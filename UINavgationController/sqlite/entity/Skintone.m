@@ -30,6 +30,7 @@
     [[SQLiteTool shareInstance] openDb:DB_NAME];
     [[SQLiteTool shareInstance] prepareSql:sql];
     NSMutableArray* list = [[NSMutableArray alloc]init];
+    
     while ([SQLiteTool hasRows]) {
         Skintone* skin = [[Skintone alloc]init];
         skin.skintoneId = [SQLiteTool readIntegerAtColumnIndex:0];
@@ -38,11 +39,29 @@
         LOGINFO(@"%d,%@,%@",skin.skintoneId,skin.skintoneName,skin.RGB);
         [list addObject:skin];
     }
+    
     return list;
 }
 
 
-
++ (void)insert :(Skintone*)skin {
+    
+    
+    NSString *sql = @"INSERT INTO concertsData (skintone_id, skintone_name, RGB) VALUES (?, ?, ?)";
+    
+    if ([[SQLiteTool shareInstance] prepareSql:sql]) {
+            
+        [SQLiteTool bindTextAtColumnIndex:1 withValue:@""];
+        [SQLiteTool bindIntAtColumnIndex:2 withValue:11];
+        [SQLiteTool bindIntAtColumnIndex:2 withValue:11];
+        if ([SQLiteTool hasRows]) {
+            
+        }
+    }
+    
+    
+    
+}
 
 
 

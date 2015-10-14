@@ -23,7 +23,15 @@
 
 +(SQLiteTool *)shareInstance;
 
++(NSString*)errorMessage;
 +(BOOL)hasRows;
++(BOOL)stepDone;
++(void)beginTransaction;
++(void)commitTransaction;
++(void)rollbackTransaction;
+
++(void)bindTextAtColumnIndex:(int)columnIndex withValue:(NSString*)value;
++(void)bindIntAtColumnIndex:(int)columnIndex withValue:(NSInteger)value;
 
 +(NSString*)readStringAtColumnIndex:(int)columnIndex;
 +(NSInteger)readIntegerAtColumnIndex:(int)columnIndex;
