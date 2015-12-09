@@ -28,7 +28,7 @@
 - (void)drawRect:(CGRect)rect
 {
 //    type = 1;//rand() % 6;
-    
+      
     switch (type) {
         case 0:{//正方形
             // Drawing code.画线条
