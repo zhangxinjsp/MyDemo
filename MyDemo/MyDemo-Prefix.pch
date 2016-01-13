@@ -17,5 +17,6 @@
     #import "PrintLog.h"
     #import "Define.h"
     #import "Formater.h"
+    #import "BELMacrosEnumerates.h"
 
 #endif

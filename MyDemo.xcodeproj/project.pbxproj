@@ -33,8 +33,6 @@
 		5BD36DB31C4638E300AE5CA2 /* AutoLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36ADB1C4638E100AE5CA2 /* AutoLayerViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5BD36DB41C4638E300AE5CA2 /* AutoLayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD36ADC1C4638E100AE5CA2 /* AutoLayerViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		5BD36DB51C4638E300AE5CA2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36ADE1C4638E100AE5CA2 /* BaseViewController.m */; settings = {ASSET_TAGS = (); }; };
-		5BD36DB61C4638E300AE5CA2 /* BTLECentralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36AE11C4638E100AE5CA2 /* BTLECentralViewController.m */; settings = {ASSET_TAGS = (); }; };
-		5BD36DB71C4638E300AE5CA2 /* BTLEPeripheralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36AE31C4638E100AE5CA2 /* BTLEPeripheralViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5BD36DB81C4638E300AE5CA2 /* CameraViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36AE71C4638E100AE5CA2 /* CameraViewcontroller.m */; settings = {ASSET_TAGS = (); }; };
 		5BD36DB91C4638E300AE5CA2 /* MediaCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36AE91C4638E100AE5CA2 /* MediaCaptureViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5BD36DBA1C4638E300AE5CA2 /* SquareCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36AEB1C4638E100AE5CA2 /* SquareCamViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -61,7 +59,6 @@
 		5BD36DCF1C4638E300AE5CA2 /* MapAndLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36B1A1C4638E100AE5CA2 /* MapAndLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5BD36DD01C4638E300AE5CA2 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36B1C1C4638E100AE5CA2 /* MyAnnotation.m */; settings = {ASSET_TAGS = (); }; };
 		5BD36DD11C4638E300AE5CA2 /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36B1F1C4638E100AE5CA2 /* MotionViewController.m */; settings = {ASSET_TAGS = (); }; };
-		5BD36DD21C4638E300AE5CA2 /* MyDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BD36B201C4638E100AE5CA2 /* MyDemo-Info.plist */; settings = {ASSET_TAGS = (); }; };
 		5BD36DD31C4638E300AE5CA2 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36B231C4638E100AE5CA2 /* NavigationController.m */; settings = {ASSET_TAGS = (); }; };
 		5BD36DD41C4638E300AE5CA2 /* NavRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36B261C4638E100AE5CA2 /* NavRootViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5BD36DD51C4638E300AE5CA2 /* NavRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD36B271C4638E100AE5CA2 /* NavRootViewController.xib */; settings = {ASSET_TAGS = (); }; };
@@ -353,6 +350,12 @@
 		5BD36EF31C4638E300AE5CA2 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36DAD1C4638E300AE5CA2 /* ZipArchive.mm */; settings = {ASSET_TAGS = (); }; };
 		5BD36EF41C4638E300AE5CA2 /* RegexAndMd5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36DB01C4638E300AE5CA2 /* RegexAndMd5ViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5BD36EF51C4638E300AE5CA2 /* RegexAndMd5ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD36DB11C4638E300AE5CA2 /* RegexAndMd5ViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		5BD36F031C463DC500AE5CA2 /* BLECentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36EF81C463DC500AE5CA2 /* BLECentralManager.m */; settings = {ASSET_TAGS = (); }; };
+		5BD36F041C463DC500AE5CA2 /* BLECommandManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36EFA1C463DC500AE5CA2 /* BLECommandManager.m */; settings = {ASSET_TAGS = (); }; };
+		5BD36F051C463DC500AE5CA2 /* BLEPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36EFC1C463DC500AE5CA2 /* BLEPeripheralManager.m */; settings = {ASSET_TAGS = (); }; };
+		5BD36F061C463DC500AE5CA2 /* BLERequestDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36EFE1C463DC500AE5CA2 /* BLERequestDataModel.m */; settings = {ASSET_TAGS = (); }; };
+		5BD36F071C463DC500AE5CA2 /* BLERespondDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36F001C463DC500AE5CA2 /* BLERespondDataModel.m */; settings = {ASSET_TAGS = (); }; };
+		5BD36F081C463DC500AE5CA2 /* BluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD36F021C463DC500AE5CA2 /* BluetoothManager.m */; settings = {ASSET_TAGS = (); }; };
 		5BD46D39194D3B61002995EB /* bubble_blue_recieve_doctor.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD46D13194D3B61002995EB /* bubble_blue_recieve_doctor.png */; };
 		5BD46D3A194D3B61002995EB /* dragDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD46D14194D3B61002995EB /* dragDown.png */; };
 		5BD46D3B194D3B61002995EB /* dragDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD46D15194D3B61002995EB /* dragDown@2x.png */; };
@@ -449,11 +452,6 @@
 		5BD36ADC1C4638E100AE5CA2 /* AutoLayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoLayerViewController.xib; sourceTree = "<group>"; };
 		5BD36ADD1C4638E100AE5CA2 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		5BD36ADE1C4638E100AE5CA2 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		5BD36AE01C4638E100AE5CA2 /* BTLECentralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentralViewController.h; sourceTree = "<group>"; };
-		5BD36AE11C4638E100AE5CA2 /* BTLECentralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLECentralViewController.m; sourceTree = "<group>"; };
-		5BD36AE21C4638E100AE5CA2 /* BTLEPeripheralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEPeripheralViewController.h; sourceTree = "<group>"; };
-		5BD36AE31C4638E100AE5CA2 /* BTLEPeripheralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEPeripheralViewController.m; sourceTree = "<group>"; };
-		5BD36AE41C4638E100AE5CA2 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
 		5BD36AE61C4638E100AE5CA2 /* CameraViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewcontroller.h; sourceTree = "<group>"; };
 		5BD36AE71C4638E100AE5CA2 /* CameraViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewcontroller.m; sourceTree = "<group>"; };
 		5BD36AE81C4638E100AE5CA2 /* MediaCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaCaptureViewController.h; sourceTree = "<group>"; };
@@ -1091,6 +1089,19 @@
 		5BD36DAF1C4638E300AE5CA2 /* RegexAndMd5ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexAndMd5ViewController.h; sourceTree = "<group>"; };
 		5BD36DB01C4638E300AE5CA2 /* RegexAndMd5ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexAndMd5ViewController.m; sourceTree = "<group>"; };
 		5BD36DB11C4638E300AE5CA2 /* RegexAndMd5ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegexAndMd5ViewController.xib; sourceTree = "<group>"; };
+		5BD36EF61C463DC500AE5CA2 /* BELMacrosEnumerates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BELMacrosEnumerates.h; sourceTree = "<group>"; };
+		5BD36EF71C463DC500AE5CA2 /* BLECentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLECentralManager.h; sourceTree = "<group>"; };
+		5BD36EF81C463DC500AE5CA2 /* BLECentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLECentralManager.m; sourceTree = "<group>"; };
+		5BD36EF91C463DC500AE5CA2 /* BLECommandManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLECommandManager.h; sourceTree = "<group>"; };
+		5BD36EFA1C463DC500AE5CA2 /* BLECommandManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLECommandManager.m; sourceTree = "<group>"; };
+		5BD36EFB1C463DC500AE5CA2 /* BLEPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEPeripheralManager.h; sourceTree = "<group>"; };
+		5BD36EFC1C463DC500AE5CA2 /* BLEPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEPeripheralManager.m; sourceTree = "<group>"; };
+		5BD36EFD1C463DC500AE5CA2 /* BLERequestDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLERequestDataModel.h; sourceTree = "<group>"; };
+		5BD36EFE1C463DC500AE5CA2 /* BLERequestDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLERequestDataModel.m; sourceTree = "<group>"; };
+		5BD36EFF1C463DC500AE5CA2 /* BLERespondDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLERespondDataModel.h; sourceTree = "<group>"; };
+		5BD36F001C463DC500AE5CA2 /* BLERespondDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLERespondDataModel.m; sourceTree = "<group>"; };
+		5BD36F011C463DC500AE5CA2 /* BluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothManager.h; sourceTree = "<group>"; };
+		5BD36F021C463DC500AE5CA2 /* BluetoothManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothManager.m; sourceTree = "<group>"; };
 		5BD46D13194D3B61002995EB /* bubble_blue_recieve_doctor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_blue_recieve_doctor.png; sourceTree = "<group>"; };
 		5BD46D14194D3B61002995EB /* dragDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dragDown.png; sourceTree = "<group>"; };
 		5BD46D15194D3B61002995EB /* dragDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dragDown@2x.png"; sourceTree = "<group>"; };
@@ -1325,11 +1336,19 @@
 		5BD36ADF1C4638E100AE5CA2 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
-				5BD36AE01C4638E100AE5CA2 /* BTLECentralViewController.h */,
-				5BD36AE11C4638E100AE5CA2 /* BTLECentralViewController.m */,
-				5BD36AE21C4638E100AE5CA2 /* BTLEPeripheralViewController.h */,
-				5BD36AE31C4638E100AE5CA2 /* BTLEPeripheralViewController.m */,
-				5BD36AE41C4638E100AE5CA2 /* TransferService.h */,
+				5BD36EF61C463DC500AE5CA2 /* BELMacrosEnumerates.h */,
+				5BD36EF71C463DC500AE5CA2 /* BLECentralManager.h */,
+				5BD36EF81C463DC500AE5CA2 /* BLECentralManager.m */,
+				5BD36EF91C463DC500AE5CA2 /* BLECommandManager.h */,
+				5BD36EFA1C463DC500AE5CA2 /* BLECommandManager.m */,
+				5BD36EFB1C463DC500AE5CA2 /* BLEPeripheralManager.h */,
+				5BD36EFC1C463DC500AE5CA2 /* BLEPeripheralManager.m */,
+				5BD36EFD1C463DC500AE5CA2 /* BLERequestDataModel.h */,
+				5BD36EFE1C463DC500AE5CA2 /* BLERequestDataModel.m */,
+				5BD36EFF1C463DC500AE5CA2 /* BLERespondDataModel.h */,
+				5BD36F001C463DC500AE5CA2 /* BLERespondDataModel.m */,
+				5BD36F011C463DC500AE5CA2 /* BluetoothManager.h */,
+				5BD36F021C463DC500AE5CA2 /* BluetoothManager.m */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -2633,7 +2652,7 @@
 		0D7186EB1600BE530062A13F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = zhangxin;
 			};
 			buildConfigurationList = 0D7186EE1600BE530062A13F /* Build configuration list for PBXProject "MyDemo" */;
@@ -2680,7 +2699,6 @@
 				5BD36EEB1C4638E300AE5CA2 /* SendMessageAndEMailViewController.xib in Resources */,
 				5BD46D43194D3B61002995EB /* paletta_icon@2x.png in Resources */,
 				5BD36EF51C4638E300AE5CA2 /* RegexAndMd5ViewController.xib in Resources */,
-				5BD36DD21C4638E300AE5CA2 /* MyDemo-Info.plist in Resources */,
 				5BD46D3B194D3B61002995EB /* dragDown@2x.png in Resources */,
 				5BC0779F194D7AAD0024627F /* Default@2x.png in Resources */,
 				5BD46D47194D3B61002995EB /* 上眼皮外部.png in Resources */,
@@ -2775,6 +2793,7 @@
 				5BD36EB31C4638E300AE5CA2 /* ZXPDF417DetectionResultColumn.m in Sources */,
 				5BD36EBA1C4638E300AE5CA2 /* ZXDimensions.m in Sources */,
 				5BD36E9F1C4638E300AE5CA2 /* ZXOneDimensionalCodeWriter.m in Sources */,
+				5BD36F061C463DC500AE5CA2 /* BLERequestDataModel.m in Sources */,
 				5BD36E2B1C4638E300AE5CA2 /* ZXURLTOResultParser.m in Sources */,
 				5BD36DFC1C4638E300AE5CA2 /* qrencode.c in Sources */,
 				5BD36EA51C4638E300AE5CA2 /* ZXUPCEANExtensionSupport.m in Sources */,
@@ -2803,6 +2822,7 @@
 				5BD36EAE1C4638E300AE5CA2 /* ZXPDF417BoundingBox.m in Sources */,
 				5BD36E681C4638E300AE5CA2 /* SEYViewController.m in Sources */,
 				5BD36EF21C4638E300AE5CA2 /* zip.c in Sources */,
+				5BD36F071C463DC500AE5CA2 /* BLERespondDataModel.m in Sources */,
 				5BD36EE61C4638E300AE5CA2 /* ZXRGBLuminanceSource.m in Sources */,
 				5BD36EDB1C4638E300AE5CA2 /* ZXDecodeHints.m in Sources */,
 				5BD36EC91C4638E300AE5CA2 /* ZXQRCodeDecoder.m in Sources */,
@@ -2870,6 +2890,7 @@
 				5BD36E191C4638E300AE5CA2 /* ZXExpandedProductResultParser.m in Sources */,
 				5BD36E441C4638E300AE5CA2 /* ZXGridSampler.m in Sources */,
 				5BD36EB41C4638E300AE5CA2 /* ZXPDF417DetectionResultRowIndicatorColumn.m in Sources */,
+				5BD36F081C463DC500AE5CA2 /* BluetoothManager.m in Sources */,
 				5BD36EA81C4638E300AE5CA2 /* ZXUPCEReader.m in Sources */,
 				5BD36E6E1C4638E300AE5CA2 /* ZXMultiFinderPatternFinder.m in Sources */,
 				5BD36EB01C4638E300AE5CA2 /* ZXPDF417CodewordDecoder.m in Sources */,
@@ -2897,6 +2918,7 @@
 				5BD36E541C4638E300AE5CA2 /* ZXEdifactEncoder.m in Sources */,
 				5BD36DD11C4638E300AE5CA2 /* MotionViewController.m in Sources */,
 				5BD36ECB1C4638E300AE5CA2 /* ZXAlignmentPattern.m in Sources */,
+				5BD36F031C463DC500AE5CA2 /* BLECentralManager.m in Sources */,
 				5BD36DDB1C4638E300AE5CA2 /* Area.m in Sources */,
 				5BD36ECD1C4638E300AE5CA2 /* ZXFinderPatternFinder.m in Sources */,
 				5BD36ED81C4638E300AE5CA2 /* ZXQRCodeWriter.m in Sources */,
@@ -2932,7 +2954,6 @@
 				5BD36DE11C4638E300AE5CA2 /* MyKeyChainHelper.m in Sources */,
 				5BD36ED61C4638E300AE5CA2 /* ZXQRCode.m in Sources */,
 				5BD36E2F1C4638E300AE5CA2 /* ZXWifiResultParser.m in Sources */,
-				5BD36DB61C4638E300AE5CA2 /* BTLECentralViewController.m in Sources */,
 				5BD36ED51C4638E300AE5CA2 /* ZXMatrixUtil.m in Sources */,
 				5BD36EDE1C4638E300AE5CA2 /* ZXErrors.m in Sources */,
 				5BD36E151C4638E300AE5CA2 /* ZXEmailAddressParsedResult.m in Sources */,
@@ -2967,7 +2988,6 @@
 				5BD36E7A1C4638E300AE5CA2 /* ZXAI01decoder.m in Sources */,
 				5BD36E581C4638E300AE5CA2 /* ZXSymbolShapeHint.m in Sources */,
 				5BD36EBE1C4638E300AE5CA2 /* ZXPDF417Common.m in Sources */,
-				5BD36DB71C4638E300AE5CA2 /* BTLEPeripheralViewController.m in Sources */,
 				5BD36EC31C4638E300AE5CA2 /* ZXErrorCorrectionLevel.m in Sources */,
 				5BD36DC41C4638E300AE5CA2 /* User.m in Sources */,
 				5BD36E0F1C4638E300AE5CA2 /* ZXAddressBookAUResultParser.m in Sources */,
@@ -2983,6 +3003,7 @@
 				5BD36DE41C4638E300AE5CA2 /* NSString-expand.m in Sources */,
 				5BD36EA11C4638E300AE5CA2 /* ZXUPCAReader.m in Sources */,
 				5BD36DEE1C4638E300AE5CA2 /* VideoToolViewController.m in Sources */,
+				5BD36F051C463DC500AE5CA2 /* BLEPeripheralManager.m in Sources */,
 				5BD36E141C4638E300AE5CA2 /* ZXCalendarParsedResult.m in Sources */,
 				5BD36EC71C4638E300AE5CA2 /* ZXQRCodeDataBlock.m in Sources */,
 				5BD36ED31C4638E300AE5CA2 /* ZXEncoder.m in Sources */,
@@ -3038,6 +3059,7 @@
 				5BD36EF11C4638E300AE5CA2 /* unzip.c in Sources */,
 				5BD36EAB1C4638E300AE5CA2 /* ZXPDF417ECErrorCorrection.m in Sources */,
 				5BD36EDC1C4638E300AE5CA2 /* ZXDimension.m in Sources */,
+				5BD36F041C463DC500AE5CA2 /* BLECommandManager.m in Sources */,
 				5BD36E5C1C4638E300AE5CA2 /* ZXDataMatrixWriter.m in Sources */,
 				5BD36DCE1C4638E300AE5CA2 /* main.m in Sources */,
 				5BD36DBE1C4638E300AE5CA2 /* Formater.m in Sources */,
@@ -3081,15 +3103,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -3097,10 +3127,14 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "FECC6156-113D-4051-A1C8-89C6C5426A75";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FECC6156-113D-4051-A1C8-89C6C5426A75";
 				SDKROOT = iphoneos;
@@ -3111,17 +3145,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Huawei Technologies Co.,Ltd./";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -3144,19 +3188,20 @@
 					"$(PROJECT_DIR)/Resource/Other_SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UINavgationController/MyDemo-Prefix.pch";
-				INFOPLIST_FILE = "UINavgationController/MyDemo-Info.plist";
+				GCC_PREFIX_HEADER = "MyDemo/MyDemo-Prefix.pch";
+				INFOPLIST_FILE = "MyDemo/MyDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/UINavgationController/二维码/ZBarSDK",
+					"$(PROJECT_DIR)/MyDemo/二维码/ZBarSDK",
 					"$(PROJECT_DIR)/MyDemo/二维码/ZBarSDK",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
+				PRODUCT_BUNDLE_IDENTIFIER = com.archermind.htc;
 				PRODUCT_NAME = MyDemo;
 				PROVISIONING_PROFILE = "4464a4d9-349a-49d7-b256-e5eb90d16126";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
@@ -3175,19 +3220,20 @@
 					"$(PROJECT_DIR)/Resource/Other_SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UINavgationController/MyDemo-Prefix.pch";
-				INFOPLIST_FILE = "UINavgationController/MyDemo-Info.plist";
+				GCC_PREFIX_HEADER = "MyDemo/MyDemo-Prefix.pch";
+				INFOPLIST_FILE = "MyDemo/MyDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/UINavgationController/二维码/ZBarSDK",
+					"$(PROJECT_DIR)/MyDemo/二维码/ZBarSDK",
 					"$(PROJECT_DIR)/MyDemo/二维码/ZBarSDK",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
+				PRODUCT_BUNDLE_IDENTIFIER = com.archermind.htc;
 				PRODUCT_NAME = MyDemo;
 				PROVISIONING_PROFILE = "4464a4d9-349a-49d7-b256-e5eb90d16126";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
