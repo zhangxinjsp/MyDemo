@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-#import "LastViewController.h"
+#import "TestViewController.h"
 
 @interface BaseViewController ()
 
@@ -45,7 +45,7 @@
 }
 
 -(void)nextStep:(id)sender{
-    LastViewController* lastView = [[LastViewController alloc] initWithNibName:@"LastViewController" bundle:nil];
+    TestViewController* lastView = [[TestViewController alloc] initWithNibName:@"LastViewController" bundle:nil];
 #if 1
     [self.navigationController pushViewController:lastView animated:YES];
 #else

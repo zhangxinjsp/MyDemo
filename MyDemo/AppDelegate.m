@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 #import <FacebookSDK/FacebookSDK.h>
-#import "LastViewController.h"
+#import "TestViewController.h"
 
 @implementation AppDelegate
 
@@ -33,7 +33,7 @@
         firstView = [[NavRootViewController alloc] initWithNibName:@"NavRootViewController" bundle:nil ];
     }
     
-    nav = [[NavigationController alloc]initWithRootViewController:firstView];
+    nav = [[RootNavigationController alloc]initWithRootViewController:firstView];
     self.window.rootViewController = nav;
 #endif
     

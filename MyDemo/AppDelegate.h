@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "NavRootViewController.h"
-#import "NavigationController.h"
+#import "RootNavigationController.h"
 
 
 
@@ -17,7 +17,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) NavRootViewController* firstView;
-@property (strong, nonatomic) NavigationController* nav;
+@property (strong, nonatomic) RootNavigationController* nav;
 
 //@property (strong, nonatomic) ViewController * asdvi;
 
