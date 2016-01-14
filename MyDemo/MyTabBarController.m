@@ -53,16 +53,27 @@
 }
 
 - (void)setupColorView {
-    UIView * colorfulView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 64)];
     NSArray* colors = @[[UIColor redColor], [UIColor orangeColor], [UIColor purpleColor], [UIColor brownColor], [UIColor yellowColor]];
     
+    UIView * colorfulView = [[UIView alloc]initWithFrame:self.tabBar.bounds];
+    NSString* colorFormatStr = @"H:|-0-";
+    NSMutableDictionary* colorViewDict = [[NSMutableDictionary alloc]init];
     for (int i = 0; i < self.viewControllers.count; i ++) {
-        UIView* colorView = [[UIView alloc]initWithFrame:CGRectMake(320 / 3 * i, 0, 320 / 3, 64)];
+        UIView* colorView = [[UIView alloc]init];
         colorView.backgroundColor = colors[i];
+        [colorView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [colorfulView addSubview:colorView];
+        
+        NSString* colorViewName = [NSString stringWithFormat:@"colorView_%d", i];
+        [colorViewDict setObject:colorView forKey:colorViewName];
+        colorFormatStr = [colorFormatStr stringByAppendingFormat:@"[%@(%@)]-0-", colorViewName, i == 0 ? @">=0" : @"colorView_0"];
     }
+    colorFormatStr = [colorFormatStr stringByAppendingString:@"|"];
     
-    maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320 / 3, 64)];
+    [colorfulView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:colorFormatStr options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom metrics:nil views:colorViewDict]];
+    [colorfulView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[colorView_0(>=0)]-0-|" options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom metrics:nil views:colorViewDict]];
+    
+    maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tabBar.bounds.size.width / self.viewControllers.count, self.tabBar.bounds.size.height)];
     maskView.backgroundColor = [UIColor blackColor];
     
     if ([UIDevice currentDevice].systemVersion.floatValue > 8.0) {
@@ -71,14 +82,16 @@
         colorfulView.layer.mask = maskView.layer;
     }
     [self.tabBar addSubview:colorfulView];
-    
+
     [self.tabBar sendSubviewToBack:colorfulView];
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     
     [UIView animateWithDuration:0.5 animations:^{
-        maskView.frame = CGRectMake(320 / 3 * item.tag, 0, 320 / 3, 64);;
+        CGRect rect = maskView.frame;
+        rect.origin.x = self.tabBar.bounds.size.width / self.viewControllers.count * item.tag;
+        maskView.frame = rect;
     }];
 }
 
