@@ -9,7 +9,10 @@
 #import "CoreImageFilterViewController.h"
 #import <GLKit/GLKit.h>
 
-@interface CoreImageFilterViewController (){
+@interface CoreImageFilterViewController () <UITableViewDataSource, UITableViewDelegate> {
+    UITableView* tableV;
+    NSArray* titleArray;
+
     UIButton* originalImageBtn;
     UIImageView* effectImageView;
     UIImage* image;
@@ -33,6 +36,19 @@
 {
     [super viewDidLoad];
     
+    tableV = [[UITableView alloc]init];
+    tableV.delegate = self;
+    tableV.dataSource = self;
+    tableV.backgroundColor = [UIColor lightGrayColor];
+    tableV.translatesAutoresizingMaskIntoConstraints = NO;
+    tableV.separatorInset = UIEdgeInsetsZero;
+    tableV.layoutMargins = UIEdgeInsetsZero;
+    [self.view addSubview:tableV];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tableV(>=0)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tableV)]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tableV(>=0)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tableV)]];
+    tableV.hidden = NO;
 #if 0
     NSArray* arrarCategory = [NSArray arrayWithObjects: kCICategoryDistortionEffect, kCICategoryGeometryAdjustment, kCICategoryCompositeOperation, kCICategoryHalftoneEffect, kCICategoryColorAdjustment, kCICategoryColorEffect, kCICategoryTransition, kCICategoryTileEffect, kCICategoryGenerator, kCICategoryReduction, kCICategoryGradient, kCICategoryStylize, kCICategorySharpen, kCICategoryBlur, kCICategoryVideo, kCICategoryStillImage, kCICategoryInterlaced, kCICategoryNonSquarePixels, kCICategoryHighDynamicRange , kCICategoryBuiltIn, nil];
     
@@ -44,23 +60,34 @@
         }
     }
 #endif
-    needResizeRect = NO;
-    image = [UIImage imageNamed:@"redFlower.png"];
     
-    originalImageBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 300, 200)];
-    [originalImageBtn setImage:image forState:UIControlStateNormal];
-    originalImageBtn.backgroundColor = [UIColor redColor];
-    [originalImageBtn  addTarget:self action:@selector(coreImageFilterUsing:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:originalImageBtn];
-    
-    effectImageView = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(originalImageBtn.frame), CGRectGetMaxY(originalImageBtn.frame)+10, CGRectGetWidth(originalImageBtn.frame), CGRectGetHeight(originalImageBtn.frame))];
-    effectImageView.contentMode = UIViewContentModeScaleAspectFit;
-    effectImageView.backgroundColor = [UIColor whiteColor];;
-    [self.view addSubview:effectImageView];
-    
-    effectImageView.image = image;
+    titleArray = [[NSArray alloc]initWithObjects:@"原图", @"CILightTunnel", @"CICircularScreen", @"CIPinchDistortion", @"CIVortexDistortion", @"CITwirlDistortion", @"CIAffineTransform", @"CITriangleKaleidoscope", @"CIColorMonochrome", @"CISepiaTone", @"CIHueAdjust", @"CIGloom", @"CIBumpDistortion", @"inputTargetCIImage", @"CIPixellate", @"CIColorCrossPolynomial", @"CICode128BarcodeGenerator", @"CIQRCodeGenerator", nil];
     
     // Do any additional setup after loading the view.
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return titleArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%ld%ld",(long)indexPath.section, (long)indexPath.row]];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%ld%ld",(long)indexPath.section, (long)indexPath.row]];
+    }
+    cell.textLabel.text = titleArray[indexPath.row];
+    cell.separatorInset = UIEdgeInsetsZero;
+    cell.layoutMargins = UIEdgeInsetsZero;
+    cell.imageView.image = [self filterImageWithIndexPath:indexPath];
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,28 +99,17 @@
 
 
 
--(void)coreImageFilterUsing:(id)sender{
+-(void)coreImageFilterUsingOpenGL{
     LOGINFO(@"start effect");
     
     CIFilter *filter = [self testFilter];
-    
-//    filter.inputKeys输入key
-//    filter.outputKeys;输出key
-//    filter.attributes//参数的定义，
-    
+
     CIImage *outputCIImage = [filter outputImage];
     CGRect rect = [outputCIImage extent];
     if (needResizeRect) {
         rect = CGRectMake(0, 0, 200, 200);
     }
     LOGINFO(@"%f     %f", rect.size.width, rect.size.height);
-#if 1
-    CIContext *context = [CIContext contextWithOptions:nil];
-    CGImageRef cgImage = [context createCGImage:outputCIImage fromRect:rect];
-    UIImage * effectImage = [UIImage imageWithCGImage:cgImage];
-    effectImageView.contentMode = UIViewContentModeCenter;
-    effectImageView.image = effectImage;
-#else
     /*
      使用OpenGL提升新能
      只要有可能，Core Image 将在 GPU 上执行滤镜操作。然而，它确实有回滚到 CPU 上执行的可能。滤镜操作在 CPU 上完成可具有更好的精确度，因为 GPU 经常在浮点计算上以失真换得更快的速度。在创建一个上下文时，你可以通过设置kCIContextUseSoftwareRenderer 关键字的值为 true 来强制 Core Image 在 CPU 上运行。
@@ -113,24 +129,73 @@
     
     [self.view addSubview:glView];
     
-#endif
-    
     LOGINFO(@"end effect");
-   
-    
-//    [effectImageView.layer addAnimation:[self transition:filter] forKey:@"transition"];
-
-    
-//    [self performSelector:@selector(coreImageFilterUsing:) withObject:sender afterDelay:1.0f/30.0f];
 }
 
-/*
- 
-*/
+- (UIImage*)filterImageWithIndexPath:(NSIndexPath*)indexPath {
+    image = [UIImage imageNamed:@"redFlower.png"];
+    
+    CIFilter *filter = [self filterWithIndexPath:indexPath];
+    if (filter == nil) {
+        return image;
+    }
+    
+    CIImage *outputCIImage = [filter outputImage];
+    CGRect rect = [outputCIImage extent];
+    if (needResizeRect) {
+        rect = CGRectMake(0, 0, 200, 200);
+    }
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [context createCGImage:outputCIImage fromRect:rect];
+    UIImage * effectImage = [UIImage imageWithCGImage:cgImage];
+    
+    return effectImage;
+}
+
+- (CIFilter*)filterWithIndexPath:(NSIndexPath*)indexPath {
+    NSString* filterName = titleArray[indexPath.row];
+    if ([filterName isEqualToString:@"CILightTunnel"]) {
+        return [self lightTunnelFilter];
+    } else if ([filterName isEqualToString:@"CICircularScreen"]) {
+        return [self CircularScreenFilter];
+    } else if ([filterName isEqualToString:@"CIPinchDistortion"]) {
+        return [self pinchDistortionFilter];
+    } else if ([filterName isEqualToString:@"CIVortexDistortion"]) {
+        return [self VortexDistortionFilter];
+    } else if ([filterName isEqualToString:@"CITwirlDistortion"]) {
+        return [self TwirlDistortionFilter];
+    } else if ([filterName isEqualToString:@"CIAffineTransform"]) {
+        return [self AffineTransformFilter];
+    } else if ([filterName isEqualToString:@"CITriangleKaleidoscope"]) {
+        return [self TriangleKaleidoscopeFilter];
+    } else if ([filterName isEqualToString:@"CIColorMonochrome"]) {
+        return [self colorMonochromeFilter:[UIColor greenColor]];
+    } else if ([filterName isEqualToString:@"CISepiaTone"]) {
+        return [self sepiaToneFilter];
+    } else if ([filterName isEqualToString:@"CIHueAdjust"]) {
+        return [self hueAdjustFilter:3];
+    } else if ([filterName isEqualToString:@"CIGloom"]) {
+        return [self gloomFilter];
+    } else if ([filterName isEqualToString:@"CIBumpDistortion"]) {
+        return [self bumpDistortionFilter];
+    } else if ([filterName isEqualToString:@"inputTargetCIImage"]) {
+        return [self copyMachineTransitionFilter:0.5];
+    } else if ([filterName isEqualToString:@"CIPixellate"]) {
+        return [self pixellateFilter];
+    } else if ([filterName isEqualToString:@"CIColorCrossPolynomial"]) {
+        return [self colorCrossPolynomialFilter];
+    } else if ([filterName isEqualToString:@"CICode128BarcodeGenerator"]) {
+        return [self Code128BarcodeGeneratorFilter];
+    } else if ([filterName isEqualToString:@"CIQRCodeGenerator"]) {
+        return [self QRCodeGeneratorFilter];
+    }
+    return nil;
+}
+
 -(CIFilter*)testFilter{
     static CGFloat index = 0.0f;
     
-//    CIFilter* filter = [self copyMachineTransitionFilter:index];
+    //    CIFilter* filter = [self copyMachineTransitionFilter:index];
     
     CIColor* sepiaColor = [CIColor colorWithRed:0.76 green:0.65 blue:0.54];
     CIImage *inputCIImage = [[CIImage alloc]initWithImage:image];
@@ -143,7 +208,7 @@
     
     [vignetterFilter setValue:monochromeFilter.outputImage forKey:kCIInputImageKey];
     
-//    CIImage* outputImage = vignetterFilter.outputImage;
+    //    CIImage* outputImage = vignetterFilter.outputImage;
     
     index += 1.0f/30.0f;
     return vignetterFilter;
@@ -155,7 +220,6 @@
 -(CIFilter*)lightTunnelFilter{
     needResizeRect = YES;
 
-    
     CIImage *inputCIImage = [[CIImage alloc]initWithImage:image];
     CIFilter *filter = [CIFilter filterWithName:@"CILightTunnel"];
     [filter setValue:inputCIImage forKey:kCIInputImageKey];
@@ -176,9 +240,9 @@
     [filter setValue:inputCIImage forKey:kCIInputImageKey];
     
     
-    [filter setValue:[CIVector vectorWithX:100 Y:100] forKey:kCIInputCenterKey];
+    [filter setValue:[CIVector vectorWithX:75 Y:50] forKey:kCIInputCenterKey];
     [filter setValue:@10 forKey:kCIInputWidthKey];
-    [filter setValue:@0.1 forKey:kCIInputSharpnessKey];
+    [filter setValue:@0.5 forKey:kCIInputSharpnessKey];
     return filter;
 }
 
@@ -191,8 +255,8 @@
     [filter setValue:inputCIImage forKey:kCIInputImageKey];
     
     [filter setValue:[CIVector vectorWithString:@"[100 100]"] forKey:kCIInputCenterKey];
-    [filter setValue:@101 forKey:@"inputRadius"];
-    [filter setValue:@0.6 forKey:@"inputScale"];//最大值在1.7
+    [filter setValue:@50 forKey:@"inputRadius"];
+    [filter setValue:@1.3 forKey:@"inputScale"];//最大值在1.7
     return filter;
 }
 
@@ -494,100 +558,7 @@
     
     return filter;
 }
-/**
- *  二维码放大方法
- *
- *  @param QrCodeImage 二维码图片
- *
- *  @return 放大后的图片
- */
--(UIImage*)enlargeQRCodeImage:(UIImage*)QrCodeImage {
-    
-    CGFloat scale = 6.0f;
-    
-    CGSize size = CGSizeMake(QrCodeImage.size.width * scale, QrCodeImage.size.height * scale);
-    
-    UIGraphicsBeginImageContext(size);
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    
-    for (int x = 0; x < QrCodeImage.size.width; x++) {
-        for (int y = 0; y < QrCodeImage.size.width; y++) {
-            
-            UIColor* pointColor = [self getPixelColorAtLocation:CGPointMake(x, y) inImage:QrCodeImage];
-            CGContextSetLineCap(ctx, kCGLineCapSquare);
-            CGContextSetLineWidth(ctx, 1.0);
-        
-            CGContextSetFillColorWithColor(ctx, pointColor.CGColor);
-            CGContextSetStrokeColorWithColor(ctx, [UIColor clearColor].CGColor);
-            //Draw a circle - and paint it with a different outline (white) and fill color (green)
-            CGContextAddRect(ctx, CGRectMake(x * scale, y * scale, scale, scale));//圆形
-            CGContextClosePath(ctx);
-            CGContextDrawPath(ctx, kCGPathFillStroke);
-            CGContextStrokePath(ctx);
-        }
-    }
-    UIImage *endImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return endImage;
-}
 
-- (UIColor*) getPixelColorAtLocation:(CGPoint)point inImage:(UIImage *)_image {
-    UIColor* color = nil;
-    CGImageRef inImage = _image.CGImage;
-    CGContextRef cgctx = [self createARGBBitmapContextFromImage:inImage];
-    if (cgctx == NULL) {
-        return nil; /* error */
-    }
-    size_t w = CGImageGetWidth(inImage);
-    size_t h = CGImageGetHeight(inImage);
-    CGRect rect = {{0,0},{w,h}};
-    CGContextDrawImage(cgctx, rect, inImage);
-    unsigned char* data = CGBitmapContextGetData (cgctx);
-    if (data != NULL) {
-        int offset = 4*((w*round(point.y))+round(point.x));
-        int alpha =  data[offset];
-        int red = data[offset+1];
-        int green = data[offset+2];
-        int blue = data[offset+3];
-        color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:
-                 (blue/255.0f) alpha:(alpha/255.0f)];
-    }
-    CGContextRelease(cgctx);
-    if (data) {
-        free(data);
-    }
-    return color;
-}
-
-- (CGContextRef) createARGBBitmapContextFromImage:(CGImageRef) inImage {
-    CGContextRef context = NULL;
-    CGColorSpaceRef colorSpace;
-    void *bitmapData;
-    int bitmapByteCount;
-    int bitmapBytesPerRow;
-    size_t pixelsWide = CGImageGetWidth(inImage);
-    size_t pixelsHigh = CGImageGetHeight(inImage);
-    bitmapBytesPerRow = (pixelsWide * 4);
-    bitmapByteCount = (bitmapBytesPerRow * pixelsHigh);
-    colorSpace = CGColorSpaceCreateDeviceRGB();
-    if (colorSpace == NULL){
-        fprintf(stderr, "Error allocating color space\n");
-        return NULL;
-    }
-    bitmapData = malloc( bitmapByteCount );
-    if (bitmapData == NULL){
-        fprintf (stderr, "Memory not allocated!");
-        CGColorSpaceRelease( colorSpace );
-        return NULL;
-    }
-    context = CGBitmapContextCreate (bitmapData,pixelsWide,pixelsHigh,8,bitmapBytesPerRow,colorSpace,kCGImageAlphaPremultipliedFirst);
-    if (context == NULL){
-        free (bitmapData);
-        fprintf (stderr, "Context not created!");
-    }
-    CGColorSpaceRelease( colorSpace );
-    return context;
-}
 
 
 

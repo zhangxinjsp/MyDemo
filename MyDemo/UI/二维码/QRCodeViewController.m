@@ -12,10 +12,8 @@
 @interface QRCodeViewController ()<UITextFieldDelegate>{
     UIImageView* imageView;
     UIButton* makeQRCodeBtn;
-    
     UIButton* scanQRCodeBtn;
-    UIButton* readAlbumsQRCodeBtn;
-    UIButton* catchQRCodeBtn;
+
     UITextField* textField;
     UILabel* label;
     
@@ -51,7 +49,7 @@
     textField.backgroundColor = [UIColor lightGrayColor];
     textField.delegate = self;
     textField.placeholder = @"输入生成二维码的内容";
-    textField.text = @"zhangxin张鑫";
+    textField.text = @"zhangxin";
     textField.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:textField];
     
@@ -64,20 +62,8 @@
     scanQRCodeBtn = [[UIButton alloc]init];
     scanQRCodeBtn.backgroundColor = [UIColor lightGrayColor];
     [scanQRCodeBtn setTitle:@"扫描二维码" forState:UIControlStateNormal];
-    [scanQRCodeBtn addTarget:self action:@selector(scanQRCode:) forControlEvents:UIControlEventTouchUpInside];
+    [scanQRCodeBtn addTarget:self action:@selector(scanQRCode) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:scanQRCodeBtn];
-    
-    readAlbumsQRCodeBtn = [[UIButton alloc]init];
-    readAlbumsQRCodeBtn.backgroundColor = [UIColor lightGrayColor];
-    [readAlbumsQRCodeBtn setTitle:@"相册二维码" forState:UIControlStateNormal];
-    [readAlbumsQRCodeBtn addTarget:self action:@selector(readFromAlbums) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:readAlbumsQRCodeBtn];
-    
-    catchQRCodeBtn = [[UIButton alloc]init];
-    catchQRCodeBtn.backgroundColor = [UIColor lightGrayColor];
-    [catchQRCodeBtn setTitle:@"捕获二维码" forState:UIControlStateNormal];
-    [catchQRCodeBtn addTarget:self action:@selector(catchQRCode) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:catchQRCodeBtn];
     
     imageView = [[UIImageView alloc]init];
     imageView.backgroundColor = [UIColor lightGrayColor];
@@ -92,14 +78,12 @@
     [textField setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scanQRCodeBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
     [makeQRCodeBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [readAlbumsQRCodeBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [catchQRCodeBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
     [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [label setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     
     
-    NSDictionary* viewsDict = NSDictionaryOfVariableBindings(textField, makeQRCodeBtn, scanQRCodeBtn, readAlbumsQRCodeBtn, catchQRCodeBtn, imageView, label);
+    NSDictionary* viewsDict = NSDictionaryOfVariableBindings(textField, makeQRCodeBtn, scanQRCodeBtn, imageView, label);
     
     NSDictionary* metricsDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:30], @"height", nil];
     
@@ -107,61 +91,135 @@
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[textField(>=0)]-10-|" options:NSLayoutFormatAlignAllTop metrics:metricsDict views:viewsDict]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[makeQRCodeBtn(>=0)]-10-[scanQRCodeBtn(makeQRCodeBtn)]-10-[readAlbumsQRCodeBtn(makeQRCodeBtn)]-10-[catchQRCodeBtn(makeQRCodeBtn)]-10-|" options:NSLayoutFormatAlignAllTop|NSLayoutFormatAlignAllBottom metrics:metricsDict views:viewsDict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[makeQRCodeBtn(>=0)]-10-[scanQRCodeBtn(makeQRCodeBtn)]-10-|" options:NSLayoutFormatAlignAllTop|NSLayoutFormatAlignAllBottom metrics:metricsDict views:viewsDict]];
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:imageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:imageView attribute:NSLayoutAttributeHeight multiplier:1 constant:0]];
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:textField attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
 }
+#pragma mark －－－－－－－－－－－－－－－扫描二维码－－－－－－－－－－
+- (void)scanQRCode {
+    
+    
+    
+    
+}
 
 #pragma mark －－－－－－－－－－－－－－－生成二维码－－－－－－－－－－
-
--(void)makeQRCode{
-
+- (void)makeQRCode {
+    imageView.image = [self QRCodeGeneratorWithText:textField.text];
 }
 
--(UIImage *)addSubImage:(UIImage *)img sub:(UIImage *) subImage
-{
-    //get image width and height
-    int w = img.size.width;
-    int h = img.size.height;
-    int subWidth = subImage.size.width;
-    int subHeight = subImage.size.height;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    //create a graphic context with CGBitmapContextCreate
-    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
-    CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);
-    CGContextDrawImage(context, CGRectMake( (w-subWidth)/2, (h - subHeight)/2, subWidth, subHeight), [subImage CGImage]);
-    CGImageRef imageMasked = CGBitmapContextCreateImage(context);
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpace);
-    return [UIImage imageWithCGImage:imageMasked];
-    //  CGContextDrawImage(contextRef, CGRectMake(100, 50, 200, 80), [smallImg CGImage]);
-}
-
-#pragma mark －－－－－－－－－－－－－－－扫描二维码－－－－－－－－－－
-//扫描二维码图片
--(void)scanQRCode:(id)sender{
+-(UIImage*)QRCodeGeneratorWithText:(NSString*)text{
+//    系统生成不支持中文
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
     
-
-}
-//从相册中读取二维码图片
-- (void)readFromAlbums {
+    [filter setValue:[text dataUsingEncoding:NSISOLatin1StringEncoding] forKey:@"inputMessage"];
+    [filter setValue:@"H" forKey:@"inputCorrectionLevel"];
     
-
-}
-//捕捉二维码
-- (void)catchQRCode {
+    CIImage *outputCIImage = [filter outputImage];
+    CGRect rect = [outputCIImage extent];
     
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [context createCGImage:outputCIImage fromRect:rect];
+    UIImage * effectImage = [UIImage imageWithCGImage:cgImage];
+    
+    return [self enlargeQRCodeImage:effectImage];
+}
+/**
+ *  二维码放大方法
+ *
+ *  @param QrCodeImage 二维码图片
+ *
+ *  @return 放大后的图片
+ */
+-(UIImage*)enlargeQRCodeImage:(UIImage*)QrCodeImage {
+    
+    CGFloat scale = 6.0f;
+    
+    CGSize size = CGSizeMake(QrCodeImage.size.width * scale, QrCodeImage.size.height * scale);
+    
+    UIGraphicsBeginImageContext(size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    for (int x = 0; x < QrCodeImage.size.width; x++) {
+        for (int y = 0; y < QrCodeImage.size.width; y++) {
+            
+            UIColor* pointColor = [self getPixelColorAtLocation:CGPointMake(x, y) inImage:QrCodeImage];
+            CGContextSetLineCap(ctx, kCGLineCapSquare);
+            CGContextSetLineWidth(ctx, 1.0);
+            
+            CGContextSetFillColorWithColor(ctx, pointColor.CGColor);
+            CGContextSetStrokeColorWithColor(ctx, [UIColor clearColor].CGColor);
+            //Draw a circle - and paint it with a different outline (white) and fill color (green)
+            CGContextAddRect(ctx, CGRectMake(x * scale, y * scale, scale, scale));//圆形
+            CGContextClosePath(ctx);
+            CGContextDrawPath(ctx, kCGPathFillStroke);
+            CGContextStrokePath(ctx);
+        }
+    }
+    UIImage *endImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return endImage;
 }
 
+- (UIColor*) getPixelColorAtLocation:(CGPoint)point inImage:(UIImage *)_image {
+    UIColor* color = nil;
+    CGImageRef inImage = _image.CGImage;
+    CGContextRef cgctx = [self createARGBBitmapContextFromImage:inImage];
+    if (cgctx == NULL) {
+        return nil; /* error */
+    }
+    size_t w = CGImageGetWidth(inImage);
+    size_t h = CGImageGetHeight(inImage);
+    CGRect rect = {{0,0},{w,h}};
+    CGContextDrawImage(cgctx, rect, inImage);
+    unsigned char* data = CGBitmapContextGetData (cgctx);
+    if (data != NULL) {
+        int offset = 4*((w*round(point.y))+round(point.x));
+        int alpha =  data[offset];
+        int red = data[offset+1];
+        int green = data[offset+2];
+        int blue = data[offset+3];
+        color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:
+                 (blue/255.0f) alpha:(alpha/255.0f)];
+    }
+    CGContextRelease(cgctx);
+    if (data) {
+        free(data);
+    }
+    return color;
+}
 
-# pragma mark ZXcapture 代理方法
-
-
-
-
-
+- (CGContextRef) createARGBBitmapContextFromImage:(CGImageRef) inImage {
+    CGContextRef context = NULL;
+    CGColorSpaceRef colorSpace;
+    void *bitmapData;
+    int bitmapByteCount;
+    int bitmapBytesPerRow;
+    size_t pixelsWide = CGImageGetWidth(inImage);
+    size_t pixelsHigh = CGImageGetHeight(inImage);
+    bitmapBytesPerRow = ((int)pixelsWide * 4);
+    bitmapByteCount = (bitmapBytesPerRow * (int)pixelsHigh);
+    colorSpace = CGColorSpaceCreateDeviceRGB();
+    if (colorSpace == NULL){
+        fprintf(stderr, "Error allocating color space\n");
+        return NULL;
+    }
+    bitmapData = malloc( bitmapByteCount );
+    if (bitmapData == NULL){
+        fprintf (stderr, "Memory not allocated!");
+        CGColorSpaceRelease( colorSpace );
+        return NULL;
+    }
+    context = CGBitmapContextCreate (bitmapData,pixelsWide,pixelsHigh,8,bitmapBytesPerRow,colorSpace,kCGImageAlphaPremultipliedFirst);
+    if (context == NULL){
+        free (bitmapData);
+        fprintf (stderr, "Context not created!");
+    }
+    CGColorSpaceRelease( colorSpace );
+    return context;
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)_textField{
     return [_textField resignFirstResponder];

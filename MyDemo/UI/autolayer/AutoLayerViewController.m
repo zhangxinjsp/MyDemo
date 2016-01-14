@@ -40,7 +40,7 @@
     [_urlBtn setBackgroundImage:[UIImage imageNamed:@"btn_save_blue.png"] forState:UIControlStateHighlighted];
     [_urlBtn setTitle:@"call app" forState:UIControlStateNormal];
     _urlBtn.titleLabel.textColor = [UIColor blackColor];
-    [_urlBtn addTarget:self action:@selector(callUrl) forControlEvents:UIControlEventTouchUpInside];
+//    [_urlBtn addTarget:self action:@selector(callUrl) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_urlBtn];
     
     _urlEntryFeature = [[UIButton alloc]init];//WithFrame:CGRectMake(150, 160, 150, 60)];
@@ -49,7 +49,7 @@
     [_urlEntryFeature setBackgroundImage:[UIImage imageNamed:@"btn_save_blue.png"] forState:UIControlStateHighlighted];
     [_urlEntryFeature setTitle:@"entry feature" forState:UIControlStateNormal];
     _urlEntryFeature.titleLabel.textColor = [UIColor blackColor];
-    [_urlEntryFeature addTarget:self action:@selector(entryFeatrue) forControlEvents:UIControlEventTouchUpInside];
+//    [_urlEntryFeature addTarget:self action:@selector(entryFeatrue) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_urlEntryFeature];
     
     _nameLabel = [[UILabel alloc]init];//WithFrame:CGRectMake(2, 20, 100, 60)];
