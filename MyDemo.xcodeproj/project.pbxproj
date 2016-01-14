@@ -97,6 +97,8 @@
 		5B309D031C473F9E0079CD78 /* RefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309CA31C473F9E0079CD78 /* RefreshViewController.m */; };
 		5B309D041C473F9E0079CD78 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309CA61C473F9E0079CD78 /* QRCodeViewController.m */; };
 		5B309D051C473F9E0079CD78 /* SendMessageAndEMailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309CD11C473F9E0079CD78 /* SendMessageAndEMailViewController.m */; };
+		5B309D081C4773490079CD78 /* ScrollCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309D071C4773490079CD78 /* ScrollCycleView.m */; };
+		5B309D0B1C477C290079CD78 /* BluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309D0A1C477C290079CD78 /* BluetoothViewController.m */; };
 		5B66177C1B19FB3F000C584F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */; };
 		5B84682B195691860033C079 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B84682A195691860033C079 /* CoreData.framework */; };
 		5BC0779D194D7AAD0024627F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0779A194D7AAD0024627F /* Default-568h@2x.png */; };
@@ -334,6 +336,10 @@
 		5B309CA61C473F9E0079CD78 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
 		5B309CD01C473F9E0079CD78 /* SendMessageAndEMailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageAndEMailViewController.h; sourceTree = "<group>"; };
 		5B309CD11C473F9E0079CD78 /* SendMessageAndEMailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageAndEMailViewController.m; sourceTree = "<group>"; };
+		5B309D061C4773490079CD78 /* ScrollCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollCycleView.h; sourceTree = "<group>"; };
+		5B309D071C4773490079CD78 /* ScrollCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollCycleView.m; sourceTree = "<group>"; };
+		5B309D091C477C290079CD78 /* BluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothViewController.h; sourceTree = "<group>"; };
+		5B309D0A1C477C290079CD78 /* BluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothViewController.m; sourceTree = "<group>"; };
 		5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		5B84682A195691860033C079 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		5BC0779A194D7AAD0024627F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -692,6 +698,8 @@
 		5B309C251C473F9E0079CD78 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
+				5B309D091C477C290079CD78 /* BluetoothViewController.h */,
+				5B309D0A1C477C290079CD78 /* BluetoothViewController.m */,
 				5B309C261C473F9E0079CD78 /* BELMacrosEnumerates.h */,
 				5B309C271C473F9E0079CD78 /* BLECentralManager.h */,
 				5B309C281C473F9E0079CD78 /* BLECentralManager.m */,
@@ -952,6 +960,8 @@
 			children = (
 				5B309C971C473F9E0079CD78 /* ScrollViewCycleController.h */,
 				5B309C981C473F9E0079CD78 /* ScrollViewCycleController.m */,
+				5B309D061C4773490079CD78 /* ScrollCycleView.h */,
+				5B309D071C4773490079CD78 /* ScrollCycleView.m */,
 			);
 			path = "UIScrollView代码实现无缝循环滚动";
 			sourceTree = "<group>";
@@ -990,328 +1000,8 @@
 			children = (
 				5B309CA51C473F9E0079CD78 /* QRCodeViewController.h */,
 				5B309CA61C473F9E0079CD78 /* QRCodeViewController.m */,
-				5B309CA71C473F9E0079CD78 /* QREncode */,
-				5B309CA81C473F9E0079CD78 /* ZBarSDK */,
-				5B309CAE1C473F9E0079CD78 /* ZXingObjC */,
 			);
 			path = "二维码";
-			sourceTree = "<group>";
-		};
-		5B309CA71C473F9E0079CD78 /* QREncode */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = QREncode;
-			sourceTree = "<group>";
-		};
-		5B309CA81C473F9E0079CD78 /* ZBarSDK */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CA91C473F9E0079CD78 /* Headers */,
-				5B309CAC1C473F9E0079CD78 /* libqrencode */,
-				5B309CAD1C473F9E0079CD78 /* Resources */,
-			);
-			path = ZBarSDK;
-			sourceTree = "<group>";
-		};
-		5B309CA91C473F9E0079CD78 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CAA1C473F9E0079CD78 /* ZBarSDK */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
-		5B309CAA1C473F9E0079CD78 /* ZBarSDK */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CAB1C473F9E0079CD78 /* zbar */,
-			);
-			path = ZBarSDK;
-			sourceTree = "<group>";
-		};
-		5B309CAB1C473F9E0079CD78 /* zbar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = zbar;
-			sourceTree = "<group>";
-		};
-		5B309CAC1C473F9E0079CD78 /* libqrencode */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = libqrencode;
-			sourceTree = "<group>";
-		};
-		5B309CAD1C473F9E0079CD78 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		5B309CAE1C473F9E0079CD78 /* ZXingObjC */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CAF1C473F9E0079CD78 /* aztec */,
-				5B309CB31C473F9E0079CD78 /* client */,
-				5B309CB51C473F9E0079CD78 /* common */,
-				5B309CB81C473F9E0079CD78 /* datamatrix */,
-				5B309CBC1C473F9E0079CD78 /* izxinghand */,
-				5B309CBD1C473F9E0079CD78 /* maxicode */,
-				5B309CBF1C473F9E0079CD78 /* multi */,
-				5B309CC21C473F9E0079CD78 /* oned */,
-				5B309CC61C473F9E0079CD78 /* pdf417 */,
-				5B309CCB1C473F9E0079CD78 /* qrcode */,
-			);
-			path = ZXingObjC;
-			sourceTree = "<group>";
-		};
-		5B309CAF1C473F9E0079CD78 /* aztec */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CB01C473F9E0079CD78 /* decoder */,
-				5B309CB11C473F9E0079CD78 /* detector */,
-				5B309CB21C473F9E0079CD78 /* encoder */,
-			);
-			path = aztec;
-			sourceTree = "<group>";
-		};
-		5B309CB01C473F9E0079CD78 /* decoder */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = decoder;
-			sourceTree = "<group>";
-		};
-		5B309CB11C473F9E0079CD78 /* detector */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = detector;
-			sourceTree = "<group>";
-		};
-		5B309CB21C473F9E0079CD78 /* encoder */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = encoder;
-			sourceTree = "<group>";
-		};
-		5B309CB31C473F9E0079CD78 /* client */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CB41C473F9E0079CD78 /* result */,
-			);
-			path = client;
-			sourceTree = "<group>";
-		};
-		5B309CB41C473F9E0079CD78 /* result */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = result;
-			sourceTree = "<group>";
-		};
-		5B309CB51C473F9E0079CD78 /* common */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CB61C473F9E0079CD78 /* detector */,
-				5B309CB71C473F9E0079CD78 /* reedsolomon */,
-			);
-			path = common;
-			sourceTree = "<group>";
-		};
-		5B309CB61C473F9E0079CD78 /* detector */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = detector;
-			sourceTree = "<group>";
-		};
-		5B309CB71C473F9E0079CD78 /* reedsolomon */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = reedsolomon;
-			sourceTree = "<group>";
-		};
-		5B309CB81C473F9E0079CD78 /* datamatrix */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CB91C473F9E0079CD78 /* decoder */,
-				5B309CBA1C473F9E0079CD78 /* detector */,
-				5B309CBB1C473F9E0079CD78 /* encoder */,
-			);
-			path = datamatrix;
-			sourceTree = "<group>";
-		};
-		5B309CB91C473F9E0079CD78 /* decoder */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = decoder;
-			sourceTree = "<group>";
-		};
-		5B309CBA1C473F9E0079CD78 /* detector */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = detector;
-			sourceTree = "<group>";
-		};
-		5B309CBB1C473F9E0079CD78 /* encoder */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = encoder;
-			sourceTree = "<group>";
-		};
-		5B309CBC1C473F9E0079CD78 /* izxinghand */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = izxinghand;
-			sourceTree = "<group>";
-		};
-		5B309CBD1C473F9E0079CD78 /* maxicode */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CBE1C473F9E0079CD78 /* decoder */,
-			);
-			path = maxicode;
-			sourceTree = "<group>";
-		};
-		5B309CBE1C473F9E0079CD78 /* decoder */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = decoder;
-			sourceTree = "<group>";
-		};
-		5B309CBF1C473F9E0079CD78 /* multi */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CC01C473F9E0079CD78 /* qrcode */,
-			);
-			path = multi;
-			sourceTree = "<group>";
-		};
-		5B309CC01C473F9E0079CD78 /* qrcode */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CC11C473F9E0079CD78 /* detector */,
-			);
-			path = qrcode;
-			sourceTree = "<group>";
-		};
-		5B309CC11C473F9E0079CD78 /* detector */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = detector;
-			sourceTree = "<group>";
-		};
-		5B309CC21C473F9E0079CD78 /* oned */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CC31C473F9E0079CD78 /* rss */,
-			);
-			path = oned;
-			sourceTree = "<group>";
-		};
-		5B309CC31C473F9E0079CD78 /* rss */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CC41C473F9E0079CD78 /* expanded */,
-			);
-			path = rss;
-			sourceTree = "<group>";
-		};
-		5B309CC41C473F9E0079CD78 /* expanded */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CC51C473F9E0079CD78 /* decoders */,
-			);
-			path = expanded;
-			sourceTree = "<group>";
-		};
-		5B309CC51C473F9E0079CD78 /* decoders */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = decoders;
-			sourceTree = "<group>";
-		};
-		5B309CC61C473F9E0079CD78 /* pdf417 */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CC71C473F9E0079CD78 /* decoder */,
-				5B309CC91C473F9E0079CD78 /* detector */,
-				5B309CCA1C473F9E0079CD78 /* encoder */,
-			);
-			path = pdf417;
-			sourceTree = "<group>";
-		};
-		5B309CC71C473F9E0079CD78 /* decoder */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CC81C473F9E0079CD78 /* ec */,
-			);
-			path = decoder;
-			sourceTree = "<group>";
-		};
-		5B309CC81C473F9E0079CD78 /* ec */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ec;
-			sourceTree = "<group>";
-		};
-		5B309CC91C473F9E0079CD78 /* detector */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = detector;
-			sourceTree = "<group>";
-		};
-		5B309CCA1C473F9E0079CD78 /* encoder */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = encoder;
-			sourceTree = "<group>";
-		};
-		5B309CCB1C473F9E0079CD78 /* qrcode */ = {
-			isa = PBXGroup;
-			children = (
-				5B309CCC1C473F9E0079CD78 /* decoder */,
-				5B309CCD1C473F9E0079CD78 /* detector */,
-				5B309CCE1C473F9E0079CD78 /* encoder */,
-			);
-			path = qrcode;
-			sourceTree = "<group>";
-		};
-		5B309CCC1C473F9E0079CD78 /* decoder */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = decoder;
-			sourceTree = "<group>";
-		};
-		5B309CCD1C473F9E0079CD78 /* detector */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = detector;
-			sourceTree = "<group>";
-		};
-		5B309CCE1C473F9E0079CD78 /* encoder */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = encoder;
 			sourceTree = "<group>";
 		};
 		5B309CCF1C473F9E0079CD78 /* 发送邮件和短信 */ = {
@@ -1512,6 +1202,7 @@
 				5B3097421C4727230079CD78 /* AppDelegate.m in Sources */,
 				5B3097771C4727230079CD78 /* MyKeyChainHelper.m in Sources */,
 				5B309CDF1C473F9E0079CD78 /* OtherMenuViewController.m in Sources */,
+				5B309D0B1C477C290079CD78 /* BluetoothViewController.m in Sources */,
 				5B309CE41C473F9E0079CD78 /* Area.m in Sources */,
 				5B309CDA1C473F9E0079CD78 /* CoreDataTool.m in Sources */,
 				5B309D001C473F9E0079CD78 /* VideoToolViewController.m in Sources */,
@@ -1523,6 +1214,7 @@
 				5B309CEF1C473F9E0079CD78 /* ZipArchive.mm in Sources */,
 				5B3097481C4727230079CD78 /* MyNavigationController.m in Sources */,
 				5B309CF11C473F9E0079CD78 /* AutoLayerViewController.m in Sources */,
+				5B309D081C4773490079CD78 /* ScrollCycleView.m in Sources */,
 				5B309CF61C473F9E0079CD78 /* CoreImageFilterViewController.m in Sources */,
 				5B30977B1C4727230079CD78 /* SSKeychain.m in Sources */,
 				5B3097701C4727230079CD78 /* RootNavigationController.m in Sources */,

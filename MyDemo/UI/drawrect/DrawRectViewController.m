@@ -33,7 +33,7 @@
 
     
     CGRect rect = self.view.bounds;
-    rect.size.height -= 160;
+    rect.size.height -= 200;
     drawView = [[DrawView alloc]initWithFrame:rect];
     drawView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:drawView];

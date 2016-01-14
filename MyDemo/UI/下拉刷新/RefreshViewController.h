@@ -16,5 +16,5 @@
     RefreshHeadView* refreshView;
     NSInteger index;
 }
-@property(nonatomic ,strong)IBOutlet UITableView* tableview;
+@property(nonatomic ,strong) UITableView* tableview;
 @end

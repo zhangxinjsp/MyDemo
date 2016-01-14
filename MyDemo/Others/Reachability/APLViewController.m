@@ -292,8 +292,6 @@
         CNMarkPortalOnline((__bridge CFStringRef)(ifs[0]));
         NSLog(@"%@", ifs);
     }
-    
-    
 }
 
 /*

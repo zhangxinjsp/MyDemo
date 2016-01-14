@@ -61,7 +61,7 @@ void HandleExceptions(NSException *exception) {
     CFRunLoopRef runLoop = CFRunLoopGetCurrent();
     CFArrayRef allModes = CFRunLoopCopyAllModes(runLoop);
     
-    while (!NO) {
+    while (NO) {
         for (NSString *mode in (__bridge NSArray *)allModes) {
             CFRunLoopRunInMode((__bridge CFStringRef)mode, 0.001, false);
         }

@@ -223,6 +223,10 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     LOGINFO(@"image Picker Controller Did Cancel");
+    [picker dismissViewControllerAnimated:YES completion:^{
+        LOGINFO(@"image picker has disappeared");
+    }];
+    
 }
 
 

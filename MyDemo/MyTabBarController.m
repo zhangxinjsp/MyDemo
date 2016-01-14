@@ -40,7 +40,7 @@
     uiMenuNavigation.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"ui" image:[UIImage imageNamed:@""] tag:0];
     
     otherViewController = [[OtherMenuViewController alloc]init];
-    otherNavigation = [[MyNavigationController alloc]initWithRootViewController:otherNavigation];
+    otherNavigation = [[MyNavigationController alloc]initWithRootViewController:otherViewController];
     otherNavigation.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"other" image:[UIImage imageNamed:@""] tag:1];
     
     testViewControler = [[TestViewController alloc]init];
