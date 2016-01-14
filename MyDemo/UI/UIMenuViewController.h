@@ -10,10 +10,7 @@
 
 #import "BaseViewController.h"
 
-@interface UIMenuViewController : BaseViewController{
-    
-    UIScrollView* scrollView;
-}
+@interface UIMenuViewController : BaseViewController
 
 
 @end

@@ -145,7 +145,7 @@ typedef NSInteger (^TestAnimation)(NSString* str);
 {
     [super viewDidLoad];
     
-    self.title = @"last View Controller";
+    self.navigationItem.title = @"test11";
     
     UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureHandle:)];
     [self.view addGestureRecognizer:pan];

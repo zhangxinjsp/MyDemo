@@ -597,7 +597,7 @@ bail:
 	CGSize parentFrameSize = [previewView frame].size;
 	NSString *gravity = [previewLayer videoGravity];
 	BOOL isMirrored = [previewLayer isMirrored];
-	CGRect previewBox = [SquareCamViewController videoPreviewBoxForGravity:gravity 
+	CGRect previewBox = [SquareCamViewController videoPreviewBoxForGravity:gravity
 															   frameSize:parentFrameSize 
 															apertureSize:clap.size];
 	

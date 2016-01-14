@@ -8,13 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#ifdef DEBUG
 #define LEVEL_CONTROL   0
-#else
-#define LEVEL_CONTROL   2
-#endif
-
-
+//#define SAVE_LOG_TO_FILE   1
+#define SAVE_LOG_FILE_NAME   @"MyDemo.log"
 
 #define LEVEL_DEBUG  0
 #define LEVEL_INFO   1
@@ -34,7 +30,8 @@
 extern "C"
 {
 #endif
-void printLog(int level ,NSString* file ,int line ,NSString* format, ...);
+    void printLog(int level ,NSString* file ,int line ,NSString* format, ...);
+    void saveLogToFile(NSString* logString) ;
 #ifdef __cplusplus
 }
 #endif
