@@ -8,46 +8,32 @@
 
 #import "AppDelegate.h"
 
-#import <FacebookSDK/FacebookSDK.h>
 #import "TestViewController.h"
 
 @implementation AppDelegate
 
-
 @synthesize window;
-@synthesize nav;
-@synthesize firstView;
-@synthesize session;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-#if 0
-    LastViewController* last = [[LastViewController alloc]init];
-    self.window.rootViewController = last;
-#else
-    if (isIphone5) {
-        firstView = [[NavRootViewController alloc] initWithNibName:@"NavRootViewController45" bundle:nil ];
-    }else{
-        firstView = [[NavRootViewController alloc] initWithNibName:@"NavRootViewController" bundle:nil ];
-    }
-    
-    nav = [[RootNavigationController alloc]initWithRootViewController:firstView];
-    self.window.rootViewController = nav;
-#endif
+    self.tabBarController = [[MyTabBarController alloc] init];
+
+    self.navigationController = [[RootNavigationController alloc]initWithRootViewController:self.tabBarController];
+    self.window.rootViewController = self.navigationController;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     //register Remote Notification
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
-    
-//    UIRemoteNotificationType enabledTypes =[[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-
-    //facebook
-    self.session = [[FBSession alloc] init];
-    
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
+        [[UIApplication sharedApplication]registerForRemoteNotifications];
+        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes: UIUserNotificationTypeBadge| UIUserNotificationTypeSound| UIUserNotificationTypeAlert categories:nil];
+        [[UIApplication sharedApplication]registerUserNotificationSettings:settings];
+    } else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
+    }
     
     // installs HandleExceptions as the Uncaught Exception Handler
     NSSetUncaughtExceptionHandler(&HandleExceptions);
@@ -102,71 +88,65 @@ void SignalHandler(int sig) {
     // Save application data on crash
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
+- (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    LOGINFO(@"qwerqwer%@",@"qwerqwer");
+    LOGINFO(@"");
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
+static UIBackgroundTaskIdentifier backgroundTask;
+- (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    static UIBackgroundTaskIdentifier task;
-    task = [application beginBackgroundTaskWithExpirationHandler:^{
-        task = UIBackgroundTaskInvalid;
+    
+    backgroundTask = [application beginBackgroundTaskWithExpirationHandler:^{
+        LOGINFO(@"background task expiration handler");
     }];
-    //执行后台操作
-    [application endBackgroundTask:task];
+    /*
+     do something 
+     end task after finish something
+     */
+    backgroundTask = UIBackgroundTaskInvalid;
+    [application endBackgroundTask:backgroundTask];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
+- (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
+- (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
-    LOGINFO(@"qwerqwer%@",@"qwerqwer");
-    [FBAppEvents activateApp];
-    [FBAppCall handleDidBecomeActiveWithSession:self.session];
+    LOGINFO(@"facebook handle become active!");
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
+- (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    [self.session close];
 }
 
 
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     
-    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:self.session];
+//    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:self.session];
 }
 
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
-{
-
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     LOGINFO(@"我的设备ID: %@", newDeviceToken);
-    
 }
+
+-(void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error {
+    LOGINFO(@"注册失败，无法获取设备ID, 具体错误: %@", error);
+}
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     //    [PFPush handlePush:userInfo];
     for (id key in userInfo) {
         LOGINFO(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
     }
-    
 }
 
-
--(void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
-{
-    LOGINFO(@"注册失败，无法获取设备ID, 具体错误: %@", error);
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    LOGINFO(@"%@" ,notification);
 }
 
 - (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier
@@ -177,6 +157,7 @@ void SignalHandler(int sig) {
 }
 
 -(void)presentNotification{
+    //后台下载的通知
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
     localNotification.alertBody = @"Download Complete!";
     localNotification.alertAction = @"Background Transfer Download!";
@@ -185,18 +166,6 @@ void SignalHandler(int sig) {
     //increase the badge number of application plus 1
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
     [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
-}
-
--(BOOL)shouldAutorotate{
-    return [self.nav shouldAutorotate];;
-}
-
--(NSUInteger)supportedInterfaceOrientations{
-    return [self.nav supportedInterfaceOrientations];
-}
-
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
-    return [self.nav shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
 
 

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "TestViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import "BaseViewController.h"
 
 #define FB_APP_KEY @"315631721878528" //自己申请的

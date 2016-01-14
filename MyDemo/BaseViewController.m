@@ -38,8 +38,8 @@
 #endif
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
-    UIBarButtonItem* item = [[UIBarButtonItem alloc]initWithTitle:@"nextStep" style:UIBarButtonItemStyleDone target:self action:@selector(nextStep:)];
-    self.navigationItem.rightBarButtonItem = item;
+//    UIBarButtonItem* item = [[UIBarButtonItem alloc]initWithTitle:@"nextStep" style:UIBarButtonItemStyleDone target:self action:@selector(nextStep:)];
+//    self.navigationItem.rightBarButtonItem = item;
     
     // Do any additional setup after loading the view.
 }

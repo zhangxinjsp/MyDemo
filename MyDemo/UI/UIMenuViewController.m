@@ -23,8 +23,7 @@
 #import "ContactsViewController.h"
 #import "MotionViewController.h"
 #import "CameraViewController.h"
-#import "ZBarViewController.h"
-#import "ZXingViewController.h"
+#import "QRCodeViewController.h"
 #import "CoreImageFilterViewController.h"
 #import "VideoToolViewController.h"
 
@@ -156,31 +155,31 @@
     NSInteger tag = ((UIButton*)sender).tag;
     switch (tag) {
         case 0:{
-            WebViewViewController* ctl = [[WebViewViewController alloc]initWithNibName:@"WebViewViewController" bundle:nil];
+            WebViewViewController* ctl = [[WebViewViewController alloc]init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 1:{
-            TransformViewController* ctl = [[TransformViewController alloc] initWithNibName:@"TransformViewController" bundle:nil];
+            TransformViewController* ctl = [[TransformViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 2:{
-            RegexAndMd5ViewController* ctl = [[RegexAndMd5ViewController alloc] initWithNibName:@"RegexAndMd5ViewController" bundle:nil];
+            RegexAndMd5ViewController* ctl = [[RegexAndMd5ViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 3:{
-            DrawRectViewController* ctl = [[DrawRectViewController alloc] initWithNibName:@"DrawRectViewController" bundle:nil];
+            DrawRectViewController* ctl = [[DrawRectViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 4:{
-            RefreshViewController* ctl = [[RefreshViewController alloc]initWithNibName:@"RefreshViewController" bundle:nil];
+            RefreshViewController* ctl = [[RefreshViewController alloc]init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
@@ -198,19 +197,19 @@
         }
             break;
         case 7:{
-            SQLiteViewController* ctl = [[SQLiteViewController alloc]initWithNibName:@"SQLiteViewController" bundle:nil];
+            SQLiteViewController* ctl = [[SQLiteViewController alloc]init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 8:{
-            SendMessageAndEMailViewController* ctl = [[SendMessageAndEMailViewController alloc]initWithNibName:@"SendMessageAndEMailViewController" bundle:nil];
+            SendMessageAndEMailViewController* ctl = [[SendMessageAndEMailViewController alloc]init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 9:{
-            ShareTofaceBookViewController* ctl = [[ShareTofaceBookViewController alloc] initWithNibName: @"ShareTofaceBookViewController" bundle:nil];
+            ShareTofaceBookViewController* ctl = [[ShareTofaceBookViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
@@ -228,7 +227,7 @@
         }
             break;
         case 12:{
-            AutoLayerViewController* ctl = [[AutoLayerViewController alloc] initWithNibName:@"AutoLayerViewController" bundle:nil];
+            AutoLayerViewController* ctl = [[AutoLayerViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
@@ -258,13 +257,13 @@
         }
             break;
         case 17:{
-            ZBarViewController* ctl = [[ZBarViewController alloc] init];
-            ctl.title = [titleArray objectAtIndex:tag];
-            [self.navigationController pushViewController:ctl animated:YES];
+//            ZBarViewController* ctl = [[ZBarViewController alloc] init];
+//            ctl.title = [titleArray objectAtIndex:tag];
+//            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case 18:{
-            ZXingViewController* ctl = [[ZXingViewController alloc] init];
+            QRCodeViewController* ctl = [[QRCodeViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
@@ -372,7 +371,7 @@
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations{
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
 

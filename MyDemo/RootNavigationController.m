@@ -14,9 +14,9 @@
 
 @implementation RootNavigationController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithRootViewController:(UIViewController *)rootViewController
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithRootViewController:rootViewController];
     if (self) {
         // Custom initialization
     }

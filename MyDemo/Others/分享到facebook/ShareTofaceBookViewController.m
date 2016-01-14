@@ -84,87 +84,89 @@ NSString *const FBSessionStateChangedNotification = @"cn.topdeep.UINavigationCon
                     
                 }
             };
-            [self presentModalViewController:shareController animated:YES];
+            [self presentViewController:shareController animated:YES completion:^{
+                
+            }];
         }
     }else{
-        AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+//        AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
         
         LOGINFO(@"%@",@"Facebook sharing button pressed.");
         
-        if (appDelegate.session.isOpen) {
-            [self publishFeedToFacebook];
-        } else {
-            if (appDelegate.session.state != FBSessionStateCreated) {
-                // Create a new, logged out session.
-                appDelegate.session = [[FBSession alloc] init];
-            }
-            [appDelegate.session openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-                [self publishFeedToFacebook];
-            }];
-        }
+//        if (appDelegate.session.isOpen) {
+//            [self publishFeedToFacebook];
+//        } else {
+//            if (appDelegate.session.state != FBSessionStateCreated) {
+//                // Create a new, logged out session.
+//                appDelegate.session = [[FBSession alloc] init];
+//            }
+//            [appDelegate.session openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+//                [self publishFeedToFacebook];
+//            }];
+//        }
     }
 }
 
-- (void)publishFeedToFacebook {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-    if (appDelegate.session.isOpen) {
-        NSString* imageUrl = @"";
-        
-        /* 把图片发送到服务器上，方便获取
-        if (self.sendImage != nil) {
-            if (addWaterMark) {
-                NSString* imageName = [NSString stringWithFormat:@"%.0f.png",[[NSDate date] timeIntervalSince1970] * 1000000];
-                if (![[FAPublicMethods getInstance]uploadImageToS3:sendImage imageName:imageName]) {
-                    [[FAPublicMethods getInstance]showAlertViewWithTitle:@"S3_UPLOAD_ERROR" tag:0 message:@"Sorry, can't share picture right now" cancel:@"OK" delegate:nil other:nil];
-                    return;
-                }
-                imageUrl = [NSString stringWithFormat:AWS_S3_VIRTUAL_FACE_IMGS_BUCKET,imageName];
-            }else{
-                imageUrl = [NSString stringWithFormat:AWS_S3_FEATURED_LOOKS_MODEL_IMGS_BUCKET,self.curatedLookSnapshot];
-            }
-        }else{
-            imageUrl = [[PPHBiz getInstance] keyValuesGetValueByKey:PALETTA_APP_URL_KEY];
-        }*/
-        LOGINFO(imageUrl);
-        NSString* name = @"share Title";
-        NSString* caption = @"";
-        NSString* description = @"";
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       name, @"name",
-                                       caption, @"caption",
-                                       description, @"description",
-                                       imageUrl, @"link",
-                                       imageUrl, @"picture",
-                                       nil];
-        // Invoke the dialog
-        [FBWebDialogs presentFeedDialogModallyWithSession:nil parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
-            if (error) {
-                // Error launching the dialog or publishing a story.
-                LOGINFO (@"Error publishing facebook story.");
-            } else {
-                if (result == FBWebDialogResultDialogNotCompleted) {
-                    // User clicked the "x" icon
-                    LOGINFO (@"4:User canceled facebook feed publishing.");
-                } else {
-                    // Handle the publish feed callback
-                    NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
-                    if (![urlParams valueForKey:@"post_id"]) {
-                        // User clicked the Cancel button
-                        LOGINFO(@"User canceled story publishing.");
-                        
-                    } else {
-                        // User clicked the Share button
-                        NSString *msg = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
-                        LOGINFO(@"4:Feed posted to facebook \n%@",msg);
-                        // Show the result in an alert
-                    }
-                }
-            }
-        }];
-    }else{
-        
-    }
-}
+//- (void)publishFeedToFacebook {
+//    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+//    if (appDelegate.session.isOpen) {
+//        NSString* imageUrl = @"";
+//        
+//        /* 把图片发送到服务器上，方便获取
+//        if (self.sendImage != nil) {
+//            if (addWaterMark) {
+//                NSString* imageName = [NSString stringWithFormat:@"%.0f.png",[[NSDate date] timeIntervalSince1970] * 1000000];
+//                if (![[FAPublicMethods getInstance]uploadImageToS3:sendImage imageName:imageName]) {
+//                    [[FAPublicMethods getInstance]showAlertViewWithTitle:@"S3_UPLOAD_ERROR" tag:0 message:@"Sorry, can't share picture right now" cancel:@"OK" delegate:nil other:nil];
+//                    return;
+//                }
+//                imageUrl = [NSString stringWithFormat:AWS_S3_VIRTUAL_FACE_IMGS_BUCKET,imageName];
+//            }else{
+//                imageUrl = [NSString stringWithFormat:AWS_S3_FEATURED_LOOKS_MODEL_IMGS_BUCKET,self.curatedLookSnapshot];
+//            }
+//        }else{
+//            imageUrl = [[PPHBiz getInstance] keyValuesGetValueByKey:PALETTA_APP_URL_KEY];
+//        }*/
+//        LOGINFO(imageUrl);
+//        NSString* name = @"share Title";
+//        NSString* caption = @"";
+//        NSString* description = @"";
+//        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                       name, @"name",
+//                                       caption, @"caption",
+//                                       description, @"description",
+//                                       imageUrl, @"link",
+//                                       imageUrl, @"picture",
+//                                       nil];
+//        // Invoke the dialog
+//        [FBWebDialogs presentFeedDialogModallyWithSession:nil parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+//            if (error) {
+//                // Error launching the dialog or publishing a story.
+//                LOGINFO (@"Error publishing facebook story.");
+//            } else {
+//                if (result == FBWebDialogResultDialogNotCompleted) {
+//                    // User clicked the "x" icon
+//                    LOGINFO (@"4:User canceled facebook feed publishing.");
+//                } else {
+//                    // Handle the publish feed callback
+//                    NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
+//                    if (![urlParams valueForKey:@"post_id"]) {
+//                        // User clicked the Cancel button
+//                        LOGINFO(@"User canceled story publishing.");
+//                        
+//                    } else {
+//                        // User clicked the Share button
+//                        NSString *msg = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
+//                        LOGINFO(@"4:Feed posted to facebook \n%@",msg);
+//                        // Show the result in an alert
+//                    }
+//                }
+//            }
+//        }];
+//    }else{
+//        
+//    }
+//}
 
 - (NSDictionary*)parseURLParams:(NSString *)query {
     NSArray *pairs = [query componentsSeparatedByString:@"&"];
@@ -179,33 +181,33 @@ NSString *const FBSessionStateChangedNotification = @"cn.topdeep.UINavigationCon
 }
 
 //可以分享图片
-- (void)publishStory
-{
-    UIImage* _postImage = nil;
-    NSMutableDictionary* postParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                  @"http://www.paletta.mobi/", @"link",
-                  _postImage ? _postImage : @"https://developers.facebook.com/attachment/iossdk_logo.png", @"picture",
-                  @"zhangxin", @"name",
-                  @"mobile social network for makeup lovers", @"caption",
-                  @"I just created a wish list using Paletta mobile app.",@"message",
-                  @"相关描述", @"description",
-                  nil];
-    
-    
-    [FBRequestConnection startWithGraphPath:(_postImage ? @"me/photos" : @"me/feed") parameters:postParams HTTPMethod:@"POST"      completionHandler:^(FBRequestConnection *connection,id result,NSError *error) {
-        NSString *alertText;
-        NSString *btnTitle;
-        if (error) {
-            alertText = [NSString stringWithFormat:@"error: domain = %@, code = %d",error.domain, error.code];
-            btnTitle = @"Error";
-        } else {
-            //             alertText = [NSString stringWithFormat:@"Posted action, id: %@",[result objectForKey:@"id"]];
-            alertText = @"Shared. Log into your facebook account to see the update";
-            btnTitle = @"OK";
-        }
-        // Show the result in an alert
-    }];
-}
+//- (void)publishStory
+//{
+//    UIImage* _postImage = nil;
+//    NSMutableDictionary* postParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+//                  @"http://www.paletta.mobi/", @"link",
+//                  _postImage ? _postImage : @"https://developers.facebook.com/attachment/iossdk_logo.png", @"picture",
+//                  @"zhangxin", @"name",
+//                  @"mobile social network for makeup lovers", @"caption",
+//                  @"I just created a wish list using Paletta mobile app.",@"message",
+//                  @"相关描述", @"description",
+//                  nil];
+//    
+//    
+//    [FBRequestConnection startWithGraphPath:(_postImage ? @"me/photos" : @"me/feed") parameters:postParams HTTPMethod:@"POST"      completionHandler:^(FBRequestConnection *connection,id result,NSError *error) {
+//        NSString *alertText;
+//        NSString *btnTitle;
+//        if (error) {
+//            alertText = [NSString stringWithFormat:@"error: domain = %@, code = %d",error.domain, error.code];
+//            btnTitle = @"Error";
+//        } else {
+//            //             alertText = [NSString stringWithFormat:@"Posted action, id: %@",[result objectForKey:@"id"]];
+//            alertText = @"Shared. Log into your facebook account to see the update";
+//            btnTitle = @"OK";
+//        }
+//        // Show the result in an alert
+//    }];
+//}
 
 
 @end
