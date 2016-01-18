@@ -85,7 +85,7 @@
         LOGINFO(@"%@  %s" ,@"select success!!", pzTail);
         return YES;
         //获取stmt 里面的数据
-        while (sqlite3_step(statement) == SQLITE_ROW) { }
+//        while (sqlite3_step(statement) == SQLITE_ROW) { }
     }else{
         LOGINFO(@"%@", @"prepare failed!!");
         return NO;
@@ -110,7 +110,7 @@
 }
 
 +(NSString*)columnName:(NSInteger)index{
-    const char* name = sqlite3_column_name([SQLiteTool shareInstance].statement, index);
+    const char* name = sqlite3_column_name([SQLiteTool shareInstance].statement, (int)index);
     return [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
 }
 
@@ -136,7 +136,7 @@
 }
 
 +(void)bindIntAtColumnIndex:(int)columnIndex withValue:(NSInteger)value{
-    sqlite3_bind_int([SQLiteTool shareInstance].statement, columnIndex, value);
+    sqlite3_bind_int([SQLiteTool shareInstance].statement, columnIndex, (int)value);
 }
 
 
@@ -173,8 +173,48 @@
 
 
 /*
- SQL 使用单引号来环绕文本值（大部分数据库系统也接受双引号）。如果是数值，请不要使用引号。
  
+ sqlite3* database;
+ sqlite3_stmt* statement;
+ //第一和二的参数都是一样的，
+ sqlite3_open([@"" UTF8String], &database);
+ sqlite3_open16([@"" UTF8String], &database);
+ *
+ * 第三个是sql的权限设置。SQLITE_OPEN_READWRITE｜SQLITE_OPEN_CREATE是前面的默认方式
+ * 第四个是vfs是sqlite的核心和底层操作系统之间的接口,填写nil会使用默认的sqlite_vfs对象
+ *
+ sqlite3_open_v2([@"" UTF8String], &database, SQLITE_OPEN_READONLY, nil);
+
+ //推荐使用v2的方法，其中包含了低版本的。
+ sqlite3_prepare     (<#sqlite3 *db#>, <#const char *zSql#>, <#int nByte#>, <#sqlite3_stmt **ppStmt#>, <#const char **pzTail#>)
+ sqlite3_prepare16   (<#sqlite3 *db#>, <#const void *zSql#>, <#int nByte#>, <#sqlite3_stmt **ppStmt#>, <#const void **pzTail#>)
+ sqlite3_prepare_v2  (<#sqlite3 *db#>, <#const char *zSql#>, <#int nByte#>, <#sqlite3_stmt **ppStmt#>, <#const char **pzTail#>)
+ sqlite3_prepare16_v2(<#sqlite3 *db#>, <#const void *zSql#>, <#int nByte#>, <#sqlite3_stmt **ppStmt#>, <#const void **pzTail#>)
+
+ sqlite3_step(<#sqlite3_stmt *#>)
+ //回到上次执行的sql语句，
+ sqlite3_reset(<#sqlite3_stmt *pStmt#>)
+ sqlite3_finalize(<#sqlite3_stmt *pStmt#>)
+
+ 以下是占位符：NNN代表一个整数（这个整数是代表这个参数的索引），VVV代表一个字母标识符（参数的名字）
+ ?
+ ?NNN（可以指定索引如：?1, ?2）
+ :VVV（:name1）
+ @VVV（@naem2）
+ $VVV（$name3）
+ 
+ sqlite3_bind_blob(<#sqlite3_stmt *#>, <#int#>, <#const void *#>, <#int n#>, <#void (*)(void *)#>);
+ sqlite3_bind_int(<#sqlite3_stmt *#>, <#int#>, <#int#>)
+ sqlite3_bind_parameter_index(<#sqlite3_stmt *#>, <#const char *zName#>)
+
+ sqlite3_column_name(<#sqlite3_stmt *#>, <#int N#>)
+ 
+ 
+ 
+ 
+
+ SQL 使用单引号来环绕文本值（大部分数据库系统也接受双引号）。如果是数值，请不要使用引号。
+
  创建表语句：
  integer(size)，int(size)， smallint(size)， tinyint(size) 仅容纳整数。在括号内规定数字的最大位数。
  decimal(size,d)， numeric(size,d) 容纳带有小数的数字。 "size" 规定数字的最大位数。"d" 规定小数点右侧的最大位数。
