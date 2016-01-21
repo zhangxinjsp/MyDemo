@@ -8,13 +8,13 @@
 
 #import "WebViewViewController.h"
 
-@interface WebViewViewController ()
+@interface WebViewViewController () <UIWebViewDelegate>{
+    UIWebView* webView;
+}
 
 @end
 
 @implementation WebViewViewController
-
-@synthesize webView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,11 +31,19 @@
     
     self.title = @"webView";
     
-    UIBarButtonItem* item1 = [[UIBarButtonItem alloc]initWithTitle:@"返回2" style:UIBarButtonItemStyleDone target:self action:@selector(backButtonPressed:)];//backBarButtonItem必须设置一个UIBarButtonItem才能修改标题，而且事件添加无效！
-    self.navigationItem.backBarButtonItem = item1;
-    //右键
-    UIBarButtonItem* item2 = [[UIBarButtonItem alloc]initWithTitle:@"下一步"style:UIBarButtonItemStyleBordered target:self action:@selector(nextStep:)];
-    self.navigationItem.rightBarButtonItem = item2;
+    [self initWebView];
+    
+    [self loadHtml];
+    
+}
+
+- (void)initWebView {
+    webView = [[UIWebView alloc]init];
+    webView.backgroundColor = [UIColor grayColor];
+    webView.delegate = self;
+    [webView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:webView];
+    
     //ios 6.0 去除背景的阴影
     for (UIView *aView in [webView subviews]){
         if ([aView isKindOfClass:[UIScrollView class]]){
@@ -46,19 +54,18 @@
             }
         }
     }
-    webView.backgroundColor = [UIColor grayColor];
-    webView.delegate = self;
-    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[webView(>=0)]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(webView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[webView(>=0)]-100-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(webView)]];
+}
+
+- (void)loadHtml {
     NSArray* array = [[NSMutableArray alloc]initWithObjects:@"Gurmukhi MN",@"Malayalam Sangam MN",@"Bradley Hand",@"Kannada Sangam MN",@"Bodoni 72 Oldstyle",@"Cochin",@"Sinhala Sangam MN",@"Hiragino Kaku Gothic ProN",@"Papyrus",@"Verdana",@"Zapf Dingbats",@"Courier",@"Hoefler Text",@"Euphemia UCAS",@"Helvetica",@"Hiragino Mincho ProN",@"Bodoni Ornaments",@"Apple Color Emoji",@"Optima",@"Gujarati Sangam MN",@"Devanagari Sangam MN",@"Times New Roman",@"Kailasa",@"Telugu Sangam MN",@"Heiti SC",@"Futura",@"Bodoni 72",@"Baskerville",@"Chalkboard SE",@"Heiti TC",@"Copperplate",@"Bangla Sangam MN",@"Noteworthy",@"Zapfino",@"Tamil Sangam MN",@"DB LCD Temp",@"Arial Hebrew",@"Chalkduster",@"Georgia",@"Helvetica Neue",@"Gill Sans",@"Palatino",@"Courier New",@"Oriya Sangam MN",@"Didot",@"Bodoni 72 Smallcaps",@"Party LET",@"American Typewriter",@"AppleGothic", nil];
     NSInteger a = rand()%array.count;
     LOGINFO(@"%d",a );
     NSString* tempHTMLQuery = [NSString stringWithFormat:@"%@%@%@", @"<p style=\"font-size:14px;line-height:24px;font-family:",[array objectAtIndex:a],@"\">温馨提示：</br>1、如果您还不是华安基金客户，请先访问</br>&nbsp; &nbsp; &nbsp; www.huaan.com.cn自助开户。</br>2、华安基金客户可直接使用基金账号或开户</br>&nbsp; &nbsp; &nbsp; 证件号，输入查询密码登录。</br>3、如有任何疑问，请致电40088-50099。</p>"];
     NSString* tempHTMLTransaction = @"<p style=\"font-size:14px;line-height:24px;font-family:Arial\">温馨提示：</br>1、如果您还不是华安基金电子直销客户，请</br>&nbsp; &nbsp; &nbsp; 先访问www.huaan.com.cn自助开户。</br>2、华安基金电子直销客户可直接使用基金账</br>&nbsp; &nbsp; &nbsp; 号或开户证件号，输入交易密码登录。</br>3、如有任何疑问，请致电40088-50099。</p>";
-    NSString* HTML = NO ? tempHTMLTransaction : tempHTMLQuery;
+    NSString* HTML = /* DISABLES CODE */ (YES) ? tempHTMLTransaction : tempHTMLQuery;
     [webView loadHTMLString:HTML baseURL:nil];
-    
-    
-    
 }
 
 #pragma mark web view load https
@@ -118,7 +125,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(NSUInteger)supportedInterfaceOrientations{
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
 

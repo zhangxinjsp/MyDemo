@@ -10,9 +10,8 @@
 #import "TransformViewController.h"
 #import "BaseViewController.h"
 
-@interface WebViewViewController : BaseViewController<UIWebViewDelegate>{
-    UIWebView* webView;
+@interface WebViewViewController : BaseViewController{
+    
 }
 
-@property(strong ,nonatomic) IBOutlet UIWebView* webView;
 @end

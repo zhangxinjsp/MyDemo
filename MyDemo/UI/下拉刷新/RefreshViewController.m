@@ -8,19 +8,22 @@
 
 #import "RefreshViewController.h"
 
-@interface RefreshViewController ()
+@interface RefreshViewController ()<UITableViewDataSource,UITableViewDelegate,RefreshHeadViewProtocol>{
+    UITableView* tableview;
+    RefreshHeadView* refreshView;
+    NSInteger totalCount;
+}
 
 @end
 
 @implementation RefreshViewController
 
-@synthesize tableview;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        index = 10;
+        totalCount = 10;
     }
     return self;
 }
@@ -30,9 +33,16 @@
     [super viewDidLoad];
     
     self.title = @"下拉刷新";
-    UIBarButtonItem* item = [[UIBarButtonItem alloc]initWithTitle:@"nextStep" style:UIBarButtonItemStyleDone target:self action:@selector(nextStep:)];
-    self.navigationItem.rightBarButtonItem = item;
-
+    
+    tableview = [[UITableView alloc]init];
+    tableview.delegate = self;
+    tableview.dataSource = self;
+    [tableview setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:tableview];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[tableview(>=0)]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tableview)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[tableview(>=0)]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tableview)]];
+    
     refreshView = [[RefreshHeadView alloc]initWithFrame:CGRectMake(0, -120, 320, 120)];
     refreshView.refreshDelegate = self;
     refreshView.backgroundColor = [UIColor whiteColor];
@@ -50,7 +60,7 @@
     return 44;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return index;
+    return totalCount;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -78,7 +88,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [tableview deselectRowAtIndexPath:indexPath animated:YES];
 
-    index--;
+    totalCount--;
     
     [tableview deleteRowsAtIndexPaths:[[NSArray alloc]initWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
 //    [tableView reloadRowsAtIndexPaths:[[NSArray alloc]initWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];

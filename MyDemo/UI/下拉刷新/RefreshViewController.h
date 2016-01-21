@@ -11,10 +11,7 @@
 #import "TestViewController.h"
 #import "BaseViewController.h"
 
-@interface RefreshViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,RefreshHeadViewProtocol>{
-    UITableView* tableview;
-    RefreshHeadView* refreshView;
-    NSInteger index;
-}
-@property(nonatomic ,strong) UITableView* tableview;
+@interface RefreshViewController : BaseViewController
+
+
 @end

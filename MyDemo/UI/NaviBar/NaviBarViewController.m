@@ -29,6 +29,10 @@
 }
 
 - (void)navigationBar {
+    
+//    backBarButtonItem必须设置一个UIBarButtonItem才能修改标题，而且事件添加无效！
+    
+    
     UIButton* logoBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];//rect是必须的
     [logoBtn setImage:[UIImage imageNamed:@"logo.png"] forState:UIControlStateNormal];
     [logoBtn addTarget:self action:@selector(logoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
