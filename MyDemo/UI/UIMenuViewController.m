@@ -21,6 +21,7 @@
 #import "RefreshViewController.h"
 #import "QRCodeViewController.h"
 #import "SendMessageAndEMailViewController.h"
+#import "CustomControlsViewController.h"
 
 
 #define CellIdentity @"identity"
@@ -57,6 +58,7 @@
     label = [[UILabel alloc]init];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:11];
+    label.numberOfLines = 2;
     label.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:label];
     
@@ -75,6 +77,22 @@
 @end
 
 
+typedef NS_ENUM(NSInteger, MenuType) {
+    AutoLayerTag,
+    CameraTag,
+    CoreImageFilterTag,
+    DrawRectTag,
+    MapAndLocationTag,
+    NaviBarTag,
+    TransformTag,
+    ScrollViewCycleTag,
+    VideoToolTag,
+    WebViewTag,
+    RefreshTag,
+    QRCodeTag,
+    SendMessageAndEMailTag,
+    CustomControlsTag
+};
 @interface UIMenuViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>{
     
     UICollectionView* collection;
@@ -101,7 +119,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"ui menu";
     
-    titleArray = [[NSArray alloc]initWithObjects:@"Auto Layer", @"camera", @"filter", @"drawrect", @"map,location", @"naviBar", @"transform", @"scroll", @"videoTool", @"webView", @"下拉刷新", @"QRCode", @"短信和邮件", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"Auto Layer", @"camera", @"filter", @"drawrect", @"map,location", @"naviBar", @"transform", @"scroll", @"videoTool", @"webView", @"下拉刷新", @"QRCode", @"短信和邮件", @"customControl", nil];
     
     
     UICollectionViewFlowLayout* collectionLayout = [[UICollectionViewFlowLayout alloc]init];
@@ -171,80 +189,86 @@
 
     NSInteger tag = indexPath.row;
     switch (tag) {
-        case 0:{
+        case AutoLayerTag:{
             AutoLayerViewController* ctl = [[AutoLayerViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case 1:{
+        case CameraTag:{
             CameraViewController* ctl = [[CameraViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case 2:{
+        case CoreImageFilterTag:{
             CoreImageFilterViewController* ctl = [[CoreImageFilterViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
-        case 3:{
+        case DrawRectTag:{
             DrawRectViewController* ctl = [[DrawRectViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case 4:{
+        case MapAndLocationTag:{
             MapAndLocationViewController* ctl = [[MapAndLocationViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case 5:{
+        case NaviBarTag:{
             NaviBarViewController* ctl = [[NaviBarViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case 6:{
+        case TransformTag:{
             TransformViewController* ctl = [[TransformViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case 7:{
+        case ScrollViewCycleTag:{
             ScrollViewCycleController* ctl = [[ScrollViewCycleController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case 8:{
+        case VideoToolTag:{
             VideoToolViewController* ctl = [[VideoToolViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case 9:{
+        case WebViewTag:{
             WebViewViewController* ctl = [[WebViewViewController alloc]init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case 10:{
+        case RefreshTag:{
             RefreshViewController* ctl = [[RefreshViewController alloc]init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case 11:{
+        case QRCodeTag:{
             QRCodeViewController* ctl = [[QRCodeViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case 12:{
+        case SendMessageAndEMailTag:{
             SendMessageAndEMailViewController* ctl = [[SendMessageAndEMailViewController alloc]init];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
+        }
+            break;
+        case CustomControlsTag:{
+            CustomControlsViewController* ctl = [[CustomControlsViewController alloc]init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }

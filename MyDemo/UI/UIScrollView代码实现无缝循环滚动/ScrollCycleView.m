@@ -13,8 +13,6 @@
     
     UIScrollView *scrollView;
     UIPageControl *pageControl;
-    
-    BOOL needRollingCycle;
 }
 
 @end
@@ -23,24 +21,13 @@
 
 @synthesize showItemArray;
 @synthesize delegate;
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        needRollingCycle = NO;
-        
-        [self initSubControls];
-        [self layoutSubControls];
-    }
-    return self;
-}
+@synthesize needAutoCycle;
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        needRollingCycle = YES;
+        needAutoCycle = NO;
         
         [self initSubControls];
         [self layoutSubControls];
@@ -82,18 +69,20 @@
     if (showItemArray.count <= 0) {
         return;
     }
+    
+    [scrollView removeConstraints:[scrollView constraints]];
+    [scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     NSMutableDictionary* viewDict = [[NSMutableDictionary alloc]init];
     NSString* formatString = @"H:|-0-";
-    NSInteger totalCount = needRollingCycle ? showItemArray.count + 2 : showItemArray.count;
+    NSInteger totalCount = needAutoCycle ? showItemArray.count + 1 : showItemArray.count;
     for (int i = 0; i < totalCount; i++) {
         NSInteger tag = i;
-        if (needRollingCycle) {
-            if (i == 0) {
-                tag = showItemArray.count - 1;
-            } else if (i == showItemArray.count + 1) {
+        if (needAutoCycle) {
+            if (i == showItemArray.count) {
                 tag = 0;
             } else {
-                tag = i - 1;
+                tag = i;
             }
         }
         UIImageView* pageView = [[UIImageView alloc]init];
@@ -103,7 +92,7 @@
         [pageView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [scrollView addSubview:pageView];
         
-        if (needRollingCycle) {// || i == totalCount - 1
+        if (needAutoCycle) {
             UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
             tap.numberOfTapsRequired = 1;
             tap.numberOfTouchesRequired = 1;
@@ -111,23 +100,17 @@
         }
         NSString* key = [NSString stringWithFormat:@"pageView_%d", i];
         [viewDict setObject:pageView forKeyedSubscript:key];
-        formatString = [formatString stringByAppendingFormat:@"[%@(width)]-0-", key];
+        formatString = [formatString stringByAppendingFormat:@"[%@(==scrollView)]-0-", key];
     }
     formatString = [formatString stringByAppendingString:@"|"];
-    CGFloat height = scrollView.bounds.size.height;
-    CGFloat width = scrollView.bounds.size.width;
+    [viewDict setObject:scrollView forKey:@"scrollView"];
     
-    NSDictionary* metricsDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 [NSNumber numberWithFloat:height], @"height",
-                                 [NSNumber numberWithFloat:width], @"width",
-                                 [NSNumber numberWithFloat:width * (totalCount - 1)], @"mwidth", nil];
+    NSDictionary* metricsDict = @{};
     
-    [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[pageView_0(height)]-0-|" options:0 metrics:metricsDict views:viewDict]];
+    [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[pageView_0(==scrollView)]-0-|" options:0 metrics:metricsDict views:viewDict]];
     
     [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:formatString options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom metrics:metricsDict views:viewDict]];
-    if (needRollingCycle) {
-        scrollView.contentOffset = CGPointMake(width, 0);
-    } else {
+    if (!needAutoCycle) {
         UIButton* startBtn = [[UIButton alloc]init];
         [startBtn setTitle:@"开启全新旅程" forState:UIControlStateNormal];
         [startBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -150,47 +133,38 @@
     if (_showItemArray) {
         showItemArray = _showItemArray;
         pageControl.numberOfPages = showItemArray.count;
+        [self layoutScrollView];
     }
 }
 
 #pragma mark scrollvie停止滑动
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)_scrollView {
-    if (needRollingCycle) {
-        NSInteger currentPage = (_scrollView.contentOffset.x / _scrollView.frame.size.width - 1);
-        pageControl.currentPage = currentPage % showItemArray.count;
-    } else {
-        NSInteger currentPage = (_scrollView.contentOffset.x / _scrollView.frame.size.width);
-        pageControl.currentPage = currentPage % showItemArray.count;
-    }
+    NSInteger currentPage = (_scrollView.contentOffset.x / _scrollView.frame.size.width);
+    pageControl.currentPage = currentPage % showItemArray.count;
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)_scrollView {
-    if (!needRollingCycle) {
+    if (!needAutoCycle) {
         return;
     }
     CGFloat width = _scrollView.frame.size.width;
     CGFloat offSetX = _scrollView.contentOffset.x;
     if (offSetX < 0) {
         [_scrollView setContentOffset:CGPointMake(width * showItemArray.count, 0) animated:NO];
-    } else if (offSetX > (width * (showItemArray.count + 1))) {
-        [_scrollView setContentOffset:CGPointMake(width, 0) animated:NO];
+    } else if (offSetX > (width * showItemArray.count)) {
+        [_scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
     }
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    if (!needRollingCycle) {
-        return;
-    }
     [self stopTimer];
 }
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (!needRollingCycle) {
-        return;
-    }
     [self startTimer];
 }
 
+#pragma mark Action
 -(void)handleTap:(UITapGestureRecognizer*)sender {
     NSInteger tag = sender.view.tag;
     LOGINFO(@"selected at index :%d", tag);
@@ -206,11 +180,11 @@
 }
 
 #pragma mark 自动滚动
--(void)shouldAutoShow:(BOOL)shouldStart {
-    if (!needRollingCycle) {
-        return;
-    }
-    if (shouldStart) {
+
+-(void)setNeedAutoCycle:(BOOL)_needAutoCycle {
+    needAutoCycle = _needAutoCycle;
+    if (needAutoCycle) {
+        [self layoutScrollView];
         [self startTimer];
     } else {
         [self stopTimer];
@@ -218,9 +192,13 @@
 }
 
 - (void)startTimer {
-    if (!autoScrollTimer) {
-        autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(autoShowNextImage) userInfo:nil repeats:YES];
+    if (!needAutoCycle) {
+        return;
     }
+    if (!autoScrollTimer) {
+        autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoShowNextImage) userInfo:nil repeats:YES];
+    }
+//    [self performSelector:@selector(autoShowNextImage) withObject:nil afterDelay:2];
 }
 
 - (void)stopTimer {
@@ -231,13 +209,27 @@
 }
 
 #pragma mark 展示下一页
+
 -(void)autoShowNextImage {
-    CGFloat offSet = self.frame.size.width;
-    if (showItemArray.count - 1 > pageControl.currentPage) {
-        offSet = offSet * (pageControl.currentPage + 2);
-    }
-    [scrollView setContentOffset:CGPointMake(offSet, 0)];
+    
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    [animation setType:kCATransitionPush];
+    [animation setSubtype:kCATransitionFromRight];
+    [animation setRepeatCount:0];
+//    [animation setRepeatDuration:2];
+//    animation.fillMode = kCAFillModeBoth;
+    [animation setDuration:0.5f];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    [scrollView.layer addAnimation:animation forKey:@"animation"];
+    
     pageControl.currentPage = (pageControl.currentPage + 1) % showItemArray.count;
+    [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width * pageControl.currentPage, 0)];
+}
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    LOGINFO(@"");
 }
 
 @end

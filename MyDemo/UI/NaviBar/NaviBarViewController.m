@@ -8,9 +8,11 @@
 
 #import "NaviBarViewController.h"
 
-#import "CustomAlertView.h"
 
-@interface NaviBarViewController ()
+
+@interface NaviBarViewController () {
+    UIButton* backBtn;
+}
 
 @end
 
@@ -20,6 +22,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+
+    
+    backBtn = [[UIButton alloc]init];
+    
+}
+
+- (void)navigationBar {
     UIButton* logoBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];//rect是必须的
     [logoBtn setImage:[UIImage imageNamed:@"logo.png"] forState:UIControlStateNormal];
     [logoBtn addTarget:self action:@selector(logoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -46,31 +55,9 @@
     //右键
     UIBarButtonItem* item2 = [[UIBarButtonItem alloc]initWithTitle:@"next"style:UIBarButtonItemStyleBordered target:self action:@selector(nextStep:)];
     self.navigationItem.rightBarButtonItem = item2;
-    
 }
 
 -(void)nextStep:(id)sender{
-    
-    CustomAlertView* inputalert = [[CustomAlertView alloc]initWithTitle:@"000000" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
-    inputalert.alertType = CustomAlertViewTypeSecureTextInput;
-    inputalert.alertActionType = AlertActionDefault;
-    [inputalert show];
-    
-    CustomAlertView* inputalert1 = [[CustomAlertView alloc]initWithTitle:@"111111" message:@"mmmmmmmmmmmmmmmm11111" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
-    inputalert1.alertType = CustomAlertViewTypeSecureTextInput;
-    inputalert1.alertActionType = AlertActionDefault;
-    [inputalert1 show];
-    
-    CustomAlertView* inputalert2 = [[CustomAlertView alloc]initWithTitle:@"222222" message:@"mmmmmmmmmmmmmmmm2222222" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
-    inputalert2.alertType = CustomAlertViewTypeSecureTextInput;
-    inputalert2.alertActionType = AlertActionDefault;
-    [inputalert2 show];
-    
-    CustomAlertView* inputalert3 = [[CustomAlertView alloc]initWithTitle:@"333333" message:@"mmmmmmmmmmmmmmmm3333333" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
-    inputalert3.alertType = CustomAlertViewTypeSecureTextInput;
-    inputalert3.alertActionType = AlertActionUserActionPrompt;
-    [inputalert3 show];
-    
     
 #ifdef __IPHONE_8_0
     

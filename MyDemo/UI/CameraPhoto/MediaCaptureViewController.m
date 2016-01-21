@@ -163,7 +163,7 @@
 
 - (void)qrCodeAction:(id)sender{
     LOGINFO(@"二维码扫描");
-//    [self metadataOutput];
+    [self metadataOutput];
     
     
     

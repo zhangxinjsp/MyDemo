@@ -16,11 +16,8 @@
 
 @property (nonatomic, strong) NSArray *showItemArray;
 
+@property (nonatomic, readwrite) BOOL needAutoCycle;
 
-
-- (void)layoutScrollView;
-
-- (void)shouldAutoShow:(BOOL)shouldStart;
 
 @end
 
