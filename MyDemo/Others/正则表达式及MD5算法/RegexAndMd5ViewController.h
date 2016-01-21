@@ -10,19 +10,9 @@
 #import "DrawRectViewController.h"
 #import "BaseViewController.h"
 
-@interface RegexAndMd5ViewController : BaseViewController<UITextViewDelegate>{
-    
-    UITextView* md5TextView;
-    UIButton* md5Button;
-    UILabel* label1;
-    UILabel* label2;
-}
-@property (nonatomic , strong)IBOutlet UILabel* label1;
-@property (nonatomic , strong)IBOutlet UILabel* label2;
-@property (nonatomic , strong)IBOutlet UITextView* md5TextView;
-@property (nonatomic , strong)IBOutlet UIButton* md5Button;
+@interface RegexAndMd5ViewController : BaseViewController
 
 
--(IBAction)md5ButtonPredded:(id)sender;
+
 @end
 

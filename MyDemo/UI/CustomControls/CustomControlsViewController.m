@@ -10,7 +10,9 @@
 
 #import "CustomAlertView.h"
 
-@interface CustomControlsViewController ()
+@interface CustomControlsViewController () <CustomAlertViewDelegate> {
+    UIButton* alertShowBtn;
+}
 
 @end
 
@@ -19,13 +21,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    alertShowBtn = [[UIButton alloc]init];
+    alertShowBtn.backgroundColor = [UIColor redColor];
+    [alertShowBtn setTitle:@"show alert" forState:UIControlStateNormal];
+    [alertShowBtn addTarget:self action:@selector(customAlert) forControlEvents:UIControlEventTouchUpInside];
+    [alertShowBtn setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:alertShowBtn];
     
+    NSDictionary* viewDict = NSDictionaryOfVariableBindings(alertShowBtn);
     
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[alertShowBtn(>=0)]-10-|" options:0 metrics:nil views:viewDict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[alertShowBtn(==30)]-(>=0)-|" options:0 metrics:nil views:viewDict]];
     
 }
 
 
-
+#pragma mark Alert
 -(void)customAlert{
     CustomAlertView* inputalert = [[CustomAlertView alloc]initWithTitle:@"000000" message:@"mmmmmmmmmmmmmmmm" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok0", nil];
     inputalert.alertType = CustomAlertViewTypeSecureTextInput;
@@ -47,6 +58,27 @@
     inputalert3.alertActionType = AlertActionUserActionPrompt;
     [inputalert3 show];
 }
+
+-(void)customAlertView:(CustomAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+}
+
+#pragma mark Segment
+static UIView* segmentView = nil;
+static UIView* segmentMaskView = nil;
+- (void)customSegmentView {
+    segmentView = [[UIView alloc]init];
+    
+    
+    
+    
+}
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
