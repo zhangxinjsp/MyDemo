@@ -28,6 +28,27 @@
     [super viewDidLoad];
     self.navigationBarHidden = YES;
     // Do any additional setup after loading the view from its nib.
+    
+#ifdef __IPHONE_6_0
+    
+    LOGINFO(@"%@",@"this is ios 6.0");
+    
+#elif __IPHONE_5_0
+    
+    LOGINFO(@"%@",@"this is ios 5.0");
+#elif __IPHONE_4_0
+    
+    LOGINFO(@"%@",@"this is ios 4.0");
+#endif
+    
+#if TARGET_IPHONE_SIMULATOR
+    LOGINFO(@"run on simulator");
+#else
+    LOGINFO(@"run on device");
+#endif
+    
+    LOGINFO(NSLocalizedString(@"key", @""));
+    
 }
 
 - (void)viewDidUnload

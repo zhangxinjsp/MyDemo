@@ -20,6 +20,21 @@
 #import "FileManagerReadAndWriteViewController.h"
 #import "RegexAndMd5ViewController.h"
 
+
+typedef NS_ENUM(NSInteger, OtherMenuType) {
+    BluetoothTag,
+    ContactsTag,
+    CoreDataTag,
+    MotionTag,
+    APLTag,
+    URLRequestTag,
+    SocketTag,
+    SQLiteTag,
+    ShareTofaceBookTag,
+    FileManagerReadAndWriteTag,
+    RegexAndMd5Tag,
+};
+
 @interface OtherMenuViewController () <UITableViewDelegate, UITableViewDataSource>{
     UITableView* tableV;
     NSArray* titleArray;
@@ -72,74 +87,74 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LOGINFO(@"select at section %d, row %d", indexPath.section, indexPath.row);
     
-    NSInteger tag = indexPath.row;
+    OtherMenuType tag = indexPath.row;
     switch (tag) {
-        case 0:{
+        case BluetoothTag: {
             BluetoothViewController* ctl = [[BluetoothViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
-        }
             break;
-        case 1:{
+        }
+        case ContactsTag: {
             ContactsViewController* ctl = [[ContactsViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
-        }
             break;
-        case 2:{
+        }
+        case CoreDataTag: {
             CoreDataViewController* ctl = [[CoreDataViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
-        }
             break;
-        case 3:{
+        }
+        case MotionTag: {
             MotionViewController* ctl = [[MotionViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
-        }
             break;
-        case 4:{
+        }
+        case APLTag: {
             APLViewController* ctl = [[APLViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
-        }
             break;
-        case 5:{
+        }
+        case URLRequestTag: {
             URLRequestViewController* ctl = [[URLRequestViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
-        }
             break;
-        case 6:{
+        }
+        case SocketTag: {
             SocketViewController* ctl = [[SocketViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
-        }
             break;
-        case 7:{
+        }
+        case SQLiteTag: {
             SQLiteViewController* ctl = [[SQLiteViewController alloc]init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
-        }
             break;
-        case 8:{
+        }
+        case ShareTofaceBookTag: {
             ShareTofaceBookViewController* ctl = [[ShareTofaceBookViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
-        }
             break;
-        case 9:{
+        }
+        case FileManagerReadAndWriteTag: {
             FileManagerReadAndWriteViewController* ctl = [[FileManagerReadAndWriteViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
-        }
             break;
-        case 10:{
+        }
+        case RegexAndMd5Tag: {
             RegexAndMd5ViewController* ctl = [[RegexAndMd5ViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
-        }
             break;
+        }
         default:
             break;
     }

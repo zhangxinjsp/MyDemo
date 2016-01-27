@@ -15,117 +15,8 @@
 
 typedef NSInteger (^TestAnimation)(NSString* str);
 
-
-@interface PopAnimation : NSObject <UIViewControllerAnimatedTransitioning>{
-    id<UIViewControllerContextTransitioning> _transitionContext;
-}
-
-@end
-
-@implementation PopAnimation
-
--(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
-    return 0.25;
-}
-
--(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext{
+@interface TestViewController () {
     
-    
-    UIViewController* from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    
-    UIViewController* to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    
-    UIView* contenterView = [transitionContext containerView];
-    
-    //当需要两种效果之间切换的时候，使用contenter view（即navigation的view）同时toView要在上面
-//    _transitionContext = transitionContext;
-//    [contenterView insertSubview:to.view aboveSubview:from.view];
-//    [contenterView.layer addAnimation:[self transitionWithSystemType] forKey:@"" ];
-    
-
-    
-    NSTimeInterval duration = [self transitionDuration:transitionContext];
-    
-    [contenterView insertSubview:to.view belowSubview:from.view];
-//    [from.view.layer addAnimation:[self transitionWithSystemType] forKey:@"" ];
-//    [to.view.layer addAnimation:[self transitionWithSystemType] forKey:@"" ];
-    [UIView animateWithDuration:duration animations:^{
-        from.view.transform = CGAffineTransformMakeTranslation([UIScreen mainScreen].bounds.size.width, 0);
-        
-    } completion:^(BOOL finished) {
-        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
-    }];
-    
-}
-
--(CATransition*)transitionWithSystemType{
-    CATransition *animation = [CATransition animation];
-    [animation setDelegate:self];
-    /* 设定动画类型
-     
-     *  kCATransitionFade            交叉淡化过渡
-     *  kCATransitionMoveIn          新视图移到旧视图上面
-     *  kCATransitionPush            新视图把旧视图推出去
-     *  kCATransitionReveal          将旧视图移开,显示下面的新视图
-     *  @"push"
-     *  @"fade"                     交叉淡化过渡(不支持过渡方向)             (默认为此效果)
-     *  @"moveIn"                   新视图移到旧视图上面
-     *  @"reveal"                   显露效果(将旧视图移开,显示下面的新视图)
-     以下是私有效果审核时回被打回来
-     * mapUnCurl
-     *  @"cube"                     立方体翻滚效果
-     *  @"pageCurl"                 向上翻一页
-     *  @"pageUnCurl"               向下翻一页
-     *  @"suckEffect"               收缩效果，类似系统最小化窗口时的神奇效果(不支持过渡方向)
-     *  @"rippleEffect"             滴水效果,(不支持过渡方向)
-     *  @"oglFlip"                  上下左右翻转效果
-     *  @"rotate"                   旋转效果
-     *  @"cameraIrisHollowOpen"     相机镜头打开效果(不支持过渡方向)
-     *  @"cameraIrisHollowClose"    相机镜头关上效果(不支持过渡方向)
-     */
-    [animation setType:@"cube"];
-    
-    /** subtype
-     *
-     *  各种动画方向
-     *
-     *  kCATransitionFromRight;      同字面意思(下同)
-     *  kCATransitionFromLeft;
-     *  kCATransitionFromTop;
-     *  kCATransitionFromBottom;
-     *  当type为@"rotate"(旋转)的时候,它也有几个对应的subtype,分别为:
-     *  90cw    逆时针旋转90°
-     *  90ccw   顺时针旋转90°
-     *  180cw   逆时针旋转180°
-     *  180ccw  顺时针旋转180°
-     */
-    [animation setSubtype:kCATransitionFromLeft];//方向
-    
-    animation.fillMode = kCAFillModeBoth;
-    //这个属性默认为YES.一般情况下,不需要设置这个属性. 但如果是CAAnimation动画,并且需要设置 fillMode 属性,那么需要将 removedOnCompletion 设置为NO,否则fillMode无效
-    animation.removedOnCompletion = NO;
-    
-    animation.filter = nil;//CIFilter, 设置之后只有简单的可以使用复杂的需要filter自己做定时效果
-    
-    [animation setDuration:[self transitionDuration:nil]];
-    
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    
-    return animation;
-}
-
--(void)animationDidStart:(CAAnimation *)anim{
-    
-}
-
--(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    [_transitionContext completeTransition:!_transitionContext.transitionWasCancelled];
-}
-@end
-
-
-@interface TestViewController ()<UINavigationControllerDelegate>{
-    UIPercentDrivenInteractiveTransition* interactiveTransition;
 }
 
 @end
@@ -137,6 +28,9 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+//    view 定义xib文件的方法
+//        NSArray* array = [[NSBundle mainBundle]loadNibNamed:@"ItemView" owner:nil options:nil];
+//        ItemView* tempView = [array objectAtIndex:0];
     }
     return self;
 }
@@ -146,10 +40,7 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     [super viewDidLoad];
     
     self.navigationItem.title = @"test11";
-    
-    UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureHandle:)];
-    [self.view addGestureRecognizer:pan];
-    
+
     //item按下是会有高亮效果的
     UIToolbar *tools = [[UIToolbar alloc]initWithFrame: CGRectMake(0.0f, 0.0f, 44.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
     tools.clipsToBounds = NO;
@@ -158,7 +49,6 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     [tools setItems:[NSArray arrayWithObject:item]];
     UIBarButtonItem *updateBtn = [[UIBarButtonItem alloc]initWithCustomView:tools];
     [self.navigationItem setRightBarButtonItem:updateBtn];
-    
     
 //    com.huawei.ott.hosting${PRODUCT_NAME:rfc1034identifier}
     
@@ -394,57 +284,12 @@ typedef NSInteger (^TestAnimation)(NSString* str);
 //    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
 }
 
-#pragma mark navigation pop animation
--(void)panGestureHandle:(UIPanGestureRecognizer*)gesture{
-    
-    CGFloat progress = [gesture translationInView:self.view].x / self.view.bounds.size.width;
-    
-    progress = MIN(1.0, MAX(0, progress));
-    
-    if (gesture.state == UIGestureRecognizerStateBegan) {
-        self.navigationController.delegate = self;
-        interactiveTransition = [[UIPercentDrivenInteractiveTransition alloc]init];
-        [self.navigationController popViewControllerAnimated:YES];
-        
-    }else if (gesture.state == UIGestureRecognizerStateChanged){
-        [interactiveTransition updateInteractiveTransition:progress];
-    }else if (gesture.state == UIGestureRecognizerStateEnded ||
-              gesture.state == UIGestureRecognizerStateCancelled){
-        
-        if (progress > 0.5) {
-            [interactiveTransition finishInteractiveTransition];
-        }else{
-            [interactiveTransition cancelInteractiveTransition];
-        }
-        interactiveTransition = nil;
-        self.navigationController.delegate = nil;
-    }
-}
-
-
--(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
-    
-    if (operation == UINavigationControllerOperationPop && [navigationController isEqual:self.navigationController]) {
-        return  [[PopAnimation alloc]init];
-    }
-    return nil;
-}
-
-
--(id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
-    
-    if ([animationController isKindOfClass:[PopAnimation class]]) {
-        return interactiveTransition;
-    }
-    return nil;
-}
-
 #pragma  mark run loop
 - (void)runLoop {
     CFRunLoopRef runLoop = CFRunLoopGetCurrent();
     CFArrayRef allModes = CFRunLoopCopyAllModes(runLoop);
-    
-    while (!NO) {
+    BOOL aa = NO;
+    while (!aa) {
         for (NSString *mode in (__bridge NSArray *)allModes) {
             CFRunLoopRunInMode((__bridge CFStringRef)mode, 0.001, false);
         }
@@ -484,6 +329,7 @@ static BOOL pageStillLoading = NO;
 
 -(void)viewDidAppear:(BOOL)animated{
     LOGINFO(@"viewDidAppear");
+    
 
 }
 
@@ -510,7 +356,7 @@ static BOOL pageStillLoading = NO;
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations{
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
 
     return UIInterfaceOrientationMaskLandscape;
 }
