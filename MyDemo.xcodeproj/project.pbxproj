@@ -103,9 +103,10 @@
 		5BC0779E194D7AAD0024627F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0779B194D7AAD0024627F /* Default.png */; };
 		5BC0779F194D7AAD0024627F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0779C194D7AAD0024627F /* Default@2x.png */; };
 		5BC077A3194DAA590024627F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC077A2194DAA590024627F /* Security.framework */; };
-		5BCD47A01C505F3500F61BC9 /* CustomControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD479F1C505F3500F61BC9 /* CustomControlsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		5BCD47A61C505FD500F61BC9 /* CAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD47A31C505FD500F61BC9 /* CAlertView.m */; settings = {ASSET_TAGS = (); }; };
-		5BCD47A71C505FD500F61BC9 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD47A51C505FD500F61BC9 /* CustomAlertView.m */; settings = {ASSET_TAGS = (); }; };
+		5BD163391C58630800D639C0 /* CAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD163331C58630800D639C0 /* CAlertView.m */; settings = {ASSET_TAGS = (); }; };
+		5BD1633A1C58630800D639C0 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD163351C58630800D639C0 /* CustomAlertView.m */; settings = {ASSET_TAGS = (); }; };
+		5BD1633B1C58630800D639C0 /* CustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD163371C58630800D639C0 /* CustomAlertViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5BD1633E1C5863DF00D639C0 /* CustomSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD1633D1C5863DF00D639C0 /* CustomSegmentViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5BD46D39194D3B61002995EB /* bubble_blue_recieve_doctor.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD46D13194D3B61002995EB /* bubble_blue_recieve_doctor.png */; };
 		5BD46D3A194D3B61002995EB /* dragDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD46D14194D3B61002995EB /* dragDown.png */; };
 		5BD46D3B194D3B61002995EB /* dragDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD46D15194D3B61002995EB /* dragDown@2x.png */; };
@@ -344,12 +345,14 @@
 		5BC0779C194D7AAD0024627F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		5BC077A0194D88860024627F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Resource/Other_SDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		5BC077A2194DAA590024627F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		5BCD479E1C505F3500F61BC9 /* CustomControlsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomControlsViewController.h; sourceTree = "<group>"; };
-		5BCD479F1C505F3500F61BC9 /* CustomControlsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomControlsViewController.m; sourceTree = "<group>"; };
-		5BCD47A21C505FD500F61BC9 /* CAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAlertView.h; sourceTree = "<group>"; };
-		5BCD47A31C505FD500F61BC9 /* CAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAlertView.m; sourceTree = "<group>"; };
-		5BCD47A41C505FD500F61BC9 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
-		5BCD47A51C505FD500F61BC9 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
+		5BD163321C58630800D639C0 /* CAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAlertView.h; sourceTree = "<group>"; };
+		5BD163331C58630800D639C0 /* CAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAlertView.m; sourceTree = "<group>"; };
+		5BD163341C58630800D639C0 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
+		5BD163351C58630800D639C0 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
+		5BD163361C58630800D639C0 /* CustomAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertViewController.h; sourceTree = "<group>"; };
+		5BD163371C58630800D639C0 /* CustomAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertViewController.m; sourceTree = "<group>"; };
+		5BD1633C1C5863DF00D639C0 /* CustomSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegmentViewController.h; sourceTree = "<group>"; };
+		5BD1633D1C5863DF00D639C0 /* CustomSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentViewController.m; sourceTree = "<group>"; };
 		5BD46D13194D3B61002995EB /* bubble_blue_recieve_doctor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_blue_recieve_doctor.png; sourceTree = "<group>"; };
 		5BD46D14194D3B61002995EB /* dragDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dragDown.png; sourceTree = "<group>"; };
 		5BD46D15194D3B61002995EB /* dragDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dragDown@2x.png"; sourceTree = "<group>"; };
@@ -855,6 +858,8 @@
 			children = (
 				5B309C941C473F9E0079CD78 /* UIMenuViewController.h */,
 				5B309C951C473F9E0079CD78 /* UIMenuViewController.m */,
+				5BD163311C58630800D639C0 /* CustomAlertView */,
+				5BD163381C58630800D639C0 /* CustomSegment */,
 				5B309C741C473F9E0079CD78 /* AutoLayer */,
 				5B309C771C473F9E0079CD78 /* CameraPhoto */,
 				5B309C7F1C473F9E0079CD78 /* CoreImageFilter */,
@@ -868,7 +873,6 @@
 				5B309C9F1C473F9E0079CD78 /* 下拉刷新 */,
 				5B309CA41C473F9E0079CD78 /* 二维码 */,
 				5B309CCF1C473F9E0079CD78 /* 发送邮件和短信 */,
-				5BCD479D1C505F3500F61BC9 /* CustomControls */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1005,25 +1009,26 @@
 			path = "发送邮件和短信";
 			sourceTree = "<group>";
 		};
-		5BCD479D1C505F3500F61BC9 /* CustomControls */ = {
+		5BD163311C58630800D639C0 /* CustomAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				5BCD47A11C505FD500F61BC9 /* CustomAlertView */,
-				5BCD479E1C505F3500F61BC9 /* CustomControlsViewController.h */,
-				5BCD479F1C505F3500F61BC9 /* CustomControlsViewController.m */,
-			);
-			path = CustomControls;
-			sourceTree = "<group>";
-		};
-		5BCD47A11C505FD500F61BC9 /* CustomAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				5BCD47A21C505FD500F61BC9 /* CAlertView.h */,
-				5BCD47A31C505FD500F61BC9 /* CAlertView.m */,
-				5BCD47A41C505FD500F61BC9 /* CustomAlertView.h */,
-				5BCD47A51C505FD500F61BC9 /* CustomAlertView.m */,
+				5BD163321C58630800D639C0 /* CAlertView.h */,
+				5BD163331C58630800D639C0 /* CAlertView.m */,
+				5BD163341C58630800D639C0 /* CustomAlertView.h */,
+				5BD163351C58630800D639C0 /* CustomAlertView.m */,
+				5BD163361C58630800D639C0 /* CustomAlertViewController.h */,
+				5BD163371C58630800D639C0 /* CustomAlertViewController.m */,
 			);
 			path = CustomAlertView;
+			sourceTree = "<group>";
+		};
+		5BD163381C58630800D639C0 /* CustomSegment */ = {
+			isa = PBXGroup;
+			children = (
+				5BD1633C1C5863DF00D639C0 /* CustomSegmentViewController.h */,
+				5BD1633D1C5863DF00D639C0 /* CustomSegmentViewController.m */,
+			);
+			path = CustomSegment;
 			sourceTree = "<group>";
 		};
 		5BD46D11194D3B61002995EB /* Resource */ = {
@@ -1215,7 +1220,6 @@
 			files = (
 				5B309CF41C473F9E0079CD78 /* SquareCamViewController.m in Sources */,
 				5B309CDB1C473F9E0079CD78 /* CoreDataViewController.m in Sources */,
-				5BCD47A61C505FD500F61BC9 /* CAlertView.m in Sources */,
 				5B309D011C473F9E0079CD78 /* WebViewViewController.m in Sources */,
 				5B309CF01C473F9E0079CD78 /* RegexAndMd5ViewController.m in Sources */,
 				5B3097421C4727230079CD78 /* AppDelegate.m in Sources */,
@@ -1227,6 +1231,7 @@
 				5B309D001C473F9E0079CD78 /* VideoToolViewController.m in Sources */,
 				5B309CEE1C473F9E0079CD78 /* zip.c in Sources */,
 				5B309CD91C473F9E0079CD78 /* CoreData.xcdatamodeld in Sources */,
+				5BD163391C58630800D639C0 /* CAlertView.m in Sources */,
 				5B309D021C473F9E0079CD78 /* RefreshHeadView.m in Sources */,
 				5B309CDE1C473F9E0079CD78 /* MotionViewController.m in Sources */,
 				5B309CEF1C473F9E0079CD78 /* ZipArchive.mm in Sources */,
@@ -1252,16 +1257,17 @@
 				5B309CE31C473F9E0079CD78 /* SocketViewController.m in Sources */,
 				5B309CE51C473F9E0079CD78 /* Skintone.m in Sources */,
 				5B3097711C4727230079CD78 /* TestViewController.m in Sources */,
-				5BCD47A01C505F3500F61BC9 /* CustomControlsViewController.m in Sources */,
+				5BD1633B1C58630800D639C0 /* CustomAlertViewController.m in Sources */,
+				5BD1633A1C58630800D639C0 /* CustomAlertView.m in Sources */,
 				5B3097461C4727230079CD78 /* main.m in Sources */,
 				5B309CD41C473F9E0079CD78 /* BLEPeripheralManager.m in Sources */,
-				5BCD47A71C505FD500F61BC9 /* CustomAlertView.m in Sources */,
 				5B309CD81C473F9E0079CD78 /* ContactsViewController.m in Sources */,
 				5B309CFB1C473F9E0079CD78 /* MyAnnotation.m in Sources */,
 				5B309CE11C473F9E0079CD78 /* Reachability.m in Sources */,
 				5B309CEC1C473F9E0079CD78 /* mztools.c in Sources */,
 				5B309CF21C473F9E0079CD78 /* CameraViewcontroller.m in Sources */,
 				5B309CE71C473F9E0079CD78 /* SQLiteViewController.m in Sources */,
+				5BD1633E1C5863DF00D639C0 /* CustomSegmentViewController.m in Sources */,
 				5B309CEB1C473F9E0079CD78 /* ioapi.c in Sources */,
 				5B309D031C473F9E0079CD78 /* RefreshViewController.m in Sources */,
 				5B309CDC1C473F9E0079CD78 /* Product.m in Sources */,

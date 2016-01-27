@@ -6,17 +6,18 @@
 //  Copyright © 2016年 zhangxin. All rights reserved.
 //
 
-#import "CustomControlsViewController.h"
+#import "CustomAlertViewController.h"
 
 #import "CustomAlertView.h"
 
-@interface CustomControlsViewController () <CustomAlertViewDelegate> {
+@interface CustomAlertViewController () <CustomAlertViewDelegate> {
     UIButton* alertShowBtn;
+    
 }
 
 @end
 
-@implementation CustomControlsViewController
+@implementation CustomAlertViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,16 +64,7 @@
     
 }
 
-#pragma mark Segment
-static UIView* segmentView = nil;
-static UIView* segmentMaskView = nil;
-- (void)customSegmentView {
-    segmentView = [[UIView alloc]init];
-    
-    
-    
-    
-}
+
 
 
 

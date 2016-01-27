@@ -21,8 +21,8 @@
 #import "RefreshViewController.h"
 #import "QRCodeViewController.h"
 #import "SendMessageAndEMailViewController.h"
-#import "CustomControlsViewController.h"
-
+#import "CustomAlertViewController.h"
+#import "CustomSegmentViewController.h"
 
 #define CellIdentity @"identity"
 
@@ -91,7 +91,8 @@ typedef NS_ENUM(NSInteger, MenuType) {
     RefreshTag,
     QRCodeTag,
     SendMessageAndEMailTag,
-    CustomControlsTag
+    CustomAlertTag,
+    CustomSegmentTag
 };
 @interface UIMenuViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>{
     
@@ -119,7 +120,7 @@ typedef NS_ENUM(NSInteger, MenuType) {
     [super viewDidLoad];
     self.navigationItem.title = @"ui menu";
     
-    titleArray = [[NSArray alloc]initWithObjects:@"Auto Layer", @"camera", @"filter", @"drawrect", @"map,location", @"naviBar", @"transform", @"scroll", @"videoTool", @"webView", @"下拉刷新", @"QRCode", @"短信和邮件", @"customControl", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"Auto Layer", @"camera", @"filter", @"drawrect", @"map,location", @"naviBar", @"transform", @"scroll", @"videoTool", @"webView", @"下拉刷新", @"QRCode", @"短信和邮件", @"alert", @"segment", nil];
     
     
     UICollectionViewFlowLayout* collectionLayout = [[UICollectionViewFlowLayout alloc]init];
@@ -187,7 +188,7 @@ typedef NS_ENUM(NSInteger, MenuType) {
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     LOGINFO(@"select at section %d, row %d", indexPath.section, indexPath.row);
 
-    NSInteger tag = indexPath.row;
+    MenuType tag = indexPath.row;
     switch (tag) {
         case AutoLayerTag:{
             AutoLayerViewController* ctl = [[AutoLayerViewController alloc] init];
@@ -267,12 +268,19 @@ typedef NS_ENUM(NSInteger, MenuType) {
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        case CustomControlsTag:{
-            CustomControlsViewController* ctl = [[CustomControlsViewController alloc]init];
+        case CustomAlertTag:{
+            CustomAlertViewController* ctl = [[CustomAlertViewController alloc]init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
+        
+        case CustomSegmentTag: {
+            CustomSegmentViewController* ctl = [[CustomSegmentViewController alloc]init];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
+            break;
+        }
         default:
             break;
     }
