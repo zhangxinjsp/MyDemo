@@ -6,21 +6,19 @@
 //  Copyright (c) 2012年 zhangxin. All rights reserved.
 //
 
-#import "RegexAndMd5ViewController.h"
+#import "RegexViewController.h"
 #import "NSString-expand.h"
 
 
-@interface RegexAndMd5ViewController ()<UITextViewDelegate>{
+@interface RegexViewController ()<UITextViewDelegate>{
     
-    UITextView* md5TextView;
-    UIButton* md5Button;
     UILabel* label1;
     UILabel* label2;
 }
 
 @end
 
-@implementation RegexAndMd5ViewController
+@implementation RegexViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,26 +34,8 @@
     [super viewDidLoad];
     self.title = @"正则表达式";
     
-    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-    [self.view addGestureRecognizer:tap];
-    
     [self predicate];
     [self getSubstringUsingRegular];
-}
-
-#pragma mark MD5
--(void)md5ButtonPredded:(id)sender{
-    
-    NSString* temp = md5TextView.text;
-    
-    temp = [temp md5];
-    
-    LOGINFO(@"%@",temp);
-    md5TextView.text = temp;
-}
-
--(void)tapAction:(id)sender{
-    [md5TextView resignFirstResponder];
 }
 
 #pragma mark NSPredicate 

@@ -165,7 +165,7 @@
     
     NSRange dayRange = [calendar maximumRangeOfUnit:NSWeekdayCalendarUnit];
     NSInteger maxDay = NSMaxRange(dayRange) - 1;
-    
+    LOGINFO(@"max day is :%d", maxDay);
     if (myDay == tzDay) {
         return @"today";
     } else {
@@ -175,12 +175,12 @@
             return @"yesterday";
         }
         // Special cases for days at the end of the week
-        if ((myDay == maxDay) && (tzDay == 1)) {
-            return @"tomorrow";
-        }
-        if ((myDay == 1) && (tzDay == maxDay)) {
-            return @"yesterday";
-        }
+//        if ((myDay == maxDay) && (tzDay == 1)) {
+//            return @"tomorrow";
+//        }
+//        if ((myDay == 1) && (tzDay == maxDay)) {
+//            return @"yesterday";
+//        }
 	}
     return @"today";
 }

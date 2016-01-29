@@ -66,7 +66,7 @@
         }
     }
     
-    [self performSelector:@selector(aaaa) withObject:nil afterDelay:5];
+//    [self performSelector:@selector(aaaa) withObject:nil afterDelay:5];
     
     if( hasError == 0 ) {
         [SQLiteTool commitTransaction];

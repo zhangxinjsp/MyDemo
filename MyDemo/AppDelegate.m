@@ -60,8 +60,8 @@ void HandleExceptions(NSException *exception) {
     
     CFRunLoopRef runLoop = CFRunLoopGetCurrent();
     CFArrayRef allModes = CFRunLoopCopyAllModes(runLoop);
-    
-    while (NO) {
+    BOOL finish = NO;//可以定义为全局变量，来决定是否完成某些事
+    while (finish) {
         for (NSString *mode in (__bridge NSArray *)allModes) {
             CFRunLoopRunInMode((__bridge CFStringRef)mode, 0.001, false);
         }
@@ -128,6 +128,7 @@ static UIBackgroundTaskIdentifier backgroundTask;
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     
 //    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:self.session];
+    return YES;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {

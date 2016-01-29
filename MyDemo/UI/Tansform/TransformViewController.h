@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "RegexAndMd5ViewController.h"
 #import "BaseViewController.h"
 
 @interface TransformViewController : BaseViewController{

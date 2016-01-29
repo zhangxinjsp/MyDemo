@@ -238,7 +238,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
 //    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:scrollView cache:YES];旋转效果
     [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(stopAnimation)];
+//    [UIView setAnimationDidStopSelector:@selector(stopAnimation)];
     //两种状态 ，开始和结束状态
     label.layer.transform = [self setCATransform3D];
     

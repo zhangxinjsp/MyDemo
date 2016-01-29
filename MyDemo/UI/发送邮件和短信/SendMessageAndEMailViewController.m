@@ -109,16 +109,13 @@
     // Fill out the email body text
     NSString *emailBody = [NSString stringWithFormat:@"我分享了文件给您，地址是%@",address] ;
     [picker setMessageBody:emailBody isHTML:NO];
-    [self presentModalViewController:picker animated:YES];
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     // Notifies users about errors associated with the interface
     
-    switch (result)
-    
-    {
-        
+    switch (result){
         case MFMailComposeResultCancelled:
         
         LOGINFO(@"Result: Mail sending canceled");
@@ -150,7 +147,7 @@
         break;
         
     }
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -186,7 +183,7 @@
     
     picker.body=smsBody;
     
-    [self presentModalViewController:picker animated:YES];
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{

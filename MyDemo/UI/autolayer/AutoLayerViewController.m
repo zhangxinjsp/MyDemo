@@ -185,7 +185,7 @@
         btn.tag = i;
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btn setTitle:name forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(selectedPeripheral:) forControlEvents:UIControlEventTouchUpInside];
+//        [btn addTarget:self action:@selector(selectedPeripheral:) forControlEvents:UIControlEventTouchUpInside];
         [btn setTranslatesAutoresizingMaskIntoConstraints:NO];
         [scrollView addSubview:btn];
         
@@ -241,7 +241,7 @@
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations{
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
     [self.view removeConstraints:[self.view constraints]];
     if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         [self layoutSubviewTypeLandscape];

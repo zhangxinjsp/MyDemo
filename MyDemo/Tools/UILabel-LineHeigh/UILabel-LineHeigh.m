@@ -75,14 +75,14 @@
     
     CTTextAlignment alignment = kCTLeftTextAlignment;
     
-    if(self.textAlignment == UITextAlignmentCenter)
+    if(self.textAlignment == NSTextAlignmentCenter)
         
     {
         alignment = kCTCenterTextAlignment;
         
     }
     
-    if(self.textAlignment == UITextAlignmentRight)
+    if(self.textAlignment == NSTextAlignmentRight)
         
     {
         

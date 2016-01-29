@@ -41,57 +41,19 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     
     self.navigationItem.title = @"test11";
 
-    //item按下是会有高亮效果的
-    UIToolbar *tools = [[UIToolbar alloc]initWithFrame: CGRectMake(0.0f, 0.0f, 44.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
-    tools.clipsToBounds = NO;
-    tools.backgroundColor = [UIColor clearColor];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateNewsBtnPressed:)];
-    [tools setItems:[NSArray arrayWithObject:item]];
-    UIBarButtonItem *updateBtn = [[UIBarButtonItem alloc]initWithCustomView:tools];
-    [self.navigationItem setRightBarButtonItem:updateBtn];
+
     
 //    com.huawei.ott.hosting${PRODUCT_NAME:rfc1034identifier}
-    
-    UITextField* asdf = [[UITextField alloc]initWithFrame:CGRectMake(10, 10, 60,30)];
-    asdf.backgroundColor = [UIColor redColor];
-    [self.view addSubview:asdf];
-    
-    UIButton* channelBtn = [[UIButton alloc]initWithFrame:CGRectMake(80, 10, 40, 20)];
-    [channelBtn setBackgroundImage:[UIImage imageNamed:@"dragDown.png"] forState:UIControlStateNormal];
-    [channelBtn setBackgroundImage:[UIImage imageNamed:@"logo.png.png"] forState:UIControlStateHighlighted];
-    [channelBtn setBackgroundImage:[UIImage imageNamed:@"dragUp.png"] forState:UIControlStateSelected];
-    [channelBtn setBackgroundImage:[UIImage imageNamed:@"paletta_icon.png"] forState:UIControlStateSelected | UIControlStateHighlighted];
-    [channelBtn addTarget:self action:@selector(btnSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [channelBtn setTag:0];
-    [self.view addSubview:channelBtn];
-    
-    UIButton* purchaseBtn = [[UIButton alloc]initWithFrame:CGRectMake(130, 10, 40, 20)];
-    [purchaseBtn setBackgroundImage:[UIImage imageNamed:@"dragUp.png"] forState:UIControlStateNormal];
-    [purchaseBtn setBackgroundImage:[UIImage imageNamed:@"logo.png.png"] forState:UIControlStateHighlighted];
-    [purchaseBtn setBackgroundImage:[UIImage imageNamed:@"dragDown.png"] forState:UIControlStateSelected];
-    [purchaseBtn setBackgroundImage:[UIImage imageNamed:@"paletta_icon.png"] forState:UIControlStateReserved];
-    [purchaseBtn addTarget:self action:@selector(btnSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [purchaseBtn setTag:1];
-    [self.view addSubview:purchaseBtn];
     
     UIImage* image = [[UIImage imageNamed:@"bubble_blue_recieve_doctor.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(53.0f,34.0f,20.0f,34.0f)];
     UIImageView* imageview = [[UIImageView alloc]initWithImage:image];
     imageview.frame = CGRectMake(10, 110, 100, 70);
     [self.view addSubview:imageview];
     
-    SEL selector = @selector(alertView:clickedButtonAtIndex:);
-    NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:[TestViewController instanceMethodSignatureForSelector:selector]];
-    [invocation setSelector:selector];
-    [invocation setTarget:self];
-    UIAlertView *val = [[UIAlertView alloc]init];
-    [invocation setArgument:&val atIndex:2];
-    NSInteger index = 90;
-    [invocation setArgument:&index atIndex:3];
-    [invocation invoke];
+
     
     
     [self searchBarClearBackground];
-    [self labelMutableAttributedString];
     
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger: UIDeviceOrientationPortrait] forKey:@"orientation"];
 
@@ -125,37 +87,7 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     [self.view addSubview:searchBar];
 }
 
-//label多字体多颜色
--(void)labelMutableAttributedString{
-    //label多色的使用
-    NSString* string = @"redblue<green>green</green>";
-    NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc]initWithString:string];
-    
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:3];//调整行间距
-    paragraphStyle.alignment = NSTextAlignmentCenter;
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [string length])];
-    
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:[string rangeOfString:@"red"]];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:[string rangeOfString:@"green"]];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:[string rangeOfString:@"blue"]];
-    
-    
-    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:@"red"]];
-    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:[string rangeOfString:@"blue"]];
-    [attributedString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16] range:[string rangeOfString:@"green"]];
-    
-//    [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:[string rangeOfString:@"green"]];
-    
-    
-//    [attributedString addAttribute:NSLinkAttributeName value:@"www.baidu.com" range:[string rangeOfString:@"green"]];
-    [attributedString addAttribute:@"kWPAttributedMarkupLinkName" value:@"www.baidu.com" range:[string rangeOfString:@"green"]];
 
-    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 85, 300, 20)];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.attributedText = attributedString;
-    [self.view addSubview:label];
-}
 
 
 -(void)btnSelected:(id)sender{
@@ -172,11 +104,7 @@ typedef NSInteger (^TestAnimation)(NSString* str);
     LOGINFO(@"aljkshdgkajsdghklasdjgh%d", buttonIndex);
 }
 
--(void)updateNewsBtnPressed:(id)sender{
-    
-    
-    LOGINFO(@"%@",@"updateNewsBtnPressed");
-}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -333,6 +261,87 @@ static BOOL pageStillLoading = NO;
 
 }
 
+- (void)setOrientationPortrait {
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val = UIInterfaceOrientationPortrait;
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
+    }
+}
+
+- (void)invocationUsing {
+    SEL selector = @selector(alertView:clickedButtonAtIndex:);
+    NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:[TestViewController instanceMethodSignatureForSelector:selector]];
+    [invocation setSelector:selector];
+    [invocation setTarget:self];
+    UIAlertView *val = [[UIAlertView alloc]init];
+    [invocation setArgument:&val atIndex:2];
+    NSInteger index = 90;
+    [invocation setArgument:&index atIndex:3];
+    [invocation invoke];
+}
+
+- (void) performSelectorWornning {
+    
+/*
+ SEL aselect = NSSelectorFromString(@"invocationUsing");
+ [self performSelector:aselect];
+ [self performSelector:@selector(invocationUsing)];
+ 
+ performSelector may cause a leak because its selector is unknown
+ 警告的处理方法
+ 
+ 解决办法
+ 
+ 1.使用函数指针方式
+ 
+ SEL selector = NSSelectorFromString(@"someMethod");
+ IMP imp = [_controller methodForSelector:selector];
+ void (*func)(id, SEL) = (void *)imp;
+ func(_controller, selector);
+ 当有额外参数时，如
+ 
+ SEL selector = NSSelectorFromString(@"processRegion:ofView:");
+ IMP imp = [_controller methodForSelector:selector];
+ CGRect (*func)(id, SEL, CGRect, UIView *) = (void *)imp;
+ CGRect result = func(_controller, selector, someRect, someView);
+ 
+ 
+ 2.使用宏忽略警告
+ 
+ #define SuppressPerformSelectorLeakWarning(Stuff) \
+ do { \
+ _Pragma("clang diagnostic push") \
+ _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+ Stuff; \
+ _Pragma("clang diagnostic pop") \
+ } while (0)
+ 在产生警告也就是 performSelector 的地方用使用该宏，如
+ 
+ SuppressPerformSelectorLeakWarning(
+ [_target performSelector:_action withObject:self]
+ );
+ 如果需要 performSelector 返回值的话，
+ 
+ id result;
+ SuppressPerformSelectorLeakWarning(
+ result = [_target performSelector:_action withObject:self]
+ );
+ 
+ 
+ 3.使用afterDelay
+ 
+ [self performSelector:aSelector withObject:nil afterDelay:0.0];
+ 如果在接受范围内，允许在下一个runloop执行，可以这么做。xCode5没问题，但据反映，xcode6的话这个不能消除警告。
+ 
+ */
+
+    
+}
 
 
 

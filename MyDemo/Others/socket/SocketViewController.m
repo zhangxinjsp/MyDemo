@@ -216,7 +216,7 @@ void writeStream (CFWriteStreamRef stream, CFStreamEventType eventType, void *cl
     char *str = "nihao";
     
     if (outputStream != NULL) {
-        CFWriteStreamWrite(outputStream, (const UInt8)str, strlen(str) + 1);
+        CFWriteStreamWrite(outputStream, (const UInt8*)str, strlen(str) + 1);
     } else {
         NSLog(@"Cannot send data!");
     }

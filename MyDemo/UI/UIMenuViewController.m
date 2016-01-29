@@ -23,6 +23,7 @@
 #import "SendMessageAndEMailViewController.h"
 #import "CustomAlertViewController.h"
 #import "CustomSegmentViewController.h"
+#import "TextAttributeViewController.h"
 
 #define CellIdentity @"identity"
 
@@ -92,7 +93,8 @@ typedef NS_ENUM(NSInteger, MenuType) {
     QRCodeTag,
     SendMessageAndEMailTag,
     CustomAlertTag,
-    CustomSegmentTag
+    CustomSegmentTag,
+    TextAttributeTag,
 };
 @interface UIMenuViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>{
     
@@ -120,7 +122,7 @@ typedef NS_ENUM(NSInteger, MenuType) {
     [super viewDidLoad];
     self.navigationItem.title = @"ui menu";
     
-    titleArray = [[NSArray alloc]initWithObjects:@"Auto Layer", @"camera", @"filter", @"drawrect", @"map,location", @"naviBar", @"transform", @"scroll", @"videoTool", @"webView", @"下拉刷新", @"QRCode", @"短信和邮件", @"alert", @"segment", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"Auto Layer", @"camera", @"filter", @"drawrect", @"map,location", @"naviBar", @"transform", @"scroll", @"videoTool", @"webView", @"下拉刷新", @"QRCode", @"短信和邮件", @"alert", @"segment", @"TextAttribute", nil];
     
     
     UICollectionViewFlowLayout* collectionLayout = [[UICollectionViewFlowLayout alloc]init];
@@ -274,15 +276,22 @@ typedef NS_ENUM(NSInteger, MenuType) {
             [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
-        
+            
         case CustomSegmentTag: {
             CustomSegmentViewController* ctl = [[CustomSegmentViewController alloc]init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
+        case TextAttributeTag: {
+            TextAttributeViewController* ctl = [[TextAttributeViewController alloc]init];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
+            break;
+        }
         default:
             break;
+
     }
 }
 

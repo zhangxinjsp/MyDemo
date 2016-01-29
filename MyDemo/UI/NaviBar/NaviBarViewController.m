@@ -43,6 +43,7 @@
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(logoViewTapped:)];
     [view addGestureRecognizer:tap];
     UIBarButtonItem* itemView = [[UIBarButtonItem alloc]initWithCustomView:view];//只有initWithCustomView才可以改变大小
+    LOGINFO(@"%@", itemView);
     
     UILabel* _label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80, 30)];
     _label.text = @"1383";
@@ -59,6 +60,22 @@
     //右键
     UIBarButtonItem* item2 = [[UIBarButtonItem alloc]initWithTitle:@"next"style:UIBarButtonItemStyleBordered target:self action:@selector(nextStep:)];
     self.navigationItem.rightBarButtonItem = item2;
+    
+    
+    //item按下是会有高亮效果的
+    UIToolbar *tools = [[UIToolbar alloc]initWithFrame: CGRectMake(0.0f, 0.0f, 44.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
+    tools.clipsToBounds = NO;
+    tools.backgroundColor = [UIColor clearColor];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateNewsBtnPressed:)];
+    [tools setItems:[NSArray arrayWithObject:item]];
+    UIBarButtonItem *updateBtn = [[UIBarButtonItem alloc]initWithCustomView:tools];
+    [self.navigationItem setRightBarButtonItem:updateBtn];
+}
+
+-(void)updateNewsBtnPressed:(id)sender{
+    
+    
+    LOGINFO(@"%@",@"updateNewsBtnPressed");
 }
 
 -(void)nextStep:(id)sender{

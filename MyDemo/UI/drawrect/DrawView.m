@@ -8,6 +8,8 @@
 
 #import "DrawView.h"
 
+#import <CoreText/CoreText.h>
+
 
 @implementation DrawView
 
@@ -94,14 +96,19 @@
         case 2:{
             
             NSString* text = @"张鑫！！1234:：： aasdfasd";
-            [text drawAtPoint:CGPointMake(20, 100) withFont:[UIFont systemFontOfSize:14]];
+//            [text drawAtPoint:CGPointMake(20, 100) withFont:[UIFont systemFontOfSize:14]];
+            [text drawAtPoint:CGPointMake(20, 100) withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14].fontName}];
             
             CGContextRef context = UIGraphicsGetCurrentContext();
             CGContextSetRGBStrokeColor(context, 1.0, 161.0/256.0, 112.0/256.0, 256.0/256.0);
+            
             CGContextSelectFont(context, "Arial", 14, kCGEncodingMacRoman);
+            
             CGContextSetTextMatrix(context, CGAffineTransformMake(1.0,0.0, 0.0, -1.0, 0.0, 0.0));
-
+            
             CGContextShowTextAtPoint(context, 20, 150, [text cStringUsingEncoding: NSUTF8StringEncoding], [text lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
+            
+            
             break;
         }
         case 3:{//点到点的渐变色
@@ -248,7 +255,8 @@
            [[UIColor whiteColor] setFill];
             
             // Draw alpha mask.
-            [text drawInRect:rect withFont:font];
+//            [text drawInRect:rect withFont:font];
+            [text drawInRect:rect withAttributes:@{NSFontAttributeName : font.fontName}];
             
             // Save alpha mask.
             CGImageRef alphaMask = CGBitmapContextCreateImage(context);
@@ -297,7 +305,8 @@
             CGContextSetLineWidth(context, strokeSize * 2.0f);
             CGContextSetLineJoin(context, kCGLineJoinRound);
             [strokeColor setStroke];
-            [text drawInRect:rect withFont:font];
+//            [text drawInRect:rect withFont:font];
+            [text drawInRect:rect withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14].fontName}];
             CGContextTranslateCTM(context, 0.0f, rect.size.height);
             CGContextScaleCTM(context, 1.0f, -1.0f); // Draw the saved image over half of the stroke.
             CGContextDrawImage(context, rect, image); // Clean up, because ARC doesn't handle CG.

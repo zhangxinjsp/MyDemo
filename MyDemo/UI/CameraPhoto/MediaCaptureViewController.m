@@ -75,7 +75,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    return;
+//    return;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(captureSessionRuntimeErrorNotification:) name:AVCaptureSessionRuntimeErrorNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(captureDeviceWasConnectedNotification:) name:AVCaptureDeviceWasConnectedNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(captureDeviceWasDisconnectedNotification:) name:AVCaptureDeviceWasDisconnectedNotification object:nil];
@@ -88,7 +88,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    return;
+//    return;
     [captureSession stopRunning];
     
     [[NSNotificationCenter defaultCenter]removeObserver:self name:AVCaptureSessionRuntimeErrorNotification object:nil];

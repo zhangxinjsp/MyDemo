@@ -120,7 +120,11 @@
             CustomAlertView* currentShowAlert = self.alertList.firstObject;
             SEL selector = NSSelectorFromString(@"temporaryDismiss");
             if ([currentShowAlert respondsToSelector:selector]) {
-                [currentShowAlert performSelector:selector];
+//                [currentShowAlert performSelector:selector];
+                SEL selector = NSSelectorFromString(@"temporaryDismiss");
+                IMP imp = [currentShowAlert methodForSelector:selector];
+                void (*func)(id, SEL) = (void *)imp;
+                func(currentShowAlert, selector);
             }
         }
         [self.alertList removeAllObjects];
@@ -531,8 +535,10 @@
     if (string.length == 0) {
         return 1;
     }
-    CGSize strsize = [string sizeWithFont:font constrainedToSize:CGSizeMake(320 - (LEFT_GAP_WIDTH + ALERT_LEFT_GAP) * 2, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
-    return strsize.height + 1;
+//    CGSize strsize = [string sizeWithFont:font constrainedToSize:CGSizeMake(320 - (LEFT_GAP_WIDTH + ALERT_LEFT_GAP) * 2, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+//    return strsize.height + 1;
+    CGRect strrect = [string boundingRectWithSize:CGSizeZero options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: font.fontName} context:nil];
+    return strrect.size.height + 1;
 }
 
 -(BOOL)isVisible{
@@ -604,7 +610,7 @@
             @finally {
                 UIAlertView* alert = [[UIAlertView alloc]initWithTitle:self.title message:self.message delegate:self.delegate cancelButtonTitle:cancelTitle otherButtonTitles:title1, title2, title3, title4, nil];
                 alert.tag = self.tag;
-                alert.alertViewStyle = self.alertType;
+                alert.alertViewStyle = (UIAlertViewStyle)self.alertType;
                 
                 [self.delegate alertView:alert clickedButtonAtIndex:buttonIndex];
 //                [alert release];

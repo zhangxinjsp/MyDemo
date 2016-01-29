@@ -303,12 +303,32 @@ bail:
 // utility routing used during image capture to set up capture orientation
 - (AVCaptureVideoOrientation)avOrientationForDeviceOrientation:(UIDeviceOrientation)deviceOrientation
 {
-	AVCaptureVideoOrientation result = deviceOrientation;
-	if ( deviceOrientation == UIDeviceOrientationLandscapeLeft )
-		result = AVCaptureVideoOrientationLandscapeRight;
-	else if ( deviceOrientation == UIDeviceOrientationLandscapeRight )
-		result = AVCaptureVideoOrientationLandscapeLeft;
-	return result;
+    switch (deviceOrientation) {
+        case UIDeviceOrientationUnknown: {
+            return AVCaptureVideoOrientationPortrait;
+        }
+        case UIDeviceOrientationPortrait: {
+            return AVCaptureVideoOrientationPortrait;
+        }
+        case UIDeviceOrientationPortraitUpsideDown: {
+            return AVCaptureVideoOrientationPortraitUpsideDown;
+        }
+        case UIDeviceOrientationLandscapeLeft: {
+            return AVCaptureVideoOrientationLandscapeRight;
+        }
+        case UIDeviceOrientationLandscapeRight: {
+            return AVCaptureVideoOrientationLandscapeLeft;
+        }
+        case UIDeviceOrientationFaceUp: {
+            return AVCaptureVideoOrientationPortrait;
+        }
+        case UIDeviceOrientationFaceDown: {
+            return AVCaptureVideoOrientationPortrait;
+        }
+        default: {
+            return AVCaptureVideoOrientationPortrait;
+        }
+    }
 }
 
 // utility routine to create a new image with the red square overlay with appropriate orientation
@@ -596,7 +616,8 @@ bail:
 		
 	CGSize parentFrameSize = [previewView frame].size;
 	NSString *gravity = [previewLayer videoGravity];
-	BOOL isMirrored = [previewLayer isMirrored];
+//	BOOL isMirrored = [previewLayer isMirrored];
+    BOOL isMirrored = NO;
 	CGRect previewBox = [SquareCamViewController videoPreviewBoxForGravity:gravity
 															   frameSize:parentFrameSize 
 															apertureSize:clap.size];
@@ -622,11 +643,11 @@ bail:
 		faceRect.origin.x *= widthScaleBy;
 		faceRect.origin.y *= heightScaleBy;
 
-		if ( isMirrored )
+        if ( isMirrored ){
 			faceRect = CGRectOffset(faceRect, previewBox.origin.x + previewBox.size.width - faceRect.size.width - (faceRect.origin.x * 2), previewBox.origin.y);
-		else
+        } else {
 			faceRect = CGRectOffset(faceRect, previewBox.origin.x, previewBox.origin.y);
-		
+        }
 		CALayer *featureLayer = nil;
 		
 		// re-use an existing layer if possible

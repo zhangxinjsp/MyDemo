@@ -18,7 +18,8 @@
 #import "SQLiteViewController.h"
 #import "ShareTofaceBookViewController.h"
 #import "FileManagerReadAndWriteViewController.h"
-#import "RegexAndMd5ViewController.h"
+#import "RegexViewController.h"
+#import "SecurityViewController.h"
 
 
 typedef NS_ENUM(NSInteger, OtherMenuType) {
@@ -32,7 +33,8 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
     SQLiteTag,
     ShareTofaceBookTag,
     FileManagerReadAndWriteTag,
-    RegexAndMd5Tag,
+    RegexTag,
+    SecurityTag,
 };
 
 @interface OtherMenuViewController () <UITableViewDelegate, UITableViewDataSource>{
@@ -49,7 +51,7 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"other";
     
-    titleArray = [[NSArray alloc]initWithObjects:@"ble", @"contacs", @"coredata", @"motion", @"reachaboloty", @"request", @"socket", @"SQLite", @"share",@"file read write", @"regex md5", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"ble", @"contacs", @"coredata", @"motion", @"reachaboloty", @"request", @"socket", @"SQLite", @"share",@"file read write", @"regex", @"Security", nil];
     
     tableV = [[UITableView alloc]init];
     tableV.delegate = self;
@@ -149,8 +151,14 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
-        case RegexAndMd5Tag: {
-            RegexAndMd5ViewController* ctl = [[RegexAndMd5ViewController alloc] init];
+        case RegexTag: {
+            RegexViewController* ctl = [[RegexViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
+            break;
+        }
+        case SecurityTag: {
+            SecurityViewController* ctl = [[SecurityViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
             break;

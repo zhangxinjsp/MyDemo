@@ -226,7 +226,8 @@ static UIImageView* imageView;
         
         
         // 7. use VTDecompressionSessionDecodeFrame
-        if (1) {
+        BOOL useVideoLayer = YES;
+        if (useVideoLayer) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [videoLayer enqueueSampleBuffer:sbRef];
                 

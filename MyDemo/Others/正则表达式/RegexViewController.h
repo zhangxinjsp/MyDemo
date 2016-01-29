@@ -10,7 +10,7 @@
 #import "DrawRectViewController.h"
 #import "BaseViewController.h"
 
-@interface RegexAndMd5ViewController : BaseViewController
+@interface RegexViewController : BaseViewController
 
 
 

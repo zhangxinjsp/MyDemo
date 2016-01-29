@@ -27,7 +27,6 @@
 		5B3097441C4727230079CD78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B30945A1C4727220079CD78 /* InfoPlist.strings */; };
 		5B3097451C4727230079CD78 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B30945C1C4727220079CD78 /* Localizable.strings */; };
 		5B3097461C4727230079CD78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B30945F1C4727220079CD78 /* main.m */; };
-		5B3097471C4727230079CD78 /* MyDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B3094601C4727220079CD78 /* MyDemo-Info.plist */; };
 		5B3097481C4727230079CD78 /* MyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3094631C4727220079CD78 /* MyNavigationController.m */; };
 		5B3097491C4727230079CD78 /* MyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3094651C4727220079CD78 /* MyTabBarController.m */; };
 		5B3097701C4727230079CD78 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3094BF1C4727220079CD78 /* RootNavigationController.m */; };
@@ -73,7 +72,6 @@
 		5B309CED1C473F9E0079CD78 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C6A1C473F9E0079CD78 /* unzip.c */; };
 		5B309CEE1C473F9E0079CD78 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C6C1C473F9E0079CD78 /* zip.c */; };
 		5B309CEF1C473F9E0079CD78 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C6F1C473F9E0079CD78 /* ZipArchive.mm */; };
-		5B309CF01C473F9E0079CD78 /* RegexAndMd5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C721C473F9E0079CD78 /* RegexAndMd5ViewController.m */; };
 		5B309CF11C473F9E0079CD78 /* AutoLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C761C473F9E0079CD78 /* AutoLayerViewController.m */; };
 		5B309CF21C473F9E0079CD78 /* CameraViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C791C473F9E0079CD78 /* CameraViewcontroller.m */; };
 		5B309CF31C473F9E0079CD78 /* MediaCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C7B1C473F9E0079CD78 /* MediaCaptureViewController.m */; };
@@ -149,6 +147,9 @@
 		5BD46D62194D416E002995EB /* palettaSave.db in Resources */ = {isa = PBXBuildFile; fileRef = 5BD46D60194D416E002995EB /* palettaSave.db */; };
 		5BDB06A919C724F80099FBA8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDB06A819C724F80099FBA8 /* CFNetwork.framework */; };
 		5BE31A511A3F0E34000C028F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE31A501A3F0E34000C028F /* ImageIO.framework */; };
+		5BE369841C5B0B2300D5E366 /* RegexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE369831C5B0B2300D5E366 /* RegexViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5BE3698C1C5B0BC700D5E366 /* SecurityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3698B1C5B0BC700D5E366 /* SecurityViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5BE369941C5B136A00D5E366 /* TextAttributeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE369931C5B136A00D5E366 /* TextAttributeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E52F01DA1A760FDA005609D5 /* redFlower.png in Resources */ = {isa = PBXBuildFile; fileRef = E52F01D91A760FDA005609D5 /* redFlower.png */; };
 		E52F01DC1A762543005609D5 /* boots.png in Resources */ = {isa = PBXBuildFile; fileRef = E52F01DB1A762543005609D5 /* boots.png */; };
 		E53268D419FA394900FB6195 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53268D319FA394900FB6195 /* CoreMotion.framework */; };
@@ -291,8 +292,6 @@
 		5B309C6D1C473F9E0079CD78 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		5B309C6E1C473F9E0079CD78 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		5B309C6F1C473F9E0079CD78 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
-		5B309C711C473F9E0079CD78 /* RegexAndMd5ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexAndMd5ViewController.h; sourceTree = "<group>"; };
-		5B309C721C473F9E0079CD78 /* RegexAndMd5ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexAndMd5ViewController.m; sourceTree = "<group>"; };
 		5B309C751C473F9E0079CD78 /* AutoLayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLayerViewController.h; sourceTree = "<group>"; };
 		5B309C761C473F9E0079CD78 /* AutoLayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLayerViewController.m; sourceTree = "<group>"; };
 		5B309C781C473F9E0079CD78 /* CameraViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewcontroller.h; sourceTree = "<group>"; };
@@ -395,6 +394,12 @@
 		5BD46D60194D416E002995EB /* palettaSave.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = palettaSave.db; sourceTree = "<group>"; };
 		5BDB06A819C724F80099FBA8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5BE31A501A3F0E34000C028F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		5BE369821C5B0B2300D5E366 /* RegexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexViewController.h; sourceTree = "<group>"; };
+		5BE369831C5B0B2300D5E366 /* RegexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexViewController.m; sourceTree = "<group>"; };
+		5BE3698A1C5B0BC700D5E366 /* SecurityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityViewController.h; sourceTree = "<group>"; };
+		5BE3698B1C5B0BC700D5E366 /* SecurityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityViewController.m; sourceTree = "<group>"; };
+		5BE369921C5B136A00D5E366 /* TextAttributeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextAttributeViewController.h; sourceTree = "<group>"; };
+		5BE369931C5B136A00D5E366 /* TextAttributeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextAttributeViewController.m; sourceTree = "<group>"; };
 		E52F01D91A760FDA005609D5 /* redFlower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redFlower.png; sourceTree = "<group>"; };
 		E52F01DB1A762543005609D5 /* boots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boots.png; sourceTree = "<group>"; };
 		E53268D319FA394900FB6195 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -541,7 +546,6 @@
 				5B309C731C473F9E0079CD78 /* UI */,
 				5B309C241C473F9E0079CD78 /* Others */,
 				5B3094C01C4727220079CD78 /* Test */,
-				5B30946B1C4727220079CD78 /* Other_SDK */,
 				5B3094C41C4727220079CD78 /* Tools */,
 				5B30945A1C4727220079CD78 /* InfoPlist.strings */,
 				5B30945C1C4727220079CD78 /* Localizable.strings */,
@@ -550,13 +554,6 @@
 				5B3094611C4727220079CD78 /* MyDemo-Prefix.pch */,
 			);
 			path = MyDemo;
-			sourceTree = "<group>";
-		};
-		5B30946B1C4727220079CD78 /* Other_SDK */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Other_SDK;
 			sourceTree = "<group>";
 		};
 		5B3094C01C4727220079CD78 /* Test */ = {
@@ -674,6 +671,8 @@
 			children = (
 				5B309C441C473F9E0079CD78 /* OtherMenuViewController.h */,
 				5B309C451C473F9E0079CD78 /* OtherMenuViewController.m */,
+				5BE369891C5B0BC700D5E366 /* Security */,
+				5BE369811C5B0B2300D5E366 /* 正则表达式 */,
 				5B309C251C473F9E0079CD78 /* BLE */,
 				5B309C331C473F9E0079CD78 /* Contacts */,
 				5B309C361C473F9E0079CD78 /* CoreData */,
@@ -684,7 +683,6 @@
 				5B309C521C473F9E0079CD78 /* Sqlite */,
 				5B309C5C1C473F9E0079CD78 /* 分享到facebook */,
 				5B309C5F1C473F9E0079CD78 /* 文件读写 */,
-				5B309C701C473F9E0079CD78 /* 正则表达式及MD5算法 */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -844,20 +842,12 @@
 			path = minizip;
 			sourceTree = "<group>";
 		};
-		5B309C701C473F9E0079CD78 /* 正则表达式及MD5算法 */ = {
-			isa = PBXGroup;
-			children = (
-				5B309C711C473F9E0079CD78 /* RegexAndMd5ViewController.h */,
-				5B309C721C473F9E0079CD78 /* RegexAndMd5ViewController.m */,
-			);
-			path = "正则表达式及MD5算法";
-			sourceTree = "<group>";
-		};
 		5B309C731C473F9E0079CD78 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				5B309C941C473F9E0079CD78 /* UIMenuViewController.h */,
 				5B309C951C473F9E0079CD78 /* UIMenuViewController.m */,
+				5BE369911C5B136A00D5E366 /* TextAttribute */,
 				5BD163311C58630800D639C0 /* CustomAlertView */,
 				5BD163381C58630800D639C0 /* CustomSegment */,
 				5B309C741C473F9E0079CD78 /* AutoLayer */,
@@ -1095,6 +1085,33 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		5BE369811C5B0B2300D5E366 /* 正则表达式 */ = {
+			isa = PBXGroup;
+			children = (
+				5BE369821C5B0B2300D5E366 /* RegexViewController.h */,
+				5BE369831C5B0B2300D5E366 /* RegexViewController.m */,
+			);
+			path = "正则表达式";
+			sourceTree = "<group>";
+		};
+		5BE369891C5B0BC700D5E366 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3698A1C5B0BC700D5E366 /* SecurityViewController.h */,
+				5BE3698B1C5B0BC700D5E366 /* SecurityViewController.m */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		5BE369911C5B136A00D5E366 /* TextAttribute */ = {
+			isa = PBXGroup;
+			children = (
+				5BE369921C5B136A00D5E366 /* TextAttributeViewController.h */,
+				5BE369931C5B136A00D5E366 /* TextAttributeViewController.m */,
+			);
+			path = TextAttribute;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1186,7 +1203,6 @@
 				5BD46D4A194D3B61002995EB /* 上睫毛阴影.png in Resources */,
 				5BD46D5A194D3B61002995EB /* 瞳孔.png in Resources */,
 				5BC0779D194D7AAD0024627F /* Default-568h@2x.png in Resources */,
-				5B3097471C4727230079CD78 /* MyDemo-Info.plist in Resources */,
 				5BC0779E194D7AAD0024627F /* Default.png in Resources */,
 				E54F8B0C1B2FC8D80095DDCF /* REVideo3.264 in Resources */,
 				5BD46D4C194D3B61002995EB /* 下眼线.png in Resources */,
@@ -1221,7 +1237,6 @@
 				5B309CF41C473F9E0079CD78 /* SquareCamViewController.m in Sources */,
 				5B309CDB1C473F9E0079CD78 /* CoreDataViewController.m in Sources */,
 				5B309D011C473F9E0079CD78 /* WebViewViewController.m in Sources */,
-				5B309CF01C473F9E0079CD78 /* RegexAndMd5ViewController.m in Sources */,
 				5B3097421C4727230079CD78 /* AppDelegate.m in Sources */,
 				5B3097771C4727230079CD78 /* MyKeyChainHelper.m in Sources */,
 				5B309CDF1C473F9E0079CD78 /* OtherMenuViewController.m in Sources */,
@@ -1241,6 +1256,7 @@
 				5B309CF61C473F9E0079CD78 /* CoreImageFilterViewController.m in Sources */,
 				5B30977B1C4727230079CD78 /* SSKeychain.m in Sources */,
 				5B3097701C4727230079CD78 /* RootNavigationController.m in Sources */,
+				5BE3698C1C5B0BC700D5E366 /* SecurityViewController.m in Sources */,
 				5B30977F1C4727230079CD78 /* UILabel-LineHeigh.m in Sources */,
 				5B309CD31C473F9E0079CD78 /* BLECommandManager.m in Sources */,
 				5B309CDD1C473F9E0079CD78 /* User.m in Sources */,
@@ -1273,6 +1289,7 @@
 				5B309CDC1C473F9E0079CD78 /* Product.m in Sources */,
 				5B309CFD1C473F9E0079CD78 /* TransformViewController.m in Sources */,
 				5B309CD61C473F9E0079CD78 /* BLERespondDataModel.m in Sources */,
+				5BE369841C5B0B2300D5E366 /* RegexViewController.m in Sources */,
 				5B309CE21C473F9E0079CD78 /* URLRequestViewController.m in Sources */,
 				5B3097491C4727230079CD78 /* MyTabBarController.m in Sources */,
 				5B3097751C4727230079CD78 /* Formater.m in Sources */,
@@ -1290,6 +1307,7 @@
 				5B309CE61C473F9E0079CD78 /* SQLiteTool.m in Sources */,
 				5B309D051C473F9E0079CD78 /* SendMessageAndEMailViewController.m in Sources */,
 				5B309D041C473F9E0079CD78 /* QRCodeViewController.m in Sources */,
+				5BE369941C5B136A00D5E366 /* TextAttributeViewController.m in Sources */,
 				5B309CFE1C473F9E0079CD78 /* UIMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1404,19 +1422,12 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-					"$(PROJECT_DIR)/Resource/Other_SDK",
-					"$(PROJECT_DIR)/MyDemo/Other_SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyDemo/MyDemo-Prefix.pch";
 				INFOPLIST_FILE = "MyDemo/MyDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MyDemo/二维码/ZBarSDK",
-					"$(PROJECT_DIR)/MyDemo/二维码/ZBarSDK",
-					"$(PROJECT_DIR)/MyDemo/UI/二维码/ZBarSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_BUNDLE_IDENTIFIER = com.htc.vivephoneservice;
 				PRODUCT_NAME = MyDemo;
@@ -1438,19 +1449,12 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-					"$(PROJECT_DIR)/Resource/Other_SDK",
-					"$(PROJECT_DIR)/MyDemo/Other_SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyDemo/MyDemo-Prefix.pch";
 				INFOPLIST_FILE = "MyDemo/MyDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MyDemo/二维码/ZBarSDK",
-					"$(PROJECT_DIR)/MyDemo/二维码/ZBarSDK",
-					"$(PROJECT_DIR)/MyDemo/UI/二维码/ZBarSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_BUNDLE_IDENTIFIER = com.htc.vivephoneservice;
 				PRODUCT_NAME = MyDemo;
