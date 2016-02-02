@@ -11,7 +11,7 @@
 #import "AutoLayerViewController.h"
 #import "CameraViewController.h"
 #import "CoreImageFilterViewController.h"
-#import "DrawRectViewController.h"
+#import "CoreGraphicsViewController.h"
 #import "MapAndLocationViewController.h"
 #import "NaviBarViewController.h"
 #import "TransformViewController.h"
@@ -82,7 +82,7 @@ typedef NS_ENUM(NSInteger, MenuType) {
     AutoLayerTag,
     CameraTag,
     CoreImageFilterTag,
-    DrawRectTag,
+    CoreGraphicsTag,
     MapAndLocationTag,
     NaviBarTag,
     TransformTag,
@@ -122,7 +122,7 @@ typedef NS_ENUM(NSInteger, MenuType) {
     [super viewDidLoad];
     self.navigationItem.title = @"ui menu";
     
-    titleArray = [[NSArray alloc]initWithObjects:@"Auto Layer", @"camera", @"filter", @"drawrect", @"map,location", @"naviBar", @"transform", @"scroll", @"videoTool", @"webView", @"下拉刷新", @"QRCode", @"短信和邮件", @"alert", @"segment", @"TextAttribute", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"Auto Layer", @"camera", @"filter", @"CoreGraphics", @"map,location", @"naviBar", @"transform", @"scroll", @"videoTool", @"webView", @"下拉刷新", @"QRCode", @"短信和邮件", @"alert", @"segment", @"TextAttribute", nil];
     
     
     UICollectionViewFlowLayout* collectionLayout = [[UICollectionViewFlowLayout alloc]init];
@@ -210,8 +210,8 @@ typedef NS_ENUM(NSInteger, MenuType) {
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
-        case DrawRectTag:{
-            DrawRectViewController* ctl = [[DrawRectViewController alloc] init];
+        case CoreGraphicsTag:{
+            CoreGraphicsViewController* ctl = [[CoreGraphicsViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
         }

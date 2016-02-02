@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DrawRectViewController.h"
 #import "BaseViewController.h"
 
 @interface RegexViewController : BaseViewController
