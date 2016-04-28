@@ -96,6 +96,24 @@
 		5B309D0B1C477C290079CD78 /* BluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309D0A1C477C290079CD78 /* BluetoothViewController.m */; };
 		5B66177C1B19FB3F000C584F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */; };
 		5B84682B195691860033C079 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B84682A195691860033C079 /* CoreData.framework */; };
+		5B90EDE41CAE15CE000B4F8E /* logging_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDC51CAE15CE000B4F8E /* logging_mosq.c */; };
+		5B90EDE51CAE15CE000B4F8E /* memory_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDC71CAE15CE000B4F8E /* memory_mosq.c */; };
+		5B90EDE61CAE15CE000B4F8E /* messages_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDC91CAE15CE000B4F8E /* messages_mosq.c */; };
+		5B90EDE71CAE15CE000B4F8E /* mosquitto.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDCB1CAE15CE000B4F8E /* mosquitto.c */; };
+		5B90EDE81CAE15CE000B4F8E /* net_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDCF1CAE15CE000B4F8E /* net_mosq.c */; };
+		5B90EDE91CAE15CE000B4F8E /* read_handle.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDD11CAE15CE000B4F8E /* read_handle.c */; };
+		5B90EDEA1CAE15CE000B4F8E /* read_handle_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDD31CAE15CE000B4F8E /* read_handle_client.c */; };
+		5B90EDEB1CAE15CE000B4F8E /* read_handle_shared.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDD41CAE15CE000B4F8E /* read_handle_shared.c */; };
+		5B90EDEC1CAE15CE000B4F8E /* send_client_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDD51CAE15CE000B4F8E /* send_client_mosq.c */; };
+		5B90EDED1CAE15CE000B4F8E /* send_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDD61CAE15CE000B4F8E /* send_mosq.c */; };
+		5B90EDEE1CAE15CE000B4F8E /* socks_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDD81CAE15CE000B4F8E /* socks_mosq.c */; };
+		5B90EDEF1CAE15CE000B4F8E /* srv_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDDA1CAE15CE000B4F8E /* srv_mosq.c */; };
+		5B90EDF01CAE15CE000B4F8E /* thread_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDDB1CAE15CE000B4F8E /* thread_mosq.c */; };
+		5B90EDF11CAE15CE000B4F8E /* time_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDDC1CAE15CE000B4F8E /* time_mosq.c */; };
+		5B90EDF21CAE15CE000B4F8E /* tls_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDDE1CAE15CE000B4F8E /* tls_mosq.c */; };
+		5B90EDF31CAE15CE000B4F8E /* util_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDE01CAE15CE000B4F8E /* util_mosq.c */; };
+		5B90EDF41CAE15CE000B4F8E /* will_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDE21CAE15CE000B4F8E /* will_mosq.c */; };
+		5B90EDF71CAE1600000B4F8E /* MQTTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDF61CAE1600000B4F8E /* MQTTClient.m */; };
 		5BC0779D194D7AAD0024627F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0779A194D7AAD0024627F /* Default-568h@2x.png */; };
 		5BC0779E194D7AAD0024627F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0779B194D7AAD0024627F /* Default.png */; };
 		5BC0779F194D7AAD0024627F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0779C194D7AAD0024627F /* Default@2x.png */; };
@@ -336,6 +354,41 @@
 		5B309D0A1C477C290079CD78 /* BluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothViewController.m; sourceTree = "<group>"; };
 		5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		5B84682A195691860033C079 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		5B90EDC31CAE15CE000B4F8E /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		5B90EDC41CAE15CE000B4F8E /* dummypthread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dummypthread.h; sourceTree = "<group>"; };
+		5B90EDC51CAE15CE000B4F8E /* logging_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = logging_mosq.c; sourceTree = "<group>"; };
+		5B90EDC61CAE15CE000B4F8E /* logging_mosq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging_mosq.h; sourceTree = "<group>"; };
+		5B90EDC71CAE15CE000B4F8E /* memory_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = memory_mosq.c; sourceTree = "<group>"; };
+		5B90EDC81CAE15CE000B4F8E /* memory_mosq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory_mosq.h; sourceTree = "<group>"; };
+		5B90EDC91CAE15CE000B4F8E /* messages_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = messages_mosq.c; sourceTree = "<group>"; };
+		5B90EDCA1CAE15CE000B4F8E /* messages_mosq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messages_mosq.h; sourceTree = "<group>"; };
+		5B90EDCB1CAE15CE000B4F8E /* mosquitto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mosquitto.c; sourceTree = "<group>"; };
+		5B90EDCC1CAE15CE000B4F8E /* mosquitto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mosquitto.h; sourceTree = "<group>"; };
+		5B90EDCD1CAE15CE000B4F8E /* mosquitto_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mosquitto_internal.h; sourceTree = "<group>"; };
+		5B90EDCE1CAE15CE000B4F8E /* mqtt3_protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mqtt3_protocol.h; sourceTree = "<group>"; };
+		5B90EDCF1CAE15CE000B4F8E /* net_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = net_mosq.c; sourceTree = "<group>"; };
+		5B90EDD01CAE15CE000B4F8E /* net_mosq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = net_mosq.h; sourceTree = "<group>"; };
+		5B90EDD11CAE15CE000B4F8E /* read_handle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = read_handle.c; sourceTree = "<group>"; };
+		5B90EDD21CAE15CE000B4F8E /* read_handle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = read_handle.h; sourceTree = "<group>"; };
+		5B90EDD31CAE15CE000B4F8E /* read_handle_client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = read_handle_client.c; sourceTree = "<group>"; };
+		5B90EDD41CAE15CE000B4F8E /* read_handle_shared.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = read_handle_shared.c; sourceTree = "<group>"; };
+		5B90EDD51CAE15CE000B4F8E /* send_client_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = send_client_mosq.c; sourceTree = "<group>"; };
+		5B90EDD61CAE15CE000B4F8E /* send_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = send_mosq.c; sourceTree = "<group>"; };
+		5B90EDD71CAE15CE000B4F8E /* send_mosq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = send_mosq.h; sourceTree = "<group>"; };
+		5B90EDD81CAE15CE000B4F8E /* socks_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socks_mosq.c; sourceTree = "<group>"; };
+		5B90EDD91CAE15CE000B4F8E /* socks_mosq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socks_mosq.h; sourceTree = "<group>"; };
+		5B90EDDA1CAE15CE000B4F8E /* srv_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = srv_mosq.c; sourceTree = "<group>"; };
+		5B90EDDB1CAE15CE000B4F8E /* thread_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread_mosq.c; sourceTree = "<group>"; };
+		5B90EDDC1CAE15CE000B4F8E /* time_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = time_mosq.c; sourceTree = "<group>"; };
+		5B90EDDD1CAE15CE000B4F8E /* time_mosq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time_mosq.h; sourceTree = "<group>"; };
+		5B90EDDE1CAE15CE000B4F8E /* tls_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tls_mosq.c; sourceTree = "<group>"; };
+		5B90EDDF1CAE15CE000B4F8E /* tls_mosq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tls_mosq.h; sourceTree = "<group>"; };
+		5B90EDE01CAE15CE000B4F8E /* util_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util_mosq.c; sourceTree = "<group>"; };
+		5B90EDE11CAE15CE000B4F8E /* util_mosq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util_mosq.h; sourceTree = "<group>"; };
+		5B90EDE21CAE15CE000B4F8E /* will_mosq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = will_mosq.c; sourceTree = "<group>"; };
+		5B90EDE31CAE15CE000B4F8E /* will_mosq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = will_mosq.h; sourceTree = "<group>"; };
+		5B90EDF51CAE1600000B4F8E /* MQTTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQTTClient.h; sourceTree = "<group>"; };
+		5B90EDF61CAE1600000B4F8E /* MQTTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQTTClient.m; sourceTree = "<group>"; };
 		5BC0779A194D7AAD0024627F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5BC0779B194D7AAD0024627F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5BC0779C194D7AAD0024627F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -538,6 +591,13 @@
 			path = CoreGraphics;
 			sourceTree = "<group>";
 		};
+		5B17D71C1CD18CE70000C07D /* RunTime */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RunTime;
+			sourceTree = "<group>";
+		};
 		5B3094551C4727220079CD78 /* MyDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +739,8 @@
 			children = (
 				5B309C441C473F9E0079CD78 /* OtherMenuViewController.h */,
 				5B309C451C473F9E0079CD78 /* OtherMenuViewController.m */,
+				5B17D71C1CD18CE70000C07D /* RunTime */,
+				5B90EDC11CAE15CE000B4F8E /* MQTT */,
 				5BE369891C5B0BC700D5E366 /* Security */,
 				5BE369811C5B0B2300D5E366 /* 正则表达式 */,
 				5B309C251C473F9E0079CD78 /* BLE */,
@@ -994,6 +1056,56 @@
 			path = "发送邮件和短信";
 			sourceTree = "<group>";
 		};
+		5B90EDC11CAE15CE000B4F8E /* MQTT */ = {
+			isa = PBXGroup;
+			children = (
+				5B90EDC21CAE15CE000B4F8E /* libmosquitto */,
+				5B90EDF51CAE1600000B4F8E /* MQTTClient.h */,
+				5B90EDF61CAE1600000B4F8E /* MQTTClient.m */,
+			);
+			path = MQTT;
+			sourceTree = "<group>";
+		};
+		5B90EDC21CAE15CE000B4F8E /* libmosquitto */ = {
+			isa = PBXGroup;
+			children = (
+				5B90EDC31CAE15CE000B4F8E /* config.h */,
+				5B90EDC41CAE15CE000B4F8E /* dummypthread.h */,
+				5B90EDC51CAE15CE000B4F8E /* logging_mosq.c */,
+				5B90EDC61CAE15CE000B4F8E /* logging_mosq.h */,
+				5B90EDC71CAE15CE000B4F8E /* memory_mosq.c */,
+				5B90EDC81CAE15CE000B4F8E /* memory_mosq.h */,
+				5B90EDC91CAE15CE000B4F8E /* messages_mosq.c */,
+				5B90EDCA1CAE15CE000B4F8E /* messages_mosq.h */,
+				5B90EDCB1CAE15CE000B4F8E /* mosquitto.c */,
+				5B90EDCC1CAE15CE000B4F8E /* mosquitto.h */,
+				5B90EDCD1CAE15CE000B4F8E /* mosquitto_internal.h */,
+				5B90EDCE1CAE15CE000B4F8E /* mqtt3_protocol.h */,
+				5B90EDCF1CAE15CE000B4F8E /* net_mosq.c */,
+				5B90EDD01CAE15CE000B4F8E /* net_mosq.h */,
+				5B90EDD11CAE15CE000B4F8E /* read_handle.c */,
+				5B90EDD21CAE15CE000B4F8E /* read_handle.h */,
+				5B90EDD31CAE15CE000B4F8E /* read_handle_client.c */,
+				5B90EDD41CAE15CE000B4F8E /* read_handle_shared.c */,
+				5B90EDD51CAE15CE000B4F8E /* send_client_mosq.c */,
+				5B90EDD61CAE15CE000B4F8E /* send_mosq.c */,
+				5B90EDD71CAE15CE000B4F8E /* send_mosq.h */,
+				5B90EDD81CAE15CE000B4F8E /* socks_mosq.c */,
+				5B90EDD91CAE15CE000B4F8E /* socks_mosq.h */,
+				5B90EDDA1CAE15CE000B4F8E /* srv_mosq.c */,
+				5B90EDDB1CAE15CE000B4F8E /* thread_mosq.c */,
+				5B90EDDC1CAE15CE000B4F8E /* time_mosq.c */,
+				5B90EDDD1CAE15CE000B4F8E /* time_mosq.h */,
+				5B90EDDE1CAE15CE000B4F8E /* tls_mosq.c */,
+				5B90EDDF1CAE15CE000B4F8E /* tls_mosq.h */,
+				5B90EDE01CAE15CE000B4F8E /* util_mosq.c */,
+				5B90EDE11CAE15CE000B4F8E /* util_mosq.h */,
+				5B90EDE21CAE15CE000B4F8E /* will_mosq.c */,
+				5B90EDE31CAE15CE000B4F8E /* will_mosq.h */,
+			);
+			path = libmosquitto;
+			sourceTree = "<group>";
+		};
 		5BD163311C58630800D639C0 /* CustomAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1137,7 +1249,7 @@
 				ORGANIZATIONNAME = zhangxin;
 				TargetAttributes = {
 					0D7186F31600BE530062A13F = {
-						DevelopmentTeam = 5S5WJUKM6W;
+						DevelopmentTeam = NTJQ9UKZ85;
 					};
 				};
 			};
@@ -1233,23 +1345,28 @@
 				5B309CDB1C473F9E0079CD78 /* CoreDataViewController.m in Sources */,
 				5B309D011C473F9E0079CD78 /* WebViewViewController.m in Sources */,
 				5B3097421C4727230079CD78 /* AppDelegate.m in Sources */,
+				5B90EDF71CAE1600000B4F8E /* MQTTClient.m in Sources */,
 				5B3097771C4727230079CD78 /* MyKeyChainHelper.m in Sources */,
 				5B309CDF1C473F9E0079CD78 /* OtherMenuViewController.m in Sources */,
 				5B309D0B1C477C290079CD78 /* BluetoothViewController.m in Sources */,
 				5B309CE41C473F9E0079CD78 /* Area.m in Sources */,
 				5B309CDA1C473F9E0079CD78 /* CoreDataTool.m in Sources */,
 				5B309D001C473F9E0079CD78 /* VideoToolViewController.m in Sources */,
+				5B90EDEB1CAE15CE000B4F8E /* read_handle_shared.c in Sources */,
+				5B90EDEA1CAE15CE000B4F8E /* read_handle_client.c in Sources */,
 				5B309CEE1C473F9E0079CD78 /* zip.c in Sources */,
 				5B309CD91C473F9E0079CD78 /* CoreData.xcdatamodeld in Sources */,
 				5BD163391C58630800D639C0 /* CAlertView.m in Sources */,
 				5B309D021C473F9E0079CD78 /* RefreshHeadView.m in Sources */,
 				5B309CDE1C473F9E0079CD78 /* MotionViewController.m in Sources */,
+				5B90EDF41CAE15CE000B4F8E /* will_mosq.c in Sources */,
 				5B309CEF1C473F9E0079CD78 /* ZipArchive.mm in Sources */,
 				5B3097481C4727230079CD78 /* MyNavigationController.m in Sources */,
 				5B309CF11C473F9E0079CD78 /* AutoLayerViewController.m in Sources */,
 				5B309D081C4773490079CD78 /* ScrollCycleView.m in Sources */,
 				5B309CF61C473F9E0079CD78 /* CoreImageFilterViewController.m in Sources */,
 				5B30977B1C4727230079CD78 /* SSKeychain.m in Sources */,
+				5B90EDE91CAE15CE000B4F8E /* read_handle.c in Sources */,
 				5B3097701C4727230079CD78 /* RootNavigationController.m in Sources */,
 				5BE3698C1C5B0BC700D5E366 /* SecurityViewController.m in Sources */,
 				5B30977F1C4727230079CD78 /* UILabel-LineHeigh.m in Sources */,
@@ -1261,12 +1378,19 @@
 				5B3097791C4727230079CD78 /* NSData-expand.m in Sources */,
 				5B309CFF1C473F9E0079CD78 /* ScrollViewCycleController.m in Sources */,
 				5B309CE91C473F9E0079CD78 /* FileManagerReadAndWriteViewController.m in Sources */,
+				5B90EDE81CAE15CE000B4F8E /* net_mosq.c in Sources */,
 				5B309CD51C473F9E0079CD78 /* BLERequestDataModel.m in Sources */,
+				5B90EDE71CAE15CE000B4F8E /* mosquitto.c in Sources */,
+				5B90EDE41CAE15CE000B4F8E /* logging_mosq.c in Sources */,
 				5B3097781C4727230079CD78 /* PrintLog.m in Sources */,
 				5B309CE31C473F9E0079CD78 /* SocketViewController.m in Sources */,
 				5B309CE51C473F9E0079CD78 /* Skintone.m in Sources */,
+				5B90EDF11CAE15CE000B4F8E /* time_mosq.c in Sources */,
+				5B90EDF31CAE15CE000B4F8E /* util_mosq.c in Sources */,
 				5B3097711C4727230079CD78 /* TestViewController.m in Sources */,
+				5B90EDE51CAE15CE000B4F8E /* memory_mosq.c in Sources */,
 				5BD1633B1C58630800D639C0 /* CustomAlertViewController.m in Sources */,
+				5B90EDEF1CAE15CE000B4F8E /* srv_mosq.c in Sources */,
 				5BD1633A1C58630800D639C0 /* CustomAlertView.m in Sources */,
 				5B3097461C4727230079CD78 /* main.m in Sources */,
 				5B309CD41C473F9E0079CD78 /* BLEPeripheralManager.m in Sources */,
@@ -1274,6 +1398,8 @@
 				5B309CFB1C473F9E0079CD78 /* MyAnnotation.m in Sources */,
 				5B309CE11C473F9E0079CD78 /* Reachability.m in Sources */,
 				5B309CEC1C473F9E0079CD78 /* mztools.c in Sources */,
+				5B90EDEC1CAE15CE000B4F8E /* send_client_mosq.c in Sources */,
+				5B90EDED1CAE15CE000B4F8E /* send_mosq.c in Sources */,
 				5B309CF21C473F9E0079CD78 /* CameraViewcontroller.m in Sources */,
 				5B309CE71C473F9E0079CD78 /* SQLiteViewController.m in Sources */,
 				5BD1633E1C5863DF00D639C0 /* CustomSegmentViewController.m in Sources */,
@@ -1286,12 +1412,14 @@
 				5B0C51911C603A8A00818C6E /* CoreGraphicsViewController.m in Sources */,
 				5B309CE21C473F9E0079CD78 /* URLRequestViewController.m in Sources */,
 				5B3097491C4727230079CD78 /* MyTabBarController.m in Sources */,
+				5B90EDEE1CAE15CE000B4F8E /* socks_mosq.c in Sources */,
 				5B3097751C4727230079CD78 /* Formater.m in Sources */,
 				5B30977A1C4727230079CD78 /* NSString-expand.m in Sources */,
 				5B3097431C4727230079CD78 /* BaseViewController.m in Sources */,
 				5B309CFA1C473F9E0079CD78 /* MapAndLocationViewController.m in Sources */,
 				5B30977D1C4727230079CD78 /* UIDevice-Orientation.m in Sources */,
 				5B309CE01C473F9E0079CD78 /* APLViewController.m in Sources */,
+				5B90EDE61CAE15CE000B4F8E /* messages_mosq.c in Sources */,
 				5B309CE81C473F9E0079CD78 /* ShareTofaceBookViewController.m in Sources */,
 				5B309CD71C473F9E0079CD78 /* BluetoothManager.m in Sources */,
 				5B309CFC1C473F9E0079CD78 /* NaviBarViewController.m in Sources */,
@@ -1301,7 +1429,9 @@
 				5B0C51941C603AEE00818C6E /* CoreGraphicsView.m in Sources */,
 				5B309D051C473F9E0079CD78 /* SendMessageAndEMailViewController.m in Sources */,
 				5B309D041C473F9E0079CD78 /* QRCodeViewController.m in Sources */,
+				5B90EDF01CAE15CE000B4F8E /* thread_mosq.c in Sources */,
 				5BE369941C5B136A00D5E366 /* TextAttributeViewController.m in Sources */,
+				5B90EDF21CAE15CE000B4F8E /* tls_mosq.c in Sources */,
 				5B309CFE1C473F9E0079CD78 /* UIMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1423,10 +1553,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-lsqlite3.0";
-				PRODUCT_BUNDLE_IDENTIFIER = com.htc.vivephoneservice;
+				PRODUCT_BUNDLE_IDENTIFIER = xin.zhang;
 				PRODUCT_NAME = MyDemo;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
@@ -1450,10 +1580,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-lsqlite3.0";
-				PRODUCT_BUNDLE_IDENTIFIER = com.htc.vivephoneservice;
+				PRODUCT_BUNDLE_IDENTIFIER = xin.zhang;
 				PRODUCT_NAME = MyDemo;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4464a4d9-349a-49d7-b256-e5eb90d16126";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
