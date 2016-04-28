@@ -250,7 +250,7 @@ static char firstLetterArray[HANZI_COUNT] =
     const char *cStr = [self UTF8String];
     unsigned char result[16];
     
-    CC_MD5( cStr, strlen(cStr), result );
+    CC_MD5( cStr, (int)strlen(cStr), result );
     return [NSString stringWithFormat:
             @"%X%X%X%X%X%X%X%X%X%X%X%X%X%X%X%X",
             result[0], result[1], result[2], result[3],

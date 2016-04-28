@@ -163,8 +163,9 @@
 -(BOOL)isExitOfFile:(NSString*)fileName{
     
     NSString* filePath = [self getFilePathWithFileName:fileName];
-    BOOL isExists = [fileManager fileExistsAtPath:filePath isDirectory:NO];
-    LOGINFO(@"file is %@ exists", isExists ? @"" : @"not");
+    BOOL isDirectory = NO;
+    BOOL isExists = [fileManager fileExistsAtPath:filePath isDirectory:&isDirectory];
+    LOGINFO(@"file is %@ exists; is Directory:%@", isExists ? @"" : @"not", isDirectory ? @"yes" : @"no");
     return isExists;
 }
 
@@ -241,7 +242,7 @@
     //用于存放数据的变量，因为是字节，所以是ＵInt8
     
     //获取字节的个数
-    int length = [reader length];
+    int length = (int)[reader length];
     Byte b;
     LOGINFO(@"——->bytesLength:%d", length);
     for(int i = 0; i < length; i++) { //读取数据

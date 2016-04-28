@@ -15,14 +15,14 @@
 float device_angle;
 CFRunLoopRef currentLoop;
 
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
-{
-    float xx = [acceleration x];
-    float yy = -[acceleration y];
-    device_angle = M_PI / 2.0f - atan2(yy, xx);
-    
-    CFRunLoopStop(currentLoop);
-}
+//- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+//{
+//    float xx = [acceleration x];
+//    float yy = -[acceleration y];
+//    device_angle = M_PI / 2.0f - atan2(yy, xx);
+//    
+//    CFRunLoopStop(currentLoop);
+//}
 
 - (float) orientationAngle
 {
@@ -42,13 +42,13 @@ CFRunLoopRef currentLoop;
             return 0.0f;
     }
 #else
-    id accelerometer_delegate = [UIAccelerometer sharedAccelerometer].delegate;
-    [UIAccelerometer sharedAccelerometer].delegate = self;
-    
-    // Wait for a reading
-    currentLoop = CFRunLoopGetCurrent();
-    CFRunLoopRun();
-    [UIAccelerometer sharedAccelerometer].delegate = accelerometer_delegate;
+//    id accelerometer_delegate = [UIAccelerometer sharedAccelerometer].delegate;
+//    [UIAccelerometer sharedAccelerometer].delegate = self;
+//    
+//    // Wait for a reading
+//    currentLoop = CFRunLoopGetCurrent();
+//    CFRunLoopRun();
+//    [UIAccelerometer sharedAccelerometer].delegate = accelerometer_delegate;
     
     return device_angle;
 #endif

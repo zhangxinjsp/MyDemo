@@ -71,7 +71,7 @@
     NSInteger index = 0;
     while (YES) {
         index ++;
-        NSString* repliceStr = [NSString stringWithFormat:@"(%d)", index];
+        NSString* repliceStr = [NSString stringWithFormat:@"(%ld)", (long)index];
         NSRange range = [str rangeOfString:repliceStr];
         if (range.location == NSNotFound) {
             break;

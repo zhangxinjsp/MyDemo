@@ -74,7 +74,7 @@
     [request setURL:[NSURL URLWithString:API_GetDoctorControl]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"host" forHTTPHeaderField:@"Host"];
-    NSString* dataLength = [NSString stringWithFormat:@"%d",content.length];
+    NSString* dataLength = [NSString stringWithFormat:@"%lu",(unsigned long)content.length];
     [request setValue:dataLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:content];
     // 发送同步请求, data就是返回的数据
@@ -163,7 +163,7 @@
     
     NSString *content=[[NSString alloc]initWithFormat:@"multipart/form-data; charset=utf-8; boundary=%@",TWITTERFON_FORM_BOUNDARY];
     [request setValue:content forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[NSString stringWithFormat:@"%d", [myRequestData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[myRequestData length]] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:myRequestData];
     [request setHTTPMethod:@"POST"];
     //建立连接，设置代理

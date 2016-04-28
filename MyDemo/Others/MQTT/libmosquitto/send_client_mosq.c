@@ -72,7 +72,7 @@ int _mosquitto_send_connect(struct mosquitto *mosq, uint16_t keepalive, bool cle
 	packet = _mosquitto_calloc(1, sizeof(struct _mosquitto_packet));
 	if(!packet) return MOSQ_ERR_NOMEM;
 
-	payloadlen = 2+strlen(clientid);
+	payloadlen = 2+(int)strlen(clientid);
 	if(mosq->will){
 		will = 1;
 		assert(mosq->will->topic);
@@ -216,7 +216,7 @@ int _mosquitto_send_unsubscribe(struct mosquitto *mosq, int *mid, const char *to
 	packet = _mosquitto_calloc(1, sizeof(struct _mosquitto_packet));
 	if(!packet) return MOSQ_ERR_NOMEM;
 
-	packetlen = 2 + 2+strlen(topic);
+	packetlen = 2 + 2 + (int)strlen(topic);
 
 	packet->command = UNSUBSCRIBE | (1<<1);
 	packet->remaining_length = packetlen;

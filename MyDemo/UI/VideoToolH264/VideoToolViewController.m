@@ -196,7 +196,7 @@ static UIImageView* imageView;
         NSLog(@"BlockBufferCreation: %@", (status == kCMBlockBufferNoErr) ? @"successfully." : @"failed.");
         
         // 5.  making sure to replace the separator code with a 4 byte length code (the length of the NalUnit including the unit code)
-        int reomveHeaderSize = data.length - 4;
+        int reomveHeaderSize = (int)data.length - 4;
         const uint8_t sourceBytes[] = {(uint8_t)(reomveHeaderSize >> 24), (uint8_t)(reomveHeaderSize >> 16), (uint8_t)(reomveHeaderSize >> 8), (uint8_t)reomveHeaderSize};
         status = CMBlockBufferReplaceDataBytes(sourceBytes, videoBlock, 0, 4);
         NSLog(@"BlockBufferReplace: %@", (status == kCMBlockBufferNoErr) ? @"successfully." : @"failed.");

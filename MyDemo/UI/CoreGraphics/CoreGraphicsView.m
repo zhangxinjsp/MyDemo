@@ -482,7 +482,7 @@ CGContextRef MyCreateBitmapContext (int pixelsWide, int pixelsHigh)
     return theImage;
 }
 
-CGImageRef AEViewCreateGradientImage (int pixelsWide, int pixelsHigh) {
+CGImageRef AEViewCreateGradientImage (int pixelsWide, NSInteger pixelsHigh) {
     
     CGImageRef theCGImage = NULL;
     CGContextRef gradientBitmapContext = NULL;
@@ -561,8 +561,8 @@ CGImageRef AEViewCreateGradientImage (int pixelsWide, int pixelsHigh) {
     
     CGPatternRef    pattern;// 1
     CGColorSpaceRef patternSpace;// 2
-    CGFloat         alpha = 1,// 3
-                    width, height;// 4
+    CGFloat         alpha = 1;// 3
+//    CGFloat         width, height;// 4
     static const    CGPatternCallbacks callbacks = {0, // 5
                                                     &MyDrawColoredPattern,
                                                     NULL};

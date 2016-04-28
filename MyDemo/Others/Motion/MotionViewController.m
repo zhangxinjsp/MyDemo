@@ -253,17 +253,17 @@
 }
 //设备晃动的回调方法
 -(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    showValueLabel.text = [NSString stringWithFormat:@"motion Began %d", motionCount];
+    showValueLabel.text = [NSString stringWithFormat:@"motion Began %ld", (long)motionCount];
     LOGINFO(@"motion Began");
 }
 
 -(void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    showValueLabel.text = [NSString stringWithFormat:@"motion Cancelled %d", motionCount];
+    showValueLabel.text = [NSString stringWithFormat:@"motion Cancelled %ld", (long)motionCount];
     LOGINFO(@"motion Cancelled");
 }
 
 - (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    showValueLabel.text = [NSString stringWithFormat:@"motion Ended %d", motionCount++];
+    showValueLabel.text = [NSString stringWithFormat:@"motion Ended %ld", (long)motionCount++];
     LOGINFO(@"motion Ended");
 }
 

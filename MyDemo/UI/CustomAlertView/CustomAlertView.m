@@ -135,7 +135,7 @@
     CustomAlertView* currentShowAlert = self.alertList.firstObject;
     @synchronized(self){
         if (self.alertList.count > 0) {
-            for (int i = self.alertList.count - 1; i >= 0; i--) {
+            for (int i = (int)self.alertList.count - 1; i >= 0; i--) {
                 CustomAlertView* alert = [self.alertList objectAtIndex:i];
                 if (alert.delegate == delegate) {
                     [self.alertList removeObjectAtIndex:i];

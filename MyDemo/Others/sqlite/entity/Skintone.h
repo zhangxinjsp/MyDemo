@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface Skintone : NSObject{
-    int skintoneId;
+    NSInteger skintoneId;
     NSString* skintoneName;
     NSString* RGB;
 }
 
-@property (nonatomic, readwrite) int skintoneId;
+@property (nonatomic, readwrite) NSInteger skintoneId;
 @property (nonatomic, strong) NSString* skintoneName;
 @property (nonatomic, strong) NSString* RGB;
 

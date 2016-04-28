@@ -95,6 +95,9 @@
 		5B309D081C4773490079CD78 /* ScrollCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309D071C4773490079CD78 /* ScrollCycleView.m */; };
 		5B309D0B1C477C290079CD78 /* BluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309D0A1C477C290079CD78 /* BluetoothViewController.m */; };
 		5B66177C1B19FB3F000C584F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */; };
+		5B6B4F221CD19CA600CF1965 /* CustomUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B4F1D1CD19CA600CF1965 /* CustomUI.m */; };
+		5B6B4F231CD19CA600CF1965 /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B4F1F1CD19CA600CF1965 /* TestModel.m */; };
+		5B6B4F241CD19CA600CF1965 /* RunTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B4F211CD19CA600CF1965 /* RunTimeViewController.m */; };
 		5B84682B195691860033C079 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B84682A195691860033C079 /* CoreData.framework */; };
 		5B90EDE41CAE15CE000B4F8E /* logging_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDC51CAE15CE000B4F8E /* logging_mosq.c */; };
 		5B90EDE51CAE15CE000B4F8E /* memory_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDC71CAE15CE000B4F8E /* memory_mosq.c */; };
@@ -353,6 +356,12 @@
 		5B309D091C477C290079CD78 /* BluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothViewController.h; sourceTree = "<group>"; };
 		5B309D0A1C477C290079CD78 /* BluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothViewController.m; sourceTree = "<group>"; };
 		5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		5B6B4F1C1CD19CA600CF1965 /* CustomUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUI.h; sourceTree = "<group>"; };
+		5B6B4F1D1CD19CA600CF1965 /* CustomUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUI.m; sourceTree = "<group>"; };
+		5B6B4F1E1CD19CA600CF1965 /* TestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
+		5B6B4F1F1CD19CA600CF1965 /* TestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
+		5B6B4F201CD19CA600CF1965 /* RunTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunTimeViewController.h; sourceTree = "<group>"; };
+		5B6B4F211CD19CA600CF1965 /* RunTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunTimeViewController.m; sourceTree = "<group>"; };
 		5B84682A195691860033C079 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		5B90EDC31CAE15CE000B4F8E /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		5B90EDC41CAE15CE000B4F8E /* dummypthread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dummypthread.h; sourceTree = "<group>"; };
@@ -594,6 +603,12 @@
 		5B17D71C1CD18CE70000C07D /* RunTime */ = {
 			isa = PBXGroup;
 			children = (
+				5B6B4F1C1CD19CA600CF1965 /* CustomUI.h */,
+				5B6B4F1D1CD19CA600CF1965 /* CustomUI.m */,
+				5B6B4F1E1CD19CA600CF1965 /* TestModel.h */,
+				5B6B4F1F1CD19CA600CF1965 /* TestModel.m */,
+				5B6B4F201CD19CA600CF1965 /* RunTimeViewController.h */,
+				5B6B4F211CD19CA600CF1965 /* RunTimeViewController.m */,
 			);
 			path = RunTime;
 			sourceTree = "<group>";
@@ -1364,6 +1379,7 @@
 				5B3097481C4727230079CD78 /* MyNavigationController.m in Sources */,
 				5B309CF11C473F9E0079CD78 /* AutoLayerViewController.m in Sources */,
 				5B309D081C4773490079CD78 /* ScrollCycleView.m in Sources */,
+				5B6B4F231CD19CA600CF1965 /* TestModel.m in Sources */,
 				5B309CF61C473F9E0079CD78 /* CoreImageFilterViewController.m in Sources */,
 				5B30977B1C4727230079CD78 /* SSKeychain.m in Sources */,
 				5B90EDE91CAE15CE000B4F8E /* read_handle.c in Sources */,
@@ -1403,6 +1419,7 @@
 				5B309CF21C473F9E0079CD78 /* CameraViewcontroller.m in Sources */,
 				5B309CE71C473F9E0079CD78 /* SQLiteViewController.m in Sources */,
 				5BD1633E1C5863DF00D639C0 /* CustomSegmentViewController.m in Sources */,
+				5B6B4F221CD19CA600CF1965 /* CustomUI.m in Sources */,
 				5B309CEB1C473F9E0079CD78 /* ioapi.c in Sources */,
 				5B309D031C473F9E0079CD78 /* RefreshViewController.m in Sources */,
 				5B309CDC1C473F9E0079CD78 /* Product.m in Sources */,
@@ -1423,6 +1440,7 @@
 				5B309CE81C473F9E0079CD78 /* ShareTofaceBookViewController.m in Sources */,
 				5B309CD71C473F9E0079CD78 /* BluetoothManager.m in Sources */,
 				5B309CFC1C473F9E0079CD78 /* NaviBarViewController.m in Sources */,
+				5B6B4F241CD19CA600CF1965 /* RunTimeViewController.m in Sources */,
 				5B309CED1C473F9E0079CD78 /* unzip.c in Sources */,
 				5B309CF31C473F9E0079CD78 /* MediaCaptureViewController.m in Sources */,
 				5B309CE61C473F9E0079CD78 /* SQLiteTool.m in Sources */,
