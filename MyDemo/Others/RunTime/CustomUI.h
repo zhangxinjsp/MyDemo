@@ -13,7 +13,7 @@
 
 @end
 
-@interface UIButton (ac)
+@interface UIControl (ac)
 
 @end
 

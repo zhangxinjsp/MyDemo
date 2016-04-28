@@ -86,6 +86,23 @@
     [self.tabBar sendSubviewToBack:colorfulView];
 }
 
+
+-(void)tabBar:(UITabBar *)tabBar willBeginCustomizingItems:(NSArray<UITabBarItem *> *)items {
+    LOGINFO(@"");
+}
+
+-(void)tabBar:(UITabBar *)tabBar didBeginCustomizingItems:(NSArray<UITabBarItem *> *)items {
+    LOGINFO(@"");
+}
+
+-(void)tabBar:(UITabBar *)tabBar willEndCustomizingItems:(NSArray<UITabBarItem *> *)items changed:(BOOL)changed {
+    LOGINFO(@"");
+}
+
+-(void)tabBar:(UITabBar *)tabBar didEndCustomizingItems:(NSArray<UITabBarItem *> *)items changed:(BOOL)changed {
+    LOGINFO(@"");
+}
+
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     
     [UIView animateWithDuration:0.5 animations:^{

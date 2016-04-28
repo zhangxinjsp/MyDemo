@@ -27,57 +27,6 @@
 
 #define CellIdentity @"identity"
 
-@interface MyCollectionViewCell :UICollectionViewCell {
-    
-    UIImageView* imageView;
-    UILabel* label;
-}
-
-- (void)setName:(NSString*)name;
-@end
-
-
-@implementation MyCollectionViewCell
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self initControls];
-    }
-    return self;
-}
-
-- (void)initControls {
-    self.contentView.layer.masksToBounds = YES;
-    
-    imageView = [[UIImageView alloc]init];
-    imageView.contentMode = UIViewContentModeCenter;
-    imageView.image = [UIImage imageNamed:@"logo.png"];
-    imageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:imageView];
-    
-    label = [[UILabel alloc]init];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:11];
-    label.numberOfLines = 2;
-    label.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:label];
-    
-    NSDictionary* viewDict = NSDictionaryOfVariableBindings(imageView, label);
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[imageView(>=0)]-3-[label(>=0)]-0-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:viewDict]];
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imageView(>=0)]-0-|" options:0 metrics:nil views:viewDict]];
-}
-
-- (void)setName:(NSString*)name {
-    label.text = name;
-}
-
-
-@end
-
-
 typedef NS_ENUM(NSInteger, MenuType) {
     AutoLayerTag,
     CameraTag,
@@ -126,6 +75,7 @@ typedef NS_ENUM(NSInteger, MenuType) {
     
     
     UICollectionViewFlowLayout* collectionLayout = [[UICollectionViewFlowLayout alloc]init];
+//    CollectionViewLayout* collectionLayout = [[CollectionViewLayout alloc]init];
 //与下面的代理的返回值有相同的效果
 //    collectionLayout.minimumLineSpacing = 30;
 //    collectionLayout.minimumInteritemSpacing = 30;
@@ -133,6 +83,7 @@ typedef NS_ENUM(NSInteger, MenuType) {
     
     collection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:collectionLayout];
     [collection registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:CellIdentity];
+//    [collection registerClass:<#(nullable Class)#> forSupplementaryViewOfKind:<#(nonnull NSString *)#> withReuseIdentifier:<#(nonnull NSString *)#>]
     collection.delegate = self;
     collection.dataSource = self;
     collection.backgroundColor = [UIColor lightGrayColor];
@@ -183,7 +134,7 @@ typedef NS_ENUM(NSInteger, MenuType) {
     cell.backgroundColor = [UIColor greenColor];
     [cell setName:titleArray[indexPath.row]];
     
-    
+//    cell.highlighted
     return cell;
 }
 
@@ -295,11 +246,6 @@ typedef NS_ENUM(NSInteger, MenuType) {
     }
 }
 
-
-
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -319,3 +265,226 @@ typedef NS_ENUM(NSInteger, MenuType) {
     return toInterfaceOrientation == UIInterfaceOrientationPortrait;
 }
 @end
+
+
+
+
+@implementation MyCollectionViewCell
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initControls];
+    }
+    return self;
+}
+
+- (void)initControls {
+    self.contentView.layer.masksToBounds = YES;
+    
+    imageView = [[UIImageView alloc]init];
+    imageView.contentMode = UIViewContentModeCenter;
+    imageView.image = [UIImage imageNamed:@"logo.png"];
+    imageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:imageView];
+    
+    label = [[UILabel alloc]init];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:11];
+    label.numberOfLines = 2;
+    label.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:label];
+    
+    NSDictionary* viewDict = NSDictionaryOfVariableBindings(imageView, label);
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[imageView(>=0)]-3-[label(>=0)]-0-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:viewDict]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imageView(>=0)]-0-|" options:0 metrics:nil views:viewDict]];
+}
+
+- (void)setName:(NSString*)name {
+    label.text = name;
+}
+
+
+@end
+
+@implementation CollectionViewLayout
+
+/**
+ * 该方法是预加载layout, 只会被执行一次
+ */
+- (void)prepareLayout{
+    [super prepareLayout];
+    
+    [self initData];
+    
+    [self initCellWidth];
+    
+    [self initCellHeight];
+    
+}
+
+/**
+ * 该方法返回CollectionView的ContentSize的大小
+ */
+- (CGSize)collectionViewContentSize {
+    CGFloat height = [self maxCellYArrayWithArray:_cellYArray];
+    return CGSizeMake(320, height);
+}
+
+/**
+ * 该方法为每个Cell绑定一个Layout属性~
+ */
+- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
+{
+    
+    [self initCellYArray];
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    //add cells
+    for (int i = 0; i < _numberOfCellsInSections; i ++ ) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        
+        UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
+        
+        [array addObject:attributes];
+    }
+    return array;
+}
+
+/**
+ * 该方法为每个Cell绑定一个Layout属性~
+ */
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+    
+    CGRect frame = CGRectZero;
+    
+    CGFloat cellHeight = [_cellHeightArray[indexPath.row] floatValue];
+    
+    NSInteger minYIndex = [self minCellYArrayWithArray:_cellYArray];
+    
+    CGFloat tempX = [_cellXArray[minYIndex] floatValue];
+    
+    CGFloat tempY = [_cellYArray[minYIndex] floatValue];
+    
+    frame = CGRectMake(tempX, tempY, _cellWidth, cellHeight);
+    NSLog(@"%f:%f", tempX, tempY);
+    //更新相应的Y坐标
+    _cellYArray[minYIndex] = @(tempY + cellHeight + _padding);
+    
+    //计算每个Cell的位置
+    attributes.frame = frame;
+    
+    return attributes;
+}
+
+/**
+ * 初始化相关数据
+ */
+- (void) initData{
+    _numberOfSections = [self.collectionView numberOfSections];
+    _numberOfCellsInSections = [self.collectionView numberOfItemsInSection:0];
+    
+    //通过回调获取列数
+    _columnCount = 5;
+    _padding = 5;
+    _cellMinHeight = 50;
+    _cellMaxHeight = 150;
+}
+
+/**
+ * 根据Cell的列数求出Cell的宽度
+ */
+- (void) initCellWidth{
+    //计算每个Cell的宽度
+    _cellWidth = (320 - (_columnCount +1) * _padding) / _columnCount;
+    
+    //为每个Cell计算X坐标
+    _cellXArray = [[NSMutableArray alloc] initWithCapacity:_columnCount];
+    for (int i = 0; i < _columnCount; i ++  ) {
+        
+        CGFloat tempX = i * (_cellWidth + _padding) + _padding;
+        
+        [_cellXArray addObject:@(tempX)];
+    }
+}
+
+/**
+ * 随机生成Cell的高度
+ */
+- (void) initCellHeight{
+    //随机生成Cell的高度
+    _cellHeightArray = [[NSMutableArray alloc] initWithCapacity:_numberOfCellsInSections];
+    for (int i = 0; i < _numberOfCellsInSections; i ++ ) {
+        
+        CGFloat cellHeight = arc4random() % (_cellMaxHeight - _cellMinHeight) + _cellMinHeight;
+        
+        [_cellHeightArray addObject:@(cellHeight)];
+    }
+}
+
+/**
+ * 初始化每列Cell的Y轴坐标
+ */
+- (void) initCellYArray{
+    _cellYArray = [[NSMutableArray alloc] initWithCapacity:_columnCount];
+    
+    for (int i = 0; i < _columnCount; i ++ ) {
+        [_cellYArray addObject:@(_padding)];
+    }
+}
+
+/**
+ * 求CellY数组中的最大值并返回
+ */
+- (CGFloat) maxCellYArrayWithArray: (NSMutableArray *) array{
+    if (array.count == 0) {
+        return 0.0f;
+    }
+    
+    CGFloat max = [array[0] floatValue];
+    for (NSNumber *number in array) {
+        
+        CGFloat temp = [number floatValue];
+        
+        if (max <= temp) {
+            max = temp;
+        }
+    }
+    
+    return max;
+}
+
+/**
+ * 求CellY数组中的最小值的索引
+ */
+- (CGFloat) minCellYArrayWithArray: (NSMutableArray *) array{
+    
+    if (array.count == 0) {
+        return 0.0f;
+    }
+    
+    NSInteger minIndex = 0;
+    CGFloat min = [array[0] floatValue];
+    
+    for (int i = 0; i < _columnCount; i++ ) {
+        CGFloat temp = [array[i] floatValue];
+        
+        if (min > temp) {
+            min = temp;
+            minIndex = i;
+        }
+    }
+    
+    return minIndex;
+}
+
+
+
+
+@end
+

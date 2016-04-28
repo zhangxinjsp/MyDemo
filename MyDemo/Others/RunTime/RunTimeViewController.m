@@ -55,6 +55,7 @@
 
 - (void)buttonAction:(id)sender {
     NSLog(@"button action");
+    [self addMethod];
 }
 
 
@@ -128,7 +129,7 @@
     
     if ([model respondsToSelector:sel]) {
 //        [model performSelector:sel];
-        SEL selector = NSSelectorFromString(@"someMethod");
+        SEL selector = NSSelectorFromString(@"add");
         IMP imp = [model methodForSelector:selector];
         void (*func)(id, SEL) = (void *)imp;
         func(model, selector);
