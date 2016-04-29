@@ -319,6 +319,8 @@ typedef NS_ENUM(NSInteger, MenuType) {
     
     [self initData];
     
+    [self initCellYArray];
+    
     [self initCellWidth];
     
     [self initCellHeight];
@@ -338,9 +340,6 @@ typedef NS_ENUM(NSInteger, MenuType) {
  */
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    
-    [self initCellYArray];
-    
     NSMutableArray *array = [NSMutableArray array];
     
     //add cells
@@ -384,6 +383,7 @@ typedef NS_ENUM(NSInteger, MenuType) {
 
 /**
  * 初始化相关数据
+ *  数据可以通过delegate的方式或者，初始化方式传参
  */
 - (void) initData{
     _numberOfSections = [self.collectionView numberOfSections];

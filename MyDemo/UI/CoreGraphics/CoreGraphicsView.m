@@ -607,7 +607,44 @@ void MyDrawColoredPattern (void *info, CGContextRef myContext)
 }
 
 
-
+#pragma mark -=====自定义截屏位置大小的逻辑代码=====-
+static int ScreenshotIndex=0; //这里的逻辑直接采用上面博主的逻辑了
+-(void)ScreenShot{
+    //这里因为我需要全屏接图所以直接改了，宏定义iPadWithd为1024，iPadHeight为768，
+    //    UIGraphicsBeginImageContextWithOptions(CGSizeMake(640, 960), YES, 0);     //设置截屏大小
+    UIGraphicsBeginImageContextWithOptions([UIScreen mainScreen].bounds.size, YES, 0);     //设置截屏大小
+    [[self layer] renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    CGImageRef imageRef = viewImage.CGImage;
+    //    CGRect rect = CGRectMake(166, 211, 426, 320);//这里可以设置想要截图的区域
+    CGRect rect = [UIScreen mainScreen].bounds;//这里可以设置想要截图的区域
+    CGImageRef imageRefRect =CGImageCreateWithImageInRect(imageRef, rect);
+    UIImage *sendImage = [[UIImage alloc] initWithCGImage:imageRefRect];
+    UIImageWriteToSavedPhotosAlbum(sendImage, nil, nil, nil);//保存图片到照片库
+    NSData *imageViewData = UIImagePNGRepresentation(sendImage);
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *pictureName= [NSString stringWithFormat:@"screenShow_%d.png",ScreenshotIndex];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:pictureName];
+    NSLog(@"截屏路径打印: %@", savedImagePath);
+    //这里我将路径设置为一个全局String，这里做的不好，我自己是为了用而已，希望大家别这么写
+    [self SetPickPath:savedImagePath];
+    
+    [imageViewData writeToFile:savedImagePath atomically:YES];//保存照片到沙盒目录
+    CGImageRelease(imageRefRect);
+    ScreenshotIndex++;
+}
+//设置路径
+static NSString* _ScreenshotsPickPath = @"";
+- (void)SetPickPath:(NSString *)PickImage {
+    _ScreenshotsPickPath = PickImage;
+}
+//获取路径<这里我就直接用于邮件推送的代码中去了，能达到效果，但肯定有更好的写法>
+- (NSString *)GetPickPath {
+    return _ScreenshotsPickPath;
+}
 
 
 

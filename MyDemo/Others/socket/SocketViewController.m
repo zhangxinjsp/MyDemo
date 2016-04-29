@@ -16,6 +16,9 @@
 
 @interface SocketViewController () <NSStreamDelegate>{
     CFSocketRef _socket;
+    NSThread* socketThread;
+    NSThread* sendThread;
+    CFDataRef addressData;
     
     NSInputStream *inputStream;
     NSOutputStream *outputStream;
@@ -45,7 +48,7 @@
     // Do any additional setup after loading the view.
 }
 
-
+#pragma mark stream 形式的socket
 - (void)streamSocket
 {
     NSString* urlStr = @"192.168.1.106";
@@ -115,81 +118,183 @@
 
 #pragma mark 客户端
 
--(void)initClientSocket{
-    NSString* strAddress = @"";
+-(void)socketWithIPAddress:(NSString*)address port:(NSInteger)port {
     
-    CFSocketContext sockContext = {0, // 结构体的版本，必须为0
+    struct sockaddr_in addr4;   // IPV4
+    memset(&addr4, 0, sizeof(addr4));
+    addr4.sin_len = sizeof(addr4);
+    addr4.sin_family = AF_INET;
+    addr4.sin_port = htons(port);
+    addr4.sin_addr.s_addr = inet_addr([address UTF8String]);  // 把字符串的地址转换为机器可识别的网络地址
+    addressData = CFDataCreate(kCFAllocatorDefault, (UInt8 *)&addr4, sizeof(addr4));// 把sockaddr_in结构体中的地址转换为Data
+    
+    [self startSocket];
+}
+
+- (void)startSocket {
+    
+    CFSocketContext sockContext = { 0, // 结构体的版本，必须为0
         (__bridge void *)(self),  // 一个任意指针的数据，可以用在创建时CFSocket对象相关联。这个指针被传递给所有的上下文中定义的回调。
         NULL, // 一个定义在上面指针中的retain的回调， 可以为NULL
         NULL, NULL};
     
-    _socket = CFSocketCreate(kCFAllocatorDefault, // 为新对象分配内存，可以为nil
-                             PF_INET, // 协议族，如果为0或者负数，则默认为PF_INET
-                             SOCK_STREAM, // 套接字类型，如果协议族为PF_INET,则它会默认为SOCK_STREAM
-                             IPPROTO_TCP, // 套接字协议，如果协议族是PF_INET且协议是0或者负数，它会默认为IPPROTO_TCP
-                             kCFSocketConnectCallBack, // 触发回调函数的socket消息类型，具体见Callback Types
-                             TCPServerConnectCallBack, // 上面情况下触发的回调函数
-                             &sockContext // 一个持有CFSocket结构信息的对象，可以为nil
+    _socket = CFSocketCreate(kCFAllocatorDefault,       // 为新对象分配内存，可以为nil
+                             PF_INET,                   // 协议族，如果为0或者负数，则默认为PF_INET
+                             SOCK_STREAM,               // 套接字类型，如果协议族为PF_INET,则它会默认为SOCK_STREAM
+                             IPPROTO_TCP,               // 套接字协议，如果协议族是PF_INET且协议是0或者负数，它会默认为IPPROTO_TCP
+                             kCFSocketConnectCallBack | kCFSocketReadCallBack | kCFSocketWriteCallBack | kCFSocketDataCallBack | kCFSocketAcceptCallBack,  // 触发回调函数的socket消息类型，具体见Callback Types
+                             TCPClientConnectCallBack,  // 上面情况下触发的回调函数
+                             &sockContext               // 一个持有CFSocket结构信息的对象，可以为nil
                              );
     
+    //Tell Core Foundation that it is allowed to close the socket when the underlying Core Foundation object is invalidated.
+    CFOptionFlags sockopt = CFSocketGetSocketFlags(_socket);
+    sockopt |= kCFSocketCloseOnInvalidate | kCFSocketAutomaticallyReenableReadCallBack;
+    CFSocketSetSocketFlags(_socket, sockopt);
+    
     if (_socket != nil) {
-        struct sockaddr_in addr4;   // IPV4
-        memset(&addr4, 0, sizeof(addr4));
-        addr4.sin_len = sizeof(addr4);
-        addr4.sin_family = AF_INET;
-        addr4.sin_port = htons(8888);
-        addr4.sin_addr.s_addr = inet_addr([strAddress UTF8String]);  // 把字符串的地址转换为机器可识别的网络地址
+        NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"create socket success");
+        socketThread = [[NSThread alloc]initWithTarget:self selector:@selector(socketThreadStart) object:nil];
+        [socketThread setName:@"startSocket"];
+        [socketThread start];
         
-        // 把sockaddr_in结构体中的地址转换为Data
-        CFDataRef address = CFDataCreate(kCFAllocatorDefault, (UInt8 *)&addr4, sizeof(addr4));
-        CFSocketConnectToAddress(_socket, // 连接的socket
-                                 address, // CFDataRef类型的包含上面socket的远程地址的对象
-                                 -1  // 连接超时时间，如果为负，则不尝试连接，而是把连接放在后台进行，如果_socket消息类型为kCFSocketConnectCallBack，将会在连接成功或失败的时候在后台触发回调函数
-                                 );
-        
-        CFRunLoopRef cRunRef = CFRunLoopGetCurrent();    // 获取当前线程的循环
-        // 创建一个循环，但并没有真正加如到循环中，需要调用CFRunLoopAddSource
+        sendThread = [[NSThread alloc]initWithTarget:self selector:@selector(sendMessage) object:nil];
+        [sendThread setName:@"sendMessage"];
+        [sendThread start];
+    } else {
+        NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"create socket failed");
+    }
+}
+
+- (void)socketThreadStart {
+    
+    NSLog(@"%s[line:%d] start thread:%@", __FUNCTION__, __LINE__, [NSThread currentThread]);
+    
+    CFSocketError status = CFSocketConnectToAddress(_socket, addressData, 3);
+    if (status == kCFSocketSuccess) {
+        NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"connect to address success");
+        CFRunLoopRef cRunRef = CFRunLoopGetCurrent();
         CFRunLoopSourceRef sourceRef = CFSocketCreateRunLoopSource(kCFAllocatorDefault, _socket, 0);
-        CFRunLoopAddSource(cRunRef, // 运行循环
-                           sourceRef,  // 增加的运行循环源, 它会被retain一次
-                           kCFRunLoopCommonModes  // 增加的运行循环源的模式
-                           );
+        CFRunLoopAddSource(cRunRef, sourceRef, kCFRunLoopDefaultMode);
+        CFRunLoopRun();
+        NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"run loop stoped");
+        
+        CFRunLoopRemoveSource(cRunRef, sourceRef, kCFRunLoopCommonModes);
+        cRunRef = nil;
+        
+        if (CFRunLoopSourceIsValid(sourceRef)) {
+            CFRunLoopSourceInvalidate(sourceRef);
+        }
         CFRelease(sourceRef);
+        sourceRef = nil;
+        
+    } else {
+        NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"connect to address failed");
+        [self stopScoket];
     }
 }
 
-// socket回调函数的格式：
-static void TCPServerConnectCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info) {
+- (void) stopScoket {
+    NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"stop socket");
     
-    if (data != NULL) {
-        // 当socket为kCFSocketConnectCallBack时，失败时回调失败会返回一个错误代码指针，其他情况返回NULL
-        NSLog(@"连接失败");
-        return;
+    if (_socket != nil) {
+        NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"invalidate socket");
+        
+        if (CFSocketIsValid(_socket)) {
+            CFSocketInvalidate(_socket);
+        }
+        close(CFSocketGetNative(_socket));
+        CFRelease(_socket);
+        _socket = nil;
     }
-//    TCPClient *client = (TCPClient *)info;
-    // 读取接收的数据,（TCPClient 是自己的类，就是初始化是设置的self）
-//    [info performSlectorInBackground:@selector(readStream) withObject:nil];
     
+    if (!socketThread.isCancelled) {
+        NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"cancel socket thread ");
+        [socketThread cancel];
+        socketThread = nil;
+    }
+    
+    if (!sendThread.isCancelled) {
+        NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"cancel send thread ");
+        [sendThread cancel];
+        sendThread = nil;
+    }
 }
 
-// 读取接收的数据
-- (void)readStream {
-    char buffer[1024];
-//    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    @autoreleasepool {
-        while (recv(CFSocketGetNative(_socket), //与本机关联的Socket 如果已经失效返回－1:INVALID_SOCKET
-                    buffer, sizeof(buffer), 0)) {
-            NSLog(@"%@", [NSString stringWithUTF8String:buffer]);
+/**
+ *  socket callback
+ *
+ *  @param data    Data appropriate for the callback type. For a kCFSocketConnectCallBack that failed in the background, it is a pointer to an
+ *                 SInt32 error code; for a kCFSocketAcceptCallBack, it is a pointer to a CFSocketNativeHandle; or for a kCFSocketDataCallBack,
+ *                 it is a CFData object containing the incoming data. In all other cases, it is NULL.
+ *  @param info    The info member of the CFSocketContext structure that was used when creating the CFSocket object.
+ */
+void TCPClientConnectCallBack(CFSocketRef socket, CFSocketCallBackType type, CFDataRef address, const void *data, void *info) {
+    NSLog(@"%s[line:%d] info:%@", __FUNCTION__, __LINE__, info);
+    switch (type) {
+        case kCFSocketNoCallBack: {
+            NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"kCFSocketNoCallBack");
+            break;
+        }
+        case kCFSocketReadCallBack: {
+            NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"kCFSocketReadCallBack");
+            break;
+        }
+        case kCFSocketAcceptCallBack: {
+            NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"kCFSocketAcceptCallBack");
+            break;
+        }
+        case kCFSocketDataCallBack: {
+            NSLog(@"%s[line:%d] receive data is : %@", __FUNCTION__, __LINE__, data);
+            NSData* receiveData = [NSData dataWithData:(__bridge NSData * _Nonnull)(data)];
+            NSLog(@"%s[line:%d] receive data leghth is : %lu", __FUNCTION__, __LINE__, (unsigned long)receiveData.length);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //info 指向的对象调用相应的方法
+            });
+            break;
+        }
+        case kCFSocketConnectCallBack: {
+            if (data != NULL) {
+                // 当socket为kCFSocketConnectCallBack时，失败时回调失败会返回一个错误代码指针，其他情况返回NULL
+                NSLog(@"%s[line:%d] %@:error is:%@", __FUNCTION__, __LINE__, @"连接失败", data);
+            } else {
+                NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"连接成功");
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //info 指向的对象调用相应的方法
+            });
+            break;
+        }
+        case kCFSocketWriteCallBack: {
+            NSLog(@"%s[line:%d] %@", __FUNCTION__, __LINE__, @"kCFSocketWriteCallBack");
+            break;
+        }
+        default:
+            
+            break;
+    }
+}
+
+- (void)sendMessage {
+    
+    while (!sendThread.isCancelled) {
+        if (_socket != nil) {
+            NSData* data = [@"aaa" dataUsingEncoding:NSUTF8StringEncoding];
+            NSLog(@"%s[line:%d] send message:%@", __FUNCTION__, __LINE__, data);
+            
+            CFDataRef sendData = CFDataCreate(kCFAllocatorDefault, [data bytes], data.length + 1);
+            CFSocketError error = CFSocketSendData(_socket, addressData, sendData, 10);
+            if (error == kCFSocketSuccess) {
+                NSLog(@"%s[line:%d] send message result is:%@", __FUNCTION__, __LINE__, @"success");
+            } else {
+                NSLog(@"%s[line:%d] send message result is:%@", __FUNCTION__, __LINE__, @"failed");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                });
+            }
+            
         }
     }
-}
-
-// 发送数据
-- (void)sendMessage {
-    NSString *stringTosend = @"你好";
-    char *data = (char*)[stringTosend UTF8String];
-    send(CFSocketGetNative(_socket), data, strlen(data) + 1, 0);
-//    send(SFSocketGetNative(_socket), data, strlen(data) + 1, 0);
 }
 
 
