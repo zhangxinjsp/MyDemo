@@ -45,6 +45,8 @@
     [super viewDidLoad];
     
     
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -120,18 +122,30 @@
 
 -(void)socketWithIPAddress:(NSString*)address port:(NSInteger)port {
     
-    struct sockaddr_in addr4;   // IPV4
-    memset(&addr4, 0, sizeof(addr4));
-    addr4.sin_len = sizeof(addr4);
-    addr4.sin_family = AF_INET;
-    addr4.sin_port = htons(port);
-    addr4.sin_addr.s_addr = inet_addr([address UTF8String]);  // 把字符串的地址转换为机器可识别的网络地址
-    addressData = CFDataCreate(kCFAllocatorDefault, (UInt8 *)&addr4, sizeof(addr4));// 把sockaddr_in结构体中的地址转换为Data
-    
-    [self startSocket];
+    if (/* DISABLES CODE */ (1)) {
+        struct sockaddr_in addr4;   // IPV4
+        memset(&addr4, 0, sizeof(addr4));
+        addr4.sin_len = sizeof(addr4);
+        addr4.sin_family = AF_INET;
+        addr4.sin_port = htons(port);
+        addr4.sin_addr.s_addr = inet_addr([address UTF8String]);  // 把字符串的地址转换为机器可识别的网络地址
+        addressData = CFDataCreate(kCFAllocatorDefault, (UInt8 *)&addr4, sizeof(addr4));// 把sockaddr_in结构体中的地址转换为Data
+        [self startSocket:NO];
+    } else {
+        struct sockaddr_in6 addr6;   // IPV6
+        memset(&addr6, 0, sizeof(addr6));
+        addr6.sin6_len = sizeof(addr6);
+        addr6.sin6_family = AF_INET6;
+        addr6.sin6_port = htons(port);
+        
+        inet_pton(AF_INET6, [address UTF8String], &addr6.sin6_addr);
+        
+        addressData = CFDataCreate(kCFAllocatorDefault, (UInt8 *)&addr6, sizeof(addr6));
+        [self startSocket:YES];
+    }
 }
 
-- (void)startSocket {
+- (void)startSocket:(BOOL)isIPv6 {
     
     CFSocketContext sockContext = { 0, // 结构体的版本，必须为0
         (__bridge void *)(self),  // 一个任意指针的数据，可以用在创建时CFSocket对象相关联。这个指针被传递给所有的上下文中定义的回调。
@@ -139,7 +153,7 @@
         NULL, NULL};
     
     _socket = CFSocketCreate(kCFAllocatorDefault,       // 为新对象分配内存，可以为nil
-                             PF_INET,                   // 协议族，如果为0或者负数，则默认为PF_INET
+                             isIPv6 ? PF_INET6 : PF_INET,                   // 协议族，如果为0或者负数，则默认为PF_INET
                              SOCK_STREAM,               // 套接字类型，如果协议族为PF_INET,则它会默认为SOCK_STREAM
                              IPPROTO_TCP,               // 套接字协议，如果协议族是PF_INET且协议是0或者负数，它会默认为IPPROTO_TCP
                              kCFSocketConnectCallBack | kCFSocketReadCallBack | kCFSocketWriteCallBack | kCFSocketDataCallBack | kCFSocketAcceptCallBack,  // 触发回调函数的socket消息类型，具体见Callback Types
