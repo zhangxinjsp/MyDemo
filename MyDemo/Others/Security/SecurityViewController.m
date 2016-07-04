@@ -11,6 +11,8 @@
 #import <Security/Security.h>
 #import <CommonCrypto/CommonCryptor.h>
 
+#import <CommonCrypto/CommonDigest.h>
+
 @interface SecurityViewController () {
     UITextView* md5TextView;
     UIButton* md5Button;
@@ -137,6 +139,296 @@
     return result;
 }
 
+
+
+
+/*
+ REA 加解密使用
+ 
+ 证书生成
+ 
+ openssl genrsa -out private_key.pem 1024
+ Generating RSA private key, 1024 bit long modulus
+ ...........++++++
+ ...........................................++++++
+ e is 65537 (0x10001)
+ zhangxin-2:Desktop archermind$ openssl req -new -key private_key.pem -out rsaCertReq.csr
+ You are about to be asked to enter information that will be incorporated
+ into your certificate request.
+ What you are about to enter is what is called a Distinguished Name or a DN.
+ There are quite a few fields but you can leave some blank
+ For some fields there will be a default value,
+ If you enter '.', the field will be left blank.
+ -----
+ Country Name (2 letter code) [AU]:cn
+ State or Province Name (full name) [Some-State]:jiangsu
+ Locality Name (eg, city) []:nanjing
+ Organization Name (eg, company) [Internet Widgits Pty Ltd]:test
+ Organizational Unit Name (eg, section) []:tes
+ Common Name (e.g. server FQDN or YOUR name) []:test
+ Email Address []:test@test.com
+ 
+ Please enter the following 'extra' attributes
+ to be sent with your certificate request
+ A challenge password []:
+ An optional company name []:
+ zhangxin-2:Desktop archermind$ openssl x509 -req -days 3650 -in rsaCertReq.csr -signkey private_key.pem -out rsaCert.crt
+ Signature ok
+ subject=/C=cn/ST=jiangsu/L=nanjing/O=test/OU=tes/CN=test/emailAddress=test@test.com
+ Getting Private key
+ zhangxin-2:Desktop archermind$ openssl x509 -outform der -in rsaCert.crt -out public_key.der
+ zhangxin-2:Desktop archermind$ openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.crt
+ Enter Export Password:
+ Verifying - Enter Export Password:
+ zhangxin-2:Desktop archermind$
+ zhangxin-2:Desktop archermind$ openssl rsa -in private_key.pem -out rsa_public_key.pem -pubout
+ writing RSA key
+ zhangxin-2:Desktop archermind$ openssl pkcs8 -topk8 -in private_key.pem -out pkcs8_private_key.pem -nocrypt
+ zhangxin-2:Desktop archermind$
+ 
+ */
+- (SecKeyRef)publicKey {
+    SecKeyRef _publicKey=nil;
+    
+    OSStatus status = -1;
+    if (_publicKey == nil) {
+        SecTrustRef trust;
+        SecTrustResultType trustResult;
+        NSString *certPath = [[NSBundle mainBundle] pathForResource:@"public_key" ofType:@"der"];
+        NSData *derData = [NSData dataWithContentsOfFile:certPath];
+        if (derData) {
+            SecCertificateRef cert = SecCertificateCreateWithData(kCFAllocatorDefault, (CFDataRef)derData);
+            SecPolicyRef policy = SecPolicyCreateBasicX509();
+            status = SecTrustCreateWithCertificates(cert, policy, &trust);
+            if (status == errSecSuccess && trust) {
+                NSArray *certs = [NSArray arrayWithObject:(__bridge id)cert];
+                status = SecTrustSetAnchorCertificates(trust, (CFArrayRef)certs);
+                if (status == errSecSuccess) {
+                    status = SecTrustEvaluate(trust, &trustResult);
+                    // 自签名证书可信
+                    if (status == errSecSuccess && (trustResult == kSecTrustResultUnspecified || trustResult == kSecTrustResultProceed)) {
+                        _publicKey = SecTrustCopyPublicKey(trust);
+                        if (_publicKey) {
+                            NSLog(@"Get public key successfully~ %@", _publicKey);
+                        }
+                        if (cert) {
+                            CFRelease(cert);
+                        }
+                        if (policy) {
+                            CFRelease(policy);
+                        }
+                        if (trust) {
+                            CFRelease(trust);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return _publicKey;
+}
+
+-(NSMutableData *)RSAEncrypotoTheData:(NSString *)plainText
+{
+    
+    SecKeyRef publicKey=nil;
+    publicKey=[self publicKey];
+    size_t cipherBufferSize = SecKeyGetBlockSize(publicKey);
+    uint8_t *cipherBuffer = NULL;
+    
+    cipherBuffer = malloc(cipherBufferSize * sizeof(uint8_t));
+    memset((void *)cipherBuffer, 0*0, cipherBufferSize);
+    
+    NSData *plainTextBytes = [plainText dataUsingEncoding:NSUTF8StringEncoding];
+    int blockSize = cipherBufferSize-11; // 这个地方比较重要是加密数组长度
+    int numBlock = (int)ceil([plainTextBytes length] / (double)blockSize);
+    NSMutableData *encryptedData = [[NSMutableData alloc] init];
+    for (int i=0; i<numBlock; i++) {
+        int bufferSize = MIN(blockSize,[plainTextBytes length]-i*blockSize);
+        NSData *buffer = [plainTextBytes subdataWithRange:NSMakeRange(i * blockSize, bufferSize)];
+        OSStatus status = SecKeyEncrypt(publicKey,
+                                        kSecPaddingPKCS1,
+                                        (const uint8_t *)[buffer bytes],
+                                        [buffer length],
+                                        cipherBuffer,
+                                        &cipherBufferSize);
+        if (status == noErr)
+        {
+            NSData *encryptedBytes = [[NSData alloc]
+                                       initWithBytes:(const void *)cipherBuffer
+                                       length:cipherBufferSize];
+            [encryptedData appendData:encryptedBytes];
+        }
+        else
+        {
+            return nil;
+        }
+    }
+    if (cipherBuffer)
+    {
+        free(cipherBuffer);
+    }
+    
+    NSLog(@"encryptedData, %@", encryptedData);
+    
+    NSString *encrypotoResult = [NSString stringWithFormat:@"%@",[encryptedData base64EncodedStringWithOptions:0]];
+    
+    NSLog(@"encrypotoResult : %@", encrypotoResult);
+    
+    return encryptedData;
+}
+
+- (SecKeyRef)privateKeyWithPassword:(NSString *)pkcsPassword {
+    
+    SecKeyRef _privateKey = nil;
+    NSString *pkcsPath = [[NSBundle mainBundle] pathForResource:@"private_key" ofType:@"p12"];
+    
+    SecIdentityRef identity;
+    SecTrustRef trust;
+    OSStatus status = -1;
+    if (_privateKey == nil) {
+        NSData *p12Data = [NSData dataWithContentsOfFile:pkcsPath];
+        if (p12Data) {
+            CFStringRef password = (__bridge CFStringRef)pkcsPassword;
+            const void *keys[] = {
+                kSecImportExportPassphrase
+            };
+            const void *values[] = {
+                password
+            };
+            CFDictionaryRef options = CFDictionaryCreate(kCFAllocatorDefault, keys, values, 1, NULL, NULL);
+            CFArrayRef items = CFArrayCreate(kCFAllocatorDefault, NULL, 0, NULL);
+            status = SecPKCS12Import((CFDataRef)p12Data, options, &items);
+            if (status == errSecSuccess) {
+                CFDictionaryRef identity_trust_dic = CFArrayGetValueAtIndex(items, 0);
+                identity = (SecIdentityRef)CFDictionaryGetValue(identity_trust_dic, kSecImportItemIdentity);
+                trust = (SecTrustRef)CFDictionaryGetValue(identity_trust_dic, kSecImportItemTrust);
+                // certs数组中包含了所有的证书
+                CFArrayRef certs = (CFArrayRef)CFDictionaryGetValue(identity_trust_dic, kSecImportItemCertChain);
+                if ([(__bridge NSArray *)certs count] && trust && identity) {
+                    // 如果没有下面一句，自签名证书的评估信任结果永远是kSecTrustResultRecoverableTrustFailure
+                    status = SecTrustSetAnchorCertificates(trust, certs);
+                    if (status == errSecSuccess) {
+                        SecTrustResultType trustResultType;
+                        // 通常, 返回的trust result type应为kSecTrustResultUnspecified，如果是，就可以说明签名证书是可信的
+                        status = SecTrustEvaluate(trust, &trustResultType);
+                        if ((trustResultType == kSecTrustResultUnspecified || trustResultType == kSecTrustResultProceed) && status == errSecSuccess) {
+                            // 证书可信，可以提取私钥与公钥，然后可以使用公私钥进行加解密操作
+                            status = SecIdentityCopyPrivateKey(identity, &_privateKey);
+                            if (status == errSecSuccess && _privateKey) {
+                                // 成功提取私钥
+                                NSLog(@"Get private key successfully~ %@", _privateKey);
+                            }
+                        }
+                    }
+                }
+            }
+            if (options) {
+                CFRelease(options);
+            }
+        }
+    }
+    return _privateKey;
+}
+
+- (NSData *)decryptWithPrivateKey:(NSData *)cipherData {
+    // 分配内存块，用于存放解密后的数据段
+    
+    SecKeyRef _privateKey=nil;
+    _privateKey = [self privateKeyWithPassword:@""];
+    
+    size_t plainBufferSize = SecKeyGetBlockSize(_privateKey);
+    NSLog(@"plainBufferSize = %zd", plainBufferSize);
+    uint8_t *plainBuffer = malloc(plainBufferSize * sizeof(uint8_t));
+    // 计算数据段最大长度及数据段的个数
+    double totalLength = [cipherData length];
+    size_t blockSize = plainBufferSize;
+    size_t blockCount = (size_t)ceil(totalLength / blockSize);
+    NSMutableData *decryptedData = [NSMutableData data];
+    // 分段解密
+    for (int i = 0; i < blockCount; i++) {
+        NSUInteger loc = i * blockSize;
+        // 数据段的实际大小。最后一段可能比blockSize小。
+        int dataSegmentRealSize = MIN(blockSize, totalLength - loc);
+        // 截取需要解密的数据段
+        NSData *dataSegment = [cipherData subdataWithRange:NSMakeRange(loc, dataSegmentRealSize)];
+        OSStatus status = SecKeyDecrypt(_privateKey, kSecPaddingPKCS1, (const uint8_t *)[dataSegment bytes], dataSegmentRealSize, plainBuffer, &plainBufferSize);
+        if (status == errSecSuccess) {
+            NSData *decryptedDataSegment = [[NSData alloc] initWithBytes:(const void *)plainBuffer length:plainBufferSize];
+            [decryptedData appendData:decryptedDataSegment];
+//            [decryptedDataSegment release];
+        } else {
+            if (plainBuffer) {
+                free(plainBuffer);
+            }
+            return nil;
+        }
+    }
+    if (plainBuffer) {
+        free(plainBuffer);
+    }
+    NSLog(@"decrypted string :%@", [[NSString alloc]initWithData:decryptedData encoding:NSUTF8StringEncoding]);
+    
+    return decryptedData;
+}
+
+/**
+ 对数据进行sha256签名
+ */
+
+- (NSData *)rsaSHA256SignData:(NSData *)plainData {
+    SecKeyRef key = [self privateKeyWithPassword:@""];
+    
+    size_t signedHashBytesSize = SecKeyGetBlockSize(key);
+    uint8_t* signedHashBytes = malloc(signedHashBytesSize);
+    memset(signedHashBytes, 0x0, signedHashBytesSize);
+    
+    size_t hashBytesSize = CC_SHA256_DIGEST_LENGTH;
+    uint8_t* hashBytes = malloc(hashBytesSize);
+    if (!CC_SHA256([plainData bytes], (CC_LONG)[plainData length], hashBytes)) {
+        return nil;
+    }
+    
+    SecKeyRawSign(key,
+                  kSecPaddingPKCS1SHA256,
+                  hashBytes,
+                  hashBytesSize,
+                  signedHashBytes,
+                  &signedHashBytesSize);
+    
+    NSData* signedHash = [NSData dataWithBytes:signedHashBytes
+                                        length:(NSUInteger)signedHashBytesSize];
+    
+    if (hashBytes)
+        free(hashBytes);
+    if (signedHashBytes)
+        free(signedHashBytes);
+    
+    return signedHash;
+}
+
+//这边对签名的数据进行验证 验签成功，则返回YES
+- (BOOL)rsaSHA256VerifyData:(NSData *)plainData     withSignature:(NSData *)signature {
+    SecKeyRef key = [self publicKey];
+    
+    size_t signedHashBytesSize = SecKeyGetBlockSize(key);
+    const void* signedHashBytes = [signature bytes];
+    
+    size_t hashBytesSize = CC_SHA256_DIGEST_LENGTH;
+    uint8_t* hashBytes = malloc(hashBytesSize);
+    if (!CC_SHA256([plainData bytes], (CC_LONG)[plainData length], hashBytes)) {
+        return NO;
+    }
+    
+    OSStatus status = SecKeyRawVerify(key,
+                                      kSecPaddingPKCS1SHA256,
+                                      hashBytes,
+                                      hashBytesSize,
+                                      signedHashBytes,
+                                      signedHashBytesSize);
+    
+    return status == errSecSuccess;
+}
 
 
 - (void)didReceiveMemoryWarning {
