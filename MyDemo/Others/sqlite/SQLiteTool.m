@@ -171,6 +171,12 @@
     return sqlite3_column_type([SQLiteTool shareInstance].statement, columnIndex) == SQLITE_NULL;
 }
 
++(void)test {
+    
+//    sqlite3_key ();
+    
+    
+}
 
 /*
  

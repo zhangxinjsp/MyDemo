@@ -10,13 +10,11 @@
 		0D1E654E16A798D1008F1E4C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D1E654D16A798D1008F1E4C /* CoreImage.framework */; };
 		0D4F3147172B7B0000985AE6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9568831685FC1D00AA4B81 /* Social.framework */; };
 		0D4F3148172B7B0900985AE6 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D95687F1685FBF900AA4B81 /* AdSupport.framework */; };
-		0D4F3149172B7B1900985AE6 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D95671E1683F22500AA4B81 /* libsqlite3.0.dylib */; };
 		0D4F314A172B7B2B00985AE6 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9087AA164B8BB3004F2C20 /* libicucore.dylib */; };
 		0D5ECEFD167033B40074FBA4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5ECEFC167033B40074FBA4 /* QuartzCore.framework */; };
 		0D7186F91600BE530062A13F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7186F81600BE530062A13F /* UIKit.framework */; };
 		0D7186FB1600BE530062A13F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7186FA1600BE530062A13F /* Foundation.framework */; };
 		0D7186FD1600BE530062A13F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7186FC1600BE530062A13F /* CoreGraphics.framework */; };
-		0D9567211683F22E00AA4B81 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9567201683F22E00AA4B81 /* libsqlite3.dylib */; };
 		0D95675216857A2700AA4B81 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D95675116857A2700AA4B81 /* MessageUI.framework */; };
 		0D9568821685FBFF00AA4B81 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9568811685FBFF00AA4B81 /* Accounts.framework */; };
 		250D590F19752898006AA2F7 /* area.db in Resources */ = {isa = PBXBuildFile; fileRef = 250D590E19752898006AA2F7 /* area.db */; };
@@ -117,6 +115,7 @@
 		5B90EDF31CAE15CE000B4F8E /* util_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDE01CAE15CE000B4F8E /* util_mosq.c */; };
 		5B90EDF41CAE15CE000B4F8E /* will_mosq.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDE21CAE15CE000B4F8E /* will_mosq.c */; };
 		5B90EDF71CAE1600000B4F8E /* MQTTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EDF61CAE1600000B4F8E /* MQTTClient.m */; };
+		5BBD50F41D2E4ACB007B8311 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD50F21D2E4ACB007B8311 /* sqlite3.c */; };
 		5BC0779D194D7AAD0024627F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0779A194D7AAD0024627F /* Default-568h@2x.png */; };
 		5BC0779E194D7AAD0024627F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0779B194D7AAD0024627F /* Default.png */; };
 		5BC0779F194D7AAD0024627F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0779C194D7AAD0024627F /* Default@2x.png */; };
@@ -201,8 +200,6 @@
 		0D7186FA1600BE530062A13F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0D7186FC1600BE530062A13F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0D9087AA164B8BB3004F2C20 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		0D95671E1683F22500AA4B81 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		0D9567201683F22E00AA4B81 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0D95675116857A2700AA4B81 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0D95687F1685FBF900AA4B81 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		0D9568811685FBFF00AA4B81 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -398,6 +395,8 @@
 		5B90EDE31CAE15CE000B4F8E /* will_mosq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = will_mosq.h; sourceTree = "<group>"; };
 		5B90EDF51CAE1600000B4F8E /* MQTTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQTTClient.h; sourceTree = "<group>"; };
 		5B90EDF61CAE1600000B4F8E /* MQTTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQTTClient.m; sourceTree = "<group>"; };
+		5BBD50F21D2E4ACB007B8311 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
+		5BBD50F31D2E4ACB007B8311 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
 		5BC0779A194D7AAD0024627F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5BC0779B194D7AAD0024627F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5BC0779C194D7AAD0024627F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -512,12 +511,10 @@
 				0D4F3147172B7B0000985AE6 /* Social.framework in Frameworks */,
 				E561D7AB18DC41D000411BF0 /* CoreText.framework in Frameworks */,
 				0D4F314A172B7B2B00985AE6 /* libicucore.dylib in Frameworks */,
-				0D4F3149172B7B1900985AE6 /* libsqlite3.0.dylib in Frameworks */,
 				0D4F3148172B7B0900985AE6 /* AdSupport.framework in Frameworks */,
 				0D1E654E16A798D1008F1E4C /* CoreImage.framework in Frameworks */,
 				0D9568821685FBFF00AA4B81 /* Accounts.framework in Frameworks */,
 				0D95675216857A2700AA4B81 /* MessageUI.framework in Frameworks */,
-				0D9567211683F22E00AA4B81 /* libsqlite3.dylib in Frameworks */,
 				0D5ECEFD167033B40074FBA4 /* QuartzCore.framework in Frameworks */,
 				0D7186F91600BE530062A13F /* UIKit.framework in Frameworks */,
 				0D7186FB1600BE530062A13F /* Foundation.framework in Frameworks */,
@@ -572,8 +569,6 @@
 				5BE31A501A3F0E34000C028F /* ImageIO.framework */,
 				E55B00151A3AE6D000FB0A03 /* libiconv.dylib */,
 				0D9087AA164B8BB3004F2C20 /* libicucore.dylib */,
-				0D95671E1683F22500AA4B81 /* libsqlite3.0.dylib */,
-				0D9567201683F22E00AA4B81 /* libsqlite3.dylib */,
 				E5E320851AC529C000D3BD1C /* libz.dylib */,
 				E53D504D19F748EA005C0E8E /* MapKit.framework */,
 				0D95675116857A2700AA4B81 /* MessageUI.framework */,
@@ -864,6 +859,8 @@
 				5B309C531C473F9E0079CD78 /* entity */,
 				5B309C581C473F9E0079CD78 /* SQLiteTool.h */,
 				5B309C591C473F9E0079CD78 /* SQLiteTool.m */,
+				5BBD50F21D2E4ACB007B8311 /* sqlite3.c */,
+				5BBD50F31D2E4ACB007B8311 /* sqlite3.h */,
 				5B309C5A1C473F9E0079CD78 /* SQLiteViewController.h */,
 				5B309C5B1C473F9E0079CD78 /* SQLiteViewController.m */,
 			);
@@ -1387,6 +1384,7 @@
 				5BE3698C1C5B0BC700D5E366 /* SecurityViewController.m in Sources */,
 				5B30977F1C4727230079CD78 /* UILabel-LineHeigh.m in Sources */,
 				5B309CD31C473F9E0079CD78 /* BLECommandManager.m in Sources */,
+				5BBD50F41D2E4ACB007B8311 /* sqlite3.c in Sources */,
 				5B309CDD1C473F9E0079CD78 /* User.m in Sources */,
 				5B30977C1C4727230079CD78 /* SSKeychainQuery.m in Sources */,
 				5B30977E1C4727230079CD78 /* UIImage+Effects.m in Sources */,
@@ -1570,6 +1568,12 @@
 				INFOPLIST_FILE = "MyDemo/MyDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = (
+					"-DSQLITE_HAS_CODEC",
+					"-DSQKUTE_THREADSAFE",
+					"-DSQLCIPHER_CRYPTO_CC",
+					"-DSQLITE_TEMP_STORE=2",
+				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_BUNDLE_IDENTIFIER = xin.zhang;
 				PRODUCT_NAME = MyDemo;
@@ -1597,6 +1601,12 @@
 				INFOPLIST_FILE = "MyDemo/MyDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = (
+					"-DSQLITE_HAS_CODEC",
+					"-DSQKUTE_THREADSAFE",
+					"-DSQLCIPHER_CRYPTO_CC",
+					"-DSQLITE_TEMP_STORE=2",
+				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_BUNDLE_IDENTIFIER = xin.zhang;
 				PRODUCT_NAME = MyDemo;
