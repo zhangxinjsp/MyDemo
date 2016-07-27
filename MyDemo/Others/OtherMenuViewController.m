@@ -21,6 +21,7 @@
 #import "RegexViewController.h"
 #import "SecurityViewController.h"
 #import "RunTimeViewController.h"
+#import "RunLoopViewController.h"
 
 
 typedef NS_ENUM(NSInteger, OtherMenuType) {
@@ -37,6 +38,7 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
     RegexTag,
     SecurityTag,
     RunTime,
+    RunLoop,
 };
 
 @interface OtherMenuViewController () <UITableViewDelegate, UITableViewDataSource>{
@@ -53,7 +55,7 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"other";
     
-    titleArray = [[NSArray alloc]initWithObjects:@"ble", @"contacs", @"coredata", @"motion", @"reachaboloty", @"request", @"socket", @"SQLite", @"share",@"file read write", @"regex", @"Security", @"RunTime", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"ble", @"contacs", @"coredata", @"motion", @"reachaboloty", @"request", @"socket", @"SQLite", @"share",@"file read write", @"regex", @"Security", @"RunTime",  @"RunLoop", nil];
     
     tableV = [[UITableView alloc]init];
     tableV.delegate = self;
@@ -167,6 +169,12 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
         }
         case RunTime: {
             RunTimeViewController* ctl = [[RunTimeViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
+            break;
+        }
+        case RunLoop: {
+            RunLoopViewController* ctl = [[RunLoopViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
             break;

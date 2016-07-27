@@ -165,6 +165,7 @@
 		5BD46D61194D416E002995EB /* palettaLocal.db in Resources */ = {isa = PBXBuildFile; fileRef = 5BD46D5F194D416E002995EB /* palettaLocal.db */; };
 		5BD46D62194D416E002995EB /* palettaSave.db in Resources */ = {isa = PBXBuildFile; fileRef = 5BD46D60194D416E002995EB /* palettaSave.db */; };
 		5BDB06A919C724F80099FBA8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDB06A819C724F80099FBA8 /* CFNetwork.framework */; };
+		5BDCD87A1D483A56008BD621 /* RunLoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDCD8791D483A56008BD621 /* RunLoopViewController.m */; };
 		5BE31A511A3F0E34000C028F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE31A501A3F0E34000C028F /* ImageIO.framework */; };
 		5BE369841C5B0B2300D5E366 /* RegexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE369831C5B0B2300D5E366 /* RegexViewController.m */; };
 		5BE3698C1C5B0BC700D5E366 /* SecurityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3698B1C5B0BC700D5E366 /* SecurityViewController.m */; };
@@ -451,6 +452,8 @@
 		5BD46D5F194D416E002995EB /* palettaLocal.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = palettaLocal.db; sourceTree = "<group>"; };
 		5BD46D60194D416E002995EB /* palettaSave.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = palettaSave.db; sourceTree = "<group>"; };
 		5BDB06A819C724F80099FBA8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		5BDCD8781D483A56008BD621 /* RunLoopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunLoopViewController.h; sourceTree = "<group>"; };
+		5BDCD8791D483A56008BD621 /* RunLoopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunLoopViewController.m; sourceTree = "<group>"; };
 		5BE31A501A3F0E34000C028F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		5BE369821C5B0B2300D5E366 /* RegexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexViewController.h; sourceTree = "<group>"; };
 		5BE369831C5B0B2300D5E366 /* RegexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexViewController.m; sourceTree = "<group>"; };
@@ -749,6 +752,7 @@
 			children = (
 				5B309C441C473F9E0079CD78 /* OtherMenuViewController.h */,
 				5B309C451C473F9E0079CD78 /* OtherMenuViewController.m */,
+				5BDCD8771D483A56008BD621 /* RunLoop */,
 				5B17D71C1CD18CE70000C07D /* RunTime */,
 				5B90EDC11CAE15CE000B4F8E /* MQTT */,
 				5BE369891C5B0BC700D5E366 /* Security */,
@@ -772,19 +776,19 @@
 			children = (
 				5B309D091C477C290079CD78 /* BluetoothViewController.h */,
 				5B309D0A1C477C290079CD78 /* BluetoothViewController.m */,
-				5B309C261C473F9E0079CD78 /* BELMacrosEnumerates.h */,
-				5B309C271C473F9E0079CD78 /* BLECentralManager.h */,
-				5B309C281C473F9E0079CD78 /* BLECentralManager.m */,
 				5B309C291C473F9E0079CD78 /* BLECommandManager.h */,
 				5B309C2A1C473F9E0079CD78 /* BLECommandManager.m */,
-				5B309C2B1C473F9E0079CD78 /* BLEPeripheralManager.h */,
-				5B309C2C1C473F9E0079CD78 /* BLEPeripheralManager.m */,
 				5B309C2D1C473F9E0079CD78 /* BLERequestDataModel.h */,
 				5B309C2E1C473F9E0079CD78 /* BLERequestDataModel.m */,
 				5B309C2F1C473F9E0079CD78 /* BLERespondDataModel.h */,
 				5B309C301C473F9E0079CD78 /* BLERespondDataModel.m */,
+				5B309C261C473F9E0079CD78 /* BELMacrosEnumerates.h */,
 				5B309C311C473F9E0079CD78 /* BluetoothManager.h */,
 				5B309C321C473F9E0079CD78 /* BluetoothManager.m */,
+				5B309C271C473F9E0079CD78 /* BLECentralManager.h */,
+				5B309C281C473F9E0079CD78 /* BLECentralManager.m */,
+				5B309C2B1C473F9E0079CD78 /* BLEPeripheralManager.h */,
+				5B309C2C1C473F9E0079CD78 /* BLEPeripheralManager.m */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -1204,6 +1208,15 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		5BDCD8771D483A56008BD621 /* RunLoop */ = {
+			isa = PBXGroup;
+			children = (
+				5BDCD8781D483A56008BD621 /* RunLoopViewController.h */,
+				5BDCD8791D483A56008BD621 /* RunLoopViewController.m */,
+			);
+			path = RunLoop;
+			sourceTree = "<group>";
+		};
 		5BE369811C5B0B2300D5E366 /* 正则表达式 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1392,6 +1405,7 @@
 				5B3097791C4727230079CD78 /* NSData-expand.m in Sources */,
 				5B309CFF1C473F9E0079CD78 /* ScrollViewCycleController.m in Sources */,
 				5B309CE91C473F9E0079CD78 /* FileManagerReadAndWriteViewController.m in Sources */,
+				5BDCD87A1D483A56008BD621 /* RunLoopViewController.m in Sources */,
 				5B90EDE81CAE15CE000B4F8E /* net_mosq.c in Sources */,
 				5B309CD51C473F9E0079CD78 /* BLERequestDataModel.m in Sources */,
 				5B90EDE71CAE15CE000B4F8E /* mosquitto.c in Sources */,
