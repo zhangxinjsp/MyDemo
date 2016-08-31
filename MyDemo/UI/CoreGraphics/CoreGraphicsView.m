@@ -28,7 +28,7 @@
 
 
 + (NSArray *)titles {
-    return @[@"线图", @"文字", @"图片", @"渐变色", @"动画", @"patterns"];
+    return @[@"线图", @"文字", @"图片", @"渐变色", @"动画", @"patterns", @"倒影"];
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -61,7 +61,19 @@
             break;
         }
             break;
-        default:
+        case reflected:{
+            UIImage* image = [self reflectedImageRepresentationWithHeight:50];
+//            self.backgroundColor = [UIColor colorWithPatternImage:image];
+            UIImageView* imageView = [[UIImageView alloc]initWithFrame:self.bounds];
+            imageView.image = image;
+            imageView.contentMode = UIViewContentModeCenter;
+            imageView.backgroundColor = [UIColor redColor];
+            [self addSubview:imageView];
+            break;
+        }
+        default:{
+            
+        }
             break;
     }
     
@@ -481,7 +493,7 @@ CGContextRef MyCreateBitmapContext (int pixelsWide, int pixelsHigh)
     
     return theImage;
 }
-
+//倒影的渐变效果
 CGImageRef AEViewCreateGradientImage (int pixelsWide, NSInteger pixelsHigh) {
     
     CGImageRef theCGImage = NULL;

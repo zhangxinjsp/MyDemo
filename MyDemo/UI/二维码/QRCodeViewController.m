@@ -100,9 +100,15 @@
 #pragma mark －－－－－－－－－－－－－－－扫描二维码－－－－－－－－－－
 - (void)scanQRCode {
     
+    //详见《MediaCaptureViewController》二维码扫描部分
     
-    
-    
+}
+
+#pragma mark －－－－－－－－－－－－－－－识别二维码－－－－－－－－－－
+- (void)detector {
+    CIDetector* de = [CIDetector detectorOfType:CIDetectorTypeQRCode context:nil options:nil];
+    CIImage* ciImage = nil;//创建图片
+    [de featuresInImage:ciImage];
 }
 
 #pragma mark －－－－－－－－－－－－－－－生成二维码－－－－－－－－－－
@@ -125,6 +131,13 @@
     UIImage * effectImage = [UIImage imageWithCGImage:cgImage];
     
     return [self enlargeQRCodeImage:effectImage];
+}
+
+- (UIImage*)enlarge:(CIImage*)qrImage {
+    NSInteger scale = 6;
+    CGAffineTransform trans = CGAffineTransformMakeScale(scale, scale);
+    CIImage* ciImage = [qrImage imageByApplyingTransform:trans];
+    return [UIImage imageWithCIImage:ciImage];
 }
 /**
  *  二维码放大方法

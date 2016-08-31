@@ -15,30 +15,4 @@
 
 @end
 
-@interface MyCollectionViewCell :UICollectionViewCell {
-    
-    UIImageView* imageView;
-    UILabel* label;
-}
 
-- (void)setName:(NSString*)name;
-@end
-
-@interface CollectionViewLayout :UICollectionViewLayout {
-    NSMutableArray* _cellXArray;
-    NSMutableArray* _cellYArray;
-    NSMutableArray* _cellHeightArray;
-    
-    
-    NSInteger _numberOfSections;
-    NSInteger _numberOfCellsInSections;
-    
-    NSInteger _columnCount;
-    NSInteger _padding;
-    NSInteger _cellMinHeight;
-    NSInteger _cellMaxHeight;
-    NSInteger _cellWidth;
-    
-}
-
-@end

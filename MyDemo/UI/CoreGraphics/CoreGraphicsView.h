@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, OptionTypes) {
     gradient ,
     animation,
     patterns,
+    reflected,
 };
 
 @interface CoreGraphicsView : UIView
