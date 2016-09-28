@@ -93,6 +93,7 @@
 		5B309D051C473F9E0079CD78 /* SendMessageAndEMailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309CD11C473F9E0079CD78 /* SendMessageAndEMailViewController.m */; };
 		5B309D081C4773490079CD78 /* ScrollCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309D071C4773490079CD78 /* ScrollCycleView.m */; };
 		5B309D0B1C477C290079CD78 /* BluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309D0A1C477C290079CD78 /* BluetoothViewController.m */; };
+		5B31BEC51D9B5E5D00BB0EB1 /* URLSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B31BEC41D9B5E5D00BB0EB1 /* URLSessionViewController.m */; };
 		5B66177C1B19FB3F000C584F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */; };
 		5B6B4F221CD19CA600CF1965 /* CustomUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B4F1D1CD19CA600CF1965 /* CustomUI.m */; };
 		5B6B4F231CD19CA600CF1965 /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B4F1F1CD19CA600CF1965 /* TestModel.m */; };
@@ -356,6 +357,8 @@
 		5B309D071C4773490079CD78 /* ScrollCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollCycleView.m; sourceTree = "<group>"; };
 		5B309D091C477C290079CD78 /* BluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothViewController.h; sourceTree = "<group>"; };
 		5B309D0A1C477C290079CD78 /* BluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothViewController.m; sourceTree = "<group>"; };
+		5B31BEC31D9B5E5D00BB0EB1 /* URLSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLSessionViewController.h; sourceTree = "<group>"; };
+		5B31BEC41D9B5E5D00BB0EB1 /* URLSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLSessionViewController.m; sourceTree = "<group>"; };
 		5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		5B6B4F1C1CD19CA600CF1965 /* CustomUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUI.h; sourceTree = "<group>"; };
 		5B6B4F1D1CD19CA600CF1965 /* CustomUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUI.m; sourceTree = "<group>"; };
@@ -856,6 +859,8 @@
 				5B309C4C1C473F9E0079CD78 /* Url.h */,
 				5B309C4D1C473F9E0079CD78 /* URLConnectionViewController.h */,
 				5B309C4E1C473F9E0079CD78 /* URLConnectionViewController.m */,
+				5B31BEC31D9B5E5D00BB0EB1 /* URLSessionViewController.h */,
+				5B31BEC41D9B5E5D00BB0EB1 /* URLSessionViewController.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1459,6 +1464,7 @@
 				5B3097751C4727230079CD78 /* Formater.m in Sources */,
 				5B30977A1C4727230079CD78 /* NSString-expand.m in Sources */,
 				5B3097431C4727230079CD78 /* BaseViewController.m in Sources */,
+				5B31BEC51D9B5E5D00BB0EB1 /* URLSessionViewController.m in Sources */,
 				5B309CFA1C473F9E0079CD78 /* MapAndLocationViewController.m in Sources */,
 				5B30977D1C4727230079CD78 /* UIDevice-Orientation.m in Sources */,
 				5B309CE01C473F9E0079CD78 /* APLViewController.m in Sources */,

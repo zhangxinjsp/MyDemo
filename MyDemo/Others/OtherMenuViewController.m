@@ -14,6 +14,7 @@
 #import "MotionViewController.h"
 #import "APLViewController.h"
 #import "URLConnectionViewController.h"
+#import "URLSessionViewController.h"
 #import "SocketViewController.h"
 #import "SQLiteViewController.h"
 #import "ShareTofaceBookViewController.h"
@@ -30,7 +31,8 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
     CoreDataTag,
     MotionTag,
     APLTag,
-    URLRequestTag,
+    URLConnectionTag,
+    URLSessionTag,
     SocketTag,
     SQLiteTag,
     ShareTofaceBookTag,
@@ -55,7 +57,7 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"other";
     
-    titleArray = [[NSArray alloc]initWithObjects:@"ble", @"contacs", @"coredata", @"motion", @"reachaboloty", @"request", @"socket", @"SQLite", @"share",@"file read write", @"regex", @"Security", @"RunTime",  @"RunLoop", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"ble", @"contacs", @"coredata", @"motion", @"reachaboloty", @"connection", @"session", @"socket", @"SQLite", @"share",@"file read write", @"regex", @"Security", @"RunTime",  @"RunLoop", nil];
     
     tableV = [[UITableView alloc]init];
     tableV.delegate = self;
@@ -125,8 +127,14 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
             [self.navigationController pushViewController:ctl animated:YES];
             break;
         }
-        case URLRequestTag: {
+        case URLConnectionTag: {
             URLConnectionViewController* ctl = [[URLConnectionViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
+            break;
+        }
+        case URLSessionTag: {
+            URLSessionViewController* ctl = [[URLSessionViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
             break;
