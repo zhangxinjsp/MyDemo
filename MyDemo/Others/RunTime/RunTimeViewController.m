@@ -224,6 +224,11 @@
 
 - (void) performSelectorWornning {
     
+//    objc_msgSend(self, @selector(performSelectorWornning));
+//
+//    id aa = objc_msgSend(self, @selector(performSelectorWornning));
+#define MJRefreshMsgTarget(target) (__bridge void *)(target)
+    
     /*
      SEL aselect = NSSelectorFromString(@"invocationUsing");
      [self performSelector:aselect];

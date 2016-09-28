@@ -12,7 +12,7 @@
 
 
 @protocol BLECentralManagerDelegate <NSObject>
--(void)centralManagerStateChanged:(CBCentralManagerState)state;
+-(void)centralManagerStateChanged:(CBManagerState)state;
 -(void)discoverPeripheralListChanged;
 -(void)connectPeripheralCallBack:(BOOL)connected;
 -(void)didDisconnectPeripheral:(BOOL)isAuto;

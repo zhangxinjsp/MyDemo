@@ -33,7 +33,7 @@ typedef void (^ConnectedBlock)(BOOL connected);
 @property (nonatomic, strong, readonly) NSMutableArray* peripheralArray;
 @property (nonatomic, readonly) BOOL isCentralConnected;
 @property (nonatomic, readonly) BOOL isBleOn;
-@property (nonatomic, readonly) CBCentralManagerState centralManagerState;
+@property (nonatomic, readonly) CBManagerState centralManagerState;
 @property (nonatomic, readonly, strong) NSString* currentPeripheralName;
 
 -(void)startBluetoothCentral;

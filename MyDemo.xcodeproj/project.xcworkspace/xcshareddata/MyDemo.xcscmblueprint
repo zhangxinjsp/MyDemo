@@ -11,7 +11,7 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "968DBA5D-DD62-465B-8A90-3BACC5832D98",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "27A5E93214D5B36D183B93663927F133E0A2D1A5" : "uinavgationcontroller",
+    "27A5E93214D5B36D183B93663927F133E0A2D1A5" : "MyDemo\/",
     "b393d823-91dd-9147-adb9-719358e2b06b++3681" : "MyDemo\/MyDemo\/%E4%BA%8C%E7%BB%B4%E7%A0%81\/ZBarSDK\/Headers\/ZBarSDK\/zbar\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "MyDemo",

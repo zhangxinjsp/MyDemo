@@ -7,7 +7,7 @@
 //
 
 #import "ScrollCycleView.h"
-@interface ScrollCycleView ()
+@interface ScrollCycleView () <CAAnimationDelegate>
 {
     NSTimer *autoScrollTimer;
     

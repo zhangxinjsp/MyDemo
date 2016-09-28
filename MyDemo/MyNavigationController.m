@@ -9,7 +9,7 @@
 #import "MyNavigationController.h"
 
 
-@interface PopAnimation : NSObject <UIViewControllerAnimatedTransitioning>{
+@interface PopAnimation : NSObject <UIViewControllerAnimatedTransitioning, CAAnimationDelegate>{
     id<UIViewControllerContextTransitioning> _transitionContext;
 }
 

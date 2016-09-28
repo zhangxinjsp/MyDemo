@@ -8,7 +8,7 @@
 
 #import "TransformViewController.h"
 
-@interface TransformViewController (){
+@interface TransformViewController () <CAAnimationDelegate> {
     CALayer* layer;
     UILabel* label;
     UILabel* label1;

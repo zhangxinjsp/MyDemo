@@ -240,11 +240,11 @@
     memset((void *)cipherBuffer, 0*0, cipherBufferSize);
     
     NSData *plainTextBytes = [plainText dataUsingEncoding:NSUTF8StringEncoding];
-    int blockSize = cipherBufferSize-11; // 这个地方比较重要是加密数组长度
+    int blockSize = (int)cipherBufferSize - 11; // 这个地方比较重要是加密数组长度
     int numBlock = (int)ceil([plainTextBytes length] / (double)blockSize);
     NSMutableData *encryptedData = [[NSMutableData alloc] init];
     for (int i=0; i<numBlock; i++) {
-        int bufferSize = MIN(blockSize,[plainTextBytes length]-i*blockSize);
+        int bufferSize = (int)MIN(blockSize,[plainTextBytes length]-i*blockSize);
         NSData *buffer = [plainTextBytes subdataWithRange:NSMakeRange(i * blockSize, bufferSize)];
         OSStatus status = SecKeyEncrypt(publicKey,
                                         kSecPaddingPKCS1,

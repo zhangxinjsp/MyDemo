@@ -153,7 +153,7 @@
 }
 #pragma mark center manager delegate
 
--(void)centralManagerStateChanged:(CBCentralManagerState)state{
+-(void)centralManagerStateChanged:(CBManagerState)state{
     switch (state) {
         case CBCentralManagerStateUnknown:
             LOGINFO(@"Bluetooth state is %@", @"unknow");

@@ -59,7 +59,7 @@
 		5B309CDF1C473F9E0079CD78 /* OtherMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C451C473F9E0079CD78 /* OtherMenuViewController.m */; };
 		5B309CE01C473F9E0079CD78 /* APLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C481C473F9E0079CD78 /* APLViewController.m */; };
 		5B309CE11C473F9E0079CD78 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C4A1C473F9E0079CD78 /* Reachability.m */; };
-		5B309CE21C473F9E0079CD78 /* URLRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C4E1C473F9E0079CD78 /* URLRequestViewController.m */; };
+		5B309CE21C473F9E0079CD78 /* URLConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C4E1C473F9E0079CD78 /* URLConnectionViewController.m */; };
 		5B309CE31C473F9E0079CD78 /* SocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C511C473F9E0079CD78 /* SocketViewController.m */; };
 		5B309CE41C473F9E0079CD78 /* Area.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C551C473F9E0079CD78 /* Area.m */; };
 		5B309CE51C473F9E0079CD78 /* Skintone.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309C571C473F9E0079CD78 /* Skintone.m */; };
@@ -289,8 +289,8 @@
 		5B309C491C473F9E0079CD78 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		5B309C4A1C473F9E0079CD78 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		5B309C4C1C473F9E0079CD78 /* Url.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Url.h; sourceTree = "<group>"; };
-		5B309C4D1C473F9E0079CD78 /* URLRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLRequestViewController.h; sourceTree = "<group>"; };
-		5B309C4E1C473F9E0079CD78 /* URLRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLRequestViewController.m; sourceTree = "<group>"; };
+		5B309C4D1C473F9E0079CD78 /* URLConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConnectionViewController.h; sourceTree = "<group>"; };
+		5B309C4E1C473F9E0079CD78 /* URLConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConnectionViewController.m; sourceTree = "<group>"; };
 		5B309C501C473F9E0079CD78 /* SocketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketViewController.h; sourceTree = "<group>"; };
 		5B309C511C473F9E0079CD78 /* SocketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketViewController.m; sourceTree = "<group>"; };
 		5B309C541C473F9E0079CD78 /* Area.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Area.h; sourceTree = "<group>"; };
@@ -854,8 +854,8 @@
 			isa = PBXGroup;
 			children = (
 				5B309C4C1C473F9E0079CD78 /* Url.h */,
-				5B309C4D1C473F9E0079CD78 /* URLRequestViewController.h */,
-				5B309C4E1C473F9E0079CD78 /* URLRequestViewController.m */,
+				5B309C4D1C473F9E0079CD78 /* URLConnectionViewController.h */,
+				5B309C4E1C473F9E0079CD78 /* URLConnectionViewController.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1453,7 +1453,7 @@
 				5B309CD61C473F9E0079CD78 /* BLERespondDataModel.m in Sources */,
 				5BE369841C5B0B2300D5E366 /* RegexViewController.m in Sources */,
 				5B0C51911C603A8A00818C6E /* CoreGraphicsViewController.m in Sources */,
-				5B309CE21C473F9E0079CD78 /* URLRequestViewController.m in Sources */,
+				5B309CE21C473F9E0079CD78 /* URLConnectionViewController.m in Sources */,
 				5B3097491C4727230079CD78 /* MyTabBarController.m in Sources */,
 				5B90EDEE1CAE15CE000B4F8E /* socks_mosq.c in Sources */,
 				5B3097751C4727230079CD78 /* Formater.m in Sources */,

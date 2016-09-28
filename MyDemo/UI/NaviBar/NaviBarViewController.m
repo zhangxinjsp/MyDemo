@@ -54,7 +54,13 @@
     
     self.navigationItem.leftBarButtonItems = [[NSArray alloc]initWithObjects:itemButton, itemLabel, nil];
     
-    UIBarButtonItem* item1 = [[UIBarButtonItem alloc]initWithTitle:@"返回1" style:UIBarButtonItemStyleDone target:self action:@selector(backButtonPressed:)];//backBarButtonItem必须设置一个UIBarButtonItem才能修改标题，而且事件添加无效！且只有在上一个界面添加返回按钮
+    UIBarButtonItem* item1 = [[UIBarButtonItem alloc]initWithTitle:@"返回1" style:UIBarButtonItemStyleDone target:self action:@selector(backButtonPressed:)];
+    /*
+     backBarButtonItem必须设置一个UIBarButtonItem才能修改标题，
+     而且事件添加无效！
+     且只有在上一个界面添加返回按钮
+     图标无法改变
+     */
     self.navigationItem.backBarButtonItem = item1;
     
     //右键

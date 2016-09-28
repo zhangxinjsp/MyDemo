@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface URLRequestViewController : BaseViewController
+@interface URLConnectionViewController : BaseViewController
 
 @end

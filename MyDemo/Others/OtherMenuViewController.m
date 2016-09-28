@@ -13,7 +13,7 @@
 #import "CoreDataViewController.h"
 #import "MotionViewController.h"
 #import "APLViewController.h"
-#import "URLRequestViewController.h"
+#import "URLConnectionViewController.h"
 #import "SocketViewController.h"
 #import "SQLiteViewController.h"
 #import "ShareTofaceBookViewController.h"
@@ -126,7 +126,7 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
             break;
         }
         case URLRequestTag: {
-            URLRequestViewController* ctl = [[URLRequestViewController alloc] init];
+            URLConnectionViewController* ctl = [[URLConnectionViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
             break;

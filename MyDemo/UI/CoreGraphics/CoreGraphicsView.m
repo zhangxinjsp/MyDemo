@@ -16,7 +16,7 @@
 
 
 
-@interface CoreGraphicsView () {
+@interface CoreGraphicsView () <CAAnimationDelegate> {
     UIImageView* circleView;
 }
 
