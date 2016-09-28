@@ -39,7 +39,7 @@
     //设置model的值，属性名与key一致就可以
     [model setValuesForKeysWithDictionary:parmenters];
     
-    NSLog(@"");
+    LOGINFO(@"");
     
     
     UIButton* btn = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 100, 40)];
@@ -51,6 +51,12 @@
     btn1.backgroundColor = [UIColor redColor];
     [btn1 addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)buttonAction:(id)sender {
@@ -216,18 +222,20 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-    // Dispose of any resources that can be recreated.
+- (void)objectMessageSend {
+//    ((void(*)(id, SEL,int))objc_msgSend)(self, @selector(doSomething:), 0);
+    /*
+     在32位系统的时候可以直接使用，但是在64位的时候需要进行一次强转，否则编译不过。如下
+     */
+    ((void(*)(id, SEL, int))objc_msgSend)(self, @selector(doSomething:), 10);
+
+}
+
+- (void)doSomething:(int)aa {
+    LOGINFO(@"%d", aa);
 }
 
 - (void) performSelectorWornning {
-    
-//    objc_msgSend(self, @selector(performSelectorWornning));
-//
-//    id aa = objc_msgSend(self, @selector(performSelectorWornning));
-#define MJRefreshMsgTarget(target) (__bridge void *)(target)
     
     /*
      SEL aselect = NSSelectorFromString(@"invocationUsing");
