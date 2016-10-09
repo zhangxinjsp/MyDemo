@@ -175,7 +175,7 @@ static UIImageView* imageView;
     //    uint32_t v = kCVPixelFormatType_420YpCbCr8BiPlanarFullRange;
     //    const void *values[] = { CFNumberCreate(NULL, kCFNumberSInt32Type, &v) };
     //    destinationImageBufferAttributes = CFDictionaryCreate(NULL, keys, values, 1, NULL, NULL);
-    
+//
     status = VTDecompressionSessionCreate(kCFAllocatorDefault, videoFormatDescr, NULL, (__bridge CFDictionaryRef)destinationImageBufferAttributes, &callback, &session);
     //    status = VTDecompressionSessionCreate(kCFAllocatorDefault, videoFormatDescr, NULL, NULL, &callback, &session);
     NSLog(@"Creating Video Decompression Session: %@.", (status == noErr) ? @"successfully." : @"failed.");

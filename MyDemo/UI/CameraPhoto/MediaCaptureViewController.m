@@ -14,6 +14,7 @@
 #import <ImageIO/ImageIO.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
+#import <CoreAudio/CoreAudioTypes.h>
 
 #define VIDEO_PREVIEW_LAYER 1
 
@@ -234,9 +235,9 @@
 //    [self captureMovieFileOutput];
 //    [self captureStillImageOutput];
 
-//    [self captureVideoDataOutput];
+    [self captureVideoDataOutput];
 //    [self audioDataOutput];
-    [self metadataOutput];
+//    [self metadataOutput];
     
     [captureSession startRunning];
 }
@@ -523,6 +524,8 @@
     
     // Update the orientation on the movie file output video connection before starting recording.
     [[aMovieFileOutput connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:[[previewLayer connection] videoOrientation]];
+    NSDictionary *outputSettings = @{ AVVideoCodecKey : AVVideoCodecH264};
+    [aMovieFileOutput setOutputSettings:outputSettings forConnection:[previewLayer connection]];
     
     [self setFlashMode:AVCaptureFlashModeOff forDevice:[cameraDeviceInput device]];
     
@@ -621,7 +624,7 @@
     videoDataOutput.videoSettings = newSettings;
     
     // discard if the data output queue is blocked (as we process the still image
-    [videoDataOutput setAlwaysDiscardsLateVideoFrames:YES];
+    [videoDataOutput setAlwaysDiscardsLateVideoFrames:NO];
     
     // create a serial dispatch queue used for the sample buffer delegate as well as when a still image is captured
     // a serial dispatch queue must be used to guarantee that video frames will be delivered in order
@@ -639,6 +642,20 @@
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
     LOGINFO(@" didOutputSampleBuffer");
     
+    
+    
+//    CMBlockBufferRef blockBufferRef = CMSampleBufferGetDataBuffer(sampleBuffer);
+//    size_t length = CMBlockBufferGetDataLength(blockBufferRef);
+//    Byte buffer[length];
+//    CMBlockBufferCopyDataBytes(blockBufferRef, 0, length, buffer);
+//    NSData *data = [NSData dataWithBytes:buffer length:length];
+//    
+//    LOGINFO(@"data :%@", data);
+    
+    CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    
+    CIImage* ciImage = [[CIImage alloc]initWithCVPixelBuffer:pixelBuffer];
+    LOGINFO(@"data :%@", ciImage);
 #ifdef VIDEO_PREVIEW_LAYER
     
 #else
@@ -661,6 +678,12 @@
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didDropSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
     
     LOGINFO(@"didDropSampleBuffer");
+    CMBlockBufferRef blockBufferRef = CMSampleBufferGetDataBuffer(sampleBuffer);
+    size_t length = CMBlockBufferGetDataLength(blockBufferRef);
+    Byte buffer[length];
+    CMBlockBufferCopyDataBytes(blockBufferRef, 0, length, buffer);
+    NSData *data = [NSData dataWithBytes:buffer length:length];
+    LOGINFO(@"%@", data);
 }
 
 //AVCaptureFileOutputRecordingDelegate

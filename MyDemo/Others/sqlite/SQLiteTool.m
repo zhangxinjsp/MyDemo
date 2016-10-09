@@ -41,6 +41,25 @@
     return path;
 }
 
+-(BOOL)openDbWithName:(NSString*)dbName key:(NSString*)key {
+    NSString* dbPath = [self dbPath:dbName];
+    //将项目中的数据库复制到sendbox中
+    if (![[NSFileManager defaultManager]fileExistsAtPath:dbPath]) {
+        NSString* sourcePath = [[NSBundle mainBundle] pathForResource: dbName ofType: @"db"];
+        if ([[NSFileManager defaultManager]fileExistsAtPath:sourcePath]) {
+            [[NSFileManager defaultManager]copyItemAtPath:sourcePath toPath:dbPath error:nil];
+        }
+    }
+    if(sqlite3_open([dbPath UTF8String], &database) == SQLITE_OK) {
+        LOGINFO(@"%@" ,@"打开成功数据库");
+        const char* keyC = [key UTF8String];
+        int keyReslute = sqlite3_key(database, keyC, (int)strlen(keyC));
+        LOGINFO(@"数据库解密结果：%d" ,keyReslute);
+        return YES;
+    }
+    return NO;
+}
+
 -(BOOL)openDb:(NSString*)dbName{
     NSString* dbPath = [self dbPath:dbName];
     //将项目中的数据库复制到sendbox中

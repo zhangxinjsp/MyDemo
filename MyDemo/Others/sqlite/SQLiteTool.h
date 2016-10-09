@@ -5,11 +5,12 @@
 //  Created by 张鑫 on 14-6-22.
 //  Copyright (c) 2014年 zhangxin. All rights reserved.
 /*
- 在other C flags中添加以下参数
- -DSQLITE_HAS_CODEC
- -DSQKUTE_THREADSAFE
- -DSQLCIPHER_CRYPTO_CC
- -DSQLITE_TEMP_STORE=2
+ 在工程的build setting里修改配置other c flags添加
+ -DSQLITE_HAS_CODEC 
+ -DSQKUTE_THREADSAFE 
+ -DSQLCIPHER_CRYPTO_CC 
+ -DSQLITE_TEMP_STORE=2,
+ 加入Security.framework
  */
 
 #import <Foundation/Foundation.h>
@@ -46,8 +47,8 @@
 +(BOOL)isNullAtColumnIndex:(int)columnIndex;
 +(NSInteger)count;
 
+-(BOOL)openDbWithName:(NSString*)dbName key:(NSString*)key;
 -(BOOL)openDb:(NSString*)dbName;
-
 -(void)closeDb;
 
 -(BOOL)executeSql:(NSString*)sql;
