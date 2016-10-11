@@ -130,16 +130,58 @@ static NSString *DownloadURLString = @"https://developer.apple.com/library/ios/d
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task  didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * __nullable credential))completionHandler {
     
     // 判断是否是信任服务器证书
-    if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
-        // 告诉服务器，客户端信任证书
-        // 创建凭据对象
-        NSURLCredential *credntial = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-        // 通过completionHandler告诉服务器信任证书
-        completionHandler(NSURLSessionAuthChallengeUseCredential,credntial);
+//    if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
+//        // 告诉服务器，客户端信任证书
+//        // 创建凭据对象
+//        NSURLCredential *credntial = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+//        // 通过completionHandler告诉服务器信任证书
+//        completionHandler(NSURLSessionAuthChallengeUseCredential, credntial);
+//    }
+//    NSLog(@"protectionSpace = %@",challenge.protectionSpace);
+
+    SecIdentityRef identity = NULL;
+    SecTrustRef trust = NULL;
+    NSData *PKCS12Data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"client" ofType:@"p12"]];
+    if ([self extractIdentity:&identity andTrust:&trust fromPKCS12Data:PKCS12Data]) {
+        SecCertificateRef certificate = NULL;
+        SecIdentityCopyCertificate (identity, &certificate);
+        //TODO:方法可能需要修改
+        NSArray *certs = @[CFBridgingRelease(certificate)];
+        
+        NSURLCredential *credential = [NSURLCredential credentialWithIdentity:identity certificates:certs persistence:NSURLCredentialPersistencePermanent];
+        
+        completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
     }
-    NSLog(@"protectionSpace = %@",challenge.protectionSpace);
 }
 
+- (BOOL)extractIdentity:(SecIdentityRef *)outIdentity andTrust:(SecTrustRef*)outTrust fromPKCS12Data:(NSData *)inPKCS12Data
+{
+    OSStatus securityError = errSecSuccess;
+    
+    //  NSDictionary *optionsDictionary = [NSDictionary dictionaryWithObject:@"" forKey:(id)kSecImportExportPassphrase];
+    
+    CFStringRef password = CFSTR("1234"); //证书密码
+    const void *keys[] =   { kSecImportExportPassphrase };
+    const void *values[] = { password };
+    
+    CFDictionaryRef optionsDictionary = CFDictionaryCreate(NULL, keys,values, 1,NULL, NULL);
+    CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);
+    securityError = SecPKCS12Import((CFDataRef)inPKCS12Data,(CFDictionaryRef)optionsDictionary,&items);
+    
+    if (securityError == errSecSuccess) {
+        CFDictionaryRef myIdentityAndTrust = CFArrayGetValueAtIndex (items, 0);
+        const void *tempIdentity = NULL;
+        tempIdentity = CFDictionaryGetValue (myIdentityAndTrust, kSecImportItemIdentity);
+        *outIdentity = (SecIdentityRef)tempIdentity;
+        const void *tempTrust = NULL;
+        tempTrust = CFDictionaryGetValue (myIdentityAndTrust, kSecImportItemTrust);
+        *outTrust = (SecTrustRef)tempTrust;
+    } else {
+        NSLog(@"Failed with error code %d",(int)securityError);
+        return NO;
+    }
+    return YES;
+}
 
 
 /*

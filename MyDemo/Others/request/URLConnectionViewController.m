@@ -326,17 +326,137 @@
 
 - (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     
-    if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
-        // 告诉服务器，客户端信任证书
-        // 创建凭据对象
-        NSURLCredential *credntial = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-        // 告诉服务器信任证书
-        [challenge.sender useCredential:credntial forAuthenticationChallenge:challenge];
+    
+    
+    
+    
+    
+    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"miniclouds" ofType:@"cer"];
+    NSData *certData = [NSData dataWithContentsOfFile:cerPath];
+    SecCertificateRef certifucate = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)(certData));
+    //self.trustedCertificates 就是普通的 NSArray
+    NSArray* trustedCertificates = @[CFBridgingRelease(certifucate)];
+    NSLog(@"333:will send Request!!");
+    //1.获取trust对象
+    SecTrustRef trust = challenge.protectionSpace.serverTrust;
+    SecTrustResultType result;
+    //注意：这里将之前导入的证书设置成下面验证的Trust Object的anchor certificate
+    SecTrustSetAnchorCertificates(trust, (__bridge CFArrayRef)trustedCertificates);
+    
+    //2.SecTrustEvaluate会查找前面SecTrustSetAnchorCertificates设置的证书或者系统默认提供的证书，对trust进行验证
+    OSStatus status = SecTrustEvaluate(trust, &result);
+    if (status == errSecSuccess && (result == kSecTrustResultProceed || result == kSecTrustResultUnspecified)) {
+//    if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {    
+        //3.验证成功，生成NSURLCredential凭证cred，告知challenge的sender使用这个凭证来继续连接
+        
+//        NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+//        NSURLCredential *credential = [NSURLCredential credentialWithUser:@"user" password:@"password" persistence:NSURLCredentialPersistencePermanent];
+        NSURLCredential *credential = [NSURLCredential credentialForTrust:trust];
+        [challenge.sender useCredential:credential forAuthenticationChallenge:challenge];
+    }else{
+        
+        //4.验证失败，取消这次验证流程
+        [challenge.sender cancelAuthenticationChallenge:challenge];
     }
     
-    NSURLCredential *credntial1 = [NSURLCredential credentialWithUser:@"user" password:@"password" persistence:NSURLCredentialPersistencePermanent];
     
-    [[challenge sender] useCredential:credntial1 forAuthenticationChallenge:challenge];
+}
+
+//双向验证的处理，与上方法相同避免编译错误
+- (void)_connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+
+{
+    
+    
+    
+    NSString *thePath = [[NSBundle mainBundle] pathForResource:@"client" ofType:@"p12"];
+    
+    NSLog(@"thePath===========%@",thePath);
+    
+    NSData *PKCS12Data = [[NSData alloc] initWithContentsOfFile:thePath];
+    
+    CFDataRef inPKCS12Data = (__bridge CFDataRef)PKCS12Data;
+    
+    
+    
+    SecIdentityRef identity = NULL;
+    
+    // extract the ideneity from the certificate
+    
+    [self extractIdentity :inPKCS12Data :&identity];
+    
+    
+    
+    SecCertificateRef certificate = NULL;
+    
+    SecIdentityCopyCertificate (identity, &certificate);
+    
+    
+    
+    const void *certs[] = {certificate};
+    
+    //                        CFArrayRef certArray = CFArrayCreate(kCFAllocatorDefault, certs, 1, NULL);
+    
+    // create a credential from the certificate and ideneity, then reply to the challenge with the credential
+    
+    //NSLog(@"identity=========%@",identity);
+    
+    NSURLCredential *credential = [NSURLCredential credentialWithIdentity:identity certificates:nil persistence:NSURLCredentialPersistencePermanent];
+    
+    //           credential = [NSURLCredential credentialWithIdentity:identity certificates:(__bridge NSArray*)certArray persistence:NSURLCredentialPersistencePermanent];
+    
+    [challenge.sender useCredential:credential forAuthenticationChallenge:challenge];
+}
+
+- (OSStatus)extractIdentity:(CFDataRef)inP12Data :(SecIdentityRef*)identity {
+    
+    OSStatus securityError = errSecSuccess;
+    
+    
+    
+    CFStringRef password = CFSTR("clic1234");
+    
+    const void *keys[] = { kSecImportExportPassphrase };
+    
+    const void *values[] = { password };
+    
+    
+    
+    CFDictionaryRef options = CFDictionaryCreate(NULL, keys, values, 1, NULL, NULL);
+    
+    
+    
+    CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);
+    
+    securityError = SecPKCS12Import(inP12Data, options, &items);
+    
+    
+    
+    if (securityError == 0)
+        
+    {
+        
+        CFDictionaryRef ident = CFArrayGetValueAtIndex(items,0);
+        
+        const void *tempIdentity = NULL;
+        
+        tempIdentity = CFDictionaryGetValue(ident, kSecImportItemIdentity);
+        
+        *identity = (SecIdentityRef)tempIdentity;
+        
+    }
+    
+    
+    
+    if (options) {
+        
+        CFRelease(options);
+        
+    }
+    
+    
+    
+    return securityError;
     
 }
 

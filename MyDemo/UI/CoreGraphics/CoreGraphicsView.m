@@ -370,7 +370,59 @@
     LOGINFO(@"%@",@"path finish!");
 }
 
+//连续点的运动变化
+static CGFloat leftRightGap = 20;//左右边距;
+static NSInteger pointCount = 5;;
+static CGFloat pointRadius = 4;//原点的半径;
+static CGFloat animationRadius = 20;//运动半径;
+static NSInteger animationSecsion = 6;//动画分为6段，不要改;
+static NSInteger animationIndex = 0;;
+static NSInteger animationStep = 4;;
+static NSInteger animationTotal;
+static BOOL isUp = NO;
 
+- (void)pointAnimations:(CGRect)rect {
+    animationTotal = animationSecsion * animationRadius;
+    
+    CGFloat centerY = CGRectGetMidY(rect);
+    
+    animationIndex = animationIndex % animationTotal;
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGFloat gapBetweenPoint = (CGRectGetWidth(rect) - leftRightGap * 2) / (pointCount - 1);
+    for (int i = 0; i < pointCount; i ++) {
+        CGContextSaveGState(context);
+        
+        CGFloat alpha = 1;
+        CGFloat animation = MAX(animationIndex - i * animationRadius / 2, 0);
+        CGFloat moveIndex = 0;
+        if (animation <= animationRadius) {
+            moveIndex = animation;
+            alpha = fabs(moveIndex) / (animationRadius) * 0.7 + 0.3;
+        } else if (animation > animationRadius && animation <= animationRadius * 3) {
+            moveIndex = animation - (animation - animationRadius) * 2;
+        } else if (animation > animationRadius * 3 && animation <= animationRadius * 4) {
+            moveIndex = animation - animationRadius * 4;
+            alpha = fabs(moveIndex) / animationRadius * 0.7 + 0.3;
+        } else {
+            alpha = 0.3;
+        }
+        UIColor* color = [UIColor colorWithWhite:1 alpha:alpha];
+        CGContextSetFillColorWithColor(context, color.CGColor);
+        
+        CGContextAddArc(context, leftRightGap + gapBetweenPoint * i, centerY + moveIndex, pointRadius, 0, M_PI * 2, 1);
+        CGContextDrawPath(context, kCGPathFill);
+        
+        CGContextRestoreGState(context);
+    }
+    animationIndex += animationStep;
+    
+    [self performSelector:@selector(refresh) withObject:nil afterDelay:1.0f/20.0f];
+}
+
+- (void)refresh {
+    [self setNeedsDisplay];
+}
 
 
 

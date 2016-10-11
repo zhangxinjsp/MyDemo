@@ -430,6 +430,66 @@
     return status == errSecSuccess;
 }
 
+//创建密钥对
+- (void)createSecKeyPair {
+    SInt32 iKeySize = 1024;
+    CFNumberRef keySize = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &iKeySize);
+    const void* values[] = { kSecAttrKeyTypeRSA, keySize };
+    const void* keys[] = { kSecAttrKeyType, kSecAttrKeySizeInBits };
+    CFDictionaryRef parameters = CFDictionaryCreate(kCFAllocatorDefault, keys, values, 2, NULL, NULL);
+    
+    SecKeyRef publicKey, privateKey;
+    OSStatus ret = SecKeyGeneratePair(parameters, &publicKey, &privateKey);
+    if ( ret == errSecSuccess )
+        NSLog(@"Key success!");
+    else
+        NSLog(@"Key Failure! %i", (int)ret);
+}
+
+//保存密钥对
+- (NSData *)getPublicKeyBitsFromKey:(SecKeyRef)givenKey {
+    
+    static const uint8_t publicKeyIdentifier[] = "com.your.company.publickey";
+    NSData *publicTag = [[NSData alloc] initWithBytes:publicKeyIdentifier length:sizeof(publicKeyIdentifier)];
+    
+    OSStatus sanityCheck = noErr;
+    NSData * publicKeyBits = nil;
+    
+    NSMutableDictionary * queryPublicKey = [[NSMutableDictionary alloc] init];
+    [queryPublicKey setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
+    [queryPublicKey setObject:publicTag forKey:(__bridge id)kSecAttrApplicationTag];
+    [queryPublicKey setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
+    
+    // Temporarily add key to the Keychain, return as data:
+    NSMutableDictionary * attributes = [queryPublicKey mutableCopy];
+    [attributes setObject:(__bridge id)givenKey forKey:(__bridge id)kSecValueRef];
+    [attributes setObject:@YES forKey:(__bridge id)kSecReturnData];
+    CFTypeRef result;
+    sanityCheck = SecItemAdd((__bridge CFDictionaryRef) attributes, &result);
+    if (sanityCheck == errSecSuccess) {
+        publicKeyBits = CFBridgingRelease(result);
+        
+        // Remove from Keychain again:
+        (void)SecItemDelete((__bridge CFDictionaryRef) queryPublicKey);
+    }
+    
+    /*
+     以上是保存到keychain且转换为data类型数据，以下从keychain中取出保存的public key
+     SecKeyRef publicKeyBits = nil;//必要时可以直接使用
+     
+     CFDataRef publicKeyBits = nil;
+     NSMutableDictionary * queryPublicKey = [[NSMutableDictionary alloc] init];
+     // Set the public key query dictionary.
+     [queryPublicKey setObject:(id)kSecClassKey forKey:(id)kSecClass];
+     [queryPublicKey setObject:publicTag forKey:(id)kSecAttrApplicationTag];
+     [queryPublicKey setObject:(id)kSecAttrKeyTypeRSA forKey:(id)kSecAttrKeyType];
+     [queryPublicKey setObject:[NSNumber numberWithBool:YES] forKey:(id)kSecReturnData];
+     
+     // Get the key bits.
+     sanityCheck = SecItemCopyMatching((CFDictionaryRef)queryPublicKey, (CFTypeRef *)&publicKeyBits);
+     */
+    return publicKeyBits;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
