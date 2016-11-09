@@ -26,14 +26,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    //register Remote Notification
-    if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
-        [[UIApplication sharedApplication]registerForRemoteNotifications];
-        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes: UIUserNotificationTypeBadge| UIUserNotificationTypeSound| UIUserNotificationTypeAlert categories:nil];
-        [[UIApplication sharedApplication]registerUserNotificationSettings:settings];
-    } else {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
-    }
+    //register Notification
+    [self registerNotification];
     
     // installs HandleExceptions as the Uncaught Exception Handler
     NSSetUncaughtExceptionHandler(&HandleExceptions);
@@ -51,42 +45,7 @@
     return YES;
 }
 
-/*
- My Apps Custom uncaught exception catcher, we do special stuff here, and TestFlight takes care of the rest
- */
-void HandleExceptions(NSException *exception) {
-    LOGINFO(@"This is where we save the application data during a exception");
-    LOGINFO([NSString stringWithFormat:@"%@",exception]);
-    
-    CFRunLoopRef runLoop = CFRunLoopGetCurrent();
-    CFArrayRef allModes = CFRunLoopCopyAllModes(runLoop);
-    BOOL finish = NO;//可以定义为全局变量，来决定是否完成某些事
-    while (finish) {
-        for (NSString *mode in (__bridge NSArray *)allModes) {
-            CFRunLoopRunInMode((__bridge CFStringRef)mode, 0.001, false);
-        }
-    }
-    
-    CFRelease(allModes);
-    
-    NSSetUncaughtExceptionHandler(NULL);
-    signal(SIGABRT, SIG_DFL);
-    signal(SIGILL, SIG_DFL);
-    signal(SIGSEGV, SIG_DFL);
-    signal(SIGFPE, SIG_DFL);
-    signal(SIGBUS, SIG_DFL);
-    signal(SIGPIPE, SIG_DFL);
-    
-    [exception raise];
-    // Save application data on crash
-}
-/*
- My Apps Custom signal catcher, we do special stuff here, and TestFlight takes care of the rest
- */
-void SignalHandler(int sig) {
-    LOGINFO(@"This is where we save the application data during a signal");
-    // Save application data on crash
-}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -145,6 +104,12 @@ static UIBackgroundTaskIdentifier backgroundTask;
         LOGINFO(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
     }
 }
+/**
+ ios10 的方法
+ */
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+}
 
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     LOGINFO(@"%@" ,notification);
@@ -155,6 +120,102 @@ static UIBackgroundTaskIdentifier backgroundTask;
     self.backgroundSessionCompletionHandler = completionHandler;
     //add notification
     [self presentNotification];
+}
+
+/*
+ My Apps Custom uncaught exception catcher, we do special stuff here, and TestFlight takes care of the rest
+ */
+void HandleExceptions(NSException *exception) {
+    LOGINFO(@"This is where we save the application data during a exception");
+    LOGINFO([NSString stringWithFormat:@"%@",exception]);
+    
+    CFRunLoopRef runLoop = CFRunLoopGetCurrent();
+    CFArrayRef allModes = CFRunLoopCopyAllModes(runLoop);
+    BOOL finish = NO;//可以定义为全局变量，来决定是否完成某些事
+    while (finish) {
+        for (NSString *mode in (__bridge NSArray *)allModes) {
+            CFRunLoopRunInMode((__bridge CFStringRef)mode, 0.001, false);
+        }
+    }
+    
+    CFRelease(allModes);
+    
+    NSSetUncaughtExceptionHandler(NULL);
+    signal(SIGABRT, SIG_DFL);
+    signal(SIGILL, SIG_DFL);
+    signal(SIGSEGV, SIG_DFL);
+    signal(SIGFPE, SIG_DFL);
+    signal(SIGBUS, SIG_DFL);
+    signal(SIGPIPE, SIG_DFL);
+    
+    [exception raise];
+    // Save application data on crash
+}
+
+/*
+ My Apps Custom signal catcher, we do special stuff here, and TestFlight takes care of the rest
+ */
+void SignalHandler(int sig) {
+    LOGINFO(@"This is where we save the application data during a signal");
+    // Save application data on crash
+}
+
+- (void)registerNotification {
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 10.0) {
+        
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        
+        UNAuthorizationOptions op = UNAuthorizationOptionAlert + UNAuthorizationOptionSound;
+        
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:op completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            NSLog(@"%@", error.description);
+            // Enable or disable features based on authorization.
+            UNNotificationCategory* generalCategory = [UNNotificationCategory
+                                                       categoryWithIdentifier:@"GENERAL"
+                                                       actions:@[]
+                                                       intentIdentifiers:@[]
+                                                       options:UNNotificationCategoryOptionCustomDismissAction];
+            
+            // Create the custom actions for expired timer notifications.
+            UNNotificationAction* snoozeAction = [UNNotificationAction
+                                                  actionWithIdentifier:@"SNOOZE_ACTION"
+                                                  title:@"Snooze"
+                                                  options:UNNotificationActionOptionNone];
+            
+            UNNotificationAction* stopAction = [UNNotificationAction
+                                                actionWithIdentifier:@"STOP_ACTION"
+                                                title:@"Stop"
+                                                options:UNNotificationActionOptionForeground];
+            
+            // Create the category with the custom actions.
+            UNNotificationCategory* expiredCategory = [UNNotificationCategory
+                                                       categoryWithIdentifier:@"TIMER_EXPIRED"
+                                                       actions:@[snoozeAction, stopAction]
+                                                       intentIdentifiers:@[]
+                                                       options:UNNotificationCategoryOptionNone];
+            
+            // Register the notification categories.
+            [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:[NSSet setWithObjects:generalCategory, expiredCategory, nil]];
+            
+            [[UNUserNotificationCenter currentNotificationCenter]getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+                
+            }];
+            
+            [[UNUserNotificationCenter currentNotificationCenter]getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
+                
+            }];
+            
+        }];
+    } else if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
+        [[UIApplication sharedApplication]registerForRemoteNotifications];
+        //categories 初始化方法iOS10 的一致，注意类的不同
+        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes: UIUserNotificationTypeBadge| UIUserNotificationTypeSound| UIUserNotificationTypeAlert categories:nil];
+        
+        [[UIApplication sharedApplication]registerUserNotificationSettings:settings];
+    } else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
+    }
+    
 }
 
 -(void)presentNotification{
@@ -170,8 +231,37 @@ static UIBackgroundTaskIdentifier backgroundTask;
 }
 
 
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    // Update the app interface directly.
+    
+    // Play a sound.
+    completionHandler(UNNotificationPresentationOptionSound);
+}
 
-
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    
+    if ([response.actionIdentifier isEqualToString:UNNotificationDismissActionIdentifier]) {
+        // The user dismissed the notification without taking action.
+    }
+    else if ([response.actionIdentifier isEqualToString:UNNotificationDefaultActionIdentifier]) {
+        // The user launched the app.
+    }
+    
+    if ([response.notification.request.content.categoryIdentifier isEqualToString:@"TIMER_EXPIRED"]) {
+        // Handle the actions for the expired timer.
+        if ([response.actionIdentifier isEqualToString:@"SNOOZE_ACTION"])
+        {
+            // Invalidate the old timer and create a new one. . .
+        }
+        else if ([response.actionIdentifier isEqualToString:@"STOP_ACTION"])
+        {
+            // Invalidate the timer. . .
+        }
+        
+    }
+    
+    // Else handle actions for other notification types. . .
+}
 
 
 
