@@ -60,7 +60,7 @@
     }
     animation.fillMode = kCAFillModeBoth;
     animation.removedOnCompletion = NO;
-    animation.filter = nil;
+//    animation.filter = nil;
     [animation setDuration:[self transitionDuration:nil]];
     
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];

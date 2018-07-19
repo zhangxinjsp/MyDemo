@@ -40,7 +40,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self startLoadData];
+//    [self startLoadData];
+    [self startDownload:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,7 +80,8 @@ static NSString *DownloadURLString = @"https://developer.apple.com/library/ios/d
     if (downloadTask) {
         return;
     }
-    NSURL *downloadURL = [NSURL URLWithString:DownloadURLString];
+    NSString* url = @"http://kohlertest.archermind.com/resource/headpic/20161110094115893_703452_65.jpg";
+    NSURL *downloadURL = [NSURL URLWithString:url ];
     NSURLRequest *request = [NSURLRequest requestWithURL:downloadURL];
     downloadTask = [session downloadTaskWithRequest:request];
     [downloadTask resume];
@@ -90,17 +92,15 @@ static NSString *DownloadURLString = @"https://developer.apple.com/library/ios/d
     if (dataTask) {
         return;
     }
-    
-
 //    dataTask = [session dataTaskWithRequest:[self requestGET]];
-//    dataTask = [session dataTaskWithRequest:[self requestPOST]];
-    dataTask = [session dataTaskWithRequest:[self requestPOSTForm]];
+    dataTask = [session dataTaskWithRequest:[self requestPOST]];
+//    dataTask = [session dataTaskWithRequest:[self requestPOSTForm]];
     [dataTask resume];
 //    LOGINFO(@"data task delegate :%@", dataTask);
 }
 
 - (NSURLRequest*)requestGET {
-    NSURL* dataURL = [NSURL URLWithString:@"http://localhost:80/PHPProjects/TestProject1/AppInterface.php?FirstName=Peter&web=W3school.com.cn"];
+    NSURL* dataURL = [NSURL URLWithString:@"http://localhost:80/PHPProjects/TestProject1/TestPHPFile/AppInterface.php?FirstName=Peter&web=W3school.com.cn"];
     
     NSURLRequest* req = [NSURLRequest requestWithURL:dataURL];
     return req;
@@ -113,7 +113,7 @@ static NSString *DownloadURLString = @"https://developer.apple.com/library/ios/d
     
     NSData *myRequestData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     
-    NSURL* dataURL = [NSURL URLWithString:@"http://localhost:80/PHPProjects/TestProject1/AppInterface.php"];
+    NSURL* dataURL = [NSURL URLWithString:@"http://localhost:80/PHPProjects/TestProject1/TestPHPFile/AppInterface.php"];
     NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:dataURL];
     [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [req setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[myRequestData length]] forHTTPHeaderField:@"Content-Length"];
@@ -173,7 +173,7 @@ static NSString *DownloadURLString = @"https://developer.apple.com/library/ios/d
     [myRequestData appendData:[end dataUsingEncoding:NSUTF8StringEncoding]];
     LOGINFO(@"\n%@", [[NSString alloc]initWithData:myRequestData encoding:NSUTF8StringEncoding]);
     
-    NSURL* dataURL = [NSURL URLWithString:@"http://localhost:80/PHPProjects/TestProject1/AppInterface.php"];
+    NSURL* dataURL = [NSURL URLWithString:@"http://localhost:80/PHPProjects/TestProject1/TestPHPFile/AppInterface.php"];
     NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:dataURL];
     NSString *content=[[NSString alloc]initWithFormat:@"multipart/form-data; charset=utf-8; boundary=%@",TWITTERFON_FORM_BOUNDARY];
     [req setValue:content forHTTPHeaderField:@"Content-Type"];
@@ -206,6 +206,7 @@ static NSString *DownloadURLString = @"https://developer.apple.com/library/ios/d
 #pragma mark NSURLSessionTaskDelegate
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response         newRequest:(NSURLRequest *)request  completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler {
+    completionHandler(nil);
     LOGINFO(@"");
 }
 
@@ -300,7 +301,7 @@ static NSString *DownloadURLString = @"https://developer.apple.com/library/ios/d
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)_downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     if (_downloadTask == downloadTask) {
         double progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
-        NSLog(@"DownloadTask: %@ progress: %lf", _downloadTask, progress);
+        LOGINFO(@"DownloadTask: %@ progress: %lf", _downloadTask, progress);
         dispatch_async(dispatch_get_main_queue(), ^{
             progressView.progress = progress;
         });
@@ -308,11 +309,17 @@ static NSString *DownloadURLString = @"https://developer.apple.com/library/ios/d
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)_downloadTask didFinishDownloadingToURL:(NSURL *)downloadURL {
+    
+    LOGINFO(@"download url %@", downloadURL);
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *URLs = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
     NSURL *documentsDirectory = [URLs objectAtIndex:0];
     NSURL *originalURL = [[_downloadTask originalRequest] URL];
     NSURL *destinationURL = [documentsDirectory URLByAppendingPathComponent:[originalURL lastPathComponent]];
+    
+    LOGINFO(@"save url %@", destinationURL);
+    
     NSError *errorCopy;
     // For the purposes of testing, remove any esisting file at the destination.
     [fileManager removeItemAtURL:destinationURL error:NULL];

@@ -21,6 +21,7 @@
 		25154183196FC43400A456F3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25154182196FC43400A456F3 /* SystemConfiguration.framework */; };
 		5B0C51911C603A8A00818C6E /* CoreGraphicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C51901C603A8A00818C6E /* CoreGraphicsViewController.m */; };
 		5B0C51941C603AEE00818C6E /* CoreGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C51931C603AEE00818C6E /* CoreGraphicsView.m */; };
+		5B264A3F1E69599600C1C16E /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B264A3E1E69599600C1C16E /* Photos.framework */; };
 		5B28157F1D756E6B00906F49 /* CollectionViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B28157E1D756E6B00906F49 /* CollectionViewViewController.m */; };
 		5B28324219AA0B2400C873FB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B28324119AA0B2400C873FB /* Accelerate.framework */; };
 		5B3097421C4727230079CD78 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3094571C4727220079CD78 /* AppDelegate.m */; };
@@ -123,6 +124,7 @@
 		5BC0779E194D7AAD0024627F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0779B194D7AAD0024627F /* Default.png */; };
 		5BC0779F194D7AAD0024627F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC0779C194D7AAD0024627F /* Default@2x.png */; };
 		5BC077A3194DAA590024627F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC077A2194DAA590024627F /* Security.framework */; };
+		5BC50C261E9C989F00754814 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC50C251E9C989F00754814 /* Contacts.framework */; };
 		5BD163391C58630800D639C0 /* CAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD163331C58630800D639C0 /* CAlertView.m */; };
 		5BD1633A1C58630800D639C0 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD163351C58630800D639C0 /* CustomAlertView.m */; };
 		5BD1633B1C58630800D639C0 /* CustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD163371C58630800D639C0 /* CustomAlertViewController.m */; };
@@ -174,11 +176,6 @@
 		5BE3698C1C5B0BC700D5E366 /* SecurityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3698B1C5B0BC700D5E366 /* SecurityViewController.m */; };
 		5BE369941C5B136A00D5E366 /* TextAttributeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE369931C5B136A00D5E366 /* TextAttributeViewController.m */; };
 		5BFB36BD1DC2E62D00CED780 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFB36BC1DC2E62D00CED780 /* UserNotifications.framework */; };
-		5BFB36C31DC2EDEC00CED780 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFB36BC1DC2E62D00CED780 /* UserNotifications.framework */; };
-		5BFB36C51DC2EDEC00CED780 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFB36C41DC2EDEC00CED780 /* UserNotificationsUI.framework */; };
-		5BFB36C91DC2EDEC00CED780 /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFB36C81DC2EDEC00CED780 /* NotificationViewController.m */; };
-		5BFB36CC1DC2EDEC00CED780 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BFB36CA1DC2EDEC00CED780 /* MainInterface.storyboard */; };
-		5BFB36D01DC2EDEC00CED780 /* NotificationExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5BFB36C21DC2EDEC00CED780 /* NotificationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E52F01DA1A760FDA005609D5 /* redFlower.png in Resources */ = {isa = PBXBuildFile; fileRef = E52F01D91A760FDA005609D5 /* redFlower.png */; };
 		E52F01DC1A762543005609D5 /* boots.png in Resources */ = {isa = PBXBuildFile; fileRef = E52F01DB1A762543005609D5 /* boots.png */; };
 		E53268D419FA394900FB6195 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53268D319FA394900FB6195 /* CoreMotion.framework */; };
@@ -202,16 +199,6 @@
 		E5E320861AC529C000D3BD1C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E320851AC529C000D3BD1C /* libz.dylib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5BFB36CE1DC2EDEC00CED780 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0D7186EB1600BE530062A13F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5BFB36C11DC2EDEC00CED780;
-			remoteInfo = NotificationExtension;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		5BFB36D41DC2EDEC00CED780 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -219,7 +206,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				5BFB36D01DC2EDEC00CED780 /* NotificationExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +230,7 @@
 		5B0C51901C603A8A00818C6E /* CoreGraphicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreGraphicsViewController.m; sourceTree = "<group>"; };
 		5B0C51921C603AEE00818C6E /* CoreGraphicsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreGraphicsView.h; sourceTree = "<group>"; };
 		5B0C51931C603AEE00818C6E /* CoreGraphicsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreGraphicsView.m; sourceTree = "<group>"; };
+		5B264A3E1E69599600C1C16E /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		5B28157D1D756E6B00906F49 /* CollectionViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewViewController.h; sourceTree = "<group>"; };
 		5B28157E1D756E6B00906F49 /* CollectionViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewViewController.m; sourceTree = "<group>"; };
 		5B28324119AA0B2400C873FB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -441,6 +428,7 @@
 		5BC0779C194D7AAD0024627F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		5BC077A0194D88860024627F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Resource/Other_SDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		5BC077A2194DAA590024627F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5BC50C251E9C989F00754814 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		5BD163321C58630800D639C0 /* CAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAlertView.h; sourceTree = "<group>"; };
 		5BD163331C58630800D639C0 /* CAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAlertView.m; sourceTree = "<group>"; };
 		5BD163341C58630800D639C0 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
@@ -500,7 +488,6 @@
 		5BE369921C5B136A00D5E366 /* TextAttributeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextAttributeViewController.h; sourceTree = "<group>"; };
 		5BE369931C5B136A00D5E366 /* TextAttributeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextAttributeViewController.m; sourceTree = "<group>"; };
 		5BFB36BC1DC2E62D00CED780 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
-		5BFB36C21DC2EDEC00CED780 /* NotificationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFB36C41DC2EDEC00CED780 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		5BFB36C71DC2EDEC00CED780 /* NotificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
 		5BFB36C81DC2EDEC00CED780 /* NotificationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
@@ -535,6 +522,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BC50C261E9C989F00754814 /* Contacts.framework in Frameworks */,
+				5B264A3F1E69599600C1C16E /* Photos.framework in Frameworks */,
 				5BFB36BD1DC2E62D00CED780 /* UserNotifications.framework in Frameworks */,
 				5B8471E91D9E205700B6A211 /* CoreAudio.framework in Frameworks */,
 				E54F8B0A1B2FC5420095DDCF /* VideoToolbox.framework in Frameworks */,
@@ -573,15 +562,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5BFB36BF1DC2EDEC00CED780 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5BFB36C51DC2EDEC00CED780 /* UserNotificationsUI.framework in Frameworks */,
-				5BFB36C31DC2EDEC00CED780 /* UserNotifications.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -600,7 +580,6 @@
 			isa = PBXGroup;
 			children = (
 				0D7186F41600BE530062A13F /* MyDemo.app */,
-				5BFB36C21DC2EDEC00CED780 /* NotificationExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -608,6 +587,8 @@
 		0D7186F71600BE530062A13F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5BC50C251E9C989F00754814 /* Contacts.framework */,
+				5B264A3E1E69599600C1C16E /* Photos.framework */,
 				5BFB36D51DC2FB7D00CED780 /* Intents.framework */,
 				5B28324119AA0B2400C873FB /* Accelerate.framework */,
 				0D9568811685FBFF00AA4B81 /* Accounts.framework */,
@@ -1345,29 +1326,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				5BFB36CF1DC2EDEC00CED780 /* PBXTargetDependency */,
 			);
 			name = MyDemo;
 			productName = UINavgationController;
 			productReference = 0D7186F41600BE530062A13F /* MyDemo.app */;
 			productType = "com.apple.product-type.application";
-		};
-		5BFB36C11DC2EDEC00CED780 /* NotificationExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5BFB36D11DC2EDEC00CED780 /* Build configuration list for PBXNativeTarget "NotificationExtension" */;
-			buildPhases = (
-				5BFB36BE1DC2EDEC00CED780 /* Sources */,
-				5BFB36BF1DC2EDEC00CED780 /* Frameworks */,
-				5BFB36C01DC2EDEC00CED780 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = NotificationExtension;
-			productName = NotificationExtension;
-			productReference = 5BFB36C21DC2EDEC00CED780 /* NotificationExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -1379,7 +1342,8 @@
 				ORGANIZATIONNAME = zhangxin;
 				TargetAttributes = {
 					0D7186F31600BE530062A13F = {
-						DevelopmentTeam = NTJQ9UKZ85;
+						DevelopmentTeam = 6773LQR8YW;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -1388,11 +1352,6 @@
 								enabled = 0;
 							};
 						};
-					};
-					5BFB36C11DC2EDEC00CED780 = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = NTJQ9UKZ85;
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1411,7 +1370,6 @@
 			projectRoot = "";
 			targets = (
 				0D7186F31600BE530062A13F /* MyDemo */,
-				5BFB36C11DC2EDEC00CED780 /* NotificationExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1475,14 +1433,6 @@
 				E545B0B51A09C2130007F4AE /* customAlertButtonBG.png in Resources */,
 				5BD46D56194D3B61002995EB /* 眉毛.png in Resources */,
 				5BD46D4B194D3B61002995EB /* 下眼皮.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5BFB36C01DC2EDEC00CED780 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5BFB36CC1DC2EDEC00CED780 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1595,23 +1545,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5BFB36BE1DC2EDEC00CED780 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5BFB36C91DC2EDEC00CED780 /* NotificationViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5BFB36CF1DC2EDEC00CED780 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5BFB36C11DC2EDEC00CED780 /* NotificationExtension */;
-			targetProxy = 5BFB36CE1DC2EDEC00CED780 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5B30945A1C4727220079CD78 /* InfoPlist.strings */ = {
@@ -1723,8 +1657,9 @@
 		0D71870D1600BE530062A13F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 茜 褚 (QQ9XSS28T8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 茜 褚 (QQ9XSS28T8)";
+				DEVELOPMENT_TEAM = 6773LQR8YW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1742,10 +1677,11 @@
 					"-DSQLITE_TEMP_STORE=2",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
-				PRODUCT_BUNDLE_IDENTIFIER = xin.zhang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chery.cloudrive;
 				PRODUCT_NAME = MyDemo;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "2fcc0c75-d7dd-4010-b6a7-401e0adc6862";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2fcc0c75-d7dd-4010-b6a7-401e0adc6862";
+				PROVISIONING_PROFILE_SPECIFIER = Cloudrive_BOSCH;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
@@ -1756,8 +1692,9 @@
 		0D71870E1600BE530062A13F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 茜 褚 (QQ9XSS28T8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 茜 褚 (QQ9XSS28T8)";
+				DEVELOPMENT_TEAM = 6773LQR8YW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1775,70 +1712,15 @@
 					"-DSQLITE_TEMP_STORE=2",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
-				PRODUCT_BUNDLE_IDENTIFIER = xin.zhang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chery.cloudrive;
 				PRODUCT_NAME = MyDemo;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "2fcc0c75-d7dd-4010-b6a7-401e0adc6862";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2fcc0c75-d7dd-4010-b6a7-401e0adc6862";
+				PROVISIONING_PROFILE_SPECIFIER = Cloudrive_BOSCH;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		5BFB36D21DC2EDEC00CED780 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = NTJQ9UKZ85;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = NotificationExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = xin.zhang.NotificationExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		5BFB36D31DC2EDEC00CED780 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = NTJQ9UKZ85;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = NotificationExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = xin.zhang.NotificationExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -1859,15 +1741,6 @@
 			buildConfigurations = (
 				0D71870D1600BE530062A13F /* Debug */,
 				0D71870E1600BE530062A13F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		5BFB36D11DC2EDEC00CED780 /* Build configuration list for PBXNativeTarget "NotificationExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5BFB36D21DC2EDEC00CED780 /* Debug */,
-				5BFB36D31DC2EDEC00CED780 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

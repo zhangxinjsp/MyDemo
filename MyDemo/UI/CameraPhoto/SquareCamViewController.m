@@ -199,7 +199,7 @@ static CGContextRef CreateCGBitmapContextForSize(CGSize size)
     // Select a video device, make an input
 	AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
-	require( error == nil, bail );
+//    require( error == nil, bail );
 	
     isUsingFrontFacingCamera = NO;
 	if ( [session canAddInput:deviceInput] )
@@ -387,7 +387,7 @@ bail:
 																		 1, 
 																		 NULL);
 	BOOL success = (destination != NULL);
-	require(success, bail);
+//    require(success, bail);
 
 	const float JPEGCompQuality = 0.85f; // JPEGHigherQuality
 	CFMutableDictionaryRef optionsDict = NULL;
@@ -407,7 +407,7 @@ bail:
 	if ( optionsDict )
 		CFRelease(optionsDict);
 	
-	require(success, bail);
+//    require(success, bail);
 	
 	CFRetain(destinationData);
 	[[ALAssetsLibrary new] writeImageDataToSavedPhotosAlbum:(__bridge id)destinationData metadata:metadata completionBlock:^(NSURL *assetURL, NSError *error) {
@@ -492,7 +492,7 @@ bail:
 						NSArray *features = [faceDetector featuresInImage:ciImage options:imageOptions];
 						CGImageRef srcImage = NULL;
 						OSStatus err = CreateCGImageFromCVPixelBuffer(CMSampleBufferGetImageBuffer(imageDataSampleBuffer), &srcImage);
-						check(!err);
+//                        check(!err);
 						
                         CGImageRef cgImageResult = [self newSquareOverlayedImageForFeatures:features 
 																					   inCGImage:srcImage 

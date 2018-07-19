@@ -45,7 +45,7 @@
     [super viewDidLoad];
     
     
-    
+    [self streamSocket];
     
     // Do any additional setup after loading the view.
 }
@@ -53,11 +53,11 @@
 #pragma mark stream 形式的socket
 - (void)streamSocket
 {
-    NSString* urlStr = @"192.168.1.106";
+    NSString* urlStr = @"10.178.6.103";
     
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
-    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)urlStr, 8888, &readStream, &writeStream);
+    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)urlStr, 8001, &readStream, &writeStream);
     
     inputStream = (__bridge_transfer NSInputStream *)readStream;
     //    [inputStream setProperty:NSStreamSocketSecurityLevelTLSv1 forKey:NSStreamSocketSecurityLevelKey];
@@ -81,38 +81,40 @@
         case NSStreamEventHasSpaceAvailable:
         {
             if (stream == outputStream) {
-                NSString * str = [NSString stringWithFormat:
-                                  @"GET / HTTP/1.0\r\n\r\n"];
+                
+                NSString * str = [NSString stringWithFormat:@"zhangxin tet"];
                 const uint8_t * rawstring = (const uint8_t *)[str UTF8String];
                 [outputStream write:rawstring maxLength:sizeof(rawstring)];
-                [outputStream close];
+//                [outputStream close];
+                LOGINFO(@"send message is :%@ status is :%d", str, outputStream.streamStatus);
+                
             }
             break;
         }
             // continued ...
         case NSStreamEventNone: {
-            NSLog(@"none");
+            LOGINFO(@"none");
             break;
         }
         case NSStreamEventOpenCompleted: {
-            NSLog(@"Open Completed");
+            LOGINFO(@"Open Completed");
             break;
         }
         case NSStreamEventHasBytesAvailable: {
             //            NSLog(@"HasBytesAvailable");
             if (stream == inputStream){
                 uint8_t buffer[100];
-                [inputStream read:buffer maxLength:100];
-                NSLog(@"%s", buffer);
+                [inputStream read:buffer maxLength:sizeof(buffer)];
+                LOGINFO(@"%s", buffer);
             }
             break;
         }
         case NSStreamEventErrorOccurred: {
-            NSLog(@"ErrorOccurred");
+            LOGINFO(@"ErrorOccurred");
             break;
         }
         case NSStreamEventEndEncountered: {
-            NSLog(@"End Encountered");
+            LOGINFO(@"End Encountered");
             break;
         }
     }

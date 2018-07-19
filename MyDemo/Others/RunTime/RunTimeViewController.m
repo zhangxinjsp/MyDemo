@@ -10,6 +10,7 @@
 
 #import "TestModel.h"
 
+
 @interface RunTimeViewController ()
 
 @end
@@ -166,6 +167,23 @@
         }
     }
     NSLog(@"%@", model.age);
+    
+    CGFloat myFloat = 2.34f;
+    
+    float myFloatValue;
+    
+//    arc文件不可用
+//    object_getInstanceVariable(self, "myFloat", (void*)&myFloatValue);
+    
+    NSLog(@"%f", myFloatValue);
+    
+    float newValue = 2.34f;
+    unsigned int addr = (unsigned int)&newValue;
+    
+//    object_setInstanceVariable(self, "myFloat", *(float**)addr);
+    
+    NSLog(@"%f", myFloat);
+
     
 }
 

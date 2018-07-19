@@ -188,7 +188,7 @@
  
  */
 - (SecKeyRef)publicKey {
-    SecKeyRef _publicKey=nil;
+    SecKeyRef _publicKey = nil;
     
     OSStatus status = -1;
     if (_publicKey == nil) {

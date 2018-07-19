@@ -7,6 +7,7 @@
 //
 
 #import "ContactsViewController.h"
+#import <Contacts/Contacts.h>
 
 @interface ContactsViewController (){
     ABAddressBookRef addressBook;

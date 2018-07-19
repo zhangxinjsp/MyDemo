@@ -130,6 +130,8 @@
     CGImageRef cgImage = [context createCGImage:outputCIImage fromRect:rect];
     UIImage * effectImage = [UIImage imageWithCGImage:cgImage];
     
+    
+    
     return [self enlargeQRCodeImage:effectImage];
 }
 

@@ -314,7 +314,7 @@
     //这个属性默认为YES.一般情况下,不需要设置这个属性. 但如果是CAAnimation动画,并且需要设置 fillMode 属性,那么需要将 removedOnCompletion 设置为NO,否则fillMode无效
     animation.removedOnCompletion = NO;
     
-    animation.filter = nil;//CIFilter, 设置之后只有简单的可以使用复杂的需要filter自己做定时效果
+//    animation.filter = nil;//CIFilter, 设置之后只有简单的可以使用复杂的需要filter自己做定时效果
     
     [animation setDuration:1.5f];
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
@@ -336,7 +336,7 @@
     [animation setSubtype:@"90cw"];//方向
     
     [animation setDuration:3];
-    [animation setFilter:filter];//如果指定，那么指定的filter必须同时支持x和y，否则该filter将不起作用。
+//    [animation setFilter:filter];//如果指定，那么指定的filter必须同时支持x和y，否则该filter将不起作用。
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     
     return animation;
