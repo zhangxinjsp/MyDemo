@@ -16,6 +16,8 @@
 #import "URLConnectionViewController.h"
 #import "URLSessionViewController.h"
 #import "SocketViewController.h"
+#import "SocketServiceViewController.h"
+#import "SocketClientViewController.h"
 #import "SQLiteViewController.h"
 #import "ShareTofaceBookViewController.h"
 #import "FileManagerReadAndWriteViewController.h"
@@ -34,6 +36,8 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
     URLConnectionTag,
     URLSessionTag,
     SocketTag,
+    SocketServiceTag,
+    SocketClientTag,
     SQLiteTag,
     ShareTofaceBookTag,
     FileManagerReadAndWriteTag,
@@ -57,7 +61,7 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"other";
     
-    titleArray = [[NSArray alloc]initWithObjects:@"ble", @"contacs", @"coredata", @"motion", @"reachaboloty", @"connection", @"session", @"socket", @"SQLite", @"share",@"file read write", @"regex", @"Security", @"RunTime",  @"RunLoop", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"ble", @"contacs", @"coredata", @"motion", @"reachaboloty", @"connection", @"session", @"socket", @"SocketServiceTag" , @"SocketClientTag", @"SQLite", @"share",@"file read write", @"regex", @"Security", @"RunTime",  @"RunLoop", nil];
     
     tableV = [[UITableView alloc]init];
     tableV.delegate = self;
@@ -141,6 +145,18 @@ typedef NS_ENUM(NSInteger, OtherMenuType) {
         }
         case SocketTag: {
             SocketViewController* ctl = [[SocketViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
+            break;
+        }
+        case SocketServiceTag: {
+            SocketServiceViewController* ctl = [[SocketServiceViewController alloc] init];
+            ctl.title = [titleArray objectAtIndex:tag];
+            [self.navigationController pushViewController:ctl animated:YES];
+            break;
+        }
+        case SocketClientTag: {
+            SocketClientViewController* ctl = [[SocketClientViewController alloc] init];
             ctl.title = [titleArray objectAtIndex:tag];
             [self.navigationController pushViewController:ctl animated:YES];
             break;

@@ -95,6 +95,8 @@
 		5B309D081C4773490079CD78 /* ScrollCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309D071C4773490079CD78 /* ScrollCycleView.m */; };
 		5B309D0B1C477C290079CD78 /* BluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B309D0A1C477C290079CD78 /* BluetoothViewController.m */; };
 		5B31BEC51D9B5E5D00BB0EB1 /* URLSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B31BEC41D9B5E5D00BB0EB1 /* URLSessionViewController.m */; };
+		5B623881212AA3C100C1553C /* SocketClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B62387E212AA3C100C1553C /* SocketClientViewController.m */; };
+		5B623882212AA3C100C1553C /* SocketServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B623880212AA3C100C1553C /* SocketServiceViewController.m */; };
 		5B66177C1B19FB3F000C584F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */; };
 		5B6B4F221CD19CA600CF1965 /* CustomUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B4F1D1CD19CA600CF1965 /* CustomUI.m */; };
 		5B6B4F231CD19CA600CF1965 /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B4F1F1CD19CA600CF1965 /* TestModel.m */; };
@@ -377,6 +379,10 @@
 		5B309D0A1C477C290079CD78 /* BluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothViewController.m; sourceTree = "<group>"; };
 		5B31BEC31D9B5E5D00BB0EB1 /* URLSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLSessionViewController.h; sourceTree = "<group>"; };
 		5B31BEC41D9B5E5D00BB0EB1 /* URLSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLSessionViewController.m; sourceTree = "<group>"; };
+		5B62387D212AA3C000C1553C /* SocketClientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocketClientViewController.h; path = MyDemo/Others/socket/SocketClientViewController.h; sourceTree = SOURCE_ROOT; };
+		5B62387E212AA3C100C1553C /* SocketClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocketClientViewController.m; path = MyDemo/Others/socket/SocketClientViewController.m; sourceTree = SOURCE_ROOT; };
+		5B62387F212AA3C100C1553C /* SocketServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocketServiceViewController.h; path = MyDemo/Others/socket/SocketServiceViewController.h; sourceTree = SOURCE_ROOT; };
+		5B623880212AA3C100C1553C /* SocketServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocketServiceViewController.m; path = MyDemo/Others/socket/SocketServiceViewController.m; sourceTree = SOURCE_ROOT; };
 		5B66177B1B19FB3F000C584F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		5B6B4F1C1CD19CA600CF1965 /* CustomUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUI.h; sourceTree = "<group>"; };
 		5B6B4F1D1CD19CA600CF1965 /* CustomUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUI.m; sourceTree = "<group>"; };
@@ -908,6 +914,10 @@
 			children = (
 				5B309C501C473F9E0079CD78 /* SocketViewController.h */,
 				5B309C511C473F9E0079CD78 /* SocketViewController.m */,
+				5B62387D212AA3C000C1553C /* SocketClientViewController.h */,
+				5B62387E212AA3C100C1553C /* SocketClientViewController.m */,
+				5B62387F212AA3C100C1553C /* SocketServiceViewController.h */,
+				5B623880212AA3C100C1553C /* SocketServiceViewController.m */,
 			);
 			path = Socket;
 			sourceTree = "<group>";
@@ -1453,6 +1463,7 @@
 				5B309CDF1C473F9E0079CD78 /* OtherMenuViewController.m in Sources */,
 				5B309D0B1C477C290079CD78 /* BluetoothViewController.m in Sources */,
 				5B309CE41C473F9E0079CD78 /* Area.m in Sources */,
+				5B623881212AA3C100C1553C /* SocketClientViewController.m in Sources */,
 				5B309CDA1C473F9E0079CD78 /* CoreDataTool.m in Sources */,
 				5B309D001C473F9E0079CD78 /* VideoToolViewController.m in Sources */,
 				5B90EDEB1CAE15CE000B4F8E /* read_handle_shared.c in Sources */,
@@ -1538,6 +1549,7 @@
 				5B0C51941C603AEE00818C6E /* CoreGraphicsView.m in Sources */,
 				5B309D051C473F9E0079CD78 /* SendMessageAndEMailViewController.m in Sources */,
 				5B309D041C473F9E0079CD78 /* QRCodeViewController.m in Sources */,
+				5B623882212AA3C100C1553C /* SocketServiceViewController.m in Sources */,
 				5B90EDF01CAE15CE000B4F8E /* thread_mosq.c in Sources */,
 				5BE369941C5B136A00D5E366 /* TextAttributeViewController.m in Sources */,
 				5B90EDF21CAE15CE000B4F8E /* tls_mosq.c in Sources */,
@@ -1657,8 +1669,8 @@
 		0D71870D1600BE530062A13F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: 茜 褚 (QQ9XSS28T8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 茜 褚 (QQ9XSS28T8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: YouPan Wu (XY9TYX5455)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YouPan Wu (XY9TYX5455)";
 				DEVELOPMENT_TEAM = 6773LQR8YW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1677,11 +1689,11 @@
 					"-DSQLITE_TEMP_STORE=2",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chery.cloudrive;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chery.cloudrive3;
 				PRODUCT_NAME = MyDemo;
-				PROVISIONING_PROFILE = "2fcc0c75-d7dd-4010-b6a7-401e0adc6862";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2fcc0c75-d7dd-4010-b6a7-401e0adc6862";
-				PROVISIONING_PROFILE_SPECIFIER = Cloudrive_BOSCH;
+				PROVISIONING_PROFILE = "b1acb1fb-af74-4ee8-85c3-95366e379a3e";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b1acb1fb-af74-4ee8-85c3-95366e379a3e";
+				PROVISIONING_PROFILE_SPECIFIER = Cloudrive3_BOSCH;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
@@ -1692,8 +1704,8 @@
 		0D71870E1600BE530062A13F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: 茜 褚 (QQ9XSS28T8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 茜 褚 (QQ9XSS28T8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: YouPan Wu (XY9TYX5455)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YouPan Wu (XY9TYX5455)";
 				DEVELOPMENT_TEAM = 6773LQR8YW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1712,11 +1724,11 @@
 					"-DSQLITE_TEMP_STORE=2",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chery.cloudrive;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chery.cloudrive3;
 				PRODUCT_NAME = MyDemo;
-				PROVISIONING_PROFILE = "2fcc0c75-d7dd-4010-b6a7-401e0adc6862";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2fcc0c75-d7dd-4010-b6a7-401e0adc6862";
-				PROVISIONING_PROFILE_SPECIFIER = Cloudrive_BOSCH;
+				PROVISIONING_PROFILE = "b1acb1fb-af74-4ee8-85c3-95366e379a3e";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b1acb1fb-af74-4ee8-85c3-95366e379a3e";
+				PROVISIONING_PROFILE_SPECIFIER = Cloudrive3_BOSCH;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
